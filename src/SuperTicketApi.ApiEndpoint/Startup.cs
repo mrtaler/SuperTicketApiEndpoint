@@ -174,7 +174,7 @@
             app.UseStaticFiles();
 
             // app.UseCors("AllowAll");
-            app.UseMvc();
+        
             app.UseSwagger();
             app.UseSwaggerUI(
                 options =>
@@ -188,6 +188,7 @@
                        // options.RoutePrefix = ""; // serve the UI at root
                        // options.DisplayOperationId();
                     });
+            app.UseMvc();
         }
     }
 }
