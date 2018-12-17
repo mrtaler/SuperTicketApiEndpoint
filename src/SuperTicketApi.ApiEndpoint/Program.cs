@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-
-namespace SuperTicketApi.ApiEndpoint
+﻿namespace SuperTicketApi.ApiEndpoint
 {
+    using System.IO;
+
+    using Microsoft.AspNetCore;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+
     public class Program
     {
         public static void Main(string[] args)
@@ -23,9 +19,9 @@ namespace SuperTicketApi.ApiEndpoint
                     (hostingContext, config) =>
                         {
                             config.SetBasePath(Directory.GetCurrentDirectory());
-                          //  config.AddJsonSettingsInProject();
+                            //  config.AddJsonSettingsInProject();
                             config.AddCommandLine(args);
-                        }).UseStartup<Startup>();
-
+                        }).UseStartup<Startup>().UseIISIntegration()
+                .UseApplicationInsights();
     }
 }

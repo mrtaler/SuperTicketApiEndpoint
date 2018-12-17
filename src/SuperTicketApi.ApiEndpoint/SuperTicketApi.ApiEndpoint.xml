@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SuperTicketApi.ApiEndpoint</name>
+    </assembly>
+    <members>
+        <member name="T:SuperTicketApi.ApiEndpoint.Controllers.ValuesController">
+            <summary>
+            The values controller.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuesController.Get">
+            <summary>
+            The GET api/values
+            </summary>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/>.
+            </returns>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuesController.Get(System.Int32)">
+            <summary>
+            The GET api/values/5
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/>.
+            </returns>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuesController.Post(System.String)">
+            <summary>
+            The api/values
+            </summary>
+            <param name="value">
+            The value.
+            </param>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuesController.Put(System.Int32,System.String)">
+            <summary>
+            The PUT api/values/5
+            </summary>
+            <param name="id">
+            The <paramref name="id"/>.
+            </param>
+            <param name="value">
+            The value.
+            </param>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuesController.Delete(System.Int32)">
+            <summary>
+            The DELETE api/values/5
+            </summary>
+            <param name="id">
+            The <paramref name="id"/>.
+            </param>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.SettingsExtension.AddJsonSettingsInProject(Microsoft.Extensions.Configuration.IConfigurationBuilder)">
+            <summary>
+            The add json settings in project.
+            </summary>
+            <param name="builder">
+            The builder.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.
+            </returns>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.SettingsExtension.AddSettingsFileMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            The add settings file mapper.
+            </summary>
+            <param name="services">
+            The services.
+            </param>
+            <param name="configuration">
+            The configuration.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.
+            </returns>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.SettingsExtension.AddSwaggerDocumentation(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            OpenApi (swagger) documentation for API endpoints
+            </summary>
+            <param name="services">service collection</param>
+        </member>
+        <member name="T:SuperTicketApi.ApiEndpoint.Startup">
+            <summary>
+            The startup.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Startup"/> class.
+            </summary>
+            <param name="configuration">
+            The configuration.
+            </param>
+        </member>
+        <member name="P:SuperTicketApi.ApiEndpoint.Startup.Configuration">
+            <summary>
+            Gets the configuration.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services">
+            The services.
+            </param>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">
+            The <paramref name="app"/>.
+            </param>
+            <param name="env">
+            The env.
+            </param>
+        </member>
+    </members>
+</doc>
