@@ -16,14 +16,17 @@
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args).UseContentRoot(Directory.GetCurrentDirectory())
+            WebHost.CreateDefaultBuilder(args)
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                //.UseKestrel(options => options.AddServerHeader = false)
                 .ConfigureAppConfiguration(
                     (hostingContext, config) =>
                         {
                             config.SetBasePath(Directory.GetCurrentDirectory());
                             config.AddJsonSettingsInProject();
                             config.AddCommandLine(args);
-                        }).UseStartup<Startup>().UseIISIntegration()
+                        }).UseStartup<Startup>()
+                .UseIISIntegration()
                 .UseApplicationInsights();
     }
 }
