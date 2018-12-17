@@ -1,20 +1,21 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Extension
 {
-    using System.IO;
-    using System.Reflection;
-
+    using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.PlatformAbstractions;
-
     using SuperTicketApi.ApiSettings.CorrelationIdOptions;
     using SuperTicketApi.ApiSettings.CustomSettings;
     using SuperTicketApi.ApiSettings.FacebookOptions;
     using SuperTicketApi.ApiSettings.GitHubOptions;
     using SuperTicketApi.ApiSettings.GoogleOptions;
     using SuperTicketApi.ApiSettings.TokenAuthOptions;
+    using System.IO;
+    using System.Linq;
+    using System.Reflection;
 
     using Swashbuckle.AspNetCore.Swagger;
+    using Swashbuckle.AspNetCore.SwaggerGen;
 
     public static class SettingsExtension
     {
@@ -78,90 +79,113 @@
         /// <param name="services">service collection</param>
         public static void AddSwaggerDocumentation(this IServiceCollection services)
         {
-          //  services.AddApiVersioning(options => options.ReportApiVersions = true);
-            services.AddSwaggerGen(
-                  c =>
-                  {
-                      c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
-                      var filePath = PlatformServices.Default.Application.ApplicationBasePath;
-                      var xmlPath = Path.Combine(filePath, "SuperTicketApi.ApiEndpoint.xml");
-                      c.IncludeXmlComments(xmlPath);
-                  });
-
-            /* services.AddSwaggerGen(
+            services.AddApiVersioning(options => options.ReportApiVersions = true);
+            services.AddMvcCore().AddVersionedApiExplorer(
                 options =>
                     {
-                      /*  var provider = services.BuildServiceProvider()
-                            .GetRequiredService<Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider>();
-                        foreach (var description in provider.ApiVersionDescriptions)
-                        {*/
-            /*  options.SwaggerDoc(
-                  "Swagger",
-                  new Info
-                  {
-                      Title = $"API {1}",
-                      Version ="1.0"
-                  });
-              options.DescribeAllEnumsAsStrings();
-        //  }
+                        options.GroupNameFormat = "'v'VVV";
 
-          options.OperationFilter<VersionFilter>();
-          options.DocumentFilter<VersionFilter>();
-          options.DescribeAllParametersInCamelCase();
-      });*/
+                        // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
+                        // can also be used to control the format of the API version in route templates
+                        options.SubstituteApiVersionInUrl = true;
+                    });
+
+            // services.AddSwaggerGen(
+            /*  options =>
+                {
+                    c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                    var filePath = PlatformServices.Default.Application.ApplicationBasePath;
+                    var xmlPath = Path.Combine(filePath, "SuperTicketApi.ApiEndpoint.xml");
+                    c.IncludeXmlComments(xmlPath);
+                });*/
+
+            services.AddSwaggerGen(
+               options =>
+                   {
+                       using (var serviceProvider = services.BuildServiceProvider())
+                       {
+                           var provider = serviceProvider.GetRequiredService<IApiVersionDescriptionProvider>();
+                           foreach (var description in provider.ApiVersionDescriptions)
+                           {
+                               options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description));
+                           }
+                       }
+
+                       options.OperationFilter<SwaggerDefaultValues>();
+                       options.IncludeXmlComments(XmlCommentsFilePath);
+                       options.DescribeAllParametersInCamelCase();
+                   });
+        }
+
+        static string XmlCommentsFilePath
+        {
+            get
+            {
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
+                return Path.Combine(basePath, fileName);
+            }
+        }
+
+        static Info CreateInfoForApiVersion(ApiVersionDescription description)
+        {
+            var info = new Info()
+                           {
+                               Title = $"Sample API {description.ApiVersion}",
+                               Version = description.ApiVersion.ToString(),
+                               Description = "A sample application with Swagger, Swashbuckle, and API versioning.",
+                               Contact = new Contact() { Name = "Bill Mei", Email = "bill.mei@somewhere.com" },
+                               TermsOfService = "Shareware",
+                               License = new License() { Name = "MIT", Url = "https://opensource.org/licenses/MIT" }
+                           };
+
+            if (description.IsDeprecated)
+            {
+                info.Description += " This API version has been deprecated.";
+            }
+
+            return info;
         }
     }
 
-  /*  /// <summary>
-    /// Exception filter for handling unexpected and expected exceptions that passes through to the framework.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public sealed class ApiExceptionFilterAttribute : ExceptionFilterAttribute
+    public class SwaggerDefaultValues : IOperationFilter
     {
-        private readonly ILogger _log;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiExceptionFilterAttribute"/> class.
+        /// Applies the filter to the specified operation using the given context.
         /// </summary>
-        /// <param name="log">
-        /// The Logger interface.
-        /// </param>
-        public ApiExceptionFilterAttribute(ILogger log)
+        /// <param name="operation">The operation to apply the filter to.</param>
+        /// <param name="context">The current operation filter context.</param>
+        public void Apply(Operation operation, OperationFilterContext context)
         {
-            _log = log;
-        }
-
-        /// <inheritdoc />
-        public override void OnException(ExceptionContext context)
-        {
-            ApiError error;
-            if (context.Exception is ApiErrorException ex)
+            if (operation.Parameters == null)
             {
-                error = new ApiError(ex.Description, ex.GetBaseException());
-                _log.ApiError(error);
-            }
-            else
-            {
-                error = new ApiError(context.Exception.Message);
-                _log.ApiError(error, LogEventLevel.Error);
+                return;
             }
 
-            SetStatusCode(context);
-            context.Result = new JsonResult(error);
-            base.OnException(context);
-        }
-
-        private static void SetStatusCode(ExceptionContext context)
-        {
-            switch (context.Exception)
+            // REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/412
+            // REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/413
+            foreach (var parameter in operation.Parameters.OfType<NonBodyParameter>())
             {
-                case FileNotFoundException _:
-                    context.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
-                    break;
-                default:
-                    context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    break;
+                var description = context.ApiDescription.ParameterDescriptions.First(p => p.Name == parameter.Name);
+                var routeInfo = description.RouteInfo;
+
+                if (parameter.Description == null)
+                {
+                    parameter.Description = description.ModelMetadata?.Description;
+                }
+
+                if (routeInfo == null)
+                {
+                    continue;
+                }
+
+                if (parameter.Default == null)
+                {
+                    parameter.Default = routeInfo.DefaultValue;
+                }
+
+                parameter.Required |= !routeInfo.IsOptional;
             }
         }
-    }*/
+    }
 }

@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -150,7 +151,7 @@
         /// <param name="env">
         /// The env.
         /// </param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -170,10 +171,13 @@
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(
-                c =>
+                options =>
                     {
-                        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                        c.RoutePrefix = string.Empty;
+                        // build a swagger endpoint for each discovered API version
+                        foreach (var description in provider.ApiVersionDescriptions)
+                        {
+                            options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                        }
                     });
         }
     }
