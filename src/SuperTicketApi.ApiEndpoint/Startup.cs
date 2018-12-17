@@ -166,8 +166,8 @@
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-           // app.UseCors("AllowAll");
-
+            // app.UseCors("AllowAll");
+            app.UseMvcWithDefaultRoute();
             app.UseSwagger();
             app.UseSwaggerUI(
                 c =>
@@ -176,7 +176,7 @@
                         c.RoutePrefix = string.Empty;
                     });
 
-            app.UseMvc();
+            //app.UseMvc();
         }
     }
 }
