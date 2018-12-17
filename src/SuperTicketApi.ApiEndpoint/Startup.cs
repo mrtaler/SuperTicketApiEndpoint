@@ -136,15 +136,6 @@
 
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc()
-                .AddJsonOptions(options =>
-                    {
-                        var settings = options.SerializerSettings;
-                        settings.DateFormatHandling = Newtonsoft.Json.DateFormatHandling.IsoDateFormat;
-                        if (options.SerializerSettings.ContractResolver is Newtonsoft.Json.Serialization.DefaultContractResolver resolver)
-                        {
-                            resolver.NamingStrategy = null;
-                        }
-                    })
                 .AddFluentValidation()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -174,7 +165,7 @@
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseCors(bild => bild.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseCors("AllowAll");
 
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
