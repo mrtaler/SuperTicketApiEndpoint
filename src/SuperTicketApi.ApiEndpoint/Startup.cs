@@ -136,7 +136,7 @@
             #endregion
 
 
-            // services.AddRouting(options => options.LowercaseUrls = true);
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc()
                 .AddFluentValidation().AddJsonOptions(options =>
                     {
@@ -170,12 +170,12 @@
             app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
-          //  app.UseDefaultFiles();
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             // app.UseCors("AllowAll");
-        
-         //   app.UseSwagger();
+            app.UseMvc();
+            app.UseSwagger();
             app.UseSwaggerUI(
                 options =>
                     {
@@ -185,10 +185,10 @@
                             options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
                         }
 
-                       // options.RoutePrefix = ""; // serve the UI at root
-                       // options.DisplayOperationId();
+                        //options.RoutePrefix = ""; // serve the UI at root
+                        options.DisplayOperationId();
                     });
-            app.UseMvc();
+           
         }
     }
 }
