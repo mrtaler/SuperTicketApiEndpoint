@@ -122,10 +122,10 @@
             {
                 var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
-                if (basePath.Contains(@"wwwroot\"))
-                {
-                    return Path.Combine(basePath.Replace(@"wwwroot\", ""), fileName);
-                }
+                //if (basePath.Contains(@"wwwroot\"))
+                //{
+                //    return Path.Combine(basePath.Replace(@"wwwroot\", ""), fileName);
+                //}
                 return Path.Combine(basePath, fileName);
             }
         }
