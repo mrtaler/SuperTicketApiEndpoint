@@ -163,6 +163,8 @@
                 app.UseHsts();
             }
 
+            app.UseDeveloperExceptionPage();
+
             app.UseHttpsRedirection();
             app.UseDefaultFiles();
             app.UseStaticFiles();
