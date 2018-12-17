@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.ApiSettings.TokenAuthOptions
+﻿namespace SuperTicketApi.ApiSettings.JsonSettings.TokenAuthOptions
 {
     /// <summary>
     /// The token setup.

@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.ApiSettings.GoogleOptions
+﻿namespace SuperTicketApi.ApiSettings.JsonSettings.GoogleOptions
 {
     using Microsoft.AspNetCore.Authentication.OAuth;
 

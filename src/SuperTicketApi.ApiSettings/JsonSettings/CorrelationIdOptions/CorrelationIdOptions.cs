@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.ApiSettings.CorrelationIdOptions
+﻿namespace SuperTicketApi.ApiSettings.JsonSettings.CorrelationIdOptions
 {
     public class CorrelationIdOptions
     {

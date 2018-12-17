@@ -14,7 +14,7 @@
 
     using Newtonsoft.Json.Linq;
 
-    using SuperTicketApi.ApiSettings.GoogleOptions;
+    using SuperTicketApi.ApiSettings.JsonSettings.GoogleOptions;
 
     public class CustomGoogleHandler : OAuthHandler<GoogleAuthOptions>
     {

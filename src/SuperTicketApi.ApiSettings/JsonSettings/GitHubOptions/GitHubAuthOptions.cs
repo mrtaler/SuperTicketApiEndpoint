@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.ApiSettings.GitHubOptions
+﻿namespace SuperTicketApi.ApiSettings.JsonSettings.GitHubOptions
 {
     public class GitHubAuthOptions
     {

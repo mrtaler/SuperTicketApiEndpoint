@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.ApiSettings.CustomSettings
+﻿namespace SuperTicketApi.ApiSettings.JsonSettings.CustomSettings
 {
     public class CustomSettings
     {

@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.ApiSettings.FacebookOptions
+﻿namespace SuperTicketApi.ApiSettings.JsonSettings.FacebookOptions
 {
     public class FacebookAuthOptions
     {

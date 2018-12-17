@@ -4,12 +4,12 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.PlatformAbstractions;
-    using SuperTicketApi.ApiSettings.CorrelationIdOptions;
-    using SuperTicketApi.ApiSettings.CustomSettings;
-    using SuperTicketApi.ApiSettings.FacebookOptions;
-    using SuperTicketApi.ApiSettings.GitHubOptions;
-    using SuperTicketApi.ApiSettings.GoogleOptions;
-    using SuperTicketApi.ApiSettings.TokenAuthOptions;
+    using SuperTicketApi.ApiSettings.JsonSettings.CorrelationIdOptions;
+    using SuperTicketApi.ApiSettings.JsonSettings.CustomSettings;
+    using SuperTicketApi.ApiSettings.JsonSettings.FacebookOptions;
+    using SuperTicketApi.ApiSettings.JsonSettings.GitHubOptions;
+    using SuperTicketApi.ApiSettings.JsonSettings.GoogleOptions;
+    using SuperTicketApi.ApiSettings.JsonSettings.TokenAuthOptions;
     using Swashbuckle.AspNetCore.Swagger;
     using Swashbuckle.AspNetCore.SwaggerGen;
     using System.IO;
@@ -30,17 +30,17 @@
         public static IConfigurationBuilder AddJsonSettingsInProject(this IConfigurationBuilder builder)
         {
             string pathSettingsAssembly = Assembly.GetAssembly(typeof(CustomSettings)).Location;
+            //  JsonSettings
             var allJsonSettingsFiles = Directory.GetFiles(
-                Path.GetDirectoryName(pathSettingsAssembly),
+                Path.Combine(Path.GetDirectoryName(pathSettingsAssembly), "JsonSettings"),
                 "*.json",
                 SearchOption.AllDirectories);
 
             foreach (var sittingFile in allJsonSettingsFiles)
             {
-                if (!Path.GetFileNameWithoutExtension(sittingFile).Contains('.'))
-                {
-                    builder.AddJsonFile(sittingFile, optional: false, reloadOnChange: false);
-                }
+
+                builder.AddJsonFile(sittingFile, optional: false, reloadOnChange: false);
+
             }
 
             return builder;
@@ -111,7 +111,7 @@
                        }
 
                        options.OperationFilter<SwaggerDefaultValues>();
-                      // options.IncludeXmlComments(XmlCommentsFilePath);
+                       // options.IncludeXmlComments(XmlCommentsFilePath);
                        options.DescribeAllParametersInCamelCase();
                    });
         }
