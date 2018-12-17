@@ -1,14 +1,14 @@
 ﻿namespace SuperTicketApi.ApiEndpoint
 {
-    using FluentValidation.AspNetCore;
 
+    using FluentValidation.AspNetCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-
+    using Newtonsoft.Json.Serialization;
     using SuperTicketApi.ApiEndpoint.Extension;
 
     /// <summary>
@@ -42,7 +42,7 @@
         {
             services.AddSettingsFileMapper(this.Configuration);
             services.AddSwaggerDocumentation();
-          
+
             /* services.AddCors(options =>
                 {
                     options.AddPolicy(
@@ -55,12 +55,12 @@
                                     .AllowAnyHeader();
                             });
                 });*/
-           /* services.AddMvcCore(options =>
-            {
-             //   options.Filters.Add<ApiExceptionFilterAttribute>();
-             //   options.Filters.Add<ValidModelStateFilter>();
-            })
-                .AddApiExplorer();*/
+            /* services.AddMvcCore(options =>
+             {
+              //   options.Filters.Add<ApiExceptionFilterAttribute>();
+              //   options.Filters.Add<ValidModelStateFilter>();
+             })
+                 .AddApiExplorer();*/
 
             #region AddAuthentication
 
@@ -136,9 +136,13 @@
             #endregion
 
 
-           // services.AddRouting(options => options.LowercaseUrls = true);
+            // services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc()
-                .AddFluentValidation()
+                .AddFluentValidation().AddJsonOptions(options =>
+                    {
+                        options.SerializerSettings.ContractResolver =
+                            new CamelCasePropertyNamesContractResolver();
+                    })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -180,6 +184,9 @@
                         {
                             options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
                         }
+
+                        options.RoutePrefix = ""; // serve the UI at root
+                        options.DisplayOperationId();
                     });
         }
     }

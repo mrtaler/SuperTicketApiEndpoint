@@ -10,12 +10,11 @@
     using SuperTicketApi.ApiSettings.GitHubOptions;
     using SuperTicketApi.ApiSettings.GoogleOptions;
     using SuperTicketApi.ApiSettings.TokenAuthOptions;
+    using Swashbuckle.AspNetCore.Swagger;
+    using Swashbuckle.AspNetCore.SwaggerGen;
     using System.IO;
     using System.Linq;
     using System.Reflection;
-
-    using Swashbuckle.AspNetCore.Swagger;
-    using Swashbuckle.AspNetCore.SwaggerGen;
 
     public static class SettingsExtension
     {
@@ -123,21 +122,24 @@
             {
                 var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
-                return Path.Combine(basePath, fileName);
+                if (basePath.Contains(@"wwwroot\"))
+                {
+                    return Path.Combine(basePath.Replace(@"wwwroot\", ""), fileName);
+                }
             }
         }
 
         static Info CreateInfoForApiVersion(ApiVersionDescription description)
         {
             var info = new Info()
-                           {
-                               Title = $"Sample API {description.ApiVersion}",
-                               Version = description.ApiVersion.ToString(),
-                               Description = "A sample application with Swagger, Swashbuckle, and API versioning.",
-                               Contact = new Contact() { Name = "Bill Mei", Email = "bill.mei@somewhere.com" },
-                               TermsOfService = "Shareware",
-                               License = new License() { Name = "MIT", Url = "https://opensource.org/licenses/MIT" }
-                           };
+            {
+                Title = $"Sample API {description.ApiVersion}",
+                Version = description.ApiVersion.ToString(),
+                Description = "A sample application with Swagger, Swashbuckle, and API versioning.",
+                Contact = new Contact() { Name = "Bill Mei", Email = "bill.mei@somewhere.com" },
+                TermsOfService = "Shareware",
+                License = new License() { Name = "MIT", Url = "https://opensource.org/licenses/MIT" }
+            };
 
             if (description.IsDeprecated)
             {

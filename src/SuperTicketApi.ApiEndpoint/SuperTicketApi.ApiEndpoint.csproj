@@ -29,4 +29,10 @@
     <ProjectReference Include="..\SuperTicketApi.ApiSettings\SuperTicketApi.ApiSettings.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="swagger.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
