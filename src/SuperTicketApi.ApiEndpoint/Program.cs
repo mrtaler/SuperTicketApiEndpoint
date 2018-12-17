@@ -6,6 +6,8 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
 
+    using SuperTicketApi.ApiEndpoint.Extension;
+
     public class Program
     {
         public static void Main(string[] args)
@@ -19,7 +21,7 @@
                     (hostingContext, config) =>
                         {
                             config.SetBasePath(Directory.GetCurrentDirectory());
-                            //  config.AddJsonSettingsInProject();
+                            config.AddJsonSettingsInProject();
                             config.AddCommandLine(args);
                         }).UseStartup<Startup>().UseIISIntegration()
                 .UseApplicationInsights();

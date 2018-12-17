@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Siarhei_Linkevich\source\repos\SuperTicketApi\src\SuperTicketApi.ApiEndpoint\wwwroot\SuperTicketApi.ApiEndpoint.xml</DocumentationFile>
+    <DocumentationFile>C:\Users\Siarhei_Linkevich\source\repos\SuperTicketApi\src\SuperTicketApi.ApiEndpoint\SuperTicketApi.ApiEndpoint.xml</DocumentationFile>
+    <OutputPath></OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,13 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="swagger.json">
+    <None Update="SuperTicketApi.ApiEndpoint.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
+    </None>
   </ItemGroup>
 
 </Project>

@@ -13,7 +13,7 @@
     public class ValuesController : ControllerBase
     {
         /// <summary>
-        /// The GET api/values
+        /// The GET api/values 
         /// </summary>
         /// <returns>
         /// The <see cref="ActionResult"/>.
