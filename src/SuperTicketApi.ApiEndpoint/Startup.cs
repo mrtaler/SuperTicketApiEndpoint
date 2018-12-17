@@ -41,7 +41,8 @@
         {
             services.AddSettingsFileMapper(this.Configuration);
             services.AddSwaggerDocumentation();
-           /* services.AddCors(options =>
+          
+            /* services.AddCors(options =>
                 {
                     options.AddPolicy(
                         "AllowAll",
@@ -53,12 +54,12 @@
                                     .AllowAnyHeader();
                             });
                 });*/
-            services.AddMvcCore(/*options =>
+           /* services.AddMvcCore(options =>
             {
              //   options.Filters.Add<ApiExceptionFilterAttribute>();
              //   options.Filters.Add<ValidModelStateFilter>();
-            }*/)
-                .AddApiExplorer();
+            })
+                .AddApiExplorer();*/
 
             #region AddAuthentication
 
