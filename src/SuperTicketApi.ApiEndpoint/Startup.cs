@@ -175,7 +175,7 @@
 
             // app.UseCors("AllowAll");
         
-            app.UseSwagger();
+         //   app.UseSwagger();
             app.UseSwaggerUI(
                 options =>
                     {
