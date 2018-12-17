@@ -170,7 +170,7 @@
             app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
-            app.UseDefaultFiles();
+          //  app.UseDefaultFiles();
             app.UseStaticFiles();
 
             // app.UseCors("AllowAll");
