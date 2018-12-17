@@ -135,7 +135,7 @@
             #endregion
 
 
-            services.AddRouting(options => options.LowercaseUrls = true);
+           // services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc()
                 .AddFluentValidation()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -168,7 +168,7 @@
 
            // app.UseCors("AllowAll");
 
-            app.UseSwagger();
+          //  app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
 
             app.UseMvc();
