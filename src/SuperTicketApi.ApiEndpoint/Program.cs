@@ -18,8 +18,7 @@
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseKestrel(o=> { o.AddServerHeader = true; }
-                )
+                //.UseKestrel(o=> { o.AddServerHeader = true; }                )
                 .ConfigureAppConfiguration(
                     (hostingContext, config) =>
                         {

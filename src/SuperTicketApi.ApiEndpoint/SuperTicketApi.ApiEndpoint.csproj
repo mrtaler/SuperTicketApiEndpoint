@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <StartupObject>SuperTicketApi.ApiEndpoint.Program</StartupObject>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,7 +26,9 @@
   <ItemGroup>
     <ProjectReference Include="..\SuperTicketApi.ApiSettings\SuperTicketApi.ApiSettings.csproj" />
   </ItemGroup>
-
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
   <ItemGroup>
     <None Update="SuperTicketApi.ApiEndpoint.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
