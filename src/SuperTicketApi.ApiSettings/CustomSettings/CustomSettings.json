@@ -1,0 +1,7 @@
+{
+  "CustomSettings": {
+    "Name": "secret for generation token",
+    "Version": 1,
+    "IsDelete": false
+  }
+}

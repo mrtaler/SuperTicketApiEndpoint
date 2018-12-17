@@ -1,0 +1,6 @@
+{
+  "CorrelationIdOptions": {
+    "Header": "correlationId",
+    "UseCustomCorrelationId": "true"
+  }
+}

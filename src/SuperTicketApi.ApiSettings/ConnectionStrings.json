@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=ResaleDB_Siarhei_Linkevich;Trusted_Connection=True;",
+    "connectionString": "Data Source=(LocalDb)\\MSSQLLocalDB;database=IdentityServer4.Quickstart.EntityFramework-2.0.0;trusted_connection=yes;"
+  }
+}

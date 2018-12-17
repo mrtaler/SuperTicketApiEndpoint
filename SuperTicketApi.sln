@@ -3,9 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.ApiEndpoint", "src\SuperTicketApi.ApiEndpoint\SuperTicketApi.ApiEndpoint.csproj", "{FF7B59ED-9ECA-41A0-B1BC-F3BD17A49931}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiEndpoint", "ApiEndpoint", "{2D14C410-AB59-4A82-A341-AA01363DF166}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.ApiSettings", "src\SuperTicketApi.ApiSettings\SuperTicketApi.ApiSettings.csproj", "{35B984D8-3924-483B-9124-8150E476C926}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF7B59ED-9ECA-41A0-B1BC-F3BD17A49931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF7B59ED-9ECA-41A0-B1BC-F3BD17A49931}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF7B59ED-9ECA-41A0-B1BC-F3BD17A49931}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF7B59ED-9ECA-41A0-B1BC-F3BD17A49931}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35B984D8-3924-483B-9124-8150E476C926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35B984D8-3924-483B-9124-8150E476C926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35B984D8-3924-483B-9124-8150E476C926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35B984D8-3924-483B-9124-8150E476C926}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FF7B59ED-9ECA-41A0-B1BC-F3BD17A49931} = {2D14C410-AB59-4A82-A341-AA01363DF166}
+		{35B984D8-3924-483B-9124-8150E476C926} = {2D14C410-AB59-4A82-A341-AA01363DF166}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2FD923DE-66A3-489D-8396-09D51EE16788}

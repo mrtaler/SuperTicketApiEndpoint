@@ -1,0 +1,8 @@
+{
+  "TokenAuthOptions": {
+    "Issuer": "SGS API",
+    "Audience": "http://localhost/",
+    "SecretKey": "QwasdwWdaDADs24AwdadwbOIN",
+    "TokenLifeTime": 1
+  }
+}
