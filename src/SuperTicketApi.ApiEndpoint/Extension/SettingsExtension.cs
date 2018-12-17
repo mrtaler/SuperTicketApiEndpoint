@@ -126,6 +126,7 @@
                 {
                     return Path.Combine(basePath.Replace(@"wwwroot\", ""), fileName);
                 }
+                return Path.Combine(basePath, fileName);
             }
         }
 
