@@ -111,7 +111,7 @@
                        }
 
                        options.OperationFilter<SwaggerDefaultValues>();
-                       options.IncludeXmlComments(XmlCommentsFilePath);
+                       // options.IncludeXmlComments(XmlCommentsFilePath);
                        options.DescribeAllParametersInCamelCase();
                    });
         }
