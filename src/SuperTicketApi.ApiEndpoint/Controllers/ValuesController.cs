@@ -8,6 +8,7 @@
     /// The values controller.
     /// </summary>
     [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase

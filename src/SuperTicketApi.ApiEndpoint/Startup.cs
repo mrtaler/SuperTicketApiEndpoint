@@ -8,7 +8,6 @@
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Newtonsoft.Json.Serialization;
     using SuperTicketApi.ApiEndpoint.Extension;
 
     /// <summary>
@@ -138,11 +137,11 @@
 
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc()
-                .AddFluentValidation().AddJsonOptions(options =>
+                .AddFluentValidation()/*.AddJsonOptions(options =>
                     {
                         options.SerializerSettings.ContractResolver =
                             new CamelCasePropertyNamesContractResolver();
-                    })
+                    })*/
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
