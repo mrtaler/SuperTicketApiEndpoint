@@ -41,7 +41,7 @@
         {
             services.AddSettingsFileMapper(this.Configuration);
             services.AddSwaggerDocumentation();
-            services.AddCors(options =>
+           /* services.AddCors(options =>
                 {
                     options.AddPolicy(
                         "AllowAll",
@@ -52,7 +52,7 @@
                                     .AllowAnyMethod()
                                     .AllowAnyHeader();
                             });
-                });
+                });*/
             services.AddMvcCore(/*options =>
             {
              //   options.Filters.Add<ApiExceptionFilterAttribute>();
@@ -165,7 +165,7 @@
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseCors("AllowAll");
+           // app.UseCors("AllowAll");
 
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
