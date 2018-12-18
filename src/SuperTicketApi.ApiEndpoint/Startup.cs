@@ -8,8 +8,15 @@
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
     using Newtonsoft.Json.Serialization;
+    using Serilog;
+    using Serilog.Extensions.Logging;
     using SuperTicketApi.ApiEndpoint.Extension;
+    using System.IO;
+    using System.Reflection;
+
+    using SuperTicketApi.ApiSettings.JsonSettings.CustomSettings;
 
     /// <summary>
     /// The startup.
@@ -22,9 +29,19 @@
         /// <param name="configuration">
         /// The configuration.
         /// </param>
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             this.Configuration = configuration;
+            string pathSettingsAssembly = Assembly.GetAssembly(typeof(Startup)).Location;
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Trace(Serilog.Events.LogEventLevel.Information)
+                .WriteTo.Console(Serilog.Events.LogEventLevel.Debug)
+                .WriteTo.RollingFile(Path.GetDirectoryName(pathSettingsAssembly), outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level}:{EventId} [{SourceContext}] {Message}{NewLine}{Exception}")
+                .CreateLogger();
+            Log.Debug("a good thing debug");
+            Log.Information("a info inforxxxxx");
+
         }
 
         /// <summary>
@@ -40,9 +57,10 @@
         /// </param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(Log.Logger);
             services.AddSettingsFileMapper(this.Configuration);
             services.AddSwaggerDocumentation();
-
+          
             /* services.AddCors(options =>
                 {
                     options.AddPolicy(
@@ -55,12 +73,6 @@
                                     .AllowAnyHeader();
                             });
                 });*/
-            /* services.AddMvcCore(options =>
-             {
-              //   options.Filters.Add<ApiExceptionFilterAttribute>();
-              //   options.Filters.Add<ValidModelStateFilter>();
-             })
-                 .AddApiExplorer();*/
 
             #region AddAuthentication
 
@@ -135,7 +147,6 @@
                 */
             #endregion
 
-
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc()
                 .AddFluentValidation().AddJsonOptions(options =>
@@ -155,7 +166,10 @@
         /// <param name="env">
         /// The env.
         /// </param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApiVersionDescriptionProvider provider)
+        public void Configure(
+            IApplicationBuilder app,
+            IHostingEnvironment env,
+            IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -188,7 +202,7 @@
                         //options.RoutePrefix = ""; // serve the UI at root
                         options.DisplayOperationId();
                     });
-           
+
         }
     }
 }

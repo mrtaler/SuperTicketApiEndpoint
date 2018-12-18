@@ -58,6 +58,143 @@
             The <paramref name="id"/>.
             </param>
         </member>
+        <member name="F:SuperTicketApi.ApiEndpoint.Extension.ApiError._exception">
+            <summary>
+            The System.Exception
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApiError.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ApiError"/> class. The error does not have
+            a specific description.
+            </summary>
+            <param name="exception">
+            The incoming exception.
+            </param>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApiError.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ApiError"/> class. The error does not have
+            an exception that is associated with it.
+            </summary>
+            <param name="description">
+            The Error description.
+            </param>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApiError.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ApiError"/> class.
+            </summary>
+            <param name="description">Overall description of error explaining which part of system
+            in general is broken</param>
+            <param name="exception">The exception that caused the error</param>
+        </member>
+        <member name="P:SuperTicketApi.ApiEndpoint.Extension.ApiError.Description">
+            <summary>
+            Overall description of error explaining which part of system in general is broken
+            </summary>
+        </member>
+        <member name="P:SuperTicketApi.ApiEndpoint.Extension.ApiError.Id">
+            <summary>
+            Unique error ID for tracking purposes
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApiError.ToString">
+            <summary>
+            Returns a string representation of ApiError
+            </summary>
+            <returns>
+            The <see cref="T:System.String"/>.
+            </returns>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApiError.GetException">
+            <summary>
+            Returns the exception that caused the error, if any
+            </summary>
+            <returns>
+            The <see cref="T:System.Exception"/>.
+            </returns>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApiErrorException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ApiErrorException"/> class.
+            </summary>
+            <param name="message">
+            The error message.
+            </param>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApiErrorException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ApiErrorException"/> class.
+            </summary>
+            <param name="message">
+            The error message.
+            </param>
+            <param name="innerException">
+            The inner Exception.
+            </param>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApiErrorException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ApiErrorException"/> class.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApiErrorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ApiErrorException"/> class.
+            </summary>
+            <param name="info">
+            The Serialization info.
+            </param>
+            <param name="context">
+            The Streaming context.
+            </param>
+        </member>
+        <member name="P:SuperTicketApi.ApiEndpoint.Extension.ApiErrorException.Description">
+            <summary>
+            A user-visible description of the error.
+            </summary>
+        </member>
+        <member name="T:SuperTicketApi.ApiEndpoint.Extension.ApiExceptionFilterAttribute">
+            <summary>
+            Exception filter for handling unexpected and expected exceptions that passes through to the framework.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApiExceptionFilterAttribute.#ctor(Serilog.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ApiExceptionFilterAttribute"/> class.
+            </summary>
+            <param name="log">
+            The Logger interface.
+            </param>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApiExceptionFilterAttribute.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:SuperTicketApi.ApiEndpoint.Extension.ErrorLoggingExtensions">
+            <summary>
+            Extensions for logging errors.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ErrorLoggingExtensions.ApiError(Serilog.ILogger,SuperTicketApi.ApiEndpoint.Extension.ApiError,Serilog.Events.LogEventLevel)">
+            <summary>
+            Log an <see cref="M:SuperTicketApi.ApiEndpoint.Extension.ErrorLoggingExtensions.ApiError(Serilog.ILogger,SuperTicketApi.ApiEndpoint.Extension.ApiError,Serilog.Events.LogEventLevel)"/> using Serilog.
+            </summary>
+            <param name="logger">
+            The logger interface.
+            </param>
+            <param name="error">
+            The Api error.
+            </param>
+            <param name="level">
+            The log level.
+            </param>
+        </member>
+        <member name="T:SuperTicketApi.ApiEndpoint.Extension.SettingsExtension">
+            <summary>
+            The settings extension.
+            </summary>
+        </member>
         <member name="M:SuperTicketApi.ApiEndpoint.Extension.SettingsExtension.AddJsonSettingsInProject(Microsoft.Extensions.Configuration.IConfigurationBuilder)">
             <summary>
             The add json settings in project.
@@ -89,6 +226,38 @@
             </summary>
             <param name="services">service collection</param>
         </member>
+        <member name="P:SuperTicketApi.ApiEndpoint.Extension.SettingsExtension.xmlCommentsFilePath">
+            <summary>
+            Gets the xml comments file path.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.SettingsExtension.CreateInfoForApiVersion(Microsoft.AspNetCore.Mvc.ApiExplorer.ApiVersionDescription)">
+            <summary>
+            The create info for api version.
+            </summary>
+            <param name="description">
+            The description.
+            </param>
+            <returns>
+            The <see cref="T:Swashbuckle.AspNetCore.Swagger.Info"/>.
+            </returns>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ValidModelStateFilter.#ctor(Serilog.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ValidModelStateFilter"/> class.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ValidModelStateFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ValidModelStateFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SuperTicketApi.ApiEndpoint.Extension.SwaggerDefaultValues">
+            <summary>
+            The swagger default values.
+            </summary>
+        </member>
         <member name="M:SuperTicketApi.ApiEndpoint.Extension.SwaggerDefaultValues.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
             <summary>
             Applies the filter to the specified operation using the given context.
@@ -101,7 +270,7 @@
             The startup.
             </summary>
         </member>
-        <member name="M:SuperTicketApi.ApiEndpoint.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:SuperTicketApi.ApiEndpoint.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
             <summary>
             Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Startup"/> class.
             </summary>

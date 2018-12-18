@@ -1,21 +1,30 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Extension
 {
+    using System.IO;
+    using System.Linq;
+    using System.Reflection;
+
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
+    using Microsoft.AspNetCore.Mvc.Filters;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.PlatformAbstractions;
+
+    using Serilog;
+
     using SuperTicketApi.ApiSettings.JsonSettings.CorrelationIdOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.CustomSettings;
     using SuperTicketApi.ApiSettings.JsonSettings.FacebookOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.GitHubOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.GoogleOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.TokenAuthOptions;
-    using Swashbuckle.AspNetCore.Swagger;
-    using Swashbuckle.AspNetCore.SwaggerGen;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
 
+    using Swashbuckle.AspNetCore.Swagger;
+
+    /// <summary>
+    /// The settings extension.
+    /// </summary>
     public static class SettingsExtension
     {
         /// <summary>
@@ -79,7 +88,12 @@
         public static void AddSwaggerDocumentation(this IServiceCollection services)
         {
             services.AddApiVersioning(options => options.ReportApiVersions = true);
-            services.AddMvcCore().AddVersionedApiExplorer(
+            services.AddMvcCore(options =>
+            {
+                options.Filters.Add<ApiExceptionFilterAttribute>();
+                options.Filters.Add<ValidModelStateFilter>();
+            }).AddApiExplorer()
+                .AddVersionedApiExplorer(
                 options =>
                     {
                         options.GroupNameFormat = "'v'VVV";
@@ -88,15 +102,6 @@
                         // can also be used to control the format of the API version in route templates
                         options.SubstituteApiVersionInUrl = true;
                     });
-
-            // services.AddSwaggerGen(
-            /*  options =>
-                {
-                    c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
-                    var filePath = PlatformServices.Default.Application.ApplicationBasePath;
-                    var xmlPath = Path.Combine(filePath, "SuperTicketApi.ApiEndpoint.xml");
-                    c.IncludeXmlComments(xmlPath);
-                });*/
 
             services.AddSwaggerGen(
                options =>
@@ -111,12 +116,15 @@
                        }
 
                        options.OperationFilter<SwaggerDefaultValues>();
-                       options.IncludeXmlComments(XmlCommentsFilePath);
+                       options.IncludeXmlComments(xmlCommentsFilePath);
                        options.DescribeAllParametersInCamelCase();
                    });
         }
 
-        static string XmlCommentsFilePath
+        /// <summary>
+        /// Gets the xml comments file path.
+        /// </summary>
+        private static string xmlCommentsFilePath
         {
             get
             {
@@ -126,7 +134,16 @@
             }
         }
 
-        static Info CreateInfoForApiVersion(ApiVersionDescription description)
+        /// <summary>
+        /// The create info for api version.
+        /// </summary>
+        /// <param name="description">
+        /// The description.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Info"/>.
+        /// </returns>
+        private static Info CreateInfoForApiVersion(ApiVersionDescription description)
         {
             var info = new Info()
             {
@@ -147,43 +164,35 @@
         }
     }
 
-    public class SwaggerDefaultValues : IOperationFilter
+    public class ValidModelStateFilter : IActionFilter
     {
+        private readonly ILogger _log;
+
         /// <summary>
-        /// Applies the filter to the specified operation using the given context.
+        /// Initializes a new instance of the <see cref="ValidModelStateFilter"/> class.
         /// </summary>
-        /// <param name="operation">The operation to apply the filter to.</param>
-        /// <param name="context">The current operation filter context.</param>
-        public void Apply(Operation operation, OperationFilterContext context)
+        public ValidModelStateFilter(ILogger log)
         {
-            if (operation.Parameters == null)
+            _log = log;
+        }
+
+        /// <inheritdoc/>
+        public void OnActionExecuted(ActionExecutedContext context)
+        {
+            // nothing to do
+        }
+
+        /// <inheritdoc/>
+        public void OnActionExecuting(ActionExecutingContext context)
+        {
+            var modelState = context.ModelState;
+            if (!modelState.IsValid)
             {
-                return;
-            }
-
-            // REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/412
-            // REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/413
-            foreach (var parameter in operation.Parameters.OfType<NonBodyParameter>())
-            {
-                var description = context.ApiDescription.ParameterDescriptions.First(p => p.Name == parameter.Name);
-                var routeInfo = description.RouteInfo;
-
-                if (parameter.Description == null)
-                {
-                    parameter.Description = description.ModelMetadata?.Description;
-                }
-
-                if (routeInfo == null)
-                {
-                    continue;
-                }
-
-                if (parameter.Default == null)
-                {
-                    parameter.Default = routeInfo.DefaultValue;
-                }
-
-                parameter.Required |= !routeInfo.IsOptional;
+                var errors = modelState.Values.SelectMany(x => x.Errors);
+                var error = new ApiError(
+                    $"Model is not valid in {string.Join(", ", context.ActionDescriptor.RouteValues.Values)}: {string.Join("\n", errors.Select(e => e.ErrorMessage))}");
+                _log.ApiError(error);
+                context.Result = new BadRequestObjectResult(error);
             }
         }
     }
