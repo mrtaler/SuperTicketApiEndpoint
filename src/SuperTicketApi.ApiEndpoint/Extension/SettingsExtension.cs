@@ -111,7 +111,7 @@
                        }
 
                        options.OperationFilter<SwaggerDefaultValues>();
-                       // options.IncludeXmlComments(XmlCommentsFilePath);
+                       options.IncludeXmlComments(XmlCommentsFilePath);
                        options.DescribeAllParametersInCamelCase();
                    });
         }
@@ -132,8 +132,8 @@
             {
                 Title = $"Sample API {description.ApiVersion}",
                 Version = description.ApiVersion.ToString(),
-                Description = "A sample application with Swagger, Swashbuckle, and API versioning.",
-                Contact = new Contact() { Name = "Bill Mei", Email = "bill.mei@somewhere.com" },
+                Description = "A Super Ticket Api Endpoint with Swagger, Swashbuckle, and API versioning.",
+                Contact = new Contact() { Name = "Siarhei Linkevich", Email = "mrtaler@me.com" },
                 TermsOfService = "Shareware",
                 License = new License() { Name = "MIT", Url = "https://opensource.org/licenses/MIT" }
             };

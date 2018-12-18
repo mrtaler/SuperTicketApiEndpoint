@@ -1,14 +1,12 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Controllers
 {
-    using System.Collections.Generic;
-
     using Microsoft.AspNetCore.Mvc;
+    using System.Collections.Generic;
 
     /// <summary>
     /// The values controller.
     /// </summary>
     [ApiVersion("1.0")]
-    [ApiVersion("2.0")]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -37,7 +35,7 @@
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            return $"value {id}";
         }
 
         /// <summary>
@@ -46,9 +44,13 @@
         /// <param name="value">
         /// The value.
         /// </param>
+        /// <returns>
+        /// The <see cref="ActionResult"/>.
+        /// </returns>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<string> Post([FromBody] string value)
         {
+            return $"value is {value}";
         }
 
         /// <summary>

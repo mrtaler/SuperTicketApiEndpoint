@@ -35,6 +35,9 @@
             <param name="value">
             The value.
             </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/>.
+            </returns>
         </member>
         <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuesController.Put(System.Int32,System.String)">
             <summary>
