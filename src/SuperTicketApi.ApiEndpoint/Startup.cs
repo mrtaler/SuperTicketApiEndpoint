@@ -1,22 +1,22 @@
 ﻿namespace SuperTicketApi.ApiEndpoint
 {
+    using System.Reflection;
 
     using FluentValidation.AspNetCore;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-    using Newtonsoft.Json.Serialization;
-    using Serilog;
-    using Serilog.Extensions.Logging;
-    using SuperTicketApi.ApiEndpoint.Extension;
-    using System.IO;
-    using System.Reflection;
 
-    using SuperTicketApi.ApiSettings.JsonSettings.CustomSettings;
+    using Newtonsoft.Json.Serialization;
+
+    using Serilog;
+    using Serilog.Events;
+
+    using SuperTicketApi.ApiEndpoint.Extension;
 
     /// <summary>
     /// The startup.
@@ -35,9 +35,13 @@
             string pathSettingsAssembly = Assembly.GetAssembly(typeof(Startup)).Location;
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .WriteTo.Trace(Serilog.Events.LogEventLevel.Information)
-                .WriteTo.Console(Serilog.Events.LogEventLevel.Debug)
-                .WriteTo.RollingFile(Path.GetDirectoryName(pathSettingsAssembly), outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level}:{EventId} [{SourceContext}] {Message}{NewLine}{Exception}")
+                .WriteTo.Trace(LogEventLevel.Information)
+                .WriteTo.Console(LogEventLevel.Debug)
+                .WriteTo.ApplicationInsights("4f6ea94a-c353-4351-9f71-574900d5b176")
+                .WriteTo.RollingFile(
+                    "log-{Date}.txt"/*$"{Path.GetDirectoryName(pathSettingsAssembly)}\\Log.txt"*/,
+                    LogEventLevel.Verbose,
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level}:{EventId} [{SourceContext}] {Message}{NewLine}{Exception}")
                 .CreateLogger();
             Log.Debug("a good thing debug");
             Log.Information("a info inforxxxxx");
@@ -60,7 +64,8 @@
             services.AddSingleton(Log.Logger);
             services.AddSettingsFileMapper(this.Configuration);
             services.AddSwaggerDocumentation();
-          
+            services.AddApplicationInsightsTelemetry();
+
             /* services.AddCors(options =>
                 {
                     options.AddPolicy(
@@ -74,7 +79,7 @@
                             });
                 });*/
 
-            #region AddAuthentication
+            
 
 
 
@@ -145,7 +150,7 @@
                     };
                 });
                 */
-            #endregion
+            
 
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc()
@@ -199,7 +204,7 @@
                             options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
                         }
 
-                        //options.RoutePrefix = ""; // serve the UI at root
+                        // options.RoutePrefix = ""; // serve the UI at root
                         options.DisplayOperationId();
                     });
 
