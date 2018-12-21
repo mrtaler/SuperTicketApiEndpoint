@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using SuperTicketApi.Domain.Seedwork;
+
     public interface IService<TEntity, TEntityDTO> : IDisposable
        where TEntity : Entity
        where TEntityDTO : Entity

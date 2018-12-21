@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Application.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{A5C6613A-2822-421B-B380-F9143C0338D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Domain.Seedwork", "SuperTicketApi.Domain.Seedwork\SuperTicketApi.Domain.Seedwork.csproj", "{E4CFD7CF-8124-466B-B3F8-0FEF2206DAEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Domain.Seedwork", "src\SuperTicketApi.Domain.Seedwork\SuperTicketApi.Domain.Seedwork.csproj", "{E4CFD7CF-8124-466B-B3F8-0FEF2206DAEC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Domain.MainContext", "src\SuperTicketApi.Domain.MainContext\SuperTicketApi.Domain.MainContext.csproj", "{8A019128-F7F9-43EC-B695-6B52861A116F}"
 EndProject

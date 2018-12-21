@@ -1,7 +1,13 @@
 ﻿namespace SuperTicketApi.Application.MainContext
 {
+    using Serilog;
+    using SuperTicketApi.Application.BoundedContext.DTO;
+    using SuperTicketApi.Application.Seedwork;
+    using SuperTicketApi.Domain.MainContext.ItemsContext.Aggregates;
+    using SuperTicketApi.Infrastructure.Crosscutting.Localization;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class TechnicalLevelAppService
      : ITechnicalLevelAppService
@@ -39,13 +45,13 @@
         /// </param>
         public TechnicalLevelAppService(
             ITechnicalLevelRepository technicalLevelRepository, // the bank account repository dependency
-            ILogger<TechnicalLevelAppService> logger)
+            ILogger logger)
         {
             // check preconditions
             this.technicalLevelRepository = technicalLevelRepository
                                   ?? throw new ArgumentNullException("bankAccountRepository");
 
-            this.logger = logger;
+            this.logger = logger.ForContext<TechnicalLevelAppService>();
             this.resources = LocalizationFactory.CreateLocalResources();
         }
 

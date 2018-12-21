@@ -11,6 +11,8 @@ namespace SuperTicketApi.DistributedServices.Seedwork
 
     using Serilog;
 
+    using SuperTicketApi.Application.Seedwork;
+
     public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
     {
         private readonly IHostingEnvironment _hostingEnvironment;

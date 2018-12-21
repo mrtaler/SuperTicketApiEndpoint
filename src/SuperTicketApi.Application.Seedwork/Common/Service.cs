@@ -4,6 +4,11 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using SuperTicketApi.Domain.Seedwork;
+    using SuperTicketApi.Domain.Seedwork.Repository;
+    using SuperTicketApi.Infrastructure.Crosscutting.Localization;
+    using SuperTicketApi.Infrastructure.Crosscutting.Validator;
+
     public abstract class Service<TEntity, TEntityDTO> : IService<TEntity, TEntityDTO>
     where TEntity : Entity, new()
     where TEntityDTO : Entity, new()

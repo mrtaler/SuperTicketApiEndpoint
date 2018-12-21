@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SuperTicketApi.Application.BoundedContext.DTO\SuperTicketApi.Application.BoundedContext.DTO.csproj" />
     <ProjectReference Include="..\SuperTicketApi.Application.Seedwork\SuperTicketApi.Application.Seedwork.csproj" />
+    <ProjectReference Include="..\SuperTicketApi.Domain.Seedwork\SuperTicketApi.Domain.Seedwork.csproj" />
   </ItemGroup>
 
   <ItemGroup>

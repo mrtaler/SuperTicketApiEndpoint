@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SuperTicketApi.Application.Seedwork\SuperTicketApi.Application.Seedwork.csproj" />
     <ProjectReference Include="..\SuperTicketApi.Infrastructure.Crosscutting\SuperTicketApi.Infrastructure.Crosscutting.csproj" />
   </ItemGroup>
 
@@ -29,8 +30,7 @@
     </Reference>
     <Reference Include="Microsoft.AspNetCore.Mvc.Core">
       <HintPath>..\..\packages\microsoft.aspnetcore.mvc.core\2.1.0\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
-    </Reference>
-  
+    </Reference>  
     <Reference Include="Microsoft.Extensions.Logging.Abstractions">
       <HintPath>..\..\packages\microsoft.extensions.logging.abstractions\2.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>

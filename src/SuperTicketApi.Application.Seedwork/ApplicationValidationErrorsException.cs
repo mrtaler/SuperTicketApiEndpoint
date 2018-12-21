@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
 
+    using SuperTicketApi.Infrastructure.Crosscutting.Localization;
+
     public class ApplicationValidationErrorsException
         : Exception
     {
