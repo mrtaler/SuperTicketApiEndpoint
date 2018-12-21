@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SuperTicketApi.Application.BoundedContext.DTO\SuperTicketApi.Application.BoundedContext.DTO.csproj" />
+    <ProjectReference Include="..\SuperTicketApi.Application.Seedwork\SuperTicketApi.Application.Seedwork.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Serilog">
+      <HintPath>..\..\packages\serilog\2.7.1\lib\netstandard1.3\Serilog.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TupleExtensions</name>
+    </assembly>
+    <members>
+        <member name="T:TupleExtensions.TupleKeyValuePairExtensions">
+            <summary>
+            Extensions that enhance working with KeyValuePairs by leveraging C# 7 tuples
+            </summary>
+        </member>
+        <member name="M:TupleExtensions.TupleKeyValuePairExtensions.Deconstruct``2(System.Collections.Generic.KeyValuePair{``0,``1},``0@,``1@)">
+            <summary>
+            Allows to deconstruct a <see cref="T:System.Collections.Generic.KeyValuePair`2" /> into a (TKey, TValue) tuple. Allows easier traversal
+            of dictionaries within a foreach.
+            </summary>
+            <param name="input">The KeyValuePair to deconstruct.</param>
+            <param name="key">The Key part of the KeyValuePair.</param>
+            <param name="value">The Value part of the KeyValuePair.</param>
+            <typeparam name="TKey">The type of the keys.</typeparam>
+            <typeparam name="TValue">The type of the values.</typeparam>
+            <example>
+            foreach ((var key, var value) in dictionary)
+            {
+                Console.WriteLine($"{key}:{value}");
+            }
+            </example>
+        </member>
+        <member name="T:TupleExtensions.TupleLinqExtension">
+            <summary>
+            Extensions that enhance .NET LINQ experience by leveranging tuples from C# 7
+            </summary>
+        </member>
+        <member name="M:TupleExtensions.TupleLinqExtension.WithIndexes``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>Adds an index to every element of a sequence.</summary>
+            <param name="input">The input sequence.</param>
+            <returns>A sequents of tuples that consist of the index of a value in the input iterator plus the value itself.</returns>
+            <exception cref="T:System.ArgumentNullException">input is null</exception>
+            <example>
+            foreach ((var index, var item) in list.WithIndexes())
+            {
+                Console.WriteLine($"{index}:{item}");
+            }
+            </example>
+        </member>
+        <member name="M:TupleExtensions.TupleLinqExtension.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            Merges two sequesnces, producing a sequence of tuples. If either of the child sequences stops producing results,
+            the resulting sequence stops producing results as well.
+            </summary>
+            <param name="left">The frist sequence to merge.</param>
+            <param name="right">The second sequence to merge.</param>
+            <returns>
+            The resulting sequence of tuples. The first element of each tuples comes from the first input sequence,
+            the second element comes from the second input sequence.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">first or second is null</exception>
+        </member>
+        <member name="M:TupleExtensions.TupleLinqExtension.Unzip``2(System.Collections.Generic.IEnumerable{System.ValueTuple{``0,``1}})">
+            <summary>Divides a sequence of tuples into a tuple of two sequences.</summary>
+            <param name="input">The sequence to divide.</param>
+            <returns>
+            The tuple of sequences. The left seqence will consist of the first elements inside the orirignal sequence's tuple values,
+            the right sequence will consist of the second element inside the orginal sequence's tuple values.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">input is null</exception>
+        </member>
+        <member name="M:TupleExtensions.TupleLinqExtension.ToDictionary``2(System.Collections.Generic.IEnumerable{System.ValueTuple{``0,``1}})">
+            <summary>Creates a <see cref="T:System.Collections.Generic.Dictionary`2" /> from a sequence of tuples.</summary>
+            <param name="source">A sequence of tuples to create a <see cref="T:System.Collections.Generic.Dictionary`2" /> from.</param>
+            <typeparam name="TKey">The type of the keys.</typeparam>
+            <typeparam name="TValue">The type of the values.</typeparam>
+            <returns>A <see cref="T:System.Collections.Generic.Dictionary`2" /> that contains values of type TValue from the input sequence.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            source is null.
+            -or-
+            there is a null key in the sequence.
+            </exception>
+            <exception cref="T:System.ArgumentException">There are duplicate keys in the sequence.</exception>
+        </member>
+        <member name="M:TupleExtensions.TupleLinqExtension.ToDictionary``2(System.Collections.Generic.IEnumerable{System.ValueTuple{``0,``1}},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.Dictionary`2" /> from a sequence of tuples
+            according to a specified comparer.
+            </summary>
+            <param name="source">A sequence of tuples to create a <see cref="T:System.Collections.Generic.Dictionary`2" /> from.</param>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1" /> to compare keys.</param>
+            <typeparam name="TKey">The type of the keys.</typeparam>
+            <typeparam name="TValue">The type of the values.</typeparam>
+            <returns> A <see cref="T:System.Collections.Generic.Dictionary`2" /> that contains values of type TValue from the input sequence.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            source is null.
+            -or-
+            there is a null key in the sequence.
+            </exception>
+            <exception cref="T:System.ArgumentException">There are duplicate keys in the sequence.</exception>
+        </member>
+        <member name="T:TupleExtensions.TupleTaskExtensions">
+            <summary>
+            Extensions that enhance async/await experience by leveranging tuples from C# 7
+            </summary>
+        </member>
+        <member name="M:TupleExtensions.TupleTaskExtensions.WhenAll``2(System.ValueTuple{System.Threading.Tasks.Task{``0},System.Threading.Tasks.Task{``1}})">
+            <summary>
+            Aggregates tuple of tasks into task of <see cref="T:System.Tuple`2"/>.
+            </summary>
+            <param name="tasks">Tuple of <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />.</param>
+            <returns></returns>
+        </member>
+        <member name="M:TupleExtensions.TupleTaskExtensions.WhenAll``3(System.ValueTuple{System.Threading.Tasks.Task{``0},System.Threading.Tasks.Task{``1},System.Threading.Tasks.Task{``2}})">
+            <summary>
+            Aggregates tuple of tasks into task of <see cref="T:System.Tuple`3"/>.
+            </summary>
+            <param name="tasks">Tuple of <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />.</param>
+            <returns>Task of <see cref="T:System.Tuple`3"/>.</returns>
+        </member>
+        <member name="M:TupleExtensions.TupleTaskExtensions.WhenAll``4(System.ValueTuple{System.Threading.Tasks.Task{``0},System.Threading.Tasks.Task{``1},System.Threading.Tasks.Task{``2},System.Threading.Tasks.Task{``3}})">
+            <summary>
+            Aggregates tuple of tasks into task of <see cref="T:System.Tuple`4"/>.
+            </summary>
+            <param name="tasks">Tuple of <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />.</param>
+            <returns>Task of <see cref="T:System.Tuple`4"/>.</returns>
+        </member>
+        <member name="M:TupleExtensions.TupleTaskExtensions.WhenAll``5(System.ValueTuple{System.Threading.Tasks.Task{``0},System.Threading.Tasks.Task{``1},System.Threading.Tasks.Task{``2},System.Threading.Tasks.Task{``3},System.Threading.Tasks.Task{``4}})">
+            <summary>
+            Aggregates tuple of tasks into task of <see cref="T:System.Tuple`5"/>.
+            </summary>
+            <param name="tasks">Tuple of <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />.</param>
+            <returns>Task of <see cref="T:System.Tuple`5"/>.</returns>
+        </member>
+        <member name="M:TupleExtensions.TupleTaskExtensions.WhenAll``6(System.ValueTuple{System.Threading.Tasks.Task{``0},System.Threading.Tasks.Task{``1},System.Threading.Tasks.Task{``2},System.Threading.Tasks.Task{``3},System.Threading.Tasks.Task{``4},System.Threading.Tasks.Task{``5}})">
+            <summary>
+            Aggregates tuple of tasks into task of <see cref="T:System.Tuple`6"/>.
+            </summary>
+            <param name="tasks">Tuple of <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />.</param>
+            <returns>Task of <see cref="T:System.Tuple`6"/>.</returns>
+        </member>
+        <member name="M:TupleExtensions.TupleTaskExtensions.WhenAll``7(System.ValueTuple{System.Threading.Tasks.Task{``0},System.Threading.Tasks.Task{``1},System.Threading.Tasks.Task{``2},System.Threading.Tasks.Task{``3},System.Threading.Tasks.Task{``4},System.Threading.Tasks.Task{``5},System.Threading.Tasks.Task{``6}})">
+            <summary>
+            Aggregates tuple of tasks into task of <see cref="T:System.Tuple`7"/>.
+            </summary>
+            <param name="tasks">Tuple of <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />.</param>
+            <returns>Task of <see cref="T:System.Tuple`7"/>.</returns>
+        </member>
+        <member name="M:TupleExtensions.TupleTaskExtensions.WhenAll``8(System.ValueTuple{System.Threading.Tasks.Task{``0},System.Threading.Tasks.Task{``1},System.Threading.Tasks.Task{``2},System.Threading.Tasks.Task{``3},System.Threading.Tasks.Task{``4},System.Threading.Tasks.Task{``5},System.Threading.Tasks.Task{``6},System.ValueTuple{System.Threading.Tasks.Task{``7}}})">
+            <summary>
+            Aggregates tuple of tasks into task of <see cref="T:System.Tuple`8"/>.
+            </summary>
+            <param name="tasks">Tuple of <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />.</param>
+            <returns>Task of <see cref="T:System.Tuple`8"/>.</returns>
+        </member>
+        <member name="M:TupleExtensions.TupleTaskExtensions.WhenAll``9(System.ValueTuple{System.Threading.Tasks.Task{``0},System.Threading.Tasks.Task{``1},System.Threading.Tasks.Task{``2},System.Threading.Tasks.Task{``3},System.Threading.Tasks.Task{``4},System.Threading.Tasks.Task{``5},System.Threading.Tasks.Task{``6},System.ValueTuple{System.Threading.Tasks.Task{``7},System.Threading.Tasks.Task{``8}}})">
+            <summary>
+            Aggregates tuple of tasks into task of <see cref="T:System.Tuple`8"/>.
+            </summary>
+            <param name="tasks">Tuple of <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />.</param>
+            <returns>Task of <see cref="T:System.Tuple`8"/>.</returns>
+        </member>
+        <member name="M:TupleExtensions.TupleTaskExtensions.WhenAll``10(System.ValueTuple{System.Threading.Tasks.Task{``0},System.Threading.Tasks.Task{``1},System.Threading.Tasks.Task{``2},System.Threading.Tasks.Task{``3},System.Threading.Tasks.Task{``4},System.Threading.Tasks.Task{``5},System.Threading.Tasks.Task{``6},System.ValueTuple{System.Threading.Tasks.Task{``7},System.Threading.Tasks.Task{``8},System.Threading.Tasks.Task{``9}}})">
+            <summary>
+            Aggregates tuple of tasks into task of <see cref="T:System.Tuple`8"/>.
+            </summary>
+            <param name="tasks">Tuple of <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />, <see cref="T:System.Threading.Tasks.Task`1" />.</param>
+            <returns>Task of <see cref="T:System.Tuple`8"/>.</returns>
+        </member>
+    </members>
+</doc>

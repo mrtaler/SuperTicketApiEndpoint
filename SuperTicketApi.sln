@@ -3,11 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.ApiEndpoint", "src\SuperTicketApi.ApiEndpoint\SuperTicketApi.ApiEndpoint.csproj", "{FF7B59ED-9ECA-41A0-B1BC-F3BD17A49931}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.ApiEndpoint", "src\SuperTicketApi.ApiEndpoint\SuperTicketApi.ApiEndpoint.csproj", "{FF7B59ED-9ECA-41A0-B1BC-F3BD17A49931}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiEndpoint", "ApiEndpoint", "{2D14C410-AB59-4A82-A341-AA01363DF166}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.ApiSettings", "src\SuperTicketApi.ApiSettings\SuperTicketApi.ApiSettings.csproj", "{35B984D8-3924-483B-9124-8150E476C926}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.ApiSettings", "src\SuperTicketApi.ApiSettings\SuperTicketApi.ApiSettings.csproj", "{35B984D8-3924-483B-9124-8150E476C926}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.DistributedServices.Seedwork", "src\SuperTicketApi.DistributedServices.Seedwork\SuperTicketApi.DistributedServices.Seedwork.csproj", "{F5887857-99FA-4203-A5C6-4005375FA357}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{360891CA-527C-412A-B091-C849CF0F3499}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Infrastructure.Crosscutting", "src\SuperTicketApi.Infrastructure.Crosscutting\SuperTicketApi.Infrastructure.Crosscutting.csproj", "{C3FE8FD2-9100-462D-A740-7BD3F05A2F80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Infrastructure.Crosscutting.Implementation", "src\SuperTicketApi.Infrastructure.Crosscutting.Implementation\SuperTicketApi.Infrastructure.Crosscutting.Implementation.csproj", "{CE05AC37-A457-4F48-92A9-A4E2F46530D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{D9B7C196-F704-483A-B78A-B5078CBD5E40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Application.Seedwork", "src\SuperTicketApi.Application.Seedwork\SuperTicketApi.Application.Seedwork.csproj", "{A46D0288-02D1-42EA-87AC-BDD7B93228A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Application.BoundedContext.DTO", "src\SuperTicketApi.Application.BoundedContext.DTO\SuperTicketApi.Application.BoundedContext.DTO.csproj", "{46B21303-5AA1-4730-A9BF-633364FC5924}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Application.MainContext", "src\SuperTicketApi.Application.MainContext\SuperTicketApi.Application.MainContext.csproj", "{283D40F4-CC5A-4459-99AB-FD281966FD3E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{A5C6613A-2822-421B-B380-F9143C0338D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Domain.Seedwork", "SuperTicketApi.Domain.Seedwork\SuperTicketApi.Domain.Seedwork.csproj", "{E4CFD7CF-8124-466B-B3F8-0FEF2206DAEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Domain.MainContext", "src\SuperTicketApi.Domain.MainContext\SuperTicketApi.Domain.MainContext.csproj", "{8A019128-F7F9-43EC-B695-6B52861A116F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +45,38 @@ Global
 		{35B984D8-3924-483B-9124-8150E476C926}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35B984D8-3924-483B-9124-8150E476C926}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35B984D8-3924-483B-9124-8150E476C926}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5887857-99FA-4203-A5C6-4005375FA357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5887857-99FA-4203-A5C6-4005375FA357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5887857-99FA-4203-A5C6-4005375FA357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5887857-99FA-4203-A5C6-4005375FA357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3FE8FD2-9100-462D-A740-7BD3F05A2F80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3FE8FD2-9100-462D-A740-7BD3F05A2F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3FE8FD2-9100-462D-A740-7BD3F05A2F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3FE8FD2-9100-462D-A740-7BD3F05A2F80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE05AC37-A457-4F48-92A9-A4E2F46530D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE05AC37-A457-4F48-92A9-A4E2F46530D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE05AC37-A457-4F48-92A9-A4E2F46530D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE05AC37-A457-4F48-92A9-A4E2F46530D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A46D0288-02D1-42EA-87AC-BDD7B93228A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A46D0288-02D1-42EA-87AC-BDD7B93228A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A46D0288-02D1-42EA-87AC-BDD7B93228A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A46D0288-02D1-42EA-87AC-BDD7B93228A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46B21303-5AA1-4730-A9BF-633364FC5924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46B21303-5AA1-4730-A9BF-633364FC5924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46B21303-5AA1-4730-A9BF-633364FC5924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46B21303-5AA1-4730-A9BF-633364FC5924}.Release|Any CPU.Build.0 = Release|Any CPU
+		{283D40F4-CC5A-4459-99AB-FD281966FD3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{283D40F4-CC5A-4459-99AB-FD281966FD3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{283D40F4-CC5A-4459-99AB-FD281966FD3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{283D40F4-CC5A-4459-99AB-FD281966FD3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4CFD7CF-8124-466B-B3F8-0FEF2206DAEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4CFD7CF-8124-466B-B3F8-0FEF2206DAEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4CFD7CF-8124-466B-B3F8-0FEF2206DAEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4CFD7CF-8124-466B-B3F8-0FEF2206DAEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A019128-F7F9-43EC-B695-6B52861A116F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A019128-F7F9-43EC-B695-6B52861A116F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A019128-F7F9-43EC-B695-6B52861A116F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A019128-F7F9-43EC-B695-6B52861A116F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +84,14 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FF7B59ED-9ECA-41A0-B1BC-F3BD17A49931} = {2D14C410-AB59-4A82-A341-AA01363DF166}
 		{35B984D8-3924-483B-9124-8150E476C926} = {2D14C410-AB59-4A82-A341-AA01363DF166}
+		{F5887857-99FA-4203-A5C6-4005375FA357} = {2D14C410-AB59-4A82-A341-AA01363DF166}
+		{C3FE8FD2-9100-462D-A740-7BD3F05A2F80} = {360891CA-527C-412A-B091-C849CF0F3499}
+		{CE05AC37-A457-4F48-92A9-A4E2F46530D5} = {360891CA-527C-412A-B091-C849CF0F3499}
+		{A46D0288-02D1-42EA-87AC-BDD7B93228A1} = {D9B7C196-F704-483A-B78A-B5078CBD5E40}
+		{46B21303-5AA1-4730-A9BF-633364FC5924} = {D9B7C196-F704-483A-B78A-B5078CBD5E40}
+		{283D40F4-CC5A-4459-99AB-FD281966FD3E} = {D9B7C196-F704-483A-B78A-B5078CBD5E40}
+		{E4CFD7CF-8124-466B-B3F8-0FEF2206DAEC} = {A5C6613A-2822-421B-B380-F9143C0338D2}
+		{8A019128-F7F9-43EC-B695-6B52861A116F} = {A5C6613A-2822-421B-B380-F9143C0338D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2FD923DE-66A3-489D-8396-09D51EE16788}
