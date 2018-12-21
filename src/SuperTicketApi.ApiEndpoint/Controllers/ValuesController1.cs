@@ -6,11 +6,11 @@
     /// <summary>
     /// The values controller.
     /// </summary>
-    [ApiVersion("2.2")]
-    [ApiVersion("2.1")]
+    [ApiVersion("72.2")]
+    [ApiVersion("12.1")]
     [Route("api/v{api-version:apiVersion}/[controller]")]
     [ApiController]
-    public class ValuessssssssssController : ControllerBase
+    public class Valuessssssssss8Controller : ControllerBase
     {
         /// <summary>
         /// The GET api/values 

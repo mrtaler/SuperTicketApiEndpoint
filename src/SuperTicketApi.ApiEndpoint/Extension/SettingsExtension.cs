@@ -1,17 +1,9 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Extension
 {
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
-
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
-    using Microsoft.AspNetCore.Mvc.Filters;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.PlatformAbstractions;
-
-    using Serilog;
 
     using SuperTicketApi.ApiSettings.JsonSettings.CorrelationIdOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.CustomSettings;
@@ -19,8 +11,9 @@
     using SuperTicketApi.ApiSettings.JsonSettings.GitHubOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.GoogleOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.TokenAuthOptions;
-
     using Swashbuckle.AspNetCore.Swagger;
+    using System.IO;
+    using System.Reflection;
 
     /// <summary>
     /// The settings extension.
@@ -87,13 +80,13 @@
         /// <param name="services">service collection</param>
         public static void AddSwaggerDocumentation(this IServiceCollection services)
         {
-            services.AddApiVersioning(options => options.ReportApiVersions = true);
-            services.AddMvcCore(options =>
+            /*services.AddMvcCore(options =>
             {
                 options.Filters.Add<ApiExceptionFilterAttribute>();
                 options.Filters.Add<ValidModelStateFilter>();
-            }).AddApiExplorer()
-                .AddVersionedApiExplorer(
+            }).AddApiExplorer();*/
+
+            services.AddVersionedApiExplorer(
                 options =>
                     {
                         options.GroupNameFormat = "'v'VVV";
@@ -103,12 +96,20 @@
                         options.SubstituteApiVersionInUrl = true;
                     });
 
+
+            services.AddApiVersioning(options => options.ReportApiVersions = true);
             services.AddSwaggerGen(
                options =>
                    {
+
+                       // resolve the IApiVersionDescriptionProvider service
+                       // note: that we have to build a temporary service provider here because one has not been created yet
                        using (var serviceProvider = services.BuildServiceProvider())
                        {
                            var provider = serviceProvider.GetRequiredService<IApiVersionDescriptionProvider>();
+
+                           // add a swagger document for each discovered API version
+                           // note: you might choose to skip or document deprecated API versions differently
                            foreach (var description in provider.ApiVersionDescriptions)
                            {
                                options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description));
@@ -117,7 +118,7 @@
 
                        options.OperationFilter<SwaggerDefaultValues>();
                        options.IncludeXmlComments(xmlCommentsFilePath);
-                       options.DescribeAllParametersInCamelCase();
+                       // options.DescribeAllParametersInCamelCase();
                    });
         }
 
@@ -161,39 +162,6 @@
             }
 
             return info;
-        }
-    }
-
-    public class ValidModelStateFilter : IActionFilter
-    {
-        private readonly ILogger _log;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ValidModelStateFilter"/> class.
-        /// </summary>
-        public ValidModelStateFilter(ILogger log)
-        {
-            _log = log;
-        }
-
-        /// <inheritdoc/>
-        public void OnActionExecuted(ActionExecutedContext context)
-        {
-            // nothing to do
-        }
-
-        /// <inheritdoc/>
-        public void OnActionExecuting(ActionExecutingContext context)
-        {
-            var modelState = context.ModelState;
-            if (!modelState.IsValid)
-            {
-                var errors = modelState.Values.SelectMany(x => x.Errors);
-                var error = new ApiError(
-                    $"Model is not valid in {string.Join(", ", context.ActionDescriptor.RouteValues.Values)}: {string.Join("\n", errors.Select(e => e.ErrorMessage))}");
-                _log.ApiError(error);
-                context.Result = new BadRequestObjectResult(error);
-            }
         }
     }
 }

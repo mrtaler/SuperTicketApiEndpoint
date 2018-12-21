@@ -1,22 +1,17 @@
 ﻿namespace SuperTicketApi.ApiEndpoint
 {
-    using System.Reflection;
-
     using FluentValidation.AspNetCore;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-
     using Newtonsoft.Json.Serialization;
-
     using Serilog;
     using Serilog.Events;
-
     using SuperTicketApi.ApiEndpoint.Extension;
+    using System.Reflection;
 
     /// <summary>
     /// The startup.
@@ -79,7 +74,7 @@
                             });
                 });*/
 
-            
+
 
 
 
@@ -150,7 +145,7 @@
                     };
                 });
                 */
-            
+
 
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc()
@@ -203,11 +198,7 @@
                         {
                             options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
                         }
-
-                        // options.RoutePrefix = ""; // serve the UI at root
-                        options.DisplayOperationId();
                     });
-
         }
     }
 }
