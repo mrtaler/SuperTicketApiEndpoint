@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata minClientVersion="2.5">
+    <id>Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer</id>
+    <version>2.2.0</version>
+    <authors>Microsoft Corporation</authors>
+    <owners>Microsoft Corporation</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <licenseUrl>https://raw.githubusercontent.com/Microsoft/aspnet-api-versioning/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Microsoft/aspnet-api-versioning/wiki</projectUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288890</iconUrl>
+    <description>ASP.NET Core MVC API explorer functionality for discovering metadata such as the list of API-versioned controllers and actions, and their URLs and allowed HTTP methods.</description>
+    <releaseNotes>• Support substituting API version parameter in route templates (Issue 247)
+• Fix NullReferenceException when parameter without metadata is encountered (Issue 250)</releaseNotes>
+    <copyright>Copyright © 2016. Microsoft Corporation. All rights reserved.</copyright>
+    <tags>Microsoft AspNet AspNetCore Versioning ApiExplorer</tags>
+    <repository type="git" url="https://github.com/Microsoft/aspnet-api-versioning" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.AspNetCore.Mvc.Versioning" version="2.1.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Mvc.ApiExplorer" version="2.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
