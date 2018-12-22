@@ -3,7 +3,7 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// The entity validator base contract
+    /// The entity validator <c>base</c> contract
     /// </summary>
     public interface IEntityValidator
     {

@@ -2,13 +2,16 @@
 {
     using System;
 
+    /// <summary>
+    /// The identity generator.
+    /// </summary>
     internal static class IdentityGenerator
     {
 
         /// <summary>
-        /// This algorithm generates secuential GUIDs across system boundaries, ideal for databases 
+        /// This algorithm generates <c>secuential</c> GUIDs across system boundaries, ideal for databases 
         /// </summary>
-        /// <returns>new Guid Key</returns>
+        /// <returns>new <c>Guid</c> Key</returns>
         public static Guid NewSequentialGuid()
         {
             byte[] uid = Guid.NewGuid().ToByteArray();

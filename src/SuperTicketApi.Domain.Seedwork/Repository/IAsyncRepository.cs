@@ -6,7 +6,7 @@
     using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
 
     /// <summary>
-    /// The AsyncRepository interface.
+    /// The <c>AsyncRepository</c> <c>interface</c>.
     /// </summary>
     /// <typeparam name="TEntity">Ef Class
     /// </typeparam>
@@ -15,7 +15,7 @@
         /// <summary>
         /// Get element by entity key - Async
         /// </summary>
-        /// <param name="id">Entity key value</param>
+        /// <param name="id"><see cref="Entity"/> key value</param>
         /// <returns>Db Entity</returns>
         Task<TEntity> GetAsync(object id);
 
@@ -26,7 +26,7 @@
         Task<IEnumerable<TEntity>> GetAllAsync();
 
         /// <summary>
-        /// The get async.
+        /// The get <see langword="async"/>.
         /// </summary>
         /// <param name="filter">
         /// The specification.
@@ -49,13 +49,17 @@
         /// Get the first element of type TEntity that matching a - Async
         /// Specification <paramref name="specification"/>
         /// </summary>
-        /// <param name="specification">
-        /// Specification that result meet
+        /// <param name="filter">
+        /// The filter.
         /// </param>
         /// <param name="orderBy">
         /// The order By.
         /// </param>
-        /// <returns>Db Entity
+        /// <param name="includes">
+        /// The includes.
+        /// </param>
+        /// <returns>
+        /// Db Entity
         /// </returns>
         Task<TEntity> OneMatchingAsync(
             ISpecification<TEntity> filter = null,

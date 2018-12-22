@@ -9,7 +9,7 @@
         /// <summary>
         /// The System.Exception
         /// </summary>
-        private readonly Exception _exception;
+        private readonly Exception exception;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiError"/> class. The error does not have
@@ -46,7 +46,7 @@
         {
             Description = description;
             Id = Guid.NewGuid();
-            _exception = exception;
+            this.exception = exception;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@
         /// </returns>
         public Exception GetException()
         {
-            return _exception;
+            return this.exception;
         }
     }
 }

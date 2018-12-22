@@ -6,9 +6,9 @@
     public interface ITypeAdapterFactory
     {
         /// <summary>
-        /// Create a type adater
+        /// Create a type adapter
         /// </summary>
-        /// <returns>The created ITypeAdapter</returns>
+        /// <returns>The created <c>ITypeAdapter</c></returns>
         ITypeAdapter Create();
     }
 }

@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// The <see cref="AuditableEntity"/> interface.
+    /// </summary>
     public interface IAuditableEntity
     {
         /// <summary>

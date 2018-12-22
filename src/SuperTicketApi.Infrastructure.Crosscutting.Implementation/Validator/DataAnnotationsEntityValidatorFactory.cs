@@ -11,7 +11,7 @@
         /// <summary>
         /// Create a entity validator
         /// </summary>
-        /// <returns></returns>
+        /// <returns>x z</returns>
         public IEntityValidator Create()
         {
             return new DataAnnotationsEntityValidator();

@@ -9,27 +9,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiEndpoint", "ApiEndpoint"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.ApiSettings", "src\SuperTicketApi.ApiSettings\SuperTicketApi.ApiSettings.csproj", "{35B984D8-3924-483B-9124-8150E476C926}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.DistributedServices.Seedwork", "src\SuperTicketApi.DistributedServices.Seedwork\SuperTicketApi.DistributedServices.Seedwork.csproj", "{F5887857-99FA-4203-A5C6-4005375FA357}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.DistributedServices.Seedwork", "src\SuperTicketApi.DistributedServices.Seedwork\SuperTicketApi.DistributedServices.Seedwork.csproj", "{F5887857-99FA-4203-A5C6-4005375FA357}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{360891CA-527C-412A-B091-C849CF0F3499}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Infrastructure.Crosscutting", "src\SuperTicketApi.Infrastructure.Crosscutting\SuperTicketApi.Infrastructure.Crosscutting.csproj", "{C3FE8FD2-9100-462D-A740-7BD3F05A2F80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Infrastructure.Crosscutting", "src\SuperTicketApi.Infrastructure.Crosscutting\SuperTicketApi.Infrastructure.Crosscutting.csproj", "{C3FE8FD2-9100-462D-A740-7BD3F05A2F80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Infrastructure.Crosscutting.Implementation", "src\SuperTicketApi.Infrastructure.Crosscutting.Implementation\SuperTicketApi.Infrastructure.Crosscutting.Implementation.csproj", "{CE05AC37-A457-4F48-92A9-A4E2F46530D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Infrastructure.Crosscutting.Implementation", "src\SuperTicketApi.Infrastructure.Crosscutting.Implementation\SuperTicketApi.Infrastructure.Crosscutting.Implementation.csproj", "{CE05AC37-A457-4F48-92A9-A4E2F46530D5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{D9B7C196-F704-483A-B78A-B5078CBD5E40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Application.Seedwork", "src\SuperTicketApi.Application.Seedwork\SuperTicketApi.Application.Seedwork.csproj", "{A46D0288-02D1-42EA-87AC-BDD7B93228A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Application.Seedwork", "src\SuperTicketApi.Application.Seedwork\SuperTicketApi.Application.Seedwork.csproj", "{A46D0288-02D1-42EA-87AC-BDD7B93228A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Application.BoundedContext.DTO", "src\SuperTicketApi.Application.BoundedContext.DTO\SuperTicketApi.Application.BoundedContext.DTO.csproj", "{46B21303-5AA1-4730-A9BF-633364FC5924}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Application.BoundedContext.DTO", "src\SuperTicketApi.Application.BoundedContext.DTO\SuperTicketApi.Application.BoundedContext.DTO.csproj", "{46B21303-5AA1-4730-A9BF-633364FC5924}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Application.MainContext", "src\SuperTicketApi.Application.MainContext\SuperTicketApi.Application.MainContext.csproj", "{283D40F4-CC5A-4459-99AB-FD281966FD3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Application.MainContext", "src\SuperTicketApi.Application.MainContext\SuperTicketApi.Application.MainContext.csproj", "{283D40F4-CC5A-4459-99AB-FD281966FD3E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{A5C6613A-2822-421B-B380-F9143C0338D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Domain.Seedwork", "src\SuperTicketApi.Domain.Seedwork\SuperTicketApi.Domain.Seedwork.csproj", "{E4CFD7CF-8124-466B-B3F8-0FEF2206DAEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Domain.Seedwork", "src\SuperTicketApi.Domain.Seedwork\SuperTicketApi.Domain.Seedwork.csproj", "{E4CFD7CF-8124-466B-B3F8-0FEF2206DAEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Domain.MainContext", "src\SuperTicketApi.Domain.MainContext\SuperTicketApi.Domain.MainContext.csproj", "{8A019128-F7F9-43EC-B695-6B52861A116F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Domain.MainContext", "src\SuperTicketApi.Domain.MainContext\SuperTicketApi.Domain.MainContext.csproj", "{8A019128-F7F9-43EC-B695-6B52861A116F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Infrastructure.Crosscutting.Tests", "src\SuperTicketApi.Infrastructure.Crosscutting.Tests\SuperTicketApi.Infrastructure.Crosscutting.Tests.csproj", "{FAD35A39-F000-45A9-829A-F9762F1E806F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,10 @@ Global
 		{8A019128-F7F9-43EC-B695-6B52861A116F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A019128-F7F9-43EC-B695-6B52861A116F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A019128-F7F9-43EC-B695-6B52861A116F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAD35A39-F000-45A9-829A-F9762F1E806F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAD35A39-F000-45A9-829A-F9762F1E806F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAD35A39-F000-45A9-829A-F9762F1E806F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAD35A39-F000-45A9-829A-F9762F1E806F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{283D40F4-CC5A-4459-99AB-FD281966FD3E} = {D9B7C196-F704-483A-B78A-B5078CBD5E40}
 		{E4CFD7CF-8124-466B-B3F8-0FEF2206DAEC} = {A5C6613A-2822-421B-B380-F9143C0338D2}
 		{8A019128-F7F9-43EC-B695-6B52861A116F} = {A5C6613A-2822-421B-B380-F9143C0338D2}
+		{FAD35A39-F000-45A9-829A-F9762F1E806F} = {360891CA-527C-412A-B091-C849CF0F3499}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2FD923DE-66A3-489D-8396-09D51EE16788}

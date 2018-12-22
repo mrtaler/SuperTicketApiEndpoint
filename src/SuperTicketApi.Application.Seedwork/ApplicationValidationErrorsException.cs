@@ -15,7 +15,7 @@
         /// </summary>
         /// <param name="validationErrors">The collection of validation errors</param>
         public ApplicationValidationErrorsException(IEnumerable<string> validationErrors)
-            : base(LocalizationFactory.CreateLocalResources().GetStringResource(LocalizationKeys.Application.validation_Exception))
+            : base(LocalizationFactory.CreateLocalResources().GetStringResource(LocalizationKeys.Application.ValidationException))
         {
             this.validationErrors = validationErrors;
         }

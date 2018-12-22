@@ -1,20 +1,30 @@
 ﻿namespace SuperTicketApi.Infrastructure.Crosscutting.Localization
 {
+    /// <summary>
+    /// The localization keys.
+    /// </summary>
     public class LocalizationKeys
     {
+        /// <summary>
+        /// The infrastructure Localization Keys
+        /// </summary>
         public enum Infrastructure
         {
-            info_CannotAddNullEntity,
-            info_CannotModifyNullEntity,
-            info_CannotRemoveNullEntity,
-            info_CannotTrackNullEntity,
+            InfoCannotAddNullEntity,
+            InfoCannotModifyNullEntity,
+            InfoCannotRemoveNullEntity,
+            InfoCannotTrackNullEntity,
 
-            exception_NotMapFoundForTypeAdapter,
-            exception_RegisterTypeMapConfigurationElementInvalidTypeValue,
-            exception_RegisterTypesMapConfigurationInvalidType,
+            ExceptionNotMapFoundForTypeAdapter,
+            ExceptionRegisterTypeMapConfigurationElementInvalidTypeValue,
+            ExceptionRegisterTypesMapConfigurationInvalidType,
 
-            exception_InvalidEnumeratedType
-        };
+            ExceptionInvalidEnumeratedType
+        }
+
+        /// <summary>
+        /// The domain Localization Keys
+        /// </summary>
         public enum Domain
         {
             /// <summary>
@@ -38,58 +48,64 @@
             ValidationItemClassCannotBeNull
         }
 
+        /// <summary>
+        /// The application Localization Keys
+        /// </summary>
         public enum Application
         {
-            validation_BlogDto_Empty_Name,
-            validation_BlogDto_Empty_Url,
-            validation_BlogDto_Invalid_Rating,
+            ValidationBlogDtoEmptyName,
+            ValidationBlogDtoEmptyUrl,
+            ValidationBlogDtoInvalidRating,
 
-            validation_PostDto_Empty_Title,
-            validation_PostDto_Empty_Content,
-            validation_PostDto_Invalid_BlogId,
+            ValidationPostDtoEmptyTitle,
+            ValidationPostDtoEmptyContent,
+            ValidationPostDtoInvalidBlogId,
 
-            validation_No_Records_Found_Error,
-            validation_Validation_Error,
-            validation_Null_Parameters_Error,
-            validation_BadRequest,
-            validation_Exception,
+            ValidationNoRecordsFoundError,
+            ValidationValidationError,
+            ValidationNullParametersError,
+            ValidationBadRequest,
+            ValidationException,
 
-            exception_ApplicationValidationExceptionDefaultMessage,
+            ExceptionApplicationValidationExceptionDefaultMessage,
 
-            error_CannotPerformTransferInvalidAccounts,
-            exception_InvalidCountryIdentifier,
-            exception_InvalidCustomerIdentifier,
-            exception_InvalidPageIndexOrPageCount,
-            info_OrderTotalIsGreaterCustomerCredit,
-            warning_CannotAddBookWithNullInformation,
-            warning_CannotAddCustomerWithEmptyInformation,
-            warning_CannotAddNotValidatedBankAccount,
-            warning_CannotAddNullBankAccountOrInvalidCustomer,
-            warning_CannotAddOrderWithNullInformation,
-            warning_CannotAddSoftwareWithNullInformation,
-            warning_CannotCreateBankAccountForInvalidCustomer,
-            warning_CannotCreateBankAccountForNonExistingCustomer,
-            warning_CannotCreateOrderForNonExistingCustomer,
-            warning_CannotGetActivitiesForInvalidOrNotExistingBankAccount,
-            warning_CannotGetOrdersFromEmptyCustomerId,
-            warning_CannotLockBankAccountWithEmptyIdentifier,
-            warning_CannotLockNonExistingBankAccount,
-            warning_CannotRemoveCustomerWithEmptyId,
-            warning_CannotRemoveNonExistingCustomer,
-            warning_CannotUpdateCustomerWithEmptyInformation,
-            warning_CannotUpdateNonExistingCustomer,
-            warning_InvalidArgumentForFindCustomer,
-            warning_InvalidArgumentForFindOrders,
-            warning_InvalidArgumentForFindProducts,
-            warning_InvalidArgumentsForFindCountries,
-            warning_InvalidArgumentsForFindCustomers
+            ErrorCannotPerformTransferInvalidAccounts,
+            ExceptionInvalidCountryIdentifier,
+            ExceptionInvalidCustomerIdentifier,
+            ExceptionInvalidPageIndexOrPageCount,
+            InfoOrderTotalIsGreaterCustomerCredit,
+            WarningCannotAddBookWithNullInformation,
+            WarningCannotAddCustomerWithEmptyInformation,
+            WarningCannotAddNotValidatedBankAccount,
+            WarningCannotAddNullBankAccountOrInvalidCustomer,
+            WarningCannotAddOrderWithNullInformation,
+            WarningCannotAddSoftwareWithNullInformation,
+            WarningCannotCreateBankAccountForInvalidCustomer,
+            WarningCannotCreateBankAccountForNonExistingCustomer,
+            WarningCannotCreateOrderForNonExistingCustomer,
+            WarningCannotGetActivitiesForInvalidOrNotExistingBankAccount,
+            WarningCannotGetOrdersFromEmptyCustomerId,
+            WarningCannotLockBankAccountWithEmptyIdentifier,
+            WarningCannotLockNonExistingBankAccount,
+            WarningCannotRemoveCustomerWithEmptyId,
+            WarningCannotRemoveNonExistingCustomer,
+            WarningCannotUpdateCustomerWithEmptyInformation,
+            WarningCannotUpdateNonExistingCustomer,
+            WarningInvalidArgumentForFindCustomer,
+            WarningInvalidArgumentForFindOrders,
+            WarningInvalidArgumentForFindProducts,
+            WarningInvalidArgumentsForFindCountries,
+            WarningInvalidArgumentsForFindCustomers
         }
 
-        public enum Distributed_Services
+        /// <summary>
+        /// The distributed services Localization Keys
+        /// </summary>
+        public enum DistributedServices
         {
-            info_OnExecuting,
-            info_Parameter,
-            info_OnExecuted,
+            InfoOnExecuting,
+            InfoParameter,
+            InfoOnExecuted,
         }
     }
 }

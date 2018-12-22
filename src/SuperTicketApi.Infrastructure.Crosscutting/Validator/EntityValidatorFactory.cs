@@ -1,34 +1,37 @@
 ﻿namespace SuperTicketApi.Infrastructure.Crosscutting.Validator
 {
     /// <summary>
-    /// Entity Validator Factory
+    /// The entity <c>validator</c> factory.
     /// </summary>
     public static class EntityValidatorFactory
     {
         #region Members
 
-        static IEntityValidatorFactory _factory = null;
+        /// <summary>
+        /// The factory.
+        /// </summary>
+        private static IEntityValidatorFactory factory;
 
         #endregion
 
         #region Public Methods
 
         /// <summary>
-        /// Set the  log factory to use
+        /// Set the  log <see cref="factory"/> to use
         /// </summary>
-        /// <param name="factory">Log factory to use</param>
-        public static void SetCurrent(IEntityValidatorFactory factory)
+        /// <param name="fact">Log factory to use</param>
+        public static void SetCurrent(IEntityValidatorFactory fact)
         {
-            _factory = factory;
+            factory = fact;
         }
 
         /// <summary>
-        /// Create the validator factory
+        /// Create the validator <c>factory</c>
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Entity Validator</returns>
         public static IEntityValidator CreateValidator()
         {
-            return (_factory != null) ? _factory.Create() : null;
+            return factory?.Create();
         }
 
         #endregion

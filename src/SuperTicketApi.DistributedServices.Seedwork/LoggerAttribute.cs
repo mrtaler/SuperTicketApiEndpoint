@@ -14,9 +14,9 @@
         private readonly ILogger<LoggerAttribute> logger;
 
         private ILocalization resources;
-        public LoggerAttribute(ILogger<LoggerAttribute> _logger)
+        public LoggerAttribute(ILogger<LoggerAttribute> logger)
         {
-            this.logger = _logger;
+            this.logger = logger;
             this.resources = LocalizationFactory.CreateLocalResources();
         }
 
@@ -26,10 +26,10 @@
             this.watch.Start();
 
             var parameter = actionContext.ActionArguments.FirstOrDefault();
-            string logMessage = string.Format(this.resources.GetStringResource(LocalizationKeys.Distributed_Services.info_OnExecuting), actionContext.ActionDescriptor.DisplayName, this.watch.ElapsedMilliseconds);
+            string logMessage = string.Format(this.resources.GetStringResource(LocalizationKeys.DistributedServices.InfoOnExecuting), actionContext.ActionDescriptor.DisplayName, this.watch.ElapsedMilliseconds);
             object parameterValue = parameter.Value;
             string values = parameterValue != null ? Newtonsoft.Json.JsonConvert.SerializeObject(parameterValue) : null;
-            logMessage += string.Format(this.resources.GetStringResource(LocalizationKeys.Distributed_Services.info_Parameter), values ?? "/null/");
+            logMessage += string.Format(this.resources.GetStringResource(LocalizationKeys.DistributedServices.InfoParameter), values ?? "/null/");
             this.logger.LogInformation(logMessage);
             base.OnActionExecuting(actionContext);
         }
@@ -37,7 +37,7 @@
         public override void OnActionExecuted(ActionExecutedContext actionExecutedContext)
         {
             base.OnActionExecuted(actionExecutedContext);
-            string logMessage = string.Format(this.resources.GetStringResource(LocalizationKeys.Distributed_Services.info_OnExecuted), actionExecutedContext.ActionDescriptor.DisplayName, this.watch.ElapsedMilliseconds);
+            string logMessage = string.Format(this.resources.GetStringResource(LocalizationKeys.DistributedServices.InfoOnExecuted), actionExecutedContext.ActionDescriptor.DisplayName, this.watch.ElapsedMilliseconds);
             this.logger.LogInformation(logMessage);
             this.watch.Stop();
         }

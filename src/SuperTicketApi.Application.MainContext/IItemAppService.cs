@@ -10,10 +10,10 @@
         /// <summary>
         /// Add new bank acccount
         /// </summary>
-        /// <param name="bankAccountDTO">The bank account representation to add</param>
+        /// <param name="bankAccountDto">The bank account representation to add</param>
         /// <returns>Added bank account</returns>
-        ItemDTO AddItem(ItemDTO bankAccountDTO);
+        ItemDto AddItem(ItemDto bankAccountDto);
 
-        IEnumerable<ItemDTO> GetAllItems();
+        IEnumerable<ItemDto> GetAllItems();
     }
 }

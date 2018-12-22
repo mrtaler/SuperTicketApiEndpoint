@@ -6,69 +6,69 @@
 
     using SuperTicketApi.Domain.Seedwork;
 
-    public interface IService<TEntity, TEntityDTO> : IDisposable
+    public interface IService<TEntity, TEntityDto> : IDisposable
        where TEntity : Entity
-       where TEntityDTO : Entity
+       where TEntityDto : Entity
     {
         TEntity Add(TEntity item);
-        TEntityDTO Add(TEntityDTO item);
+        TEntityDto Add(TEntityDto item);
 
         IEnumerable<TEntity> Add(IEnumerable<TEntity> items);
-        IList<TEntityDTO> Add(IList<TEntityDTO> items);
+        IList<TEntityDto> Add(IList<TEntityDto> items);
 
         Task<TEntity> AddAsync(TEntity item);
-        Task<TEntityDTO> AddAsync(TEntityDTO item);
+        Task<TEntityDto> AddAsync(TEntityDto item);
 
         Task<IEnumerable<TEntity>> AddAsync(IEnumerable<TEntity> items);
-        Task<IList<TEntityDTO>> AddAsync(IList<TEntityDTO> item);
+        Task<IList<TEntityDto>> AddAsync(IList<TEntityDto> item);
 
         void Remove(TEntity item);
-        void Remove(TEntityDTO item);
+        void Remove(TEntityDto item);
         void Remove(object id);
 
         void Remove(IEnumerable<TEntity> items);
-        void Remove(IList<TEntityDTO> items);
+        void Remove(IList<TEntityDto> items);
         void Remove(IEnumerable<object> ids);
 
         Task RemoveAsync(TEntity item);
-        Task RemoveAsync(TEntityDTO item);
+        Task RemoveAsync(TEntityDto item);
         Task RemoveAsync(object id);
 
         Task RemoveAsync(IEnumerable<TEntity> items);
-        Task RemoveAsync(IList<TEntityDTO> items);
+        Task RemoveAsync(IList<TEntityDto> items);
         Task RemoveAsync(IEnumerable<object> ids);
 
         TEntity Modify(TEntity item);
-        TEntityDTO Modify(TEntityDTO item);
+        TEntityDto Modify(TEntityDto item);
 
         IEnumerable<TEntity> Modify(IEnumerable<TEntity> items);
-        IList<TEntityDTO> Modify(IList<TEntityDTO> items);
+        IList<TEntityDto> Modify(IList<TEntityDto> items);
 
         TEntity Modify(object id, TEntity item);
-        TEntityDTO Modify(object id, TEntityDTO item);
+        TEntityDto Modify(object id, TEntityDto item);
 
         Task<TEntity> ModifyAsync(TEntity item);
-        Task<TEntityDTO> ModifyAsync(TEntityDTO item);
+        Task<TEntityDto> ModifyAsync(TEntityDto item);
 
         Task<IEnumerable<TEntity>> ModifyAsync(IEnumerable<TEntity> items);
-        Task<IList<TEntityDTO>> ModifyAsync(IList<TEntityDTO> items);
+        Task<IList<TEntityDto>> ModifyAsync(IList<TEntityDto> items);
 
         Task<TEntity> ModifyAsync(object id, TEntity item);
-        Task<TEntityDTO> ModifyAsync(object id, TEntityDTO item);
+        Task<TEntityDto> ModifyAsync(object id, TEntityDto item);
 
         void Refresh(TEntity item);
-        void Refresh(TEntityDTO item);
+        void Refresh(TEntityDto item);
 
         TEntity Get(object id);
-        TEntityDTO GetDTO(object id);
+        TEntityDto GetDto(object id);
 
         Task<TEntity> GetAsync(object id);
-        Task<TEntityDTO> GetDTOAsync(object id);
+        Task<TEntityDto> GetDtoAsync(object id);
 
         IEnumerable<TEntity> GetAll();
-        IList<TEntityDTO> GetAllDTO();
+        IList<TEntityDto> GetAllDto();
 
         Task<IEnumerable<TEntity>> GetAllAsync();
-        Task<IList<TEntityDTO>> GetAllDTOAsync();
+        Task<IList<TEntityDto>> GetAllDtoAsync();
     }
 }

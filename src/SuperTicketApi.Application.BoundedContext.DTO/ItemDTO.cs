@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class ItemDTO
+    public class ItemDto
     {
         /// <summary>
         /// Gets the item id.

@@ -8,7 +8,7 @@
         public ItemProfile()
         {
             // bankAccount => BankAccountDTO
-            this.CreateMap<Item, ItemDTO>()
+            this.CreateMap<Item, ItemDto>()
                 .ForMember(dto => dto.ItemId, mc => mc.MapFrom(e => e.Id))
                 .PreserveReferences();
         }

@@ -9,14 +9,14 @@
 
     public class ValidModelStateFilter : IActionFilter
     {
-        private readonly ILogger _log;
+        private readonly ILogger log;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidModelStateFilter"/> class.
         /// </summary>
         public ValidModelStateFilter(ILogger log)
         {
-            this._log = log;
+            this.log = log;
         }
 
         /// <inheritdoc/>
@@ -34,7 +34,7 @@
                 var errors = modelState.Values.SelectMany(x => x.Errors);
                 var error = new ApiError(
                     $"Model is not valid in {string.Join(", ", context.ActionDescriptor.RouteValues.Values)}: {string.Join("\n", errors.Select(e => e.ErrorMessage))}");
-                this._log.ApiError(error);
+                this.log.ApiError(error);
                 context.Result = new BadRequestObjectResult(error);
             }
         }

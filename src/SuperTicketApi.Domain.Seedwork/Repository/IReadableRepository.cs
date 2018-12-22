@@ -5,7 +5,7 @@
     using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
 
     /// <summary>
-    /// The ReadableRepository interface.
+    /// The ReadableRepository <see langword="interface"/>.
     /// </summary>
     /// <typeparam name="TEntity"> db Entity
     /// </typeparam>
@@ -14,12 +14,12 @@
         /// <summary>
         /// Get element by entity key
         /// </summary>
-        /// <param name="id">Entity key value</param>
+        /// <param name="id"><see cref="Entity"/> key value</param>
         /// <returns>Db Entity</returns>
         TEntity Get(object id);
 
         /// <summary>
-        /// Get all elements of type TEntity in repository
+        /// <see cref="Get"/> all elements of type TEntity in repository
         /// </summary>
         /// <returns>List of selected elements</returns>
         IEnumerable<TEntity> GetAll();
@@ -28,7 +28,7 @@
         /// The get all.
         /// </summary>
         /// <param name="filter">
-        /// The filter.
+        /// The <paramref name="filter"/>.
         /// </param>
         /// <param name="orderBy">
         /// The order by.
@@ -45,8 +45,7 @@
             IIncludeSpecification<TEntity> includes = null);
 
         /// <summary>
-        /// Get the first element of type TEntity that matching a
-        /// Specification <paramref name="specification"/>
+        /// <see cref="Get"/> the first element of type TEntity that matching a Specification 
         /// </summary>
         /// <param name="filter">
         /// The filter.

@@ -117,7 +117,7 @@
                        }
 
                        options.OperationFilter<SwaggerDefaultValues>();
-                       options.IncludeXmlComments(xmlCommentsFilePath);
+                       options.IncludeXmlComments(XmlCommentsFilePath);
                        // options.DescribeAllParametersInCamelCase();
                    });
         }
@@ -125,7 +125,7 @@
         /// <summary>
         /// Gets the xml comments file path.
         /// </summary>
-        private static string xmlCommentsFilePath
+        private static string XmlCommentsFilePath
         {
             get
             {

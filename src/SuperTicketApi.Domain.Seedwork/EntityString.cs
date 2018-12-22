@@ -8,7 +8,10 @@
     /// </summary>
     public abstract class EntityString : Entity, IEntity<string>
     {
-        private int? _requestedHashCode;
+        /// <summary>
+        /// The requested hash code.
+        /// </summary>
+        private int? requestedHashCode;
 
         public string Id { get; set; }
 
@@ -50,14 +53,14 @@
         {
             if (!this.IsTransient())
             {
-                if (!this._requestedHashCode.HasValue)
+                if (!this.requestedHashCode.HasValue)
                 {
-                    this._requestedHashCode =
+                    this.requestedHashCode =
                         this.Id.GetHashCode()
                         ^ 31; // XOR for random distribution (http://blogs.msdn.com/b/ericlippert/archive/2011/02/28/guidelines-and-rules-for-gethashcode.aspx)
                 }
 
-                return this._requestedHashCode.Value;
+                return this.requestedHashCode.Value;
             }
             else
             {

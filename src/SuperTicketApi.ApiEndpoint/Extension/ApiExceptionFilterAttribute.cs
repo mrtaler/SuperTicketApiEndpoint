@@ -16,7 +16,7 @@
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {
-        private readonly Serilog.ILogger _log;
+        private readonly Serilog.ILogger log;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiExceptionFilterAttribute"/> class.
@@ -26,7 +26,7 @@
         /// </param>
         public ApiExceptionFilterAttribute(Serilog.ILogger log)
         {
-            this._log = log;
+            this.log = log;
         }
 
         /// <inheritdoc />
@@ -37,12 +37,12 @@
             if (context.Exception is ApiErrorException ex)
             {
                 error = new ApiError(ex.Description, ex.GetBaseException());
-                this._log.ApiError(error);
+                this.log.ApiError(error);
             }
             else
             {
                 error = new ApiError(context.Exception.Message);
-                this._log.ApiError(error, LogEventLevel.Error);
+                this.log.ApiError(error, LogEventLevel.Error);
             }
 
             SetStatusCode(context);

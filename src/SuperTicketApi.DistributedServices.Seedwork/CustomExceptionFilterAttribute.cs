@@ -15,20 +15,20 @@ namespace SuperTicketApi.DistributedServices.Seedwork
 
     public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
     {
-        private readonly IHostingEnvironment _hostingEnvironment;
-        private readonly IModelMetadataProvider _modelMetadataProvider;
+        private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IModelMetadataProvider modelMetadataProvider;
 
-        private readonly ILogger _logger;
+        private readonly ILogger logger;
 
         public CustomExceptionFilterAttribute(
             IHostingEnvironment hostingEnvironment,
             IModelMetadataProvider modelMetadataProvider,
             ILogger loggerFactory)
         {
-            this._hostingEnvironment = hostingEnvironment;
-            this._modelMetadataProvider = modelMetadataProvider;
+            this.hostingEnvironment = hostingEnvironment;
+            this.modelMetadataProvider = modelMetadataProvider;
 
-            this._logger =
+            this.logger =
                 loggerFactory
                     .ForContext<CustomExceptionFilterAttribute>();
         }
@@ -60,7 +60,7 @@ namespace SuperTicketApi.DistributedServices.Seedwork
             var action = context.ActionDescriptor.RouteValues["action"];
             var result = new JsonResult(new { controller, action, message });
 
-            this._logger.Error(null, exception, result.Value.ToString());
+            this.logger.Error(null, exception, result.Value.ToString());
 
             result.StatusCode = (int)HttpStatusCode.BadRequest;
             context.Result = new BadRequestObjectResult(result);

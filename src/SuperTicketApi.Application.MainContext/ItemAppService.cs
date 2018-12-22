@@ -85,23 +85,23 @@
         /// <param name="bankAccountDTO">
         /// The bank account dto.
         /// </param>
-        /// <param name="itemDTO"></param>
+        /// <param name="itemDto"></param>
         /// <returns>
-        /// The <see cref="ItemDTO"/>.
+        /// The <see cref="ItemDto"/>.
         /// </returns>
         /// <exception cref="ArgumentException">
         /// </exception>
-        public ItemDTO AddItem(ItemDTO itemDTO)
+        public ItemDto AddItem(ItemDto itemDto)
         {
-            if (itemDTO == null)
+            if (itemDto == null)
             {
                 throw new ArgumentException(
                     this.resources.GetStringResource(
-                        LocalizationKeys.Application.warning_CannotAddNullBankAccountOrInvalidCustomer));
+                        LocalizationKeys.Application.WarningCannotAddNullBankAccountOrInvalidCustomer));
             }
 
-            var tl = this.tecRepository.Get(itemDTO.TechnicalLevelId);
-            var lc = this.legRepository.Get(itemDTO.LegalityClassId);
+            var tl = this.tecRepository.Get(itemDto.TechnicalLevelId);
+            var lc = this.legRepository.Get(itemDto.LegalityClassId);
 
             // Create account from factory 
             var account = ItemFactory.CreateItem(tl, lc);
@@ -109,7 +109,7 @@
             // save bank account
             this.SaveItem(account);
 
-            return account.ProjectedAs<ItemDTO>();
+            return account.ProjectedAs<ItemDto>();
 
             /* else  //the customer for this bank account not exist, cannot create a new bank account
              {
@@ -120,15 +120,15 @@
         }
 
         /// <inheritdoc />
-        public IEnumerable<ItemDTO> GetAllItems()
+        public IEnumerable<ItemDto> GetAllItems()
         {
             var items = this.itemRepository.GetAll();
             if (items != null && items.Any())
             {
-                return items.ProjectedAsCollection<ItemDTO>();
+                return items.ProjectedAsCollection<ItemDto>();
             }
 
-            return new List<ItemDTO>();
+            return new List<ItemDto>();
         }
 
         #endregion

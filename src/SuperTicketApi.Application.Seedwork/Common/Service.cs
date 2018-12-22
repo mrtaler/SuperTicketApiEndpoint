@@ -9,47 +9,47 @@
     using SuperTicketApi.Infrastructure.Crosscutting.Localization;
     using SuperTicketApi.Infrastructure.Crosscutting.Validator;
 
-    public abstract class Service<TEntity, TEntityDTO> : IService<TEntity, TEntityDTO>
+    public abstract class Service<TEntity, TEntityDto> : IService<TEntity, TEntityDto>
     where TEntity : Entity, new()
-    where TEntityDTO : Entity, new()
+    where TEntityDto : Entity, new()
     {
-        protected IRepository<TEntity> _repository;
-        protected ILocalization _resources;
-        protected IEntityValidator _validator;
+        protected IRepository<TEntity> Repository;
+        protected ILocalization Resources;
+        protected IEntityValidator Validator;
 
         public Service(IRepository<TEntity> repository)
         {
-            this._repository = repository;
-            this._resources = LocalizationFactory.CreateLocalResources();
-            this._validator = EntityValidatorFactory.CreateValidator();
+            this.Repository = repository;
+            this.Resources = LocalizationFactory.CreateLocalResources();
+            this.Validator = EntityValidatorFactory.CreateValidator();
         }
 
         #region Private Methods
         private TEntity AddBase(TEntity item)
         {
-            if (this._validator.IsValid<TEntity>(item))
+            if (this.Validator.IsValid<TEntity>(item))
             {
-                this._repository.Add(item);
-                this._repository.UnitOfWork.Commit();
+                this.Repository.Add(item);
+                this.Repository.UnitOfWork.Commit();
                 return item;
             }
             else
             {
-                throw new ApplicationValidationErrorsException(this._validator.GetInvalidMessages<TEntity>(item));
+                throw new ApplicationValidationErrorsException(this.Validator.GetInvalidMessages<TEntity>(item));
             }
         }
 
         private async Task<TEntity> AddBaseAsync(TEntity item)
         {
-            if (this._validator.IsValid<TEntity>(item))
+            if (this.Validator.IsValid<TEntity>(item))
             {
-                this._repository.Add(item);
-                await this._repository.UnitOfWork.CommitAsync();
+                this.Repository.Add(item);
+                await this.Repository.UnitOfWork.CommitAsync();
                 return item;
             }
             else
             {
-                throw new ApplicationValidationErrorsException(this._validator.GetInvalidMessages<TEntity>(item));
+                throw new ApplicationValidationErrorsException(this.Validator.GetInvalidMessages<TEntity>(item));
             }
         }
 
@@ -57,17 +57,17 @@
         {
             foreach (var item in items)
             {
-                if (this._validator.IsValid<TEntity>(item))
+                if (this.Validator.IsValid<TEntity>(item))
                 {
-                    this._repository.Add(item);
+                    this.Repository.Add(item);
                 }
                 else
                 {
-                    throw new ApplicationValidationErrorsException(this._validator.GetInvalidMessages<TEntity>(item));
+                    throw new ApplicationValidationErrorsException(this.Validator.GetInvalidMessages<TEntity>(item));
                 }
             }
 
-            this._repository.UnitOfWork.Commit();
+            this.Repository.UnitOfWork.Commit();
             return items;
         }
 
@@ -75,78 +75,78 @@
         {
             foreach (var item in items)
             {
-                if (this._validator.IsValid<TEntity>(item))
+                if (this.Validator.IsValid<TEntity>(item))
                 {
-                    this._repository.Add(item);
+                    this.Repository.Add(item);
                 }
                 else
                 {
-                    throw new ApplicationValidationErrorsException(this._validator.GetInvalidMessages<TEntity>(item));
+                    throw new ApplicationValidationErrorsException(this.Validator.GetInvalidMessages<TEntity>(item));
                 }
             }
 
-            await this._repository.UnitOfWork.CommitAsync();
+            await this.Repository.UnitOfWork.CommitAsync();
             return items;
 
         }
 
         private void RemoveBase(TEntity item)
         {
-            this._repository.Remove(item);
-            this._repository.UnitOfWork.Commit();
+            this.Repository.Remove(item);
+            this.Repository.UnitOfWork.Commit();
         }
 
         private async Task RemoveBaseAsync(TEntity item)
         {
-            this._repository.Remove(item);
-            await this._repository.UnitOfWork.CommitAsync();
+            this.Repository.Remove(item);
+            await this.Repository.UnitOfWork.CommitAsync();
         }
 
         private void RemoveBase(IEnumerable<TEntity> items)
         {
             foreach (var item in items)
             {
-                if (item != null) this._repository.Remove(item);
+                if (item != null) this.Repository.Remove(item);
             }
 
-            this._repository.UnitOfWork.Commit();
+            this.Repository.UnitOfWork.Commit();
         }
 
         private async Task RemoveBaseAsync(IEnumerable<TEntity> items)
         {
             foreach (var item in items)
             {
-                if (item != null) this._repository.Remove(item);
+                if (item != null) this.Repository.Remove(item);
             }
 
-            await this._repository.UnitOfWork.CommitAsync();
+            await this.Repository.UnitOfWork.CommitAsync();
         }
 
         private TEntity ModifyBase(TEntity item)
         {
-            if (this._validator.IsValid<TEntity>(item))
+            if (this.Validator.IsValid<TEntity>(item))
             {
-                this._repository.Modify(item);
-                this._repository.UnitOfWork.Commit();
+                this.Repository.Modify(item);
+                this.Repository.UnitOfWork.Commit();
                 return item;
             }
             else
             {
-                throw new ApplicationValidationErrorsException(this._validator.GetInvalidMessages<TEntity>(item));
+                throw new ApplicationValidationErrorsException(this.Validator.GetInvalidMessages<TEntity>(item));
             }
         }
 
         private async Task<TEntity> ModifyBaseAsync(TEntity item)
         {
-            if (this._validator.IsValid<TEntity>(item))
+            if (this.Validator.IsValid<TEntity>(item))
             {
-                this._repository.Modify(item);
-                await this._repository.UnitOfWork.CommitAsync();
+                this.Repository.Modify(item);
+                await this.Repository.UnitOfWork.CommitAsync();
                 return item;
             }
             else
             {
-                throw new ApplicationValidationErrorsException(this._validator.GetInvalidMessages<TEntity>(item));
+                throw new ApplicationValidationErrorsException(this.Validator.GetInvalidMessages<TEntity>(item));
             }
         }
 
@@ -155,14 +155,14 @@
             var persisted = this.Get(id);
             if (persisted != null)
             {
-                if (this._validator.IsValid<TEntity>(item))
+                if (this.Validator.IsValid<TEntity>(item))
                 {
-                    this._repository.Merge(persisted, item);
-                    this._repository.UnitOfWork.Commit();
+                    this.Repository.Merge(persisted, item);
+                    this.Repository.UnitOfWork.Commit();
                 }
                 else
                 {
-                    throw new ApplicationValidationErrorsException(this._validator.GetInvalidMessages<TEntity>(item));
+                    throw new ApplicationValidationErrorsException(this.Validator.GetInvalidMessages<TEntity>(item));
                 }
             }
 
@@ -174,14 +174,14 @@
             var persisted = this.Get(id);
             if (persisted != null)
             {
-                if (this._validator.IsValid<TEntity>(item))
+                if (this.Validator.IsValid<TEntity>(item))
                 {
-                    this._repository.Merge(persisted, item);
-                    await this._repository.UnitOfWork.CommitAsync();
+                    this.Repository.Merge(persisted, item);
+                    await this.Repository.UnitOfWork.CommitAsync();
                 }
                 else
                 {
-                    throw new ApplicationValidationErrorsException(this._validator.GetInvalidMessages<TEntity>(item));
+                    throw new ApplicationValidationErrorsException(this.Validator.GetInvalidMessages<TEntity>(item));
                 }
             }
 
@@ -192,17 +192,17 @@
         {
             foreach (var item in items)
             {
-                if (this._validator.IsValid<TEntity>(item))
+                if (this.Validator.IsValid<TEntity>(item))
                 {
-                    this._repository.Modify(item);
+                    this.Repository.Modify(item);
                 }
                 else
                 {
-                    throw new ApplicationValidationErrorsException(this._validator.GetInvalidMessages<TEntity>(item));
+                    throw new ApplicationValidationErrorsException(this.Validator.GetInvalidMessages<TEntity>(item));
                 }
             }
 
-            this._repository.UnitOfWork.Commit();
+            this.Repository.UnitOfWork.Commit();
             return items;
         }
 
@@ -210,18 +210,18 @@
         {
             foreach (var item in items)
             {
-                if (this._validator.IsValid<TEntity>(item))
+                if (this.Validator.IsValid<TEntity>(item))
                 {
-                    this._repository.Modify(item);
+                    this.Repository.Modify(item);
 
                 }
                 else
                 {
-                    throw new ApplicationValidationErrorsException(this._validator.GetInvalidMessages<TEntity>(item));
+                    throw new ApplicationValidationErrorsException(this.Validator.GetInvalidMessages<TEntity>(item));
                 }
             }
 
-            await this._repository.UnitOfWork.CommitAsync();
+            await this.Repository.UnitOfWork.CommitAsync();
             return items;
         }
 
@@ -232,7 +232,7 @@
         {
             if (item == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             return this.AddBase(item);
@@ -242,41 +242,41 @@
         {
             if (items == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             return this.AddBase(items);
         }
 
-        public virtual TEntityDTO Add(TEntityDTO item)
+        public virtual TEntityDto Add(TEntityDto item)
         {
             if (item == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             var entity = this.AddBase(item.ProjectedAs<TEntity>());
 
             if (entity != null)
             {
-                return entity.ProjectedAs<TEntityDTO>();
+                return entity.ProjectedAs<TEntityDto>();
             }
 
             return null;
         }
 
-        public virtual IList<TEntityDTO> Add(IList<TEntityDTO> items)
+        public virtual IList<TEntityDto> Add(IList<TEntityDto> items)
         {
             if (items == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             var entities = this.AddBase(items.ProjectedAsCollection<TEntity>());
 
             if (entities != null)
             {
-                return entities.ProjectedAsCollection<TEntityDTO>();
+                return entities.ProjectedAsCollection<TEntityDto>();
             }
 
             return null;
@@ -286,7 +286,7 @@
         {
             if (item == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             return await this.AddBaseAsync(item);
@@ -296,41 +296,41 @@
         {
             if (items == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             return await this.AddBaseAsync(items);
         }
 
-        public virtual async Task<TEntityDTO> AddAsync(TEntityDTO item)
+        public virtual async Task<TEntityDto> AddAsync(TEntityDto item)
         {
             if (item == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             var entity = await this.AddBaseAsync(item.ProjectedAs<TEntity>());
 
             if (entity != null)
             {
-                return entity.ProjectedAs<TEntityDTO>();
+                return entity.ProjectedAs<TEntityDto>();
             }
 
             return null;
         }
 
-        public virtual async Task<IList<TEntityDTO>> AddAsync(IList<TEntityDTO> items)
+        public virtual async Task<IList<TEntityDto>> AddAsync(IList<TEntityDto> items)
         {
             if (items == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             var entities = await this.AddBaseAsync(items.ProjectedAsCollection<TEntity>());
 
             if (entities != null)
             {
-                return entities.ProjectedAsCollection<TEntityDTO>();
+                return entities.ProjectedAsCollection<TEntityDto>();
             }
 
             return null;
@@ -340,7 +340,7 @@
         {
             if (item == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             this.RemoveBase(item);
@@ -350,27 +350,27 @@
         {
             if (items == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             this.RemoveBase(items);
         }
 
-        public virtual void Remove(TEntityDTO item)
+        public virtual void Remove(TEntityDto item)
         {
             if (item == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             this.RemoveBase(item.ProjectedAs<TEntity>());
         }
 
-        public virtual void Remove(IList<TEntityDTO> items)
+        public virtual void Remove(IList<TEntityDto> items)
         {
             if (items == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             this.RemoveBase(items.ProjectedAsCollection<TEntity>());
@@ -380,7 +380,7 @@
         {
             if (id == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_Null_Parameters_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNullParametersError));
             }
 
             this.RemoveBase(this.Get(id));
@@ -390,7 +390,7 @@
         {
             if (ids == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_Null_Parameters_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNullParametersError));
             }
 
             List<TEntity> entities = new List<TEntity>();
@@ -407,7 +407,7 @@
         {
             if (item == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             await this.RemoveBaseAsync(item);
@@ -417,27 +417,27 @@
         {
             if (items == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             await this.RemoveBaseAsync(items);
         }
 
-        public virtual async Task RemoveAsync(TEntityDTO item)
+        public virtual async Task RemoveAsync(TEntityDto item)
         {
             if (item == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             await this.RemoveBaseAsync(item.ProjectedAs<TEntity>());
         }
 
-        public virtual async Task RemoveAsync(IList<TEntityDTO> items)
+        public virtual async Task RemoveAsync(IList<TEntityDto> items)
         {
             if (items == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             await this.RemoveBaseAsync(items.ProjectedAsCollection<TEntity>());
@@ -447,7 +447,7 @@
         {
             if (id == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_Null_Parameters_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNullParametersError));
             }
 
             await this.RemoveBaseAsync(this.Get(id));
@@ -457,7 +457,7 @@
         {
             if (ids == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_Null_Parameters_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNullParametersError));
             }
 
             List<TEntity> entities = new List<TEntity>();
@@ -474,7 +474,7 @@
         {
             if (item == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             return this.ModifyBase(item);
@@ -484,39 +484,39 @@
         {
             if (items == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             return this.ModifyBase(items);
         }
 
-        public virtual TEntityDTO Modify(TEntityDTO item)
+        public virtual TEntityDto Modify(TEntityDto item)
         {
             if (item == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             var entity = this.ModifyBase(item.ProjectedAs<TEntity>());
             if (entity != null)
             {
-                return entity.ProjectedAs<TEntityDTO>();
+                return entity.ProjectedAs<TEntityDto>();
             }
 
             return null;
         }
 
-        public virtual IList<TEntityDTO> Modify(IList<TEntityDTO> items)
+        public virtual IList<TEntityDto> Modify(IList<TEntityDto> items)
         {
             if (items == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             var entities = this.ModifyBase(items.ProjectedAsCollection<TEntity>());
             if (entities != null)
             {
-                return entities.ProjectedAsCollection<TEntityDTO>();
+                return entities.ProjectedAsCollection<TEntityDto>();
             }
 
             return null;
@@ -526,23 +526,23 @@
         {
             if (id == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_Null_Parameters_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNullParametersError));
             }
 
             return this.ModifyBase(id, item);
         }
 
-        public virtual TEntityDTO Modify(object id, TEntityDTO item)
+        public virtual TEntityDto Modify(object id, TEntityDto item)
         {
             if (id == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_Null_Parameters_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNullParametersError));
             }
 
             var entity = this.ModifyBase(id, item.ProjectedAs<TEntity>());
             if (entity != null)
             {
-                return entity.ProjectedAs<TEntityDTO>();
+                return entity.ProjectedAs<TEntityDto>();
             }
 
             return null;
@@ -552,7 +552,7 @@
         {
             if (item == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             return await this.ModifyBaseAsync(item);
@@ -562,40 +562,40 @@
         {
             if (items == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             return await this.ModifyBaseAsync(items);
         }
 
-        public virtual async Task<TEntityDTO> ModifyAsync(TEntityDTO item)
+        public virtual async Task<TEntityDto> ModifyAsync(TEntityDto item)
         {
             if (item == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             var entity = await this.ModifyBaseAsync(item.ProjectedAs<TEntity>());
             if (entity != null)
             {
-                return entity.ProjectedAs<TEntityDTO>();
+                return entity.ProjectedAs<TEntityDto>();
             }
 
             return null;
 
         }
 
-        public virtual async Task<IList<TEntityDTO>> ModifyAsync(IList<TEntityDTO> items)
+        public virtual async Task<IList<TEntityDto>> ModifyAsync(IList<TEntityDto> items)
         {
             if (items == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
             var entities = await this.ModifyBaseAsync(items.ProjectedAsCollection<TEntity>());
             if (entities != null)
             {
-                return entities.ProjectedAsCollection<TEntityDTO>();
+                return entities.ProjectedAsCollection<TEntityDto>();
             }
 
             return null;
@@ -606,23 +606,23 @@
         {
             if (id == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_Null_Parameters_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNullParametersError));
             }
 
             return await this.ModifyBaseAsync(id, item);
         }
 
-        public virtual async Task<TEntityDTO> ModifyAsync(object id, TEntityDTO item)
+        public virtual async Task<TEntityDto> ModifyAsync(object id, TEntityDto item)
         {
             if (id == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_Null_Parameters_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNullParametersError));
             }
 
             var entity = await this.ModifyBaseAsync(id, item.ProjectedAs<TEntity>());
             if (entity != null)
             {
-                return entity.ProjectedAs<TEntityDTO>();
+                return entity.ProjectedAs<TEntityDto>();
             }
 
             return null;
@@ -632,65 +632,65 @@
         {
             if (item == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
-            this._repository.Refresh(item);
+            this.Repository.Refresh(item);
         }
 
-        public virtual void Refresh(TEntityDTO item)
+        public virtual void Refresh(TEntityDto item)
         {
             if (item == null)
             {
-                throw new ArgumentException(this._resources.GetStringResource(LocalizationKeys.Application.validation_No_Records_Found_Error));
+                throw new ArgumentException(this.Resources.GetStringResource(LocalizationKeys.Application.ValidationNoRecordsFoundError));
             }
 
-            this._repository.Refresh(item.ProjectedAs<TEntity>());
+            this.Repository.Refresh(item.ProjectedAs<TEntity>());
         }
 
         public virtual TEntity Get(object id)
         {
             if (id != null)
-                return this._repository.Get(id);
+                return this.Repository.Get(id);
             else
                 return null;
         }
 
-        public virtual TEntityDTO GetDTO(object id)
+        public virtual TEntityDto GetDto(object id)
         {
             TEntity entity = null;
-            if (id != null) entity = this._repository.Get(id);
-            if (entity != null) return entity.ProjectedAs<TEntityDTO>();
+            if (id != null) entity = this.Repository.Get(id);
+            if (entity != null) return entity.ProjectedAs<TEntityDto>();
             return null;
         }
 
         public virtual async Task<TEntity> GetAsync(object id)
         {
             if (id != null)
-                return await this._repository.GetAsync(id);
+                return await this.Repository.GetAsync(id);
             else
                 return null;
         }
 
-        public virtual async Task<TEntityDTO> GetDTOAsync(object id)
+        public virtual async Task<TEntityDto> GetDtoAsync(object id)
         {
             TEntity entity = null;
-            if (id != null) entity = await this._repository.GetAsync(id);
-            if (entity != null) return entity.ProjectedAs<TEntityDTO>();
+            if (id != null) entity = await this.Repository.GetAsync(id);
+            if (entity != null) return entity.ProjectedAs<TEntityDto>();
             return null;
         }
 
         public virtual IEnumerable<TEntity> GetAll()
         {
-            return this._repository.GetAll();
+            return this.Repository.GetAll();
         }
 
-        public virtual IList<TEntityDTO> GetAllDTO()
+        public virtual IList<TEntityDto> GetAllDto()
         {
-            var entities = this._repository.GetAll();
+            var entities = this.Repository.GetAll();
             if (entities != null)
             {
-                return entities.ProjectedAsCollection<TEntityDTO>();
+                return entities.ProjectedAsCollection<TEntityDto>();
             }
 
             return null;
@@ -698,15 +698,15 @@
 
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await this._repository.GetAllAsync();
+            return await this.Repository.GetAllAsync();
         }
 
-        public virtual async Task<IList<TEntityDTO>> GetAllDTOAsync()
+        public virtual async Task<IList<TEntityDto>> GetAllDtoAsync()
         {
-            var entities = await this._repository.GetAllAsync();
+            var entities = await this.Repository.GetAllAsync();
             if (entities != null)
             {
-                return entities.ProjectedAsCollection<TEntityDTO>();
+                return entities.ProjectedAsCollection<TEntityDto>();
             }
 
             return null;
@@ -714,7 +714,7 @@
 
         public virtual void Dispose()
         {
-            this._repository.Dispose();
+            this.Repository.Dispose();
         }
 
         #endregion
