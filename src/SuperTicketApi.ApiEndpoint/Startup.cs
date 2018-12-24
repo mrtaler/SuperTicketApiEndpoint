@@ -1,5 +1,7 @@
 ﻿namespace SuperTicketApi.ApiEndpoint
 {
+    using Autofac;
+    using Autofac.Extensions.DependencyInjection;
     using FluentValidation.AspNetCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -11,7 +13,13 @@
     using Serilog;
     using Serilog.Events;
     using SuperTicketApi.ApiEndpoint.Extension;
+    using System;
     using System.Reflection;
+
+    using SuperTicketApi.ApiSettings.JsonSettings;
+    using SuperTicketApi.Application.MainContext;
+    using SuperTicketApi.Domain.MainContext.Mssql;
+    using SuperTicketApi.Infrastructure.Crosscutting.Implementation;
 
     /// <summary>
     /// The startup.
@@ -54,10 +62,16 @@
         /// <param name="services">
         /// The services.
         /// </param>
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(Log.Logger);
+            var builder = new ContainerBuilder();
+
+            builder.RegisterType<Serilog.ILogger>().SingleInstance();
+
+            // services.AddSingleton(Log.Logger);
+
             services.AddSettingsFileMapper(this.Configuration);
+
             services.AddSwaggerDocumentation();
             services.AddApplicationInsightsTelemetry();
 
@@ -155,6 +169,15 @@
                             new CamelCasePropertyNamesContractResolver();
                     })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            builder.Populate(services);
+            builder.RegisterModule(new MainContextMssqlModule());
+            builder.RegisterModule(new SuperTicketApiInfrastructureCrosscuttingModule());
+            builder.RegisterModule(new MainContextModule());
+           
+
+            var container = builder.Build();
+            return new AutofacServiceProvider(container);
         }
 
         /// <summary>

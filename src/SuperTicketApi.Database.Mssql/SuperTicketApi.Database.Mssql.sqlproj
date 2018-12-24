@@ -57,8 +57,19 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="ForeignKeys" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Event.sql" />
+    <Build Include="Tables\EventPlace.sql" />
+    <Build Include="Tables\EventAddress.sql" />
+    <Build Include="ForeignKeys\ForeignKey_EventPlace_to_EventAddres.sql" />
+    <Build Include="ForeignKeys\ForeignKey_Event_to_EventPlace.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SuperTicketApi.Database.Mssql.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SuperTicketApi.Database.Mssql.refactorlog" />
   </ItemGroup>
 </Project>

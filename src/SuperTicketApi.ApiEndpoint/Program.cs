@@ -3,6 +3,9 @@
     using System;
     using System.IO;
     using System.Reflection;
+
+    using Autofac.Extensions.DependencyInjection;
+
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -24,6 +27,8 @@
         {
             return WebHost.CreateDefaultBuilder(args)
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .ConfigureServices(services => services.AddAutofac())
+               
                 //.UseKestrel(o=> { o.AddServerHeader = true; }                )
                 .ConfigureAppConfiguration(
                 (hostingContext, config) =>

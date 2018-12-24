@@ -3,6 +3,9 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
 
+    using SuperTicketApi.Application.MainContext.Interfaces;
+    using SuperTicketApi.Domain.Seedwork;
+
     /// <summary>
     /// The values controller.
     /// </summary>
@@ -12,6 +15,13 @@
     [ApiController]
     public class ValuessssssssssController : ControllerBase
     {
+
+        public ValuessssssssssController(IEventService serv)
+        {
+            var tt = serv.GetAll();
+        }
+
+
         /// <summary>
         /// The GET api/values 
         /// </summary>
@@ -21,6 +31,7 @@
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            
             return new string[] { "value1", "value2" };
         }
 

@@ -11,6 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="4.5.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.1.2" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -47,6 +50,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SuperTicketApi.ApiSettings\SuperTicketApi.ApiSettings.csproj" />
+    <ProjectReference Include="..\SuperTicketApi.Application.MainContext\SuperTicketApi.Application.MainContext.csproj" />
+    <ProjectReference Include="..\SuperTicketApi.Domain.MainContext.Mssql\SuperTicketApi.Domain.MainContext.Mssql.csproj" />
+    <ProjectReference Include="..\SuperTicketApi.Infrastructure.Crosscutting.Implementation\SuperTicketApi.Infrastructure.Crosscutting.Implementation.csproj" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />

@@ -24,7 +24,7 @@
         ///</remarks>
         void Commit();
 
-        /// <summary>
+      /*   /// <summary>
         /// Commit all changes made in a container. Async
         /// </summary>
         ///<remarks>
@@ -33,7 +33,7 @@
         ///</remarks>
         Task<int> CommitAsync();
 
-        /// <summary>
+       /// <summary>
         /// Commit all changes made in  a container.
         /// </summary>
         ///<remarks>
@@ -60,7 +60,6 @@
         /// Reload an entity with refresh option (Note. This generates adhoc querys)
         /// </summary>
         /// <param name="entity"></param>
-        void Refresh(object entity);
-
+        void Refresh(object entity);*/
     }
 }

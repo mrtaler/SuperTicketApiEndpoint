@@ -5,6 +5,9 @@
     using SuperTicketApi.Domain.Seedwork;
     using SuperTicketApi.Infrastructure.Crosscutting.Adapter;
 
+    /// <summary>
+    /// The projections extension methods.
+    /// </summary>
     public static class ProjectionsExtensionMethods
     {
         /// <summary>

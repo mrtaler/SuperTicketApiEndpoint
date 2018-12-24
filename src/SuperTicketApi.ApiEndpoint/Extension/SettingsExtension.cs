@@ -15,6 +15,10 @@
     using System.IO;
     using System.Reflection;
 
+    using Autofac;
+
+    using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
+
     /// <summary>
     /// The settings extension.
     /// </summary>
@@ -71,6 +75,8 @@
             services.Configure<GoogleAuthOptions>(configuration.GetSection(nameof(GoogleAuthOptions)));
             services.Configure<TokenAuthOptions>(configuration.GetSection(nameof(TokenAuthOptions)));
             services.Configure<CorrelationIdOptions>(configuration.GetSection(nameof(CorrelationIdOptions)));
+            services.Configure<AppConnectionStrings>(configuration.GetSection(nameof(AppConnectionStrings)));
+           
             return services;
         }
 
@@ -164,4 +170,6 @@
             return info;
         }
     }
+
+   
 }

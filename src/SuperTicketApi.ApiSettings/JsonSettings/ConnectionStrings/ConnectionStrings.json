@@ -1,0 +1,7 @@
+{
+  "AppConnectionStrings": {
+    "DefaultConnection": "Data Source=EPBYGOMW0360\\EPBYGOMW0360;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;",
+    "ConnectionString": "Data Source=(LocalDb)\\MSSQLLocalDB;database=IdentityServer4.Quickstart.EntityFramework-2.0.0;trusted_connection=yes;"
+  }
+}
+
