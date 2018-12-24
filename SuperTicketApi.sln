@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.106
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.ApiEndpoint", "src\SuperTicketApi.ApiEndpoint\SuperTicketApi.ApiEndpoint.csproj", "{FF7B59ED-9ECA-41A0-B1BC-F3BD17A49931}"
 EndProject
@@ -31,7 +31,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Domain.Seedw
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Domain.MainContext", "src\SuperTicketApi.Domain.MainContext\SuperTicketApi.Domain.MainContext.csproj", "{8A019128-F7F9-43EC-B695-6B52861A116F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Infrastructure.Crosscutting.Tests", "src\SuperTicketApi.Infrastructure.Crosscutting.Tests\SuperTicketApi.Infrastructure.Crosscutting.Tests.csproj", "{FAD35A39-F000-45A9-829A-F9762F1E806F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Infrastructure.Crosscutting.Tests", "src\SuperTicketApi.Infrastructure.Crosscutting.Tests\SuperTicketApi.Infrastructure.Crosscutting.Tests.csproj", "{FAD35A39-F000-45A9-829A-F9762F1E806F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{005FE7E1-F20B-4BB6-A01E-D32BA363F470}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SuperTicketApi.Database.Mssql", "src\SuperTicketApi.Database.Mssql\SuperTicketApi.Database.Mssql.sqlproj", "{7F6B3EAF-E3C0-418D-86A5-EFF451E39AFF}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SuperTicketApi.Database.Oracle", "src\SuperTicketApi.Database.Oracle\SuperTicketApi.Database.Oracle.sqlproj", "{914450A9-BB35-4D19-90E1-27ABB2B8A025}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +89,18 @@ Global
 		{FAD35A39-F000-45A9-829A-F9762F1E806F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAD35A39-F000-45A9-829A-F9762F1E806F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAD35A39-F000-45A9-829A-F9762F1E806F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F6B3EAF-E3C0-418D-86A5-EFF451E39AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F6B3EAF-E3C0-418D-86A5-EFF451E39AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F6B3EAF-E3C0-418D-86A5-EFF451E39AFF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7F6B3EAF-E3C0-418D-86A5-EFF451E39AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F6B3EAF-E3C0-418D-86A5-EFF451E39AFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F6B3EAF-E3C0-418D-86A5-EFF451E39AFF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{914450A9-BB35-4D19-90E1-27ABB2B8A025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{914450A9-BB35-4D19-90E1-27ABB2B8A025}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{914450A9-BB35-4D19-90E1-27ABB2B8A025}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{914450A9-BB35-4D19-90E1-27ABB2B8A025}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{914450A9-BB35-4D19-90E1-27ABB2B8A025}.Release|Any CPU.Build.0 = Release|Any CPU
+		{914450A9-BB35-4D19-90E1-27ABB2B8A025}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +117,8 @@ Global
 		{E4CFD7CF-8124-466B-B3F8-0FEF2206DAEC} = {A5C6613A-2822-421B-B380-F9143C0338D2}
 		{8A019128-F7F9-43EC-B695-6B52861A116F} = {A5C6613A-2822-421B-B380-F9143C0338D2}
 		{FAD35A39-F000-45A9-829A-F9762F1E806F} = {360891CA-527C-412A-B091-C849CF0F3499}
+		{7F6B3EAF-E3C0-418D-86A5-EFF451E39AFF} = {005FE7E1-F20B-4BB6-A01E-D32BA363F470}
+		{914450A9-BB35-4D19-90E1-27ABB2B8A025} = {005FE7E1-F20B-4BB6-A01E-D32BA363F470}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2FD923DE-66A3-489D-8396-09D51EE16788}
