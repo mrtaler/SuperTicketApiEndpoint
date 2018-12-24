@@ -9,7 +9,7 @@
         public EventProfile()
         {
             // bankAccount => BankAccountDTO
-            this.CreateMap<Event, EventDto>()
+            this.CreateMap<Events, EventDto>()
                 .PreserveReferences();
         }
     }

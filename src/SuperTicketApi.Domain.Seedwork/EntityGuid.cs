@@ -137,9 +137,9 @@
         /// </returns>
         public static bool operator ==(EntityGuid left, EntityGuid right)
         {
-            if (object.Equals(left, null))
+            if (Equals(left, null))
             {
-                return object.Equals(right, null) ? true : false;
+                return Equals(right, null) ? true : false;
             }
             else
             {

@@ -16,7 +16,7 @@
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {
-        private readonly Serilog.ILogger log;
+        private readonly ILogger log;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiExceptionFilterAttribute"/> class.
@@ -24,7 +24,7 @@
         /// <param name="log">
         /// The Logger interface.
         /// </param>
-        public ApiExceptionFilterAttribute(Serilog.ILogger log)
+        public ApiExceptionFilterAttribute(ILogger log)
         {
             this.log = log;
         }

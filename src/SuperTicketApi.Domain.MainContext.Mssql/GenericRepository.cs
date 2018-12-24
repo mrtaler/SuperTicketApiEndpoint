@@ -1,13 +1,15 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql
 {
-    using Serilog;
-    using SuperTicketApi.Domain.Seedwork;
-    using SuperTicketApi.Domain.Seedwork.Repository;
-    using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
+
+    using Serilog;
+
+    using SuperTicketApi.Domain.Seedwork;
+    using SuperTicketApi.Domain.Seedwork.Repository;
+    using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
 
     public abstract class GenericRepository<T> : IRepository<T>
         where T : class
@@ -19,7 +21,7 @@
         protected GenericRepository(INetUnitOfWork _context)
         {
             this.context = _context;
-            cmd = context.CreateCommand();
+            this.cmd = this.context.CreateCommand();
             Log.Information($"{this.GetType().Name} was started");
         }
 
@@ -34,24 +36,35 @@
         public IEnumerable<T> GetAll()
         {
             var returnList = new List<T>();
-            this.cmd.CommandText = $"select * " +
-                              $"from {typeof(T).Name}";
-
-            this.cmd.CommandType = CommandType.Text;
-            SqlDataReader result = (SqlDataReader)cmd.ExecuteReader();
-            using (var reader = this.cmd.ExecuteReader())
+            if (this.cmd.Connection.State==ConnectionState.Open)
             {
-                Log.Information($"Run SQL command: {cmd.CommandText}");
-                Log.Warning($"{nameof(this.GetAll)} connection state: {cmd.Connection.State}");
-                while (reader.Read())
+                this.cmd.CommandText = $"select * " +
+                                       $"from {typeof(T).Name}";
+
+                SqlCommand command = new SqlCommand(
+                    $"select * " +
+                    $"from {typeof(T).Name}",
+                   (SqlConnection)this.cmd.Connection);
+
+                this.cmd.CommandType = CommandType.Text;
+                var result = this.cmd.ExecuteReader();
+                using (var reader = this.cmd.ExecuteReader())
                 {
-                    var art = this.Mapping(reader);
-                    returnList.Add(art);
+                    Log.Information($"Run SQL command: {this.cmd.CommandText}");
+                    Log.Warning($"{nameof(this.GetAll)} connection state: {this.cmd.Connection.State}");
+                    while (reader.Read())
+                    {
+                        var art = this.Mapping(reader);
+                        returnList.Add(art);
+                    }
+
+                    Log.Information($"Read from DB: {returnList.Count} entities");
                 }
-                Log.Information($"Read from DB: {returnList.Count} entities");
+
+                return returnList;
             }
 
-            return returnList;
+            return null;
         }
 
         public IEnumerable<T> AllMatching(
@@ -126,7 +139,7 @@
 
         public void Dispose()
         {
-            context.Dispose();
+            this.context.Dispose();
         }
     }
 }

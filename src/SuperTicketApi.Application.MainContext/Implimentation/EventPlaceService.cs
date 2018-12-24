@@ -23,7 +23,7 @@
         /// <inheritdoc />
         public override IEnumerable<EventPlace> GetAll()
         {
-            using (var context = uow.Create())
+            using (var context = this.uow.Create())
             {
                 return context.EventPlaces.GetAll();
             }
@@ -32,13 +32,14 @@
         /// <inheritdoc />
         public override IList<EventPlaceDto> GetAllDto()
         {
-            using (var context = uow.Create())
+            using (var context = this.uow.Create())
             {
                 var entities = context.EventPlaces.GetAll();
                 if (entities != null)
                 {
                     return entities.ProjectedAsCollection<EventPlaceDto>();
                 }
+
                 return null;
             }
         }

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>TupleExtensions.VictorGavrish</id>
+    <version>1.3.0</version>
+    <authors>Victor Gavrish</authors>
+    <owners>Victor Gavrish</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/VictorGavrish/TupleExtensions/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/VictorGavrish/TupleExtensions</projectUrl>
+    <description>A collection of convenience extensions that leverages C# 7 tuples</description>
+    <releaseNotes>Added WhenAll for tuples of Tasks.</releaseNotes>
+    <copyright>Copyright 2017 (c) Victor Gavrish. All rights are reserved.</copyright>
+    <tags>linq tuple tuples valuetuple</tags>
+    <repository url="https://github.com/VictorGavrish/TupleExtensions" />
+    <dependencies>
+      <group targetFramework=".NETStandard1.0">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+        <dependency id="System.ValueTuple" version="4.3.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

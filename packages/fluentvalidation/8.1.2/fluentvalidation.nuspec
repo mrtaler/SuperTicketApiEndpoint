@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>FluentValidation</id>
+    <version>8.1.2</version>
+    <authors>Jeremy Skinner</authors>
+    <owners>Jeremy Skinner</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/JeremySkinner/FluentValidation/blob/master/License.txt</licenseUrl>
+    <projectUrl>https://fluentvalidation.net/</projectUrl>
+    <iconUrl>https://fluentvalidation.net/assets/images/logo/fluent-validation-icon.png</iconUrl>
+    <description>A validation library for .NET that uses a fluent interface to construct strongly-typed validation rules.</description>
+    <releaseNotes>FluentValidation 8 is a major release. Please read the upgrade notes at https://fluentvalidation.net/upgrading-to-8
+
+Changes in 8.1.1:
+* Added RuleSetsExecuted property on ValidationResult.
+* Resolved issue introduced in 8.1 where the shared condition cache does not work correctly with RuleForEach (#970).
+
+Changes in 8.1:
+* Add format support in message placeholders.
+* Added support for overriding indexers for collection rules.
+* Allow error codes to be used to override localization key in the Language Manager.
+* Additional error details are now shown in the ShouldNotHaveValidationErrorFor test extension.
+* Conditions defined with root-level When/WhenAsync/Unless/UnlessAsync are now only executed once (instead of once for each rule).
+* Support Otherwise method chained from root-level When/WhenAsync/Unless/UnlessAsync.
+* Minor wording changes to default English error messages.
+* Japanese translation of the default error messages.
+* Added Skip property to MVC5's CustomizeValidatorAttribute for parity with AspNetCore and WebApi.
+* Remove type constraint on the OverridePropertyName overload that takes an expression.
+
+Added Skip property to MVC5's CustomizeValidatorAttribute to bring parity with AspNetCore and WebApi integration.
+Changes in 8.0:
+* Support validating only specific properties by path.
+* Added OnFailure method
+* Deprecated RuleFor(..).SetCollectionValidator in favour of RuleForEach(...).SetValidator
+* IStringSource.GetString now takes a validation context instead of a model instance.
+* Introduce PropertyValidatorOptions in order to clean up the IPropretyValidator interface.
+* Moved the legacy ValidatorAttribute and AttributedValidatorFactory into a separate FluentValidation.Attributes package.
+* Remove the pre-7.0 localization mechanism 
+* Remove the pre-7.0 methods for custom validation
+* Removed many other deprecated methods
+
+Full release notes can be found at https://github.com/JeremySkinner/FluentValidation/blob/master/Changelog.txt</releaseNotes>
+    <copyright>Copyright (c) Jeremy Skinner 2008-2018</copyright>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="System.Collections.Concurrent" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.ComponentModel.Annotations" version="4.4.1" exclude="Build,Analyzers" />
+        <dependency id="System.ComponentModel.Primitives" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.ValueTuple" version="4.5.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard1.1">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+        <dependency id="System.Collections.Concurrent" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.ComponentModel.Primitives" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.ValueTuple" version="4.5.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard1.6">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+        <dependency id="System.Collections.Concurrent" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.ComponentModel.Annotations" version="4.4.1" exclude="Build,Analyzers" />
+        <dependency id="System.ComponentModel.Primitives" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.ValueTuple" version="4.5.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="System.ComponentModel.Annotations" version="4.4.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

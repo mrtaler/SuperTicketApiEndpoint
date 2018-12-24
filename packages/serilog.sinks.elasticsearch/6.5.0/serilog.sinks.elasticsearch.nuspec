@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Serilog.Sinks.Elasticsearch</id>
+    <version>6.5.0</version>
+    <authors>Michiel van Oudheusden, Martijn Laarman, Mogens Heller Grabe, Serilog Contributors</authors>
+    <owners>Michiel van Oudheusden, Martijn Laarman, Mogens Heller Grabe, Serilog Contributors</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/serilog/serilog-sinks-elasticsearch</projectUrl>
+    <iconUrl>http://serilog.net/images/serilog-sink-nuget.png</iconUrl>
+    <description>Package Description</description>
+    <releaseNotes>https://github.com/serilog/serilog-sinks-elasticsearch/blob/master/CHANGES.md</releaseNotes>
+    <tags>serilog elasticsearch logging event collector</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="Elasticsearch.Net" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="Serilog" version="2.6.0" exclude="Build,Analyzers" />
+        <dependency id="Serilog.Sinks.File" version="4.0.0" exclude="Build,Analyzers" />
+        <dependency id="Serilog.Sinks.PeriodicBatching" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="Serilog.Sinks.RollingFile" version="3.3.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard1.3">
+        <dependency id="Elasticsearch.Net" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="NETStandard.Library" version="1.6.0" exclude="Build,Analyzers" />
+        <dependency id="Serilog" version="2.6.0" exclude="Build,Analyzers" />
+        <dependency id="Serilog.Sinks.File" version="4.0.0" exclude="Build,Analyzers" />
+        <dependency id="Serilog.Sinks.PeriodicBatching" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="Serilog.Sinks.RollingFile" version="3.3.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

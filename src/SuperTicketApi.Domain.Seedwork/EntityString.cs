@@ -70,9 +70,9 @@
 
         public static bool operator ==(EntityString left, EntityString right)
         {
-            if (object.Equals(left, null))
+            if (Equals(left, null))
             {
-                return object.Equals(right, null) ? true : false;
+                return Equals(right, null) ? true : false;
             }
             else
             {

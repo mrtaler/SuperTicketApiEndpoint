@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -21,6 +21,9 @@
     </Reference>
     <Reference Include="Microsoft.Extensions.Options">
       <HintPath>..\..\packages\microsoft.extensions.options\2.0.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Common">
+      <HintPath>..\..\packages\microsoft.netcore.app\2.0.7\ref\netcoreapp2.0\System.Data.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
 

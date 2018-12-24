@@ -1,8 +1,9 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql
 {
+    using System;
+
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using SuperTicketApi.Domain.Seedwork;
-    using System;
 
     public class UnitOfWork : IUnitOfWorkMssql
     {
@@ -38,21 +39,23 @@
 
         public virtual void Dispose(bool disposing)
         {
-            if (!disposed)
+            if (!this.disposed)
             {
                 if (disposing)
                 {
                     this.context.Dispose();
                 }
-                disposed = true;
+
+                this.disposed = true;
             }
         }
 
         public void Dispose()
         {
-            Dispose(true);
+            this.Dispose(true);
             GC.SuppressFinalize(this);
         }
+
         #endregion
 
         public void Commit()

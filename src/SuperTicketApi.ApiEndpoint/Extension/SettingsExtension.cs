@@ -1,23 +1,24 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Extension
 {
+    using System.IO;
+    using System.Reflection;
+
+    using Autofac;
+
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.PlatformAbstractions;
 
+    using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.ApiSettings.JsonSettings.CorrelationIdOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.CustomSettings;
     using SuperTicketApi.ApiSettings.JsonSettings.FacebookOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.GitHubOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.GoogleOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.TokenAuthOptions;
+
     using Swashbuckle.AspNetCore.Swagger;
-    using System.IO;
-    using System.Reflection;
-
-    using Autofac;
-
-    using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
 
     /// <summary>
     /// The settings extension.
@@ -36,7 +37,8 @@
         public static IConfigurationBuilder AddJsonSettingsInProject(this IConfigurationBuilder builder)
         {
             string pathSettingsAssembly = Assembly.GetAssembly(typeof(CustomSettings)).Location;
-            //  JsonSettings
+
+            // JsonSettings
             var allJsonSettingsFiles = Directory.GetFiles(
                 Path.Combine(Path.GetDirectoryName(pathSettingsAssembly), "JsonSettings"),
                 "*.json",
@@ -44,9 +46,7 @@
 
             foreach (var sittingFile in allJsonSettingsFiles)
             {
-
                 builder.AddJsonFile(sittingFile, optional: false, reloadOnChange: false);
-
             }
 
             return builder;
@@ -91,7 +91,6 @@
                 options.Filters.Add<ApiExceptionFilterAttribute>();
                 options.Filters.Add<ValidModelStateFilter>();
             }).AddApiExplorer();*/
-
             services.AddVersionedApiExplorer(
                 options =>
                     {
@@ -106,26 +105,26 @@
             services.AddApiVersioning(options => options.ReportApiVersions = true);
             services.AddSwaggerGen(
                options =>
-                   {
+                    {
+                        // resolve the IApiVersionDescriptionProvider service
+                        // note: that we have to build a temporary service provider here because one has not been created yet
+                        using (var serviceProvider = services.BuildServiceProvider())
+                        {
+                            var provider = serviceProvider.GetRequiredService<IApiVersionDescriptionProvider>();
 
-                       // resolve the IApiVersionDescriptionProvider service
-                       // note: that we have to build a temporary service provider here because one has not been created yet
-                       using (var serviceProvider = services.BuildServiceProvider())
-                       {
-                           var provider = serviceProvider.GetRequiredService<IApiVersionDescriptionProvider>();
+                            // add a swagger document for each discovered API version
+                            // note: you might choose to skip or document deprecated API versions differently
+                            foreach (var description in provider.ApiVersionDescriptions)
+                            {
+                                options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description));
+                            }
+                        }
 
-                           // add a swagger document for each discovered API version
-                           // note: you might choose to skip or document deprecated API versions differently
-                           foreach (var description in provider.ApiVersionDescriptions)
-                           {
-                               options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description));
-                           }
-                       }
+                        options.OperationFilter<SwaggerDefaultValues>();
+                        options.IncludeXmlComments(XmlCommentsFilePath);
 
-                       options.OperationFilter<SwaggerDefaultValues>();
-                       options.IncludeXmlComments(XmlCommentsFilePath);
-                       // options.DescribeAllParametersInCamelCase();
-                   });
+                        // options.DescribeAllParametersInCamelCase();
+                    });
         }
 
         /// <summary>

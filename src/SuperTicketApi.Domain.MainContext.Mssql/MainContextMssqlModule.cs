@@ -19,7 +19,7 @@
         {
             builder
                 .Register(c => new UnitOfWorkFactory(
-                    c.Resolve<IOptions<AppConnectionStrings>>().Value.DefaultConnection))
+                    c.Resolve<IOptions<AppConnectionStrings>>().Value.HomeConnectionString))
                 .As<IUnitOfWorkFactory>().InstancePerLifetimeScope();
 
             builder

@@ -44,8 +44,8 @@
         /// <param name="exception">The exception that caused the error</param>
         public ApiError(string description, Exception exception)
         {
-            Description = description;
-            Id = Guid.NewGuid();
+            this.Description = description;
+            this.Id = Guid.NewGuid();
             this.exception = exception;
         }
 
@@ -67,7 +67,7 @@
         /// </returns>
         public override string ToString()
         {
-            return $"[{Id}] {Description}";
+            return $"[{this.Id}] {this.Description}";
         }
 
         /// <summary>

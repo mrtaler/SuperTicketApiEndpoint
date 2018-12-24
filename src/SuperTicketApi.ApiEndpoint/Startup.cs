@@ -1,21 +1,26 @@
 ﻿namespace SuperTicketApi.ApiEndpoint
 {
+    using System;
+    using System.Reflection;
+
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
+
     using FluentValidation.AspNetCore;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+
     using Newtonsoft.Json.Serialization;
+
     using Serilog;
     using Serilog.Events;
-    using SuperTicketApi.ApiEndpoint.Extension;
-    using System;
-    using System.Reflection;
 
+    using SuperTicketApi.ApiEndpoint.Extension;
     using SuperTicketApi.ApiSettings.JsonSettings;
     using SuperTicketApi.Application.MainContext;
     using SuperTicketApi.Domain.MainContext.Mssql;
@@ -66,10 +71,9 @@
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterType<Serilog.ILogger>().SingleInstance();
+            builder.RegisterType<ILogger>().SingleInstance();
 
             // services.AddSingleton(Log.Logger);
-
             services.AddSettingsFileMapper(this.Configuration);
 
             services.AddSwaggerDocumentation();
@@ -159,7 +163,6 @@
                     };
                 });
                 */
-
 
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc()

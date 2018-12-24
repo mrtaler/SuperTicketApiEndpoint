@@ -23,13 +23,14 @@
           
 
         }
+
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .ConfigureServices(services => services.AddAutofac())
                
-                //.UseKestrel(o=> { o.AddServerHeader = true; }                )
+                // .UseKestrel(o=> { o.AddServerHeader = true; }                )
                 .ConfigureAppConfiguration(
                 (hostingContext, config) =>
                 {

@@ -21,7 +21,7 @@
         /// <param name="level">
         /// The log level.
         /// </param>
-        public static void ApiError(this Serilog.ILogger logger, ApiError error, LogEventLevel level = LogEventLevel.Warning)
+        public static void ApiError(this ILogger logger, ApiError error, LogEventLevel level = LogEventLevel.Warning)
         {
             var errorLogger = logger.ForContext("ErrorId", error.Id);
             errorLogger.Write(level, error.GetException(), error.Description);

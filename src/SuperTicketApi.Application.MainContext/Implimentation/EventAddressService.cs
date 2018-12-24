@@ -24,7 +24,7 @@ namespace SuperTicketApi.Application.MainContext.Implimentation
         /// <inheritdoc />
         public override IEnumerable<EventAddress> GetAll()
         {
-            using (var context = uow.Create())
+            using (var context = this.uow.Create())
             {
                 return context.EventAddreses.GetAll();
             }
@@ -33,13 +33,14 @@ namespace SuperTicketApi.Application.MainContext.Implimentation
         /// <inheritdoc />
         public override IList<EventAddressDto> GetAllDto()
         {
-            using (var context = uow.Create())
+            using (var context = this.uow.Create())
             {
                 var entities = context.EventAddreses.GetAll();
                 if (entities != null)
                 {
                     return entities.ProjectedAsCollection<EventAddressDto>();
                 }
+
                 return null;
             }
         }

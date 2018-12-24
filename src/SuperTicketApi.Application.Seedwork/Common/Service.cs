@@ -430,7 +430,6 @@
           #endregion
       }
       */
-
     public abstract class Service<TEntity, TEntityDto> :
         IService<TEntity, TEntityDto>
         where TEntity : Entity, new() where TEntityDto : Entity, new()
@@ -439,7 +438,7 @@
 
         public Service(IUnitOfWorkFactory _uow)
         {
-            uow = _uow;
+            this.uow = _uow;
         }
 
         #region Implementation of IReadableService<TEntity,TEntityDto>

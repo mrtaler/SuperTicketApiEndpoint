@@ -4,7 +4,7 @@
     using SuperTicketApi.Application.Seedwork.Common;
     using SuperTicketApi.Domain.MainContext.Mssql.Models;
 
-    public interface IEventService : IService<Event, EventDto>
+    public interface IEventService : IService<Events, EventDto>
     {
 
     }

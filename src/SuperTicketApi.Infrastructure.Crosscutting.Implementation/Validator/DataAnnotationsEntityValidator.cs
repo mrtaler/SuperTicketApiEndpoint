@@ -1,10 +1,12 @@
 ﻿namespace SuperTicketApi.Infrastructure.Crosscutting.Implementation.Validator
 {
-    using SuperTicketApi.Infrastructure.Crosscutting.Validator;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+
+    using SuperTicketApi.Infrastructure.Crosscutting.Validator;
+
     using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
 
     /// <summary>

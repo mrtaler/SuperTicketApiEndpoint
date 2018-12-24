@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Serilog.Sinks.ApplicationInsights</id>
+    <version>2.2.0</version>
+    <authors>Joerg Battermann</authors>
+    <owners>Joerg Battermann</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/serilog/serilog-sinks-applicationinsights</projectUrl>
+    <iconUrl>http://serilog.net/images/serilog-sink-nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Serilog event sink that writes Microsoft Application Insights.</description>
+    <tags>serilog,logging,azure,applicationinsights,application,insights</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="Serilog" version="[2.0.0, )" />
+        <dependency id="Microsoft.ApplicationInsights" version="[2.0.0, )" />
+      </group>
+      <group targetFramework=".NETStandard1.3">
+        <dependency id="Serilog" version="[2.0.0, )" />
+        <dependency id="Microsoft.ApplicationInsights" version="[2.0.0, )" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
