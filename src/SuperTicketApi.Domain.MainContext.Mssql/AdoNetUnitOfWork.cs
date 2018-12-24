@@ -28,10 +28,12 @@
                 this.transaction = this.connection.BeginTransaction();
                 command.Transaction = this.transaction;
             }
+
             if (this.isTransactional && this.transaction != null)
             {
                 command.Transaction = this.transaction;
             }
+
             return command;
         }
 
@@ -41,6 +43,7 @@
             {
                 throw new InvalidOperationException("Transaction have already been commited. Check your transaction handling.");
             }
+
             this.transaction.Commit();
             this.transaction = null;
         }
@@ -52,6 +55,7 @@
                 this.transaction.Rollback();
                 this.transaction = null;
             }
+
             if (this.connection != null)
             {
                 this.connection.Close();

@@ -1,8 +1,9 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.Interfaces
 {
+    using System.Data;
+
     using SuperTicketApi.Domain.MainContext.Mssql.Models;
     using SuperTicketApi.Domain.Seedwork;
-    using System.Data;
 
     public class EventPlaceRepository : GenericRepository<EventPlace>, IEventPlaceRepository
     {

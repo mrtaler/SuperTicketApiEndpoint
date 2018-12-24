@@ -8,7 +8,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.Interfaces
     using SuperTicketApi.Domain.Seedwork;
     using SuperTicketApi.Domain.Seedwork.Repository;
 
-    public interface IEventRepository : IRepository<Event>
+    public interface IEventRepository : IRepository<Events>
     {
     }
 }

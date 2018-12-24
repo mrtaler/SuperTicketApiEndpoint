@@ -60,7 +60,7 @@
     <Folder Include="ForeignKeys" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\Event.sql" />
+    <Build Include="Tables\Events.sql" />
     <Build Include="Tables\EventPlace.sql" />
     <Build Include="Tables\EventAddress.sql" />
     <Build Include="ForeignKeys\ForeignKey_EventPlace_to_EventAddres.sql" />

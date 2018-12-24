@@ -6,8 +6,10 @@ namespace SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings
 {
     public class AppConnectionStrings
     {
-        public string DefaultConnection { get; set; }
+        public string WorkConnectionString { get; set; }
 
-        public string ConnectionString { get; set; }
+        public string HomeConnectionString { get; set; }
+
+        public string ProviderName { get; set; }
     }
 }

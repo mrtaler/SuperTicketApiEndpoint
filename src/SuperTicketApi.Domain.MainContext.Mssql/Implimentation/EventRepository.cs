@@ -2,20 +2,21 @@
 
 namespace SuperTicketApi.Domain.MainContext.Mssql.Interfaces
 {
-    using SuperTicketApi.Domain.MainContext.Mssql.Models;
-    using SuperTicketApi.Domain.Seedwork;
     using System.Data;
 
-    public class EventRepository : GenericRepository<Event>, IEventRepository
+    using SuperTicketApi.Domain.MainContext.Mssql.Models;
+    using SuperTicketApi.Domain.Seedwork;
+
+    public class EventRepository : GenericRepository<Events>, IEventRepository
     {
         public EventRepository(INetUnitOfWork _context)
             : base(_context)
         {
         }
 
-        public override Event Mapping(IDataReader reader)
+        public override Events Mapping(IDataReader reader)
         {
-            var ret = new Event();
+            var ret = new Events();
             ret.Id = (int)this.GetItem("EventId", reader);
             ret.Name = (string)this.GetItem("Name", reader);
             ret.Banner = (string)this.GetItem("Banner", reader);
