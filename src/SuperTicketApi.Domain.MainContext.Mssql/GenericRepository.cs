@@ -35,19 +35,25 @@
 
         public IEnumerable<T> GetAll()
         {
+           /* using (SqlConnection con = new SqlConnection(cmd.Connection.ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"select * from SuperTicketApiMssql.dbo.{typeof(T).Name}", con);
+                cmd.CommandType = CommandType.Text;
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                }
+            }*/
             var returnList = new List<T>();
             if (this.cmd.Connection.State==ConnectionState.Open)
             {
+
+
                 this.cmd.CommandText = $"select * " +
                                        $"from {typeof(T).Name}";
-
-                SqlCommand command = new SqlCommand(
-                    $"select * " +
-                    $"from {typeof(T).Name}",
-                   (SqlConnection)this.cmd.Connection);
-
                 this.cmd.CommandType = CommandType.Text;
-                var result = this.cmd.ExecuteReader();
+
                 using (var reader = this.cmd.ExecuteReader())
                 {
                     Log.Information($"Run SQL command: {this.cmd.CommandText}");
