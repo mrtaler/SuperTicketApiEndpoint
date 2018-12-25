@@ -1,24 +1,33 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Controllers
 {
+    using System;
+
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
 
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Options;
+
+    using Newtonsoft.Json.Linq;
+
+    using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.Application.MainContext.Interfaces;
-    using SuperTicketApi.Domain.Seedwork;
 
     /// <summary>
     /// The values controller.
     /// </summary>
-    [ApiVersion("2.2")]
+    [ApiVersion("1.0")]
     [ApiVersion("2.1")]
     [Route("api/v{api-version:apiVersion}/[controller]")]
     [ApiController]
     public class ValuessssssssssController : ControllerBase
     {
-
-        public ValuessssssssssController(IEventService serv)
+        private IOptions<AppConnectionStrings> opt;
+        public ValuessssssssssController(/*IEventService serv*/
+            IOptions<AppConnectionStrings> options)
         {
-            var tt = serv.GetAll();
+            opt = options;
+            // var tt = serv.GetAll();
         }
 
 
@@ -28,12 +37,18 @@
         /// <returns>
         /// The <see cref="ActionResult"/>.
         /// </returns>
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        [HttpGet("GetEnvironmentVariable")]
+        public IActionResult Get()
         {
-            
-            return new string[] { "value1", "value2" };
+            var tt = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+            return new ObjectResult(new
+            {
+                ConnectionsString = opt.Value.MssqlConnectionString,
+                ASPNETCORE_ENVIRONMENT = tt
+            });
         }
+        //https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code
 
         /// <summary>
         /// The GET api/values/5

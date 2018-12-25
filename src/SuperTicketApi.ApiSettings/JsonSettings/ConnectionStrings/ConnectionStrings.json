@@ -1,9 +1,0 @@
-{
-  "AppConnectionStrings": {
-    "WorkConnectionString": "Data Source=EPBYGOMW0360\\EPBYGOMW0360;Database=SuperTicketApiMssql;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;",
-    "HomeConnectionString": "Data Source=TALER_WST\\TALER_WST;Database=SuperTicketApiMssql;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;",
-    "ProviderName": "System.Data.SqlClient"
-
-  }
-}
-

@@ -1,36 +1,126 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;Release;Home</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.8.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OAuth" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.1.66">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+
     <PackageReference Include="Serilog" Version="2.7.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="JsonSettings\ConnectionStrings\ConnectionStrings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Update="JsonSettings\ConnectionStrings\AppConnectionStrings.Debug.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>AppConnectionStrings.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\ConnectionStrings\AppConnectionStrings.Home.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>AppConnectionStrings.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\ConnectionStrings\AppConnectionStrings.json">
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="JsonSettings\ConnectionStrings\AppConnectionStrings.Release.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>AppConnectionStrings.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\CorrelationIdOptions\CorrelationIdOptions.Debug.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>CorrelationIdOptions.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\CorrelationIdOptions\CorrelationIdOptions.Home.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>CorrelationIdOptions.json</DependentUpon>
     </None>
     <None Update="JsonSettings\CorrelationIdOptions\CorrelationIdOptions.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="JsonSettings\CorrelationIdOptions\CorrelationIdOptions.Release.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>CorrelationIdOptions.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\CustomSettings\CustomSettings.Debug.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>CustomSettings.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\CustomSettings\CustomSettings.Home.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>CustomSettings.json</DependentUpon>
     </None>
     <None Update="JsonSettings\CustomSettings\CustomSettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="JsonSettings\CustomSettings\CustomSettings.Release.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>CustomSettings.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\FacebookOptions\FacebookAuthOptions.Debug.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>FacebookAuthOptions.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\FacebookOptions\FacebookAuthOptions.Home.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>FacebookAuthOptions.json</DependentUpon>
     </None>
     <None Update="JsonSettings\FacebookOptions\FacebookAuthOptions.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="JsonSettings\FacebookOptions\FacebookAuthOptions.Release.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>FacebookAuthOptions.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\GitHubOptions\GitHubAuthOptions.Debug.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>GitHubAuthOptions.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\GitHubOptions\GitHubAuthOptions.Home.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>GitHubAuthOptions.json</DependentUpon>
     </None>
     <None Update="JsonSettings\GitHubOptions\GitHubAuthOptions.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="JsonSettings\GitHubOptions\GitHubAuthOptions.Release.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>GitHubAuthOptions.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\GoogleOptions\GoogleAuthOptions.Debug.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>GoogleAuthOptions.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\GoogleOptions\GoogleAuthOptions.Home.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>GoogleAuthOptions.json</DependentUpon>
     </None>
     <None Update="JsonSettings\GoogleOptions\GoogleAuthOptions.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="JsonSettings\GoogleOptions\GoogleAuthOptions.Release.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>GoogleAuthOptions.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\TokenAuthOptions\TokenAuthOptions.Debug.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>TokenAuthOptions.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\TokenAuthOptions\TokenAuthOptions.Home.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>TokenAuthOptions.json</DependentUpon>
     </None>
     <None Update="JsonSettings\TokenAuthOptions\TokenAuthOptions.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="JsonSettings\TokenAuthOptions\TokenAuthOptions.Release.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>TokenAuthOptions.json</DependentUpon>
     </None>
   </ItemGroup>
 

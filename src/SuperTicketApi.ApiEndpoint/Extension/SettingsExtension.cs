@@ -1,10 +1,13 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Extension
 {
+    using System;
     using System.IO;
+    using System.Linq;
     using System.Reflection;
 
     using Autofac;
 
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -31,11 +34,32 @@
         /// <param name="builder">
         /// The builder.
         /// </param>
+        /// <param name="env">Environment Var</param>
         /// <returns>
         /// The <see cref="IConfigurationBuilder"/>.
         /// </returns>
-        public static IConfigurationBuilder AddJsonSettingsInProject(this IConfigurationBuilder builder)
+        public static IConfigurationBuilder AddJsonSettingsInProject(
+            this IConfigurationBuilder builder,
+            IHostingEnvironment env)
         {
+            /*var solutionPath = Path.GetDirectoryName(Environment.GetEnvironmentVariable("SolutionPath"));
+            var pathSettings = Path.Combine(solutionPath, @"src\SuperTicketApi.ApiSettings\JsonSettings\");
+
+            var allJsonSettingsFiles = Directory.GetFiles(
+                pathSettings,
+                "*.json",
+                SearchOption.AllDirectories);
+
+            var envJsonFiles = allJsonSettingsFiles.Where(x => Path.GetFileName(x).Contains(env.EnvironmentName));
+            var usualJson = allJsonSettingsFiles.Where(x => Path.GetFileName(x).Split('.').Length != 3);
+            var allJsonSettings = envJsonFiles.Union(usualJson);
+           
+              foreach (var sittingFile in allJsonSettings)
+              {
+                  builder.AddJsonFile(sittingFile, optional: false, reloadOnChange: false);
+              }
+              */
+
             string pathSettingsAssembly = Assembly.GetAssembly(typeof(CustomSettings)).Location;
 
             // JsonSettings
@@ -48,6 +72,7 @@
             {
                 builder.AddJsonFile(sittingFile, optional: false, reloadOnChange: false);
             }
+
 
             return builder;
         }
@@ -76,7 +101,7 @@
             services.Configure<TokenAuthOptions>(configuration.GetSection(nameof(TokenAuthOptions)));
             services.Configure<CorrelationIdOptions>(configuration.GetSection(nameof(CorrelationIdOptions)));
             services.Configure<AppConnectionStrings>(configuration.GetSection(nameof(AppConnectionStrings)));
-           
+
             return services;
         }
 
@@ -170,5 +195,5 @@
         }
     }
 
-   
+
 }

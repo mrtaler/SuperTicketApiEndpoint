@@ -177,7 +177,7 @@
             builder.RegisterModule(new MainContextMssqlModule());
             builder.RegisterModule(new SuperTicketApiInfrastructureCrosscuttingModule());
             builder.RegisterModule(new MainContextModule());
-           
+
 
             var container = builder.Build();
             return new AutofacServiceProvider(container);
@@ -197,6 +197,7 @@
             IHostingEnvironment env,
             IApiVersionDescriptionProvider provider)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
