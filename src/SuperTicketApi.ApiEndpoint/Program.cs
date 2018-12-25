@@ -34,7 +34,7 @@
                 (hostingContext, config) =>
                     {
                     config.SetBasePath(Directory.GetCurrentDirectory());
-                    config.AddJsonSettingsInProject(hostingContext.HostingEnvironment);
+                    config.AddJsonSettingsInProject();
                     config.AddCommandLine(args);
                 })
                 .UseStartup<Startup>()

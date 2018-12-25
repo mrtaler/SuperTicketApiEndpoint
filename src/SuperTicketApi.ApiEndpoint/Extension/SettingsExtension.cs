@@ -39,8 +39,7 @@
         /// The <see cref="IConfigurationBuilder"/>.
         /// </returns>
         public static IConfigurationBuilder AddJsonSettingsInProject(
-            this IConfigurationBuilder builder,
-            IHostingEnvironment env)
+            this IConfigurationBuilder builder)
         {
             /*var solutionPath = Path.GetDirectoryName(Environment.GetEnvironmentVariable("SolutionPath"));
             var pathSettings = Path.Combine(solutionPath, @"src\SuperTicketApi.ApiSettings\JsonSettings\");
