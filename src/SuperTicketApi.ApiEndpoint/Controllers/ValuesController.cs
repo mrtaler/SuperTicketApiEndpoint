@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
 
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Options;
 
@@ -22,10 +23,12 @@
     [ApiController]
     public class ValuessssssssssController : ControllerBase
     {
+        private IHostingEnvironment env;
         private IOptions<AppConnectionStrings> opt;
         public ValuessssssssssController(/*IEventService serv*/
-            IOptions<AppConnectionStrings> options)
+            IOptions<AppConnectionStrings> options, IHostingEnvironment env)
         {
+            this.env = env;
             opt = options;
             // var tt = serv.GetAll();
         }
@@ -40,12 +43,12 @@
         [HttpGet("GetEnvironmentVariable")]
         public IActionResult Get()
         {
-            var tt = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+          //  var tt = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
             return new ObjectResult(new
             {
                 ConnectionsString = opt.Value.MssqlConnectionString,
-                ASPNETCORE_ENVIRONMENT = tt
+                ASPNETCORE_ENVIRONMENT = env.EnvironmentName
             });
         }
         //https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code
