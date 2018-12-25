@@ -31,11 +31,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Domain.Seedw
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{005FE7E1-F20B-4BB6-A01E-D32BA363F470}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SuperTicketApi.Database.Mssql", "src\SuperTicketApi.Database.Mssql\SuperTicketApi.Database.Mssql.sqlproj", "{7F6B3EAF-E3C0-418D-86A5-EFF451E39AFF}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SuperTicketApiMssql", "src\SuperTicketApi.Database.Mssql\SuperTicketApiMssql.sqlproj", "{7F6B3EAF-E3C0-418D-86A5-EFF451E39AFF}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SuperTicketApi.Database.Oracle", "src\SuperTicketApi.Database.Oracle\SuperTicketApi.Database.Oracle.sqlproj", "{914450A9-BB35-4D19-90E1-27ABB2B8A025}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Domain.MainContext.Mssql", "src\SuperTicketApi.Domain.MainContext.Mssql\SuperTicketApi.Domain.MainContext.Mssql.csproj", "{F8665BAC-D831-4722-9D6D-AB7BA6872966}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Domain.MainContext.Mssql", "src\SuperTicketApi.Domain.MainContext.Mssql\SuperTicketApi.Domain.MainContext.Mssql.csproj", "{F8665BAC-D831-4722-9D6D-AB7BA6872966}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
