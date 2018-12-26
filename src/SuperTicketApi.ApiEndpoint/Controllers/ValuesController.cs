@@ -20,12 +20,12 @@
         private AppConnectionStrings connectionStrings;
         public ValuessssssssssController(
             //  IEventService serv,
-            IOptions<AppConnectionStrings> options,
+            //IOptions<AppConnectionStrings> options,
             IHostingEnvironment env,
             AppConnectionStrings connectionStrings)
         {
             this.env = env;
-            this.opt = options;
+            //this.opt = options;
             this.connectionStrings = connectionStrings;
             //  var tt = serv.GetAll();
         }
@@ -44,7 +44,7 @@
 
             return new ObjectResult(new
             {
-                ConnectionsStringFromIOptions = opt.Value.MssqlConnectionString,
+              //  ConnectionsStringFromIOptions = opt.Value.MssqlConnectionString,
                 connectionStringsFromAppConnectionStrings= connectionStrings.MssqlConnectionString,
                 ASPNETCORE_ENVIRONMENT = env.EnvironmentName
             });

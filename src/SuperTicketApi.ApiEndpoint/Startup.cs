@@ -1,30 +1,24 @@
 ﻿namespace SuperTicketApi.ApiEndpoint
 {
-    using System;
-    using System.Reflection;
-
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
-
     using FluentValidation.AspNetCore;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-
     using Newtonsoft.Json.Serialization;
-
     using Serilog;
     using Serilog.Events;
-
     using SuperTicketApi.ApiEndpoint.Extension;
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.Application.MainContext;
     using SuperTicketApi.Domain.MainContext.Mssql;
     using SuperTicketApi.Infrastructure.Crosscutting.Implementation;
+    using System;
+    using System.Reflection;
 
     /// <summary>
     /// The startup.
@@ -177,7 +171,7 @@
             builder.RegisterModule(new MainContextMssqlModule());
             builder.RegisterModule(new SuperTicketApiInfrastructureCrosscuttingModule());
             builder.RegisterModule(new MainContextModule());
-            builder.RegisterType<AppConnectionStrings>().AsSelf();
+            builder.Register(c => new AppConnectionStrings(c.Resolve<IConfiguration>())).AsSelf();
 
             var container = builder.Build();
             return new AutofacServiceProvider(container);
