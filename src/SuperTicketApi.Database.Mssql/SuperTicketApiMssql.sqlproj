@@ -72,6 +72,7 @@
     <Folder Include="Properties" />
     <Folder Include="Tables" />
     <Folder Include="ForeignKeys" />
+    <Folder Include="Post" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Events.sql" />
@@ -85,5 +86,8 @@
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SuperTicketApi.Database.Mssql.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Post\Script.PostDeployment1.sql" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
+    using SuperTicketApi.Application.MainContext.Interfaces;
 
     /// <summary>
     /// The values controller.
@@ -15,11 +16,13 @@
     public class ValuessssssssssController : ControllerBase
     {
         private IHostingEnvironment env;
+
+        private IEventService service;
         private IOptions<AppConnectionStrings> opt;
 
         private AppConnectionStrings connectionStrings;
         public ValuessssssssssController(
-            //  IEventService serv,
+             IEventService serv,
             //IOptions<AppConnectionStrings> options,
             IHostingEnvironment env,
             AppConnectionStrings connectionStrings)
@@ -27,7 +30,7 @@
             this.env = env;
             //this.opt = options;
             this.connectionStrings = connectionStrings;
-            //  var tt = serv.GetAll();
+            this.service = serv;
         }
 
 
@@ -44,9 +47,10 @@
 
             return new ObjectResult(new
             {
-              //  ConnectionsStringFromIOptions = opt.Value.MssqlConnectionString,
-                connectionStringsFromAppConnectionStrings= connectionStrings.MssqlConnectionString,
-                ASPNETCORE_ENVIRONMENT = env.EnvironmentName
+                //  ConnectionsStringFromIOptions = opt.Value.MssqlConnectionString,
+                connectionStringsFromAppConnectionStrings = connectionStrings.MssqlConnectionString,
+                ASPNETCORE_ENVIRONMENT = env.EnvironmentName,
+                ser = service.GetAll()
             });
         }
         //https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code
