@@ -1,6 +1,8 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql
 {
     using Autofac;
+
+    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Options;
 
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
@@ -18,7 +20,12 @@
         {
             builder
                 .Register(c => new UnitOfWorkFactory(
-                    c.Resolve<IOptions<AppConnectionStrings>>().Value.MssqlConnectionString))
+                    c.Resolve<AppConnectionStrings>().MssqlConnectionString
+                   // c.Resolve<IConfiguration>().GetSection("AppConnectionStrings:MssqlConnectionString").Value
+
+
+
+                      /*  IOptions <AppConnectionStrings>>().Value.MssqlConnectionString*/))
                 .As<IUnitOfWorkFactory>().InstancePerLifetimeScope();
 
             builder

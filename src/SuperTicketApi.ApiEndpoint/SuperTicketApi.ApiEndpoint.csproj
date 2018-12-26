@@ -10,7 +10,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>C:\Users\Siarhei_Linkevich\source\repos\SuperTicketApi\src\SuperTicketApi.ApiEndpoint\SuperTicketApi.ApiEndpoint.xml</DocumentationFile>
   </PropertyGroup>
-
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\Users\Siarhei_Linkevich\source\repos\SuperTicketApi\src\SuperTicketApi.ApiEndpoint\SuperTicketApi.ApiEndpoint.xml</DocumentationFile>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Home|AnyCPU'">
     <DocumentationFile>C:\Users\Siarhei_Linkevich\source\repos\SuperTicketApi\src\SuperTicketApi.ApiEndpoint\SuperTicketApi.ApiEndpoint.xml</DocumentationFile>
   </PropertyGroup>
@@ -27,7 +29,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OData" Version="7.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="2.2.0" />

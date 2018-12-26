@@ -1,9 +1,8 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
-
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
 
     /// <summary>
@@ -17,12 +16,18 @@
     {
         private IHostingEnvironment env;
         private IOptions<AppConnectionStrings> opt;
-        public ValuessssssssssController(/*IEventService serv*/
-            IOptions<AppConnectionStrings> options, IHostingEnvironment env)
+
+        private AppConnectionStrings connectionStrings;
+        public ValuessssssssssController(
+            //  IEventService serv,
+            IOptions<AppConnectionStrings> options,
+            IHostingEnvironment env,
+            AppConnectionStrings connectionStrings)
         {
             this.env = env;
-            opt = options;
-            // var tt = serv.GetAll();
+            this.opt = options;
+            this.connectionStrings = connectionStrings;
+            //  var tt = serv.GetAll();
         }
 
 
@@ -35,11 +40,12 @@
         [HttpGet("GetEnvironmentVariable")]
         public IActionResult Get()
         {
-          //  var tt = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            //  var tt = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
             return new ObjectResult(new
             {
-                ConnectionsString = opt.Value.MssqlConnectionString,
+                ConnectionsStringFromIOptions = opt.Value.MssqlConnectionString,
+                connectionStringsFromAppConnectionStrings= connectionStrings.MssqlConnectionString,
                 ASPNETCORE_ENVIRONMENT = env.EnvironmentName
             });
         }

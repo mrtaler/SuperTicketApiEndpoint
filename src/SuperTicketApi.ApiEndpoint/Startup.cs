@@ -21,6 +21,7 @@
     using Serilog.Events;
 
     using SuperTicketApi.ApiEndpoint.Extension;
+    using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.Application.MainContext;
     using SuperTicketApi.Domain.MainContext.Mssql;
     using SuperTicketApi.Infrastructure.Crosscutting.Implementation;
@@ -176,7 +177,7 @@
             builder.RegisterModule(new MainContextMssqlModule());
             builder.RegisterModule(new SuperTicketApiInfrastructureCrosscuttingModule());
             builder.RegisterModule(new MainContextModule());
-
+            builder.RegisterType<AppConnectionStrings>().AsSelf();
 
             var container = builder.Build();
             return new AutofacServiceProvider(container);
