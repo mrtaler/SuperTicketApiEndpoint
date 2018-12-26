@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SuperTicketApi.Infrastructure.Crosscutting.Implementation
+﻿namespace SuperTicketApi.Infrastructure.Crosscutting.Implementation
 {
     using Autofac;
 

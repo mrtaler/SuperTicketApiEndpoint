@@ -2,14 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Threading.Tasks;
 
-    using SuperTicketApi.Application.Seedwork;
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using SuperTicketApi.Domain.Seedwork;
-    using SuperTicketApi.Domain.Seedwork.Repository;
-    using SuperTicketApi.Infrastructure.Crosscutting.Localization;
-    using SuperTicketApi.Infrastructure.Crosscutting.Validator;
 
     /*  public abstract class Service<TEntity, TEntityDto> : IService<TEntity, TEntityDto>
       where TEntity : Entity, new()

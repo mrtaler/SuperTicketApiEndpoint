@@ -1,18 +1,10 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Controllers
 {
-    using System;
-
     using Microsoft.AspNetCore.Mvc;
-    using System.Collections.Generic;
-
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Options;
 
-    using Newtonsoft.Json.Linq;
-
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
-    using SuperTicketApi.Application.MainContext.Interfaces;
 
     /// <summary>
     /// The values controller.

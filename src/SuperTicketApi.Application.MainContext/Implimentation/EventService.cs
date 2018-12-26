@@ -8,7 +8,6 @@
     using SuperTicketApi.Application.Seedwork.Common;
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using SuperTicketApi.Domain.MainContext.Mssql.Models;
-    using SuperTicketApi.Domain.Seedwork.Repository;
 
     public class EventService : Service<Events, EventDto>, IEventService
     {

@@ -1,7 +1,6 @@
 ﻿namespace SuperTicketApi.Domain.Seedwork
 {
     using System;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Contract for ‘UnitOfWork pattern’. For more

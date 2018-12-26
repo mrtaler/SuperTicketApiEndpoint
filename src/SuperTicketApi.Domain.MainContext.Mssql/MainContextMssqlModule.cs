@@ -5,7 +5,6 @@
 
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
-    using SuperTicketApi.Domain.Seedwork;
 
     using IUnitOfWorkFactory = SuperTicketApi.Domain.MainContext.Mssql.Interfaces.IUnitOfWorkFactory;
 

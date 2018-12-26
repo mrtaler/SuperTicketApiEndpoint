@@ -1,13 +1,8 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Extension
 {
-    using System;
     using System.IO;
-    using System.Linq;
     using System.Reflection;
 
-    using Autofac;
-
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;

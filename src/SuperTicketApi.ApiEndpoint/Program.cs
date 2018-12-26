@@ -1,6 +1,5 @@
 ﻿namespace SuperTicketApi.ApiEndpoint
 {
-    using System;
     using System.IO;
     using System.Reflection;
 
@@ -9,15 +8,13 @@
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
-    using Serilog;
+
     using SuperTicketApi.ApiEndpoint.Extension;
 
     public class Program
     {
         public static void Main(string[] args)
         {
-            string pathSettingsAssembly = Assembly.GetAssembly(typeof(Program)).Location;
-
             CreateWebHostBuilder(args).Build().Run();
         }
 
@@ -28,7 +25,6 @@
           
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .ConfigureServices(services => services.AddAutofac())
-
                 // .UseKestrel(o=> { o.AddServerHeader = true; }                )
                 .ConfigureAppConfiguration(
                 (hostingContext, config) =>

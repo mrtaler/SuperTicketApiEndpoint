@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SuperTicketApi.Application.MainContext.Implimentation
 {
@@ -9,7 +8,6 @@ namespace SuperTicketApi.Application.MainContext.Implimentation
     using SuperTicketApi.Application.Seedwork.Common;
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using SuperTicketApi.Domain.MainContext.Mssql.Models;
-    using SuperTicketApi.Domain.Seedwork.Repository;
 
     public class EventAddressService : Service<EventAddress, EventAddressDto>, IEventAddressService
     {

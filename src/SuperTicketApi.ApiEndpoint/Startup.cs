@@ -21,7 +21,6 @@
     using Serilog.Events;
 
     using SuperTicketApi.ApiEndpoint.Extension;
-    using SuperTicketApi.ApiSettings.JsonSettings;
     using SuperTicketApi.Application.MainContext;
     using SuperTicketApi.Domain.MainContext.Mssql;
     using SuperTicketApi.Infrastructure.Crosscutting.Implementation;
@@ -198,7 +197,7 @@
             IApiVersionDescriptionProvider provider)
         {
 
-            if (env.IsDevelopment())
+            /*if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -206,9 +205,10 @@
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
-            }
+            }*/
 
             app.UseDeveloperExceptionPage();
+            app.UseDatabaseErrorPage();
 
             app.UseHttpsRedirection();
             app.UseDefaultFiles();

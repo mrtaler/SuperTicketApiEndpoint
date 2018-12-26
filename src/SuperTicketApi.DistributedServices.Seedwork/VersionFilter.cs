@@ -1,6 +1,5 @@
 ﻿namespace SuperTicketApi.DistributedServices.Seedwork
 {
-    using System;
     using System.Linq;
 
     using Swashbuckle.AspNetCore.Swagger;

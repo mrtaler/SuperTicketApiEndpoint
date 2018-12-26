@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SuperTicketApi.Domain.MainContext.Mssql
+﻿namespace SuperTicketApi.Domain.MainContext.Mssql
 {
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
-    using SuperTicketApi.Domain.Seedwork;
-
 
     internal class UnitOfWorkFactory : IUnitOfWorkFactory
     {
