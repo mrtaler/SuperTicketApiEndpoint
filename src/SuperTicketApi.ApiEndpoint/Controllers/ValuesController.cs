@@ -47,8 +47,8 @@
 
             return new ObjectResult(new
             {
-                //  ConnectionsStringFromIOptions = opt.Value.MssqlConnectionString,
-                connectionStringsFromAppConnectionStrings = connectionStrings.MssqlConnectionString,
+                // ConnectionsStringFromIOptions = opt.Value.MssqlConnectionString,
+                // connectionStringsFromAppConnectionStrings = connectionStrings.MssqlConnectionString,
                 ASPNETCORE_ENVIRONMENT = env.EnvironmentName,
                 ser = service.GetAll()
             });
