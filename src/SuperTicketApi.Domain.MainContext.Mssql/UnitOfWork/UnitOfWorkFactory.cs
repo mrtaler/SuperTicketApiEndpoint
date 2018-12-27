@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.Domain.MainContext.Mssql
+﻿namespace SuperTicketApi.Domain.MainContext.Mssql.UnitOfWork
 {
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
 
@@ -8,17 +8,17 @@
 
         public UnitOfWorkFactory(string connection)
         {
-            connectionString = connection;
+            this.connectionString = connection;
         }
         public IUnitOfWorkMssql Create()
         {
-            var adoNetContext = new AdoNetUnitOfWork(connectionString, false);
+            var adoNetContext = new AdoNetUnitOfWork(this.connectionString, false);
             return new UnitOfWork(adoNetContext);
         }
 
         public IUnitOfWorkMssql CreateTransactional()
         {
-            var adoNetContext = new AdoNetUnitOfWork(connectionString, true);
+            var adoNetContext = new AdoNetUnitOfWork(this.connectionString, true);
             return new UnitOfWork(adoNetContext);
         }
     }

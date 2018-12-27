@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.Application.MainContext.Implimentation
+﻿namespace SuperTicketApi.Application.MainContext.Implementation
 {
     using System.Collections.Generic;
 
@@ -9,10 +9,11 @@
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using SuperTicketApi.Domain.MainContext.Mssql.Models;
 
-    public class EventPlaceService : Service<EventPlace, EventPlaceDto>, IEventPlaceService
+    /// <inheritdoc cref="IEventService"/>
+    public class EventService : Service<Events, EventDto>, IEventService
     {
         /// <inheritdoc />
-        public EventPlaceService(IUnitOfWorkFactory _uow)
+        public EventService(IUnitOfWorkFactory _uow)
             : base(_uow)
         {
         }
@@ -20,23 +21,23 @@
         #region Overrides of Service<EventAddress,EventAddressDto>
 
         /// <inheritdoc />
-        public override IEnumerable<EventPlace> GetAll()
+        public override IEnumerable<Events> GetAll()
         {
             using (var context = this.uow.Create())
             {
-                return context.EventPlaces.GetAll();
+                return context.Events.GetAll();
             }
         }
 
         /// <inheritdoc />
-        public override IList<EventPlaceDto> GetAllDto()
+        public override IList<EventDto> GetAllDto()
         {
             using (var context = this.uow.Create())
             {
-                var entities = context.EventPlaces.GetAll();
+                var entities = context.Events.GetAll();
                 if (entities != null)
                 {
-                    return entities.ProjectedAsCollection<EventPlaceDto>();
+                    return entities.ProjectedAsCollection<EventDto>();
                 }
 
                 return null;

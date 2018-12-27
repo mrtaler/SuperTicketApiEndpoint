@@ -28,25 +28,25 @@
         /// Delete <c>item</c> 
         /// </summary>
         /// <param name="item">Item to delete</param>
-        void Remove(TEntity item);
+        void Delete(TEntity item);
 
         /// <summary>
         /// Delete <c>items</c>
         /// </summary>
         /// <param name="items">Items to delete</param>
-        void Remove(IEnumerable<TEntity> items);
+        void Delete(IEnumerable<TEntity> items);
 
         /// <summary>
         /// Set <paramref name="item"/> as modified
         /// </summary>
         /// <param name="item">Item to modify</param>
-        void Modify(TEntity item);
+        void Update(TEntity item);
 
         /// <summary>
         /// Set <paramref name="items"/> as modified
         /// </summary>
         /// <param name="items">Items to modify</param>
-        void Modify(IEnumerable<TEntity> items);
+        void Update(IEnumerable<TEntity> items);
 
         /*        /// <summary>
                 /// Track entity into <see langword="this"/> repository, really in UnitOfWork. 

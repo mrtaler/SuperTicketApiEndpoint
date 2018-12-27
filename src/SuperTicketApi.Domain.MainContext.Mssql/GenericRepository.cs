@@ -8,55 +8,53 @@
 
     using SuperTicketApi.Domain.Seedwork;
     using SuperTicketApi.Domain.Seedwork.Repository;
-    using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
 
+    /// <summary>
+    /// Generic Repository
+    /// </summary>
+    /// <typeparam name="T">Table in db</typeparam>
     public abstract class GenericRepository<T> : IRepository<T>
         where T : class
     {
+        /// <summary>
+        /// The cmd.
+        /// </summary>
+        private readonly IDbCommand command;
 
-        IDbCommand cmd;
-        INetUnitOfWork context;
+        /// <summary>
+        /// The context.
+        /// </summary>
+        private readonly INetUnitOfWork context;
 
-        protected GenericRepository(INetUnitOfWork _context)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenericRepository{T}"/> class.
+        /// </summary>
+        /// <param name="context">
+        /// The _context.
+        /// </param>
+        protected GenericRepository(INetUnitOfWork context)
         {
-            this.context = _context;
-            this.cmd = this.context.CreateCommand();
+            this.context = context;
+            this.command = this.context.CreateCommand();
             Log.Information($"{this.GetType().Name} was started");
         }
 
-
-
         #region Get
-        public T Get(object id)
-        {
-            throw new NotImplementedException();
-        }
 
+        /// <inheritdoc />
         public IEnumerable<T> GetAll()
         {
-           /* using (SqlConnection con = new SqlConnection(cmd.Connection.ConnectionString))
-            {
-                SqlCommand cmd = new SqlCommand($"select * from SuperTicketApiMssql.dbo.{typeof(T).Name}", con);
-                cmd.CommandType = CommandType.Text;
-                con.Open();
-                SqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                }
-            }*/
             var returnList = new List<T>();
-            if (this.cmd.Connection.State==ConnectionState.Open)
+            if (this.command.Connection.State == ConnectionState.Open)
             {
-
-
-                this.cmd.CommandText = $"select * " +
+                this.command.CommandText = $"select * " +
                                        $"from {typeof(T).Name}";
-                this.cmd.CommandType = CommandType.Text;
+                this.command.CommandType = CommandType.Text;
 
-                using (var reader = this.cmd.ExecuteReader())
+                using (var reader = this.command.ExecuteReader())
                 {
-                    Log.Information($"Run SQL command: {this.cmd.CommandText}");
-                    Log.Warning($"{nameof(this.GetAll)} connection state: {this.cmd.Connection.State}");
+                    Log.Information($"Run SQL command: {this.command.CommandText}");
+                    Log.Warning($"{nameof(this.GetAll)} connection state: {this.command.Connection.State}");
                     while (reader.Read())
                     {
                         var art = this.Mapping(reader);
@@ -72,58 +70,67 @@
             return null;
         }
 
-        public IEnumerable<T> AllMatching(
-            ISpecification<T> filter = null,
-            IOrderSpecification<T> orderBy = null,
-            IIncludeSpecification<T> includes = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public T OneMatching(ISpecification<T> filter = null, IOrderSpecification<T> orderBy = null, IIncludeSpecification<T> includes = null)
-        {
-            throw new NotImplementedException();
-        }
-
-
         #endregion
 
-
-        #region Update Delete Insert
-
-        public void Add(T item)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <inheritdoc />
         public void Add(IEnumerable<T> items)
         {
-            throw new NotImplementedException();
+            foreach (var item in items)
+            {
+                this.Add(item);
+            }
         }
 
-        public void Remove(T item)
+        /// <inheritdoc />
+        public void Delete(IEnumerable<T> items)
         {
-            throw new NotImplementedException();
+            foreach (var item in items)
+            {
+                this.Delete(item);
+            }
         }
 
-        public void Remove(IEnumerable<T> items)
+        /// <inheritdoc />
+        public void Update(IEnumerable<T> items)
         {
-            throw new NotImplementedException();
+            foreach (var item in items)
+            {
+                this.Update(item);
+            }
         }
 
-        public void Modify(T item)
-        {
-            throw new NotImplementedException();
-        }
+        #region abstract
 
-        public void Modify(IEnumerable<T> items)
-        {
-            throw new NotImplementedException();
-        }
+        /// <inheritdoc />
+        public abstract T GetById(int id);
+
+        /// <inheritdoc />
+        public abstract void Add(T item);
+
+        /// <inheritdoc />
+        public abstract void Update(T item);
+
+        /// <inheritdoc />
+        public abstract void Delete(T item);
+
+        /// <summary>
+        /// The mapping.
+        /// </summary>
+        /// <param name="reader">
+        /// The reader.
+        /// </param>
+        /// <returns>
+        /// The <see cref="T"/>.
+        /// </returns>
+        public abstract T Mapping(IDataReader reader);
 
         #endregion
 
-        abstract public T Mapping(IDataReader reader);
+        /// <inheritdoc />
+        public void Dispose()
+        {
+            this.context.Dispose();
+        }
 
         /// <summary>
         /// The get item.
@@ -140,11 +147,6 @@
         protected virtual object GetItem(string name, IDataReader reader)
         {
             return reader[name] is DBNull ? null : reader[name];
-        }
-
-        public void Dispose()
-        {
-            this.context.Dispose();
         }
     }
 }

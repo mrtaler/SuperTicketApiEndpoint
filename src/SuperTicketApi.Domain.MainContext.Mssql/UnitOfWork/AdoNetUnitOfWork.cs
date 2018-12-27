@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.Domain.MainContext.Mssql
+﻿namespace SuperTicketApi.Domain.MainContext.Mssql.UnitOfWork
 {
     using System;
     using System.Data;

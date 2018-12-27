@@ -1,7 +1,8 @@
-﻿namespace SuperTicketApi.Domain.MainContext.Mssql
+﻿namespace SuperTicketApi.Domain.MainContext.Mssql.UnitOfWork
 {
     using System;
 
+    using SuperTicketApi.Domain.MainContext.Mssql.Implimentation;
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using SuperTicketApi.Domain.Seedwork;
 

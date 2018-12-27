@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace SuperTicketApi.Application.MainContext.Implimentation
+﻿namespace SuperTicketApi.Application.MainContext.Implementation
 {
+    using System.Collections.Generic;
+
     using SuperTicketApi.Application.BoundedContext.DTO.Dto;
     using SuperTicketApi.Application.MainContext.Interfaces;
     using SuperTicketApi.Application.Seedwork;
@@ -9,6 +9,7 @@ namespace SuperTicketApi.Application.MainContext.Implimentation
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using SuperTicketApi.Domain.MainContext.Mssql.Models;
 
+    /// <inheritdoc cref="IEventAddressService"/>
     public class EventAddressService : Service<EventAddress, EventAddressDto>, IEventAddressService
     {
         /// <inheritdoc />

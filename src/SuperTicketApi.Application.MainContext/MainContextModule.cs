@@ -2,7 +2,7 @@
 {
     using Autofac;
 
-    using SuperTicketApi.Application.MainContext.Implimentation;
+    using SuperTicketApi.Application.MainContext.Implementation;
     using SuperTicketApi.Application.MainContext.Interfaces;
 
     public class MainContextModule : Module
