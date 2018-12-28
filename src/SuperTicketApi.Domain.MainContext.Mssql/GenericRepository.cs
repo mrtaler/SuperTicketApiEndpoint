@@ -3,9 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
 
     using Serilog;
 
+    using SuperTicketApi.Domain.MainContext.Mssql.Attributes;
     using SuperTicketApi.Domain.Seedwork;
     using SuperTicketApi.Domain.Seedwork.Repository;
 
@@ -37,6 +39,16 @@
             this.context = context;
             this.command = this.context.CreateCommand();
             Log.Information($"{this.GetType().Name} was started");
+
+            var tt = typeof(T).CustomAttributes;
+            var tt1 = tt.FirstOrDefault(p => p.AttributeType ==typeof(DbTable));
+            var tt2 = tt1.GetType().GetProperties();
+            foreach (var propertyInfo in tt2)
+            {
+                var tt333 = propertyInfo.GetValue(tt1);
+            }
+            var prop = typeof(DbTable).GetProperty("TableName");
+
         }
 
         #region Get
