@@ -1,5 +1,6 @@
 ﻿namespace SuperTicketApi.Domain.Seedwork.Repository
 {
+    using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Data;
@@ -89,6 +90,6 @@
         /// <returns>
         /// The <see cref="T"/>.
         /// </returns>
-        TEntity Mapping(IDataReader reader);
+        TEntity Mapping(IDataReader reader, IColumnSpecification<TEntity> columns);
     }
 }

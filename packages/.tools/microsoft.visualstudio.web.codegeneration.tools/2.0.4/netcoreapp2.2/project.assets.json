@@ -7107,7 +7107,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Derdan\\Source\\Repos\\SuperTicketApiEndpoint\\packages": {},
+    "D:\\Projects\\SuperTicket\\SuperTicketApiEndpoint\\packages": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -7115,22 +7115,22 @@
     "restore": {
       "projectUniqueName": "microsoft.visualstudio.web.codegeneration.tools-netcoreapp2.2-[2.0.4, )",
       "projectName": "microsoft.visualstudio.web.codegeneration.tools-netcoreapp2.2-[2.0.4, )",
-      "projectPath": "C:\\Users\\Derdan\\Source\\Repos\\SuperTicketApiEndpoint\\src\\SuperTicketApi.ApiEndpoint\\SuperTicketApi.ApiEndpoint.csproj",
-      "packagesPath": "C:\\Users\\Derdan\\Source\\Repos\\SuperTicketApiEndpoint\\packages",
+      "projectPath": "D:\\Projects\\SuperTicket\\SuperTicketApiEndpoint\\src\\SuperTicketApi.ApiEndpoint\\SuperTicketApi.ApiEndpoint.csproj",
+      "packagesPath": "D:\\Projects\\SuperTicket\\SuperTicketApiEndpoint\\packages",
       "projectStyle": "DotnetCliTool",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Derdan\\Source\\Repos\\SuperTicketApiEndpoint\\NuGet.Config",
-        "C:\\Users\\Derdan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "D:\\Projects\\SuperTicket\\SuperTicketApiEndpoint\\NuGet.Config",
+        "C:\\Users\\Siarhei_Linkevich\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
       ],
       "sources": {
-        "C:\\Users\\Derdan\\Source\\Repos\\SuperTicketApiEndpoint\\packages": {},
+        "D:\\Projects\\SuperTicket\\SuperTicketApiEndpoint\\packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

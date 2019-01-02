@@ -4,12 +4,13 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
-
+    using System.Linq.Expressions;
     using Serilog;
 
     using SuperTicketApi.Domain.MainContext.Mssql.Attributes;
     using SuperTicketApi.Domain.Seedwork;
     using SuperTicketApi.Domain.Seedwork.Repository;
+    using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
 
     /// <summary>
     /// Generic Repository
@@ -40,27 +41,20 @@
             this.command = this.context.CreateCommand();
             Log.Information($"{this.GetType().Name} was started");
 
-            var tt = typeof(T).CustomAttributes;
-            var tt1 = tt.FirstOrDefault(p => p.AttributeType ==typeof(DbTable));
-            var tt2 = tt1.GetType().GetProperties();
-            foreach (var propertyInfo in tt2)
-            {
-                var tt333 = propertyInfo.GetValue(tt1);
-            }
-            var prop = typeof(DbTable).GetProperty("TableName");
+            var ss = GetTableColumnNames();
 
         }
 
         #region Get
 
         /// <inheritdoc />
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(IColumnSpecification<T> columns)
         {
             var returnList = new List<T>();
             if (this.command.Connection.State == ConnectionState.Open)
             {
                 this.command.CommandText = $"select * " +
-                                       $"from {typeof(T).Name}";
+                                       $"from {typeof(T).GetAttributeValue((DbTable dbTable) => dbTable.TableName)}";
                 this.command.CommandType = CommandType.Text;
 
                 using (var reader = this.command.ExecuteReader())
@@ -69,7 +63,7 @@
                     Log.Warning($"{nameof(this.GetAll)} connection state: {this.command.Connection.State}");
                     while (reader.Read())
                     {
-                        var art = this.Mapping(reader);
+                        var art = this.Mapping(reader, columns);
                         returnList.Add(art);
                     }
 
@@ -114,7 +108,7 @@
         #region abstract
 
         /// <inheritdoc />
-        public abstract T GetById(int id);
+        public abstract T GetById(int id, IColumnSpecification<T> columns);
 
         /// <inheritdoc />
         public abstract void Add(T item);
@@ -134,7 +128,7 @@
         /// <returns>
         /// The <see cref="T"/>.
         /// </returns>
-        public abstract T Mapping(IDataReader reader);
+        public abstract T Mapping(IDataReader reader, IColumnSpecification<T> columns);
 
         #endregion
 
@@ -160,5 +154,33 @@
         {
             return reader[name] is DBNull ? null : reader[name];
         }
+
+        protected IEnumerable<string> GetTableColumnNames()
+        {
+            var columns = new List<string>();
+            var classProperties = typeof(T).GetProperties();
+            foreach (var item in classProperties)
+            {
+                var dnAttribute = item.GetCustomAttributes(
+                              typeof(DbColumn), true
+                          ).FirstOrDefault() as DbColumn;
+
+                if (dnAttribute != null)
+                {
+                    columns.Add(dnAttribute.columnName);
+                }
+            }
+
+
+            return columns;
+        }
+
+        protected string GetPropertyName(Expression<Func<T, string>> expression)
+        {
+            var memberExpersion = (ConstantExpression)expression.Body;
+
+            return memberExpersion.Value.ToString();
+        }
+      
     }
 }

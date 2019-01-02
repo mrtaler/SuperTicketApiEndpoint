@@ -5,6 +5,7 @@
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using SuperTicketApi.Domain.MainContext.Mssql.Models;
     using SuperTicketApi.Domain.Seedwork;
+    using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
 
     /// <inheritdoc cref="IEventAddressRepository"/>
     public class EventAddressRepository : GenericRepository<EventAddress>, IEventAddressRepository
@@ -14,11 +15,7 @@
         {
         }
 
-        /// <inheritdoc />
-        public override EventAddress GetById(int id)
-        {
-            throw new System.NotImplementedException();
-        }
+      
 
         /// <inheritdoc />
         public override void Add(EventAddress item)
@@ -38,14 +35,24 @@
             throw new System.NotImplementedException();
         }
 
-        public override EventAddress Mapping(IDataReader reader)
+        public override EventAddress GetById(int id, IColumnSpecification<EventAddress> columns)
         {
-            var ret = new EventAddress();
-            ret.Id = (int)this.GetItem("EventAddressId", reader);
-            ret.Street = (string)this.GetItem("Street", reader);
-            ret.House = (string)this.GetItem("House", reader);
-            ret.Description = (string)this.GetItem("Description", reader);
-            return ret;
+            throw new System.NotImplementedException();
         }
+
+        public override EventAddress Mapping(IDataReader reader, IColumnSpecification<EventAddress> columns)
+        {
+            throw new System.NotImplementedException();
+        }
+        /*
+public override EventAddress Mapping(IDataReader reader)
+{
+   var ret = new EventAddress();
+   ret.Id = (int)this.GetItem("EventAddressId", reader);
+   ret.Street = (string)this.GetItem("Street", reader);
+   ret.House = (string)this.GetItem("House", reader);
+   ret.Description = (string)this.GetItem("Description", reader);
+   return ret;
+}*/
     }
 }

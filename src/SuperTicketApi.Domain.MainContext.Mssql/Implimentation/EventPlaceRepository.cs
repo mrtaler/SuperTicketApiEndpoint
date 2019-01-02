@@ -5,6 +5,7 @@
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using SuperTicketApi.Domain.MainContext.Mssql.Models;
     using SuperTicketApi.Domain.Seedwork;
+    using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
 
     /// <inheritdoc cref="IEventPlaceRepository"/>
     public class EventPlaceRepository : GenericRepository<EventPlace>, IEventPlaceRepository
@@ -12,12 +13,6 @@
         public EventPlaceRepository(INetUnitOfWork _context)
             : base(_context)
         {
-        }
-
-        /// <inheritdoc />
-        public override EventPlace GetById(int id)
-        {
-            throw new System.NotImplementedException();
         }
 
         /// <inheritdoc />
@@ -37,7 +32,7 @@
         {
             throw new System.NotImplementedException();
         }
-
+/*
         public override EventPlace Mapping(IDataReader reader)
         {
             var ret = new EventPlace();
@@ -46,6 +41,16 @@
             ret.AdminTelephone = (string)this.GetItem("AdminTelephone", reader);
             ret.CostPerHour = (decimal)this.GetItem("CostPerHour", reader);
             return ret;
+        }*/
+
+        public override EventPlace GetById(int id, IColumnSpecification<EventPlace> columns)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override EventPlace Mapping(IDataReader reader, IColumnSpecification<EventPlace> columns)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

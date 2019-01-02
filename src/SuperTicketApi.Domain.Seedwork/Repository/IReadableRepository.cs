@@ -1,5 +1,6 @@
 ﻿namespace SuperTicketApi.Domain.Seedwork.Repository
 {
+    using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
     using System.Collections.Generic;
 
     /// <summary>
@@ -13,7 +14,7 @@
         /// <see cref="Get"/> all elements of type TEntity in repository
         /// </summary>
         /// <returns>List of selected elements</returns>
-        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> GetAll(IColumnSpecification<TEntity> columns);
 
         /// <summary>
         /// The get by id.
@@ -24,7 +25,7 @@
         /// <returns>
         /// The <see cref="TEntity"/>.
         /// </returns>
-        TEntity GetById(int id);
+        TEntity GetById(int id, IColumnSpecification<TEntity> columns);
 
         /*   /// <summary>
            /// The get all.
