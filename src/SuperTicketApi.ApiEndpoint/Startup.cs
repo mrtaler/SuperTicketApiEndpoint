@@ -21,6 +21,9 @@
     using System.Reflection;
 
     using Microsoft.AspNetCore.Rewrite;
+    using Microsoft.Extensions.Logging;
+
+    using ILogger = Serilog.ILogger;
 
     /// <summary>
     /// The startup.
@@ -191,6 +194,7 @@
         public void Configure(
             IApplicationBuilder app,
             IHostingEnvironment env,
+            ILoggerFactory loggerFactory,
             IApiVersionDescriptionProvider provider)
         {
 
@@ -203,19 +207,13 @@
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }*/
+
+            loggerFactory.AddSerilog();
+
             var option = new RewriteOptions();
             option.AddRedirect("^$", "swagger");
             app.UseRewriter(option);
 
-            app.UseDeveloperExceptionPage();
-            app.UseDatabaseErrorPage();
-
-            app.UseHttpsRedirection();
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-
-            // app.UseCors("AllowAll");
-            app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(
                 options =>
@@ -226,6 +224,22 @@
                             options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
                         }
                     });
+
+            app.UseDeveloperExceptionPage();
+            app.UseDatabaseErrorPage();
+
+            app.UseHttpsRedirection();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
+            app.UseApiKey();
+            app.UseCorrelationId();
+            app.UseConnectionString();
+            app.UseResponseCaching();
+
+            // app.UseCors("AllowAll");
+            app.UseMvc();
+          
         }
     }
 }

@@ -17,6 +17,36 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="JsonSettings\OrganisationCodeSettings.Debug.json">
+      <DependentUpon>OrganisationCodeSettings.json</DependentUpon>
+      <IsTransformFile>true</IsTransformFile>
+    </None>
+    <None Update="JsonSettings\OrganisationCodeSettings.Home.json">
+      <DependentUpon>OrganisationCodeSettings.json</DependentUpon>
+      <IsTransformFile>true</IsTransformFile>
+    </None>
+    <None Update="JsonSettings\OrganisationCodeSettings.json">
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="JsonSettings\OrganisationCodeSettings.Release.json">
+      <DependentUpon>OrganisationCodeSettings.json</DependentUpon>
+      <IsTransformFile>true</IsTransformFile>
+    </None>
+    <None Update="JsonSettings\Api\ApiKeys.Debug.json">
+      <DependentUpon>ApiKeys.json</DependentUpon>
+      <IsTransformFile>true</IsTransformFile>
+    </None>
+    <None Update="JsonSettings\Api\ApiKeys.Home.json">
+      <DependentUpon>ApiKeys.json</DependentUpon>
+      <IsTransformFile>true</IsTransformFile>
+    </None>
+    <None Update="JsonSettings\Api\ApiKeys.json">
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="JsonSettings\Api\ApiKeys.Release.json">
+      <DependentUpon>ApiKeys.json</DependentUpon>
+      <IsTransformFile>true</IsTransformFile>
+    </None>
     <None Update="JsonSettings\ConnectionStrings\AppConnectionStrings.Debug.json">
       <IsTransformFile>true</IsTransformFile>
       <DependentUpon>AppConnectionStrings.json</DependentUpon>
