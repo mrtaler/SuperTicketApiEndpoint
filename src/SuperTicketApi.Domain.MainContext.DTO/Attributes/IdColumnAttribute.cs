@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class IdColumnAttribute : DbColumnAttribute
+    public class IdColumnAttribute : DbColumnAttribute
     {
         public IdColumnAttribute(Type classType):base($"{classType.Name}Id")
         {

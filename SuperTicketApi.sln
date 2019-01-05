@@ -35,6 +35,14 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SuperTicketApiMssql", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Domain.MainContext.Mssql", "src\SuperTicketApi.Domain.MainContext.Mssql\SuperTicketApi.Domain.MainContext.Mssql.csproj", "{F8665BAC-D831-4722-9D6D-AB7BA6872966}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Domain.MainContext.DTO", "src\SuperTicketApi.Domain.MainContext.DTO\SuperTicketApi.Domain.MainContext.DTO.csproj", "{FB19D5DA-5162-4A54-86A4-1C90D9166283}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Domain.MainContext.Queries", "src\SuperTicketApi.Domain.MainContext.Queries\SuperTicketApi.Domain.MainContext.Queries.csproj", "{D7319B58-49D5-4630-90DE-FC652CD2F78F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Domain.MainContext.Command", "src\SuperTicketApi.Domain.MainContext.Command\SuperTicketApi.Domain.MainContext.Command.csproj", "{4D477EEC-FBEE-4F9E-B64A-602B4AF26AF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CQRS", "CQRS", "{190655D7-E917-47E4-87A6-552DCECE045B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +117,24 @@ Global
 		{F8665BAC-D831-4722-9D6D-AB7BA6872966}.Home|Any CPU.Build.0 = Home|Any CPU
 		{F8665BAC-D831-4722-9D6D-AB7BA6872966}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8665BAC-D831-4722-9D6D-AB7BA6872966}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB19D5DA-5162-4A54-86A4-1C90D9166283}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB19D5DA-5162-4A54-86A4-1C90D9166283}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB19D5DA-5162-4A54-86A4-1C90D9166283}.Home|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB19D5DA-5162-4A54-86A4-1C90D9166283}.Home|Any CPU.Build.0 = Debug|Any CPU
+		{FB19D5DA-5162-4A54-86A4-1C90D9166283}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB19D5DA-5162-4A54-86A4-1C90D9166283}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7319B58-49D5-4630-90DE-FC652CD2F78F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7319B58-49D5-4630-90DE-FC652CD2F78F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7319B58-49D5-4630-90DE-FC652CD2F78F}.Home|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7319B58-49D5-4630-90DE-FC652CD2F78F}.Home|Any CPU.Build.0 = Debug|Any CPU
+		{D7319B58-49D5-4630-90DE-FC652CD2F78F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7319B58-49D5-4630-90DE-FC652CD2F78F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D477EEC-FBEE-4F9E-B64A-602B4AF26AF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D477EEC-FBEE-4F9E-B64A-602B4AF26AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D477EEC-FBEE-4F9E-B64A-602B4AF26AF3}.Home|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D477EEC-FBEE-4F9E-B64A-602B4AF26AF3}.Home|Any CPU.Build.0 = Debug|Any CPU
+		{4D477EEC-FBEE-4F9E-B64A-602B4AF26AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D477EEC-FBEE-4F9E-B64A-602B4AF26AF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +151,10 @@ Global
 		{E4CFD7CF-8124-466B-B3F8-0FEF2206DAEC} = {A5C6613A-2822-421B-B380-F9143C0338D2}
 		{7F6B3EAF-E3C0-418D-86A5-EFF451E39AFF} = {005FE7E1-F20B-4BB6-A01E-D32BA363F470}
 		{F8665BAC-D831-4722-9D6D-AB7BA6872966} = {A5C6613A-2822-421B-B380-F9143C0338D2}
+		{FB19D5DA-5162-4A54-86A4-1C90D9166283} = {A5C6613A-2822-421B-B380-F9143C0338D2}
+		{D7319B58-49D5-4630-90DE-FC652CD2F78F} = {190655D7-E917-47E4-87A6-552DCECE045B}
+		{4D477EEC-FBEE-4F9E-B64A-602B4AF26AF3} = {190655D7-E917-47E4-87A6-552DCECE045B}
+		{190655D7-E917-47E4-87A6-552DCECE045B} = {A5C6613A-2822-421B-B380-F9143C0338D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2FD923DE-66A3-489D-8396-09D51EE16788}

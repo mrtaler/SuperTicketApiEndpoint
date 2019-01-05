@@ -17,6 +17,7 @@
             {
                 return valueSelector(att);
             }
+
             return default(TValue);
         }
     }

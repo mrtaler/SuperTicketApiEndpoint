@@ -32,19 +32,19 @@
       <DependentUpon>OrganisationCodeSettings.json</DependentUpon>
       <IsTransformFile>true</IsTransformFile>
     </None>
-    <None Update="JsonSettings\Api\ApiKeys.Debug.json">
-      <DependentUpon>ApiKeys.json</DependentUpon>
+    <None Update="JsonSettings\Api\ApiKeyAccessSettings.Debug.json">
+      <DependentUpon>ApiKeyAccessSettings.json</DependentUpon>
       <IsTransformFile>true</IsTransformFile>
     </None>
-    <None Update="JsonSettings\Api\ApiKeys.Home.json">
-      <DependentUpon>ApiKeys.json</DependentUpon>
+    <None Update="JsonSettings\Api\ApiKeyAccessSettings.Home.json">
+      <DependentUpon>ApiKeyAccessSettings.json</DependentUpon>
       <IsTransformFile>true</IsTransformFile>
     </None>
-    <None Update="JsonSettings\Api\ApiKeys.json">
+    <None Update="JsonSettings\Api\ApiKeyAccessSettings.json">
       <TransformOnBuild>true</TransformOnBuild>
     </None>
-    <None Update="JsonSettings\Api\ApiKeys.Release.json">
-      <DependentUpon>ApiKeys.json</DependentUpon>
+    <None Update="JsonSettings\Api\ApiKeyAccessSettings.Release.json">
+      <DependentUpon>ApiKeyAccessSettings.json</DependentUpon>
       <IsTransformFile>true</IsTransformFile>
     </None>
     <None Update="JsonSettings\ConnectionStrings\AppConnectionStrings.Debug.json">

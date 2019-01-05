@@ -1,27 +1,35 @@
 ﻿namespace SuperTicketApi.ApiEndpoint
 {
+    using System;
+    using System.Reflection;
+
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
+
     using FluentValidation.AspNetCore;
+
+    using MediatR.Extensions.Autofac.DependencyInjection;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
+    using Microsoft.AspNetCore.Rewrite;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+
     using Newtonsoft.Json.Serialization;
+
     using Serilog;
     using Serilog.Events;
+
     using SuperTicketApi.ApiEndpoint.Extension;
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.Application.MainContext;
     using SuperTicketApi.Domain.MainContext.Mssql;
+    using SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers;
     using SuperTicketApi.Infrastructure.Crosscutting.Implementation;
-    using System;
-    using System.Reflection;
-
-    using Microsoft.AspNetCore.Rewrite;
-    using Microsoft.Extensions.Logging;
 
     using ILogger = Serilog.ILogger;
 
@@ -164,6 +172,8 @@
                 */
 
             services.AddRouting(options => options.LowercaseUrls = true);
+            var asss = typeof(GetQueryAsIEnumerableQueryHandler).Assembly;
+           // services.AddMediatR(asss);
             services.AddMvc()
                 .AddFluentValidation().AddJsonOptions(options =>
                     {
@@ -171,11 +181,12 @@
                             new CamelCasePropertyNamesContractResolver();
                     })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+      //      var rr = this.Configuration.GetSection(nameof(AppConnectionStrings)).Get<AppConnectionStrings>();
             builder.Populate(services);
+           // builder.AddMediatR(asss);
             builder.RegisterModule(new MainContextMssqlModule());
             builder.RegisterModule(new SuperTicketApiInfrastructureCrosscuttingModule());
-            builder.RegisterModule(new MainContextModule());
+           // builder.RegisterModule(new MainContextModule());
             builder.Register(c => new AppConnectionStrings(c.Resolve<IConfiguration>())).AsSelf();
 
             var container = builder.Build();
@@ -208,7 +219,7 @@
                 app.UseHsts();
             }*/
 
-            loggerFactory.AddSerilog();
+           // loggerFactory.AddSerilog();
 
             var option = new RewriteOptions();
             option.AddRedirect("^$", "swagger");
@@ -232,14 +243,14 @@
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseApiKey();
-            app.UseCorrelationId();
-            app.UseConnectionString();
-            app.UseResponseCaching();
+          //  app.UseApiKey();
+          //  app.UseCorrelationId();
+           // app.UseConnectionString();
+        //    app.UseResponseCaching();
 
             // app.UseCors("AllowAll");
             app.UseMvc();
-          
+
         }
     }
 }

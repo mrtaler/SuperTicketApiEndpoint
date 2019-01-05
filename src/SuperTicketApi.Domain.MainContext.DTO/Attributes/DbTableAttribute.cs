@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class DbTableAttribute : Attribute
+    public class DbTableAttribute : Attribute
     {
         public string TableName { get; set; }
 

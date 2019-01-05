@@ -51,7 +51,7 @@ namespace SuperTicketApi.ApiEndpoint.Extension
             {
                 // todo sector for different connection strings 
                // var path = GetConnectionStringPath(application);
-                databaseOption.Value.ConnectionString = databaseOption.Value.MssqlConnectionString;
+            //    databaseOption.Value.ConnectionString = databaseOption.Value.MssqlConnectionString;
             }
             catch (Exception e)
             {
