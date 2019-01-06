@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;Release;Nout</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="CustomQuery\Models\" />
+    <Folder Include="CustomQuery\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SuperTicketApi.Domain.MainContext.DTO\SuperTicketApi.Domain.MainContext.DTO.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MediatR">
+      <HintPath>..\..\packages\mediatr\6.0.0\lib\netstandard2.0\MediatR.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

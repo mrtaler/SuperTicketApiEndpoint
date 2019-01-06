@@ -1,19 +1,19 @@
-﻿namespace SuperTicketApi.Application.MainContext
-{
-    using Autofac;
+﻿//namespace SuperTicketApi.Application.MainContext
+//{
+//    using Autofac;
 
-    using SuperTicketApi.Application.MainContext.Implementation;
-    using SuperTicketApi.Application.MainContext.Interfaces;
+//    using SuperTicketApi.Application.MainContext.Implementation;
+//    using SuperTicketApi.Application.MainContext.Interfaces;
 
-    public class MainContextModule : Module
-    {
-        /// <inheritdoc />
-        protected override void Load(ContainerBuilder builder)
-        {
+//    public class MainContextModule : Module
+//    {
+//        /// <inheritdoc />
+//        protected override void Load(ContainerBuilder builder)
+//        {
 
-            builder.RegisterType<EventAddressService>().As<IEventAddressService>();
-            builder.RegisterType<EventPlaceService>().As<IEventPlaceService>();
-            builder.RegisterType<EventService>().As<IEventService>();
-        }
-    }
-}
+//            builder.RegisterType<EventAddressService>().As<IEventAddressService>();
+//            builder.RegisterType<EventPlaceService>().As<IEventPlaceService>();
+//            builder.RegisterType<EventService>().As<IEventService>();
+//        }
+//    }
+//}

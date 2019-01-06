@@ -1,0 +1,25 @@
+2019-01-06 03:48:49.857 +03:00 Information: [] The global logger has been configured.
+2019-01-06 03:48:51.513 +03:00 Information: [] Hello, Serilog!
+2019-01-06 03:49:56.817 +03:00 Information: [] GetQueryAsIEnumerableQueryHandler was started
+2019-01-06 03:50:36.726 +03:00 Information: [] Run SQL command: select * from Areas
+2019-01-06 03:50:37.945 +03:00 Warning: [] Handle connection state: Open
+2019-01-06 03:52:26.217 +03:00 Information: [] Read from DB: 9 entities
+2019-01-06 03:54:43.836 +03:00 Information: [] The global logger has been configured.
+2019-01-06 03:54:44.009 +03:00 Information: [] Hello, Serilog!
+2019-01-06 03:55:21.446 +03:00 Information: [] GetQueryAsIEnumerableQueryHandler was started
+2019-01-06 03:55:28.272 +03:00 Information: [] Run SQL command: select * from Areas
+2019-01-06 03:55:28.279 +03:00 Warning: [] Handle connection state: Open
+2019-01-06 03:55:28.299 +03:00 Information: [] Read from DB: 9 entities
+2019-01-06 04:08:33.520 +03:00 Information: [] The global logger has been configured.
+2019-01-06 04:08:33.748 +03:00 Information: [] Hello, Serilog!
+2019-01-06 04:09:01.218 +03:00 Information: [] The global logger has been configured.
+2019-01-06 04:09:01.276 +03:00 Information: [] Hello, Serilog!
+2019-01-06 04:11:28.372 +03:00 Information: [] The global logger has been configured.
+2019-01-06 04:11:28.512 +03:00 Information: [] Hello, Serilog!
+2019-01-06 04:11:43.458 +03:00 Information: [] GetQueryAsIEnumerableQueryHandler was started
+2019-01-06 04:11:43.679 +03:00 Information: [] Run SQL command: select * from Areas
+2019-01-06 04:11:43.698 +03:00 Warning: [] Handle connection state: Open
+2019-01-06 04:11:43.770 +03:00 Information: [] Read from DB: 9 entities
+2019-01-06 04:11:43.800 +03:00 Warning: [] Long Running Request: "GetAreaAsIEnumerableQuery" (617 milliseconds) GetAreaAsIEnumerableQuery {  } "6"
+2019-01-06 04:11:43.857 +03:00 Information: [] Pong 1 Notification Called: Ping...
+2019-01-06 04:11:43.932 +03:00 Information: [] Pong 2 Notification Called: Ping...

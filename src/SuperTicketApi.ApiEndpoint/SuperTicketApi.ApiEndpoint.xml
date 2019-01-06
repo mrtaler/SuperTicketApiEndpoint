@@ -4,12 +4,17 @@
         <name>SuperTicketApi.ApiEndpoint</name>
     </assembly>
     <members>
-        <member name="T:SuperTicketApi.ApiEndpoint.Controllers.ValuesController">
+        <member name="T:SuperTicketApi.ApiEndpoint.Controllers.ValuessssssssssController">
             <summary>
             The values controller.
             </summary>
         </member>
-        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuesController.Get">
+        <member name="P:SuperTicketApi.ApiEndpoint.Controllers.ValuessssssssssController.Mediator">
+            <summary>
+            In process messaging service. Glue between layers of the application
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuessssssssssController.Get">
             <summary>
             The GET api/values 
             </summary>
@@ -17,7 +22,7 @@
             The <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/>.
             </returns>
         </member>
-        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuesController.Get(System.Int32)">
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuessssssssssController.Get(System.Int32)">
             <summary>
             The GET api/values/5
             </summary>
@@ -28,7 +33,7 @@
             The <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/>.
             </returns>
         </member>
-        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuesController.Post(System.String)">
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuessssssssssController.Post(System.String)">
             <summary>
             The api/values
             </summary>
@@ -39,7 +44,7 @@
             The <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/>.
             </returns>
         </member>
-        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuesController.Put(System.Int32,System.String)">
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuessssssssssController.Put(System.Int32,System.String)">
             <summary>
             The PUT api/values/5
             </summary>
@@ -50,7 +55,7 @@
             The value.
             </param>
         </member>
-        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuesController.Delete(System.Int32)">
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.ValuessssssssssController.Delete(System.Int32)">
             <summary>
             The DELETE api/values/5
             </summary>
@@ -58,7 +63,61 @@
             The <paramref name="id"/>.
             </param>
         </member>
-        <member name="F:SuperTicketApi.ApiEndpoint.Extension.ApiError._exception">
+        <member name="T:SuperTicketApi.ApiEndpoint.Controllers.Valuessssssssss8Controller">
+            <summary>
+            The values controller.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.Valuessssssssss8Controller.Get">
+            <summary>
+            The GET api/values 
+            </summary>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/>.
+            </returns>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.Valuessssssssss8Controller.Get(System.Int32)">
+            <summary>
+            The GET api/values/5
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/>.
+            </returns>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.Valuessssssssss8Controller.Post(System.String)">
+            <summary>
+            The api/values
+            </summary>
+            <param name="value">
+            The value.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/>.
+            </returns>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.Valuessssssssss8Controller.Put(System.Int32,System.String)">
+            <summary>
+            The PUT api/values/5
+            </summary>
+            <param name="id">
+            The <paramref name="id"/>.
+            </param>
+            <param name="value">
+            The value.
+            </param>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Controllers.Valuessssssssss8Controller.Delete(System.Int32)">
+            <summary>
+            The DELETE api/values/5
+            </summary>
+            <param name="id">
+            The <paramref name="id"/>.
+            </param>
+        </member>
+        <member name="F:SuperTicketApi.ApiEndpoint.Extension.ApiError.exception">
             <summary>
             The System.Exception
             </summary>
@@ -171,6 +230,72 @@
         <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApiExceptionFilterAttribute.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
             <inheritdoc />
         </member>
+        <member name="T:SuperTicketApi.ApiEndpoint.Extension.ApiKeyMiddleware">
+            <summary>
+            A middleware for rejecting responses with missing or incorrect API Key
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApiKeyMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,SuperTicketApi.ApiEndpoint.Extension.IApplicationAccessRepository,Serilog.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ApiKeyMiddleware"/> class.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApiKeyMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Invoke the middleware
+            </summary>
+        </member>
+        <member name="T:SuperTicketApi.ApiEndpoint.Extension.ApplicationAccessRepository">
+            <inheritdoc />
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApplicationAccessRepository.#ctor(Microsoft.Extensions.Options.IOptions{SuperTicketApi.ApiSettings.JsonSettings.Api.ApiKeyAccessSettings})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ApplicationAccessRepository"/> class.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApplicationAccessRepository.CheckValidApiKey(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:SuperTicketApi.ApiEndpoint.Extension.ApplicationBuilderExtensions">
+            <summary>
+            Extensions for conveniently enabling middlewares.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApplicationBuilderExtensions.UseApiKey(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Enable ApiKeyValidation middleware
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApplicationBuilderExtensions.UseCorrelationId(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Enable CorrelationIdValidation middleware
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ApplicationBuilderExtensions.UseConnectionString(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Enable <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ConnectionStringSetOptionMiddleware"/> middleware
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ConnectionStringSetOptionMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Serilog.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ConnectionStringSetOptionMiddleware"/> class.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.ConnectionStringSetOptionMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext,Microsoft.Extensions.Options.IOptionsSnapshot{SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings.AppConnectionStrings})">
+            <summary>
+            Invokes the middleware.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.CorrelationIdMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Options.IOptions{SuperTicketApi.ApiSettings.JsonSettings.CorrelationIdOptions.CorrelationIdOptions},Serilog.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Extension.CorrelationIdMiddleware"/> class.
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.CorrelationIdMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Invokes the middleware.
+            </summary>
+        </member>
         <member name="T:SuperTicketApi.ApiEndpoint.Extension.ErrorLoggingExtensions">
             <summary>
             Extensions for logging errors.
@@ -190,6 +315,28 @@
             The log level.
             </param>
         </member>
+        <member name="T:SuperTicketApi.ApiEndpoint.Extension.HttpContextExtnesions">
+            <summary>
+            Extensions for working directly with <see cref="T:Microsoft.AspNetCore.Http.HttpContext"/>
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.HttpContextExtnesions.WriteErrorAsync(Microsoft.AspNetCore.Http.HttpContext,SuperTicketApi.ApiEndpoint.Extension.ApiError,System.Net.HttpStatusCode)">
+            <summary>
+            Write an <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ApiError"/>
+            </summary>
+        </member>
+        <member name="T:SuperTicketApi.ApiEndpoint.Extension.IApplicationAccessRepository">
+            <summary>
+            A repository for retrieving access settings
+            </summary>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.IApplicationAccessRepository.CheckValidApiKey(System.String)">
+            <summary>
+            Checks if the API key is valid
+            </summary>
+            <param name="apiKey">The API key to check</param>
+            <returns>true if key is valid</returns>
+        </member>
         <member name="T:SuperTicketApi.ApiEndpoint.Extension.SettingsExtension">
             <summary>
             The settings extension.
@@ -202,6 +349,7 @@
             <param name="builder">
             The builder.
             </param>
+            <param name="env">Environment Var</param>
             <returns>
             The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.
             </returns>
@@ -226,7 +374,7 @@
             </summary>
             <param name="services">service collection</param>
         </member>
-        <member name="P:SuperTicketApi.ApiEndpoint.Extension.SettingsExtension.xmlCommentsFilePath">
+        <member name="P:SuperTicketApi.ApiEndpoint.Extension.SettingsExtension.XmlCommentsFilePath">
             <summary>
             Gets the xml comments file path.
             </summary>
@@ -242,6 +390,20 @@
             The <see cref="T:Swashbuckle.AspNetCore.Swagger.Info"/>.
             </returns>
         </member>
+        <member name="T:SuperTicketApi.ApiEndpoint.Extension.SwaggerDefaultValues">
+            <summary>
+            Represents the Swagger/Swashbuckle operation filter used to document the implicit API version parameter.
+            </summary>
+            <remarks>This <see cref="T:Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter"/> is only required due to bugs in the <see cref="T:Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator"/>.
+            Once they are fixed and published, this class can be removed.</remarks>
+        </member>
+        <member name="M:SuperTicketApi.ApiEndpoint.Extension.SwaggerDefaultValues.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Applies the filter to the specified operation using the given context.
+            </summary>
+            <param name="operation">The operation to apply the filter to.</param>
+            <param name="context">The current operation filter context.</param>
+        </member>
         <member name="M:SuperTicketApi.ApiEndpoint.Extension.ValidModelStateFilter.#ctor(Serilog.ILogger)">
             <summary>
             Initializes a new instance of the <see cref="T:SuperTicketApi.ApiEndpoint.Extension.ValidModelStateFilter"/> class.
@@ -252,18 +414,6 @@
         </member>
         <member name="M:SuperTicketApi.ApiEndpoint.Extension.ValidModelStateFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
             <inheritdoc/>
-        </member>
-        <member name="T:SuperTicketApi.ApiEndpoint.Extension.SwaggerDefaultValues">
-            <summary>
-            The swagger default values.
-            </summary>
-        </member>
-        <member name="M:SuperTicketApi.ApiEndpoint.Extension.SwaggerDefaultValues.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
-            <summary>
-            Applies the filter to the specified operation using the given context.
-            </summary>
-            <param name="operation">The operation to apply the filter to.</param>
-            <param name="context">The current operation filter context.</param>
         </member>
         <member name="T:SuperTicketApi.ApiEndpoint.Startup">
             <summary>
@@ -291,7 +441,7 @@
             The services.
             </param>
         </member>
-        <member name="M:SuperTicketApi.ApiEndpoint.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider)">
+        <member name="M:SuperTicketApi.ApiEndpoint.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory,Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider)">
             <summary>
             This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
             </summary>
