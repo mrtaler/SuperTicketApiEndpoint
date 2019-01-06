@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SuperTicketApi.Domain.MainContext.Mssql\SuperTicketApi.Domain.MainContext.Mssql.csproj" />
-    <ProjectReference Include="..\SuperTicketApi.Domain.Seedwork\SuperTicketApi.Domain.Seedwork.csproj" />
     <ProjectReference Include="..\SuperTicketApi.Domain.Seedwork\SuperTicketApi.Domain.Seedwork.csproj" />
     <ProjectReference Include="..\SuperTicketApi.Infrastructure.Crosscutting\SuperTicketApi.Infrastructure.Crosscutting.csproj" />
   </ItemGroup>
