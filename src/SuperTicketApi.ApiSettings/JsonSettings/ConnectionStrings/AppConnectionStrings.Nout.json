@@ -1,0 +1,7 @@
+﻿{
+  "AppConnectionStrings": {
+    "MssqlConnectionString": "Data Source=DESKTOP-GJHQ85F\\NOUTSQL;Database=SuperTicketApiMssql;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;",
+    "ProviderName": "System.Data.SqlClient",
+    "env": "home"
+  }
+}

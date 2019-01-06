@@ -1,10 +1,12 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Controllers
 {
+    using MediatR;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
-    using SuperTicketApi.Application.MainContext.Interfaces;
+    using SuperTicketApi.Domain.MainContext.Queries.GetListOfDomainEntity;
+    using System.Linq;
 
     /// <summary>
     /// The values controller.
@@ -17,20 +19,25 @@
     {
         private IHostingEnvironment env;
 
-        private IEventService service;
         private IOptions<AppConnectionStrings> opt;
+        /// <summary>
+        /// In process messaging service. Glue between layers of the application
+        /// </summary>
+        protected IMediator Mediator { get; set; }
 
         private AppConnectionStrings connectionStrings;
         public ValuessssssssssController(
-             IEventService serv,
+            IMediator mediator,
             //IOptions<AppConnectionStrings> options,
             IHostingEnvironment env,
             AppConnectionStrings connectionStrings)
         {
+            this.Mediator = mediator;
             this.env = env;
             //this.opt = options;
             this.connectionStrings = connectionStrings;
-            this.service = serv;
+
+
         }
 
 
@@ -44,13 +51,14 @@
         public IActionResult Get()
         {
             //  var tt = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
+            var tt = Mediator.Send(new GetAreaAsIEnumerableQuery()).Result;
+            var tt1 = tt.FirstOrDefault();
             return new ObjectResult(new
             {
                 // ConnectionsStringFromIOptions = opt.Value.MssqlConnectionString,
                 // connectionStringsFromAppConnectionStrings = connectionStrings.MssqlConnectionString,
                 ASPNETCORE_ENVIRONMENT = env.EnvironmentName,
-                ser = service.GetAll()
+                GetAreaAsIEnumerableQueryResult = tt
             });
         }
         //https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code
