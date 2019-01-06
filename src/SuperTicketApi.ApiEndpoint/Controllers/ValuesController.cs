@@ -5,40 +5,31 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
-    using SuperTicketApi.Domain.MainContext.Queries.GetListOfDomainEntity;
-    using System.Linq;
+    using SuperTicketApi.Domain.MainContext.Queries;
+    using System.Threading.Tasks;
 
     /// <summary>
-    /// The values controller.
+    /// The Test controller.
     /// </summary>
     [ApiVersion("1.0")]
-    [ApiVersion("2.1")]
     [Route("api/v{api-version:apiVersion}/[controller]")]
     [ApiController]
-    public class ValuessssssssssController : ControllerBase
+    public class TestController : ControllerBase
     {
         private IHostingEnvironment env;
 
         private IOptions<AppConnectionStrings> opt;
+
         /// <summary>
         /// In process messaging service. Glue between layers of the application
         /// </summary>
         protected IMediator Mediator { get; set; }
 
-        private AppConnectionStrings connectionStrings;
-        public ValuessssssssssController(
-            IMediator mediator,
+
+        public TestController(
+            IMediator mediator
             //IOptions<AppConnectionStrings> options,
-            IHostingEnvironment env,
-            AppConnectionStrings connectionStrings)
-        {
-            this.Mediator = mediator;
-            this.env = env;
-            //this.opt = options;
-            this.connectionStrings = connectionStrings;
-
-
-        }
+            ) => this.Mediator = mediator;
 
 
         /// <summary>
@@ -47,22 +38,105 @@
         /// <returns>
         /// The <see cref="ActionResult"/>.
         /// </returns>
-        [HttpGet("GetEnvironmentVariable")]
-        public IActionResult Get()
+        [HttpGet("GetAllAreas")]
+        public async Task<IActionResult> GetAreas()
         {
-            //  var tt = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            var tt = Mediator.Send(new GetAreaAsIEnumerableQuery()).Result;
-            var tt1 = tt.FirstOrDefault();
+            var areas = await Mediator.Send(EnumerableQueryes.GetAreaAsIEnumerableQuery);
+
+
             return new ObjectResult(new
             {
-                // ConnectionsStringFromIOptions = opt.Value.MssqlConnectionString,
-                // connectionStringsFromAppConnectionStrings = connectionStrings.MssqlConnectionString,
-                ASPNETCORE_ENVIRONMENT = env.EnvironmentName,
-                GetAreaAsIEnumerableQueryResult = tt
+                areas = areas,
             });
         }
-        //https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code
 
+        /// <summary>
+        /// Gets all event areas.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAllEventAreas")]
+        public async Task<IActionResult> GetAllEventAreas()
+        {
+            var eventAreas = await Mediator.Send(EnumerableQueryes.GetEventAreaAsIEnumerableQuery);
+            return new ObjectResult(new
+            {
+                eventAreas = eventAreas,
+            });
+        }
+        
+        /// <summary>
+        /// Gets all events.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAllEvents")]
+        public async Task<IActionResult> GetAllEvents()
+        {
+            var events = await Mediator.Send(EnumerableQueryes.GetEventAsIEnumerableQuery);
+            return new ObjectResult(new
+            {
+                events = events,
+            });
+        }
+
+        /// <summary>
+        /// Gets all event seats.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAllEventSeats")]
+        public async Task<IActionResult> GetAllEventSeats()
+        {
+            var eventSeats = await Mediator.Send(EnumerableQueryes.GetEventSeatAsIEnumerableQuery);
+            return new ObjectResult(new
+            {
+                eventSeats = eventSeats,
+            });
+        }
+
+        /// <summary>
+        /// Gets all layouts.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAllLayouts")]
+        public async Task<IActionResult> GetAllLayouts()
+        {
+            var layouts = await Mediator.Send(EnumerableQueryes.GetLayoutAsIEnumerableQuery);
+            return new ObjectResult(new
+            {
+                layouts = layouts,
+            });
+        }
+
+        /// <summary>
+        /// Ges the get all seatst.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAllSeats")]
+        public async Task<IActionResult> GeGetAllSeatst()
+        {
+            var seats = await Mediator.Send(EnumerableQueryes.GetSeatAsIEnumerableQuery);
+            return new ObjectResult(new
+            {
+                seats = seats,
+            });
+        }
+
+        /// <summary>
+        /// Gets all venues.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAllVenues")]
+        public async Task<IActionResult> GetAllVenues()
+        {
+            var venues = await Mediator.Send(EnumerableQueryes.GetVenueAsIEnumerableQuery);
+
+            return new ObjectResult(new
+            {
+                venues = venues
+            });
+        }
+
+        //https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code
+        /*
         /// <summary>
         /// The GET api/values/5
         /// </summary>
@@ -117,6 +191,6 @@
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-        }
+        }*/
     }
 }
