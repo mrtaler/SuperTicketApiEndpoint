@@ -84,6 +84,10 @@
     <Folder Include="Tables" />
     <Folder Include="ForeignKeys" />
     <Folder Include="Post" />
+    <Folder Include="StoredProcedures" />
+    <Folder Include="StoredProcedures\Create" />
+    <Folder Include="StoredProcedures\Update" />
+    <Folder Include="StoredProcedures\Update\UpdateAdm" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Area.sql" />
@@ -99,6 +103,28 @@
     <Build Include="ForeignKeys\FK_Layout_Area.sql" />
     <Build Include="ForeignKeys\FK_Layout_Event.sql" />
     <Build Include="ForeignKeys\FK_Venue_Layout.sql" />
+    <Build Include="StoredProcedures\Create\CreateArea.sql" />
+    <Build Include="StoredProcedures\Create\CreateEvent.sql" />
+    <Build Include="StoredProcedures\Create\CreateEventArea.sql" />
+    <Build Include="StoredProcedures\Create\CreateEventSeat.sql" />
+    <Build Include="StoredProcedures\Create\CreateLayout.sql" />
+    <Build Include="StoredProcedures\Create\CreateSeat.sql" />
+    <Build Include="StoredProcedures\Create\CreateVenue.sql" />
+    <Build Include="StoredProcedures\GetErrorInfo.sql" />
+    <Build Include="StoredProcedures\Update\UpdateAdm\UpdateArea.sql" />
+    <Build Include="StoredProcedures\Update\UpdateAdm\UpdateEvent.sql" />
+    <Build Include="StoredProcedures\Update\UpdateAdm\UpdateEventArea.sql" />
+    <Build Include="StoredProcedures\Update\UpdateAdm\UpdateEventSeat.sql" />
+    <Build Include="StoredProcedures\Update\UpdateAdm\UpdateLayout.sql" />
+    <Build Include="StoredProcedures\Update\UpdateAdm\UpdateSeat.sql" />
+    <Build Include="StoredProcedures\Update\UpdateArea.sql" />
+    <Build Include="StoredProcedures\Update\UpdateEvent.sql" />
+    <Build Include="StoredProcedures\Update\UpdateEventArea.sql" />
+    <Build Include="StoredProcedures\Update\UpdateEventSeat.sql" />
+    <Build Include="StoredProcedures\Update\UpdateLayout.sql" />
+    <Build Include="StoredProcedures\Update\UpdateSeat.sql" />
+    <Build Include="StoredProcedures\Update\UpdateVenue.sql" />
+    <Build Include="admSCHEMA.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SuperTicketApi.Database.Mssql.publish.xml" />
