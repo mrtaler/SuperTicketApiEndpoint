@@ -1,9 +1,12 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql
 {
     using Autofac;
+    using MediatR;
     using MediatR.Extensions.Autofac.DependencyInjection;
+    using MediatR.Pipeline;
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.Domain.MainContext.DTO.Models;
+    using SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline;
     using SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers;
     using SuperTicketApi.Domain.MainContext.Mssql.UnitOfWorks;
     using SuperTicketApi.Domain.MainContext.Queries.GetListOfDomainEntity;
@@ -30,17 +33,35 @@
                 // IOptions <AppConnectionStrings>>().Value.MssqlConnectionString
                 .As<IUnitOfWorkFactory>().InstancePerLifetimeScope();
 
-            builder
+           /* builder
                 .RegisterType<UnitOfWork>()
-                .As<IUnitOfWork>().InstancePerLifetimeScope();
+                .As<IUnitOfWork>().InstancePerLifetimeScope();*/
 
                 builder
                     .RegisterType<AdoNetUnitOfWork>()
                     .As<INetUnitOfWork>().InstancePerLifetimeScope();
 
 
-            builder.AddMediatR(typeof(GetQueryAsIEnumerableQueryHandler).GetTypeInfo().Assembly, typeof(GetAreaAsIEnumerableQuery).GetTypeInfo().Assembly, typeof(Area).GetTypeInfo().Assembly);
+            builder.AddMediatR(
+                typeof(GetQueryAsIEnumerableQueryHandler).GetTypeInfo().Assembly, 
+                typeof(GetAreaAsIEnumerableQuery).GetTypeInfo().Assembly, 
+                typeof(Area).GetTypeInfo().Assembly);
+
+            builder.RegisterGeneric(typeof(NotificationsAndTracingBehavior<,>))
+                .As(typeof(IPipelineBehavior<,>))
+                .InstancePerLifetimeScope();
+
+            builder.RegisterGeneric(typeof(PerformanceBehavior<,>))
+                .As(typeof(IPipelineBehavior<,>))
+                .InstancePerLifetimeScope();
+
+            builder.RegisterGeneric(typeof(RequestPreProcessorBehavior<,>))
+                .As(typeof(IPipelineBehavior<,>))
+                .InstancePerLifetimeScope();
+            /*   builder.RegisterType(typeof(RequestPreProcessorBehavior<,>))
+              .As(typeof(IPipelineBehavior<,>));*/
         }
+        // https://github.com/INNVTV/NetCore-Clean-Architecture
     }
 }
 

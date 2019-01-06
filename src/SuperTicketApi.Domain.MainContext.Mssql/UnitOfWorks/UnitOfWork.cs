@@ -1,47 +1,47 @@
-﻿namespace SuperTicketApi.Domain.MainContext.Mssql.UnitOfWorks
-{
-    using System;
+﻿//namespace SuperTicketApi.Domain.MainContext.Mssql.UnitOfWorks
+//{
+//    using System;
 
-    using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
-    using SuperTicketApi.Domain.Seedwork;
+//    using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
+//    using SuperTicketApi.Domain.Seedwork;
 
-    public class UnitOfWork : IUnitOfWork
-    {
-        private INetUnitOfWork context;
+//    public class UnitOfWork : IUnitOfWork
+//    {
+//        private INetUnitOfWork context;
 
-        public UnitOfWork(INetUnitOfWork context)
-        {
-            this.context = context;
-        }
+//        public UnitOfWork(INetUnitOfWork context)
+//        {
+//            this.context = context;
+//        }
 
-        #region Dispose
-        private bool disposed = false;
+//        #region Dispose
+//        private bool disposed = false;
 
-        public virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    this.context.Dispose();
-                }
+//        public virtual void Dispose(bool disposing)
+//        {
+//            if (!this.disposed)
+//            {
+//                if (disposing)
+//                {
+//                    this.context.Dispose();
+//                }
 
-                this.disposed = true;
-            }
-        }
+//                this.disposed = true;
+//            }
+//        }
 
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+//        public void Dispose()
+//        {
+//            this.Dispose(true);
+//            GC.SuppressFinalize(this);
+//        }
 
-        #endregion
+//        #endregion
 
-        public void Commit()
-        {
-            this.context.SaveChange();
-        }
-    }
-}
+//        public void Commit()
+//        {
+//            this.context.SaveChange();
+//        }
+//    }
+//}
 

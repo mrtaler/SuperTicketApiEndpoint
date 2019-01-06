@@ -27,12 +27,12 @@
      //   IRequestHandler<GetSeatAsIEnumerableQuery, IEnumerable<Seat>>,
     //    IRequestHandler<GetVenueAsIEnumerableQuery, IEnumerable<Venue>>
     {
-        private IUnitOfWorkFactory factory;
+        private INetUnitOfWork uow;
         private readonly IDbCommand command;
         public GetQueryAsIEnumerableQueryHandler(IUnitOfWorkFactory factory)
         {
-            this.factory = factory;
-
+            this.uow = factory.Create();
+            command = uow.CreateCommand();
             Log.Information($"{this.GetType().Name} was started");
         }
        

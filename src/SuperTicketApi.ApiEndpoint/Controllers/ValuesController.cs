@@ -5,7 +5,6 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
-    using SuperTicketApi.Application.MainContext.Interfaces;
     using SuperTicketApi.Domain.MainContext.Queries.GetListOfDomainEntity;
     using System.Linq;
 
@@ -38,7 +37,7 @@
             //this.opt = options;
             this.connectionStrings = connectionStrings;
 
-        
+
         }
 
 
@@ -59,6 +58,7 @@
                 // ConnectionsStringFromIOptions = opt.Value.MssqlConnectionString,
                 // connectionStringsFromAppConnectionStrings = connectionStrings.MssqlConnectionString,
                 ASPNETCORE_ENVIRONMENT = env.EnvironmentName,
+                GetAreaAsIEnumerableQueryResult = tt
             });
         }
         //https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code

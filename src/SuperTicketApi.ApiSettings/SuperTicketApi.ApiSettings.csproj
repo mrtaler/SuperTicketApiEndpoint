@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Configurations>Debug;Release;Home</Configurations>
+    <Configurations>Debug;Release;Home;Nout</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +17,34 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="JsonSettings\Api\ApiKeyAccessSettings.Nout.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>ApiKeyAccessSettings.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\ConnectionStrings\AppConnectionStrings.Nout.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>AppConnectionStrings.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\CorrelationIdOptions\CorrelationIdOptions.Nout.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>CorrelationIdOptions.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\CustomSettings\CustomSettings.Nout.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>CustomSettings.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\FacebookOptions\FacebookAuthOptions.Nout.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>FacebookAuthOptions.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\GitHubOptions\GitHubAuthOptions.Nout.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>GitHubAuthOptions.json</DependentUpon>
+    </None>
+    <None Update="JsonSettings\GoogleOptions\GoogleAuthOptions.Nout.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>GoogleAuthOptions.json</DependentUpon>
+    </None>
     <None Update="JsonSettings\OrganisationCodeSettings.Debug.json">
       <DependentUpon>OrganisationCodeSettings.json</DependentUpon>
       <IsTransformFile>true</IsTransformFile>
@@ -27,6 +55,10 @@
     </None>
     <None Update="JsonSettings\OrganisationCodeSettings.json">
       <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="JsonSettings\OrganisationCodeSettings.Nout.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>OrganisationCodeSettings.json</DependentUpon>
     </None>
     <None Update="JsonSettings\OrganisationCodeSettings.Release.json">
       <DependentUpon>OrganisationCodeSettings.json</DependentUpon>
@@ -147,6 +179,10 @@
     </None>
     <None Update="JsonSettings\TokenAuthOptions\TokenAuthOptions.json">
       <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="JsonSettings\TokenAuthOptions\TokenAuthOptions.Nout.json">
+      <IsTransformFile>true</IsTransformFile>
+      <DependentUpon>TokenAuthOptions.json</DependentUpon>
     </None>
     <None Update="JsonSettings\TokenAuthOptions\TokenAuthOptions.Release.json">
       <IsTransformFile>true</IsTransformFile>

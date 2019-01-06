@@ -48,19 +48,26 @@
         {
             this.Configuration = configuration;
             string pathSettingsAssembly = Assembly.GetAssembly(typeof(Startup)).Location;
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Trace(LogEventLevel.Information)
-                .WriteTo.Console(LogEventLevel.Debug)
-                .WriteTo.ApplicationInsights("4f6ea94a-c353-4351-9f71-574900d5b176")
-                .WriteTo.RollingFile(
+            
+            #region Setup Serilog for Logging
+            // Core is set up to use the global, statically accessible logger from Serilog.
+            // It must be set up in the main entrpoint and does not require a DI container
+            // Create a logger with configured sinks, enrichers, and minimum level
+            // Serilog's global, statically accessible logger, is set via Log.Logger and can be invoked using the static methods on the Log class.
+            // File Sink is commented out and can be replaced with Serilogs vast library of available sinks
+
+            Log.Logger = new LoggerConfiguration().MinimumLevel.Verbose()
+                 .WriteTo.Trace(/*LogEventLevel.Verbose*/)
+                  .WriteTo.ApplicationInsights("4f6ea94a-c353-4351-9f71-574900d5b176").WriteTo.RollingFile(
                     "log-{Date}.txt"/*$"{Path.GetDirectoryName(pathSettingsAssembly)}\\Log.txt"*/,
                     LogEventLevel.Verbose,
                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level}:{EventId} [{SourceContext}] {Message}{NewLine}{Exception}")
-                .CreateLogger();
-            Log.Debug("a good thing debug");
-            Log.Information("a info inforxxxxx");
-
+            .WriteTo.Console(theme: Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme.Code/*LogEventLevel.Debug*/) //<-- This will give us output to our Kestrel console
+            //.WriteTo.File("_logs/log-.txt", rollingInterval: RollingInterval.Day) //<-- Write our logs to a local text file with rolling interval configuration
+            .CreateLogger();
+            Log.Information("The global logger has been configured.");
+            Log.Information("Hello, Serilog!");
+            #endregion
         }
 
         /// <summary>

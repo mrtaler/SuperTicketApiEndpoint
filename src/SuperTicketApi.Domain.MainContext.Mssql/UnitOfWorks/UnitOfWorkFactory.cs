@@ -11,16 +11,16 @@
         {
             this.connectionString = connection;
         }
-        public IUnitOfWork Create()
+        public INetUnitOfWork Create()
         {
             var adoNetContext = new AdoNetUnitOfWork(this.connectionString, false);
-            return new UnitOfWork(adoNetContext);
+            return adoNetContext;
         }
 
-        public IUnitOfWork CreateTransactional()
+        public INetUnitOfWork CreateTransactional()
         {
             var adoNetContext = new AdoNetUnitOfWork(this.connectionString, true);
-            return new UnitOfWork(adoNetContext);
+            return adoNetContext;
         }
     }
 }

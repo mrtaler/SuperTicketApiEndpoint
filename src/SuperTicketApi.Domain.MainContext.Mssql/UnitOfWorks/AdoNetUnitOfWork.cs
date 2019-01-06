@@ -6,7 +6,7 @@
 
     using SuperTicketApi.Domain.Seedwork;
 
-    internal class AdoNetUnitOfWork : INetUnitOfWork
+    internal class AdoNetUnitOfWork : INetUnitOfWork, IUnitOfWork
     {
         IDbConnection connection;
         IDbTransaction transaction;
@@ -61,6 +61,11 @@
                 this.connection.Close();
                 this.connection = null;
             }
+        }
+
+        public void Commit()
+        {
+           this.SaveChange();
         }
     }
 }

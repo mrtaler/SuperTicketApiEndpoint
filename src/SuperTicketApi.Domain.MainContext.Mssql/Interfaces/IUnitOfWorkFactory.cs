@@ -4,7 +4,7 @@
 
     public interface IUnitOfWorkFactory
     {
-        IUnitOfWork Create();
-        IUnitOfWork CreateTransactional();
+        INetUnitOfWork Create();
+        INetUnitOfWork CreateTransactional();
     }
 }

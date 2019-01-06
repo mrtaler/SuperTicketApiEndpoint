@@ -2,7 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;Release;Nout</Configurations>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.1.2" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.1.2" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SuperTicketApi.Domain.Seedwork\SuperTicketApi.Domain.Seedwork.csproj" />
