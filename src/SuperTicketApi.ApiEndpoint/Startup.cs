@@ -1,26 +1,37 @@
 ﻿namespace SuperTicketApi.ApiEndpoint
 {
+    using System;
+    using System.Reflection;
+
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
+
     using FluentValidation.AspNetCore;
+
+    using MediatR.Extensions.Autofac.DependencyInjection;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
+    using Microsoft.AspNetCore.Rewrite;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+
     using Newtonsoft.Json.Serialization;
+
     using Serilog;
     using Serilog.Events;
+
     using SuperTicketApi.ApiEndpoint.Extension;
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.Application.MainContext;
     using SuperTicketApi.Domain.MainContext.Mssql;
+    using SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers;
     using SuperTicketApi.Infrastructure.Crosscutting.Implementation;
-    using System;
-    using System.Reflection;
 
-    using Microsoft.AspNetCore.Rewrite;
+    using ILogger = Serilog.ILogger;
 
     /// <summary>
     /// The startup.
@@ -37,19 +48,26 @@
         {
             this.Configuration = configuration;
             string pathSettingsAssembly = Assembly.GetAssembly(typeof(Startup)).Location;
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Trace(LogEventLevel.Information)
-                .WriteTo.Console(LogEventLevel.Debug)
-                .WriteTo.ApplicationInsights("4f6ea94a-c353-4351-9f71-574900d5b176")
-                .WriteTo.RollingFile(
+            
+            #region Setup Serilog for Logging
+            // Core is set up to use the global, statically accessible logger from Serilog.
+            // It must be set up in the main entrpoint and does not require a DI container
+            // Create a logger with configured sinks, enrichers, and minimum level
+            // Serilog's global, statically accessible logger, is set via Log.Logger and can be invoked using the static methods on the Log class.
+            // File Sink is commented out and can be replaced with Serilogs vast library of available sinks
+
+            Log.Logger = new LoggerConfiguration().MinimumLevel.Verbose()
+                 .WriteTo.Trace(/*LogEventLevel.Verbose*/)
+                  .WriteTo.ApplicationInsights("4f6ea94a-c353-4351-9f71-574900d5b176").WriteTo.RollingFile(
                     "log-{Date}.txt"/*$"{Path.GetDirectoryName(pathSettingsAssembly)}\\Log.txt"*/,
                     LogEventLevel.Verbose,
                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level}:{EventId} [{SourceContext}] {Message}{NewLine}{Exception}")
-                .CreateLogger();
-            Log.Debug("a good thing debug");
-            Log.Information("a info inforxxxxx");
-
+            .WriteTo.Console(theme: Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme.Code/*LogEventLevel.Debug*/) //<-- This will give us output to our Kestrel console
+            //.WriteTo.File("_logs/log-.txt", rollingInterval: RollingInterval.Day) //<-- Write our logs to a local text file with rolling interval configuration
+            .CreateLogger();
+            Log.Information("The global logger has been configured.");
+            Log.Information("Hello, Serilog!");
+            #endregion
         }
 
         /// <summary>
@@ -161,6 +179,8 @@
                 */
 
             services.AddRouting(options => options.LowercaseUrls = true);
+            var asss = typeof(GetQueryAsIEnumerableQueryHandler).Assembly;
+           // services.AddMediatR(asss);
             services.AddMvc()
                 .AddFluentValidation().AddJsonOptions(options =>
                     {
@@ -168,11 +188,12 @@
                             new CamelCasePropertyNamesContractResolver();
                     })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+      //      var rr = this.Configuration.GetSection(nameof(AppConnectionStrings)).Get<AppConnectionStrings>();
             builder.Populate(services);
+           // builder.AddMediatR(asss);
             builder.RegisterModule(new MainContextMssqlModule());
             builder.RegisterModule(new SuperTicketApiInfrastructureCrosscuttingModule());
-            builder.RegisterModule(new MainContextModule());
+           // builder.RegisterModule(new MainContextModule());
             builder.Register(c => new AppConnectionStrings(c.Resolve<IConfiguration>())).AsSelf();
 
             var container = builder.Build();
@@ -191,6 +212,7 @@
         public void Configure(
             IApplicationBuilder app,
             IHostingEnvironment env,
+            ILoggerFactory loggerFactory,
             IApiVersionDescriptionProvider provider)
         {
 
@@ -203,19 +225,13 @@
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }*/
+
+           // loggerFactory.AddSerilog();
+
             var option = new RewriteOptions();
             option.AddRedirect("^$", "swagger");
             app.UseRewriter(option);
 
-            app.UseDeveloperExceptionPage();
-            app.UseDatabaseErrorPage();
-
-            app.UseHttpsRedirection();
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-
-            // app.UseCors("AllowAll");
-            app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(
                 options =>
@@ -226,6 +242,22 @@
                             options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
                         }
                     });
+
+            app.UseDeveloperExceptionPage();
+            app.UseDatabaseErrorPage();
+
+            app.UseHttpsRedirection();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
+          //  app.UseApiKey();
+          //  app.UseCorrelationId();
+           // app.UseConnectionString();
+        //    app.UseResponseCaching();
+
+            // app.UseCors("AllowAll");
+            app.UseMvc();
+
         }
     }
 }
