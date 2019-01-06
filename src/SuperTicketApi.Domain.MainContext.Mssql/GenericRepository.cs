@@ -7,7 +7,7 @@
     using System.Linq.Expressions;
     using Serilog;
 
-    using SuperTicketApi.Domain.MainContext.Mssql.Attributes;
+    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
     using SuperTicketApi.Domain.Seedwork;
     using SuperTicketApi.Domain.Seedwork.Repository;
     using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
@@ -54,7 +54,7 @@
             if (this.command.Connection.State == ConnectionState.Open)
             {
                 this.command.CommandText = $"select * " +
-                                       $"from {typeof(T).GetAttributeValue((DbTable dbTable) => dbTable.TableName)}";
+                                       $"from {typeof(T).GetAttributeValue((DbTableAttribute dbTable) => dbTable.TableName)}";
                 this.command.CommandType = CommandType.Text;
 
                 using (var reader = this.command.ExecuteReader())
@@ -155,15 +155,15 @@
             return reader[name] is DBNull ? null : reader[name];
         }
 
-        protected IEnumerable<string> GetTableColumnNames()
+       protected IEnumerable<string> GetTableColumnNames()
         {
             var columns = new List<string>();
             var classProperties = typeof(T).GetProperties();
             foreach (var item in classProperties)
             {
                 var dnAttribute = item.GetCustomAttributes(
-                              typeof(DbColumn), true
-                          ).FirstOrDefault() as DbColumn;
+                              typeof(DbColumnAttribute), true
+                          ).FirstOrDefault() as DbColumnAttribute;
 
                 if (dnAttribute != null)
                 {
@@ -174,7 +174,7 @@
 
             return columns;
         }
-
+        
         protected string GetPropertyName(Expression<Func<T, string>> expression)
         {
             var memberExpersion = (ConstantExpression)expression.Body;

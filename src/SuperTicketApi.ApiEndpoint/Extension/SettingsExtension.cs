@@ -96,6 +96,32 @@
             services.Configure<CorrelationIdOptions>(configuration.GetSection(nameof(CorrelationIdOptions)));
             services.Configure<AppConnectionStrings>(configuration.GetSection(nameof(AppConnectionStrings)));
 
+
+            #region Configure AutoMapper (Instance Version) for ServiceModels
+
+            ///*----------------------------------------
+            // * AutoMapper is also configured using the Static API within our Core library.
+            // * We also use the instance implementation seperatly here within the Services project.
+            // * ---------------------------------------
+            // * The Core classes will be a compiled DLL or could be a nuget package in the future.
+            // * The Core should have no knowledge of AutoMapper configurations in the layer above it.
+            // * --------------------------------------*/
+
+            //var config = new MapperConfiguration(cfg => {
+            //    //cfg.AddProfile<AppProfile>();
+            //    cfg.CreateMap<CreateAccountServiceModel, CreateAccountCommand>();
+            //});
+
+            //var mapper = config.CreateMapper();
+            //// or...
+            ////IMapper mapper = new Mapper(config);
+            ////var dest = mapper.Map<Source, Dest>(new Source());
+
+            ////Add to our Service Provider:
+            //services.AddSingleton<IMapper>(mapper);
+
+            #endregion
+       
             return services;
         }
 
@@ -188,6 +214,4 @@
             return info;
         }
     }
-
-
 }
