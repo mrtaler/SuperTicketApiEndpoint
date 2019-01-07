@@ -5,7 +5,7 @@
     /// <summary>
     /// The event place. TABLE [dbo].[EventPlace]
     /// </summary>
-    public class EventPlaceDto : Entity
+    public class EventPlaceDto : BusinesEntity
     {
         /// <summary>
         /// Gets or sets the id. [EventPlaceId] INT NOT NULL PRIMARY KEY, 

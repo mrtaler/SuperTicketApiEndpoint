@@ -47,7 +47,7 @@
                 typeof(GetAreaAsIEnumerableQuery).GetTypeInfo().Assembly, 
                 typeof(Area).GetTypeInfo().Assembly);
 
-            builder.RegisterGeneric(typeof(NotificationsAndTracingBehavior<,>))
+/*            builder.RegisterGeneric(typeof(NotificationsAndTracingBehavior<,>))
                 .As(typeof(IPipelineBehavior<,>))
                 .InstancePerLifetimeScope();
 
@@ -57,7 +57,8 @@
 
             builder.RegisterGeneric(typeof(RequestPreProcessorBehavior<,>))
                 .As(typeof(IPipelineBehavior<,>))
-                .InstancePerLifetimeScope();
+                .InstancePerLifetimeScope();*/
+
             /*   builder.RegisterType(typeof(RequestPreProcessorBehavior<,>))
               .As(typeof(IPipelineBehavior<,>));*/
         }

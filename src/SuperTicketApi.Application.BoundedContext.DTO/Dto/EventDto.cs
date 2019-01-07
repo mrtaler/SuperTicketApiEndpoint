@@ -4,7 +4,7 @@
 
     using SuperTicketApi.Domain.Seedwork;
 
-    public class EventDto : Entity
+    public class EventDto : BusinesEntity
     {
         /// <summary>
         /// Gets or sets the id.  [EventId] int primary key identity,

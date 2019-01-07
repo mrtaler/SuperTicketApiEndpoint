@@ -10,7 +10,7 @@
     /// <para><c>SQL:</c>TABLE [dbo].[Layouts]</para>
     /// </remarks>
     [DbTable("Layouts")]
-    public class Layout : Entity, IEntity<int>
+    public class Layout : DomainEntity, IEntity<int>
     {
         #region Implementation of IEntity<int>
         /// <inheritdoc />

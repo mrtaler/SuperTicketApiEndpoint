@@ -6,51 +6,38 @@
     using SuperTicketApi.Domain.MainContext.DTO.Models;
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using SuperTicketApi.Domain.MainContext.Queries.GetListOfDomainEntity;
-    using SuperTicketApi.Domain.Seedwork;
-    using System;
     using System.Collections.Generic;
     using System.Data;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
     /// The get query as i enumerable handler.
     /// </summary>
-    public class GetQueryAsIEnumerableQueryHandler :
-        IRequestHandler<GetAreaAsIEnumerableQuery, IEnumerable<Area>>//,
-     //   IRequestHandler<GetEventAreaAsIEnumerableQuery, IEnumerable<EventArea>>,
-      //  IRequestHandler<GetEventAsIEnumerableQuery, IEnumerable<Event>>,
-
-     //   IRequestHandler<GetEventSeatAsIEnumerableQuery, IEnumerable<EventSeat>>,
-     //   IRequestHandler<GetLayoutAsIEnumerableQuery, IEnumerable<Layout>>,
-     //   IRequestHandler<GetSeatAsIEnumerableQuery, IEnumerable<Seat>>,
-    //    IRequestHandler<GetVenueAsIEnumerableQuery, IEnumerable<Venue>>
+    public class GetQueryAsIEnumerableQueryHandler : BaseHandler,
+        IRequestHandler<GetAreaAsIEnumerableQuery, IEnumerable<Area>>,
+        IRequestHandler<GetEventAreaAsIEnumerableQuery, IEnumerable<EventArea>>,
+        IRequestHandler<GetEventAsIEnumerableQuery, IEnumerable<Event>>,
+        IRequestHandler<GetEventSeatAsIEnumerableQuery, IEnumerable<EventSeat>>,
+        IRequestHandler<GetLayoutAsIEnumerableQuery, IEnumerable<Layout>>,
+        IRequestHandler<GetSeatAsIEnumerableQuery, IEnumerable<Seat>>,
+        IRequestHandler<GetVenueAsIEnumerableQuery, IEnumerable<Venue>>
     {
-        private INetUnitOfWork uow;
-        private readonly IDbCommand command;
-        public GetQueryAsIEnumerableQueryHandler(IUnitOfWorkFactory factory)
+        public GetQueryAsIEnumerableQueryHandler(IUnitOfWorkFactory factory, IMediator mediatr) : base(factory, mediatr)
         {
-            this.uow = factory.Create();
-            command = uow.CreateCommand();
             Log.Information($"{this.GetType().Name} was started");
         }
-       
 
-        #region Implementation of IRequestHandler<in GetAreaAsIEnumerableQuery,IEnumerable<Area>>
-
-        /// <inheritdoc />
-        public async Task<IEnumerable<Area>> Handle(GetAreaAsIEnumerableQuery request, CancellationToken cancellationToken)
+        private IEnumerable<T> GetAllFromDb<T>() where T : new()
         {
-            var returnList = new List<Area>();
-
+            var returnList = new List<T>();
             if (this.command.Connection.State != ConnectionState.Open)
             {
                 return null;
             }
 
             this.command.CommandText = $"select * " +
-                                       $"from {typeof(Area).GetAttributeValue((DbTableAttribute dbTable) => dbTable.TableName)}";
+                                      $"from {typeof(T).GetAttributeValue((DbTableAttribute dbTable) => dbTable.TableName)}";
             this.command.CommandType = CommandType.Text;
 
             using (var reader = this.command.ExecuteReader())
@@ -59,25 +46,36 @@
                 Log.Warning($"{nameof(this.Handle)} connection state: {this.command.Connection.State}");
                 while (reader.Read())
                 {
-                    var art = this.Mapping<Area>(reader);
+                    var art = this.Mapping<T>(reader);
                     returnList.Add(art);
                 }
 
                 Log.Information($"Read from DB: {returnList.Count} entities");
             }
 
+            return returnList;
+
+        }
+
+        #region Implementation of IRequestHandler<in GetAreaAsIEnumerableQuery,IEnumerable<Area>>
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<Area>> Handle(GetAreaAsIEnumerableQuery request, CancellationToken cancellationToken)
+        {
+            var returnList = GetAllFromDb<Area>();
             return await Task.FromResult(returnList);
 
         }
-      
+
         #endregion
-/*
+
         #region Implementation of IRequestHandler<in GetEventAreaAsIEnumerableQuery,IEnumerable<EventArea>>
 
         /// <inheritdoc />
         public async Task<IEnumerable<EventArea>> Handle(GetEventAreaAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var returnList = GetAllFromDb<EventArea>();
+            return await Task.FromResult(returnList);
         }
 
         #endregion
@@ -87,7 +85,8 @@
         /// <inheritdoc />
         public async Task<IEnumerable<Event>> Handle(GetEventAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var returnList = GetAllFromDb<Event>();
+            return await Task.FromResult(returnList);
         }
 
         #endregion
@@ -97,7 +96,8 @@
         /// <inheritdoc />
         public async Task<IEnumerable<EventSeat>> Handle(GetEventSeatAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var returnList = GetAllFromDb<EventSeat>();
+            return await Task.FromResult(returnList);
         }
 
         #endregion
@@ -107,7 +107,8 @@
         /// <inheritdoc />
         public async Task<IEnumerable<Layout>> Handle(GetLayoutAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var returnList = GetAllFromDb<Layout>();
+            return await Task.FromResult(returnList);
         }
 
         #endregion
@@ -117,7 +118,8 @@
         /// <inheritdoc />
         public async Task<IEnumerable<Seat>> Handle(GetSeatAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var returnList = GetAllFromDb<Seat>();
+            return await Task.FromResult(returnList);
         }
 
         #endregion
@@ -127,55 +129,11 @@
         /// <inheritdoc />
         public async Task<IEnumerable<Venue>> Handle(GetVenueAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var returnList = GetAllFromDb<Venue>();
+            return await Task.FromResult(returnList);
         }
 
         #endregion
-    */
-        /// <summary>
-        /// The get item.
-        /// </summary>
-        /// <param name="name">
-        /// The name.
-        /// </param>
-        /// <param name="reader">
-        /// The reader.
-        /// </param>
-        /// <returns>
-        /// The <see cref="object"/>.
-        /// </returns>
-        protected virtual object GetItem(string name, IDataReader reader)
-        {
-            return reader[name] is DBNull ? null : reader[name];
-        }
-        
-        /// <summary>
-        /// The mapping method.
-        /// </summary>
-        /// <param name="reader">
-        /// The data <paramref name="reader"/>.
-        /// </param>
-        /// <typeparam name="TEntity">Database table class
-        /// </typeparam>
-        /// <returns>
-        /// The <see cref="TEntity"/>.
-        /// </returns>
-        private TEntity Mapping<TEntity>(IDataReader reader) where TEntity : new()
-        {
-            var ret = new TEntity();
-            var columns = typeof(TEntity).GetProperties();
 
-            foreach (var item in columns)
-            {
-                var currentAttribute = item.GetCustomAttributes(typeof(DbColumnAttribute), true).FirstOrDefault() as DbColumnAttribute;
-                string dbColumnName = currentAttribute.columnName;
-
-                var propToSet = ret.GetType().GetProperty(item.Name);
-                var valueToSet = Convert.ChangeType(this.GetItem(dbColumnName, reader), propToSet.PropertyType);
-                propToSet.SetValue(ret, valueToSet);
-            }
-
-            return ret;
-        }
     }
 }

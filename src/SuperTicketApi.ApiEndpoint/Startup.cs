@@ -27,6 +27,7 @@
     using SuperTicketApi.ApiEndpoint.Extension;
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.Application.MainContext;
+    using SuperTicketApi.DistributedServices.Seedwork.Cqrs.Commands.Area;
     using SuperTicketApi.Domain.MainContext.Mssql;
     using SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers;
     using SuperTicketApi.Infrastructure.Crosscutting.Implementation;
@@ -195,7 +196,8 @@
             builder.RegisterModule(new SuperTicketApiInfrastructureCrosscuttingModule());
            // builder.RegisterModule(new MainContextModule());
             builder.Register(c => new AppConnectionStrings(c.Resolve<IConfiguration>())).AsSelf();
-
+            builder.AddMediatR(
+               typeof(AreaPresenterCommandHandler).GetTypeInfo().Assembly);
             var container = builder.Build();
             return new AutofacServiceProvider(container);
         }
