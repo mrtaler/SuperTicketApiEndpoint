@@ -1,5 +1,6 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
 {
+    using MediatR;
     using Serilog;
     using SuperTicketApi.Domain.MainContext.DTO.Attributes;
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
@@ -15,11 +16,13 @@
     {
         protected readonly INetUnitOfWork uow;
         protected readonly IDbCommand command;
+        protected readonly IMediator mediatr;
 
-        public BaseHandler(IUnitOfWorkFactory factory)
+        public BaseHandler(IUnitOfWorkFactory factory,IMediator mediatr)
         {
             this.uow = factory.Create();
-            command = uow.CreateCommand();
+            this.command = uow.CreateCommand();
+            this.mediatr = mediatr;
             Log.Information($"{this.GetType().Name} was started");
         }
 

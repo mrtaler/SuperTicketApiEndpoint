@@ -23,7 +23,7 @@
         IRequestHandler<GetSeatAsIEnumerableQuery, IEnumerable<Seat>>,
         IRequestHandler<GetVenueAsIEnumerableQuery, IEnumerable<Venue>>
     {
-        public GetQueryAsIEnumerableQueryHandler(IUnitOfWorkFactory factory) : base(factory)
+        public GetQueryAsIEnumerableQueryHandler(IUnitOfWorkFactory factory, IMediator mediatr) : base(factory, mediatr)
         {
             Log.Information($"{this.GetType().Name} was started");
         }

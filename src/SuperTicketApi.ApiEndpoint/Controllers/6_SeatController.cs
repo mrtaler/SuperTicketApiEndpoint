@@ -1,29 +1,47 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Controllers
 {
+    using MediatR;
     using Microsoft.AspNetCore.Mvc;
-    using System.Collections.Generic;
+    using SuperTicketApi.Domain.MainContext.Queries;
+    using SuperTicketApi.Domain.MainContext.Queries.GetSingleDomainEntity;
+    using System.Threading.Tasks;
+
 
     /// <summary>
-    /// The values controller.
+    /// The Test controller.
     /// </summary>
-    [ApiVersion("72.2")]
-    [ApiVersion("12.1")]
+    [ApiVersion("1.0")]
     [Route("api/v{api-version:apiVersion}/[controller]")]
-    [ApiController]
-    public class Valuessssssssss8Controller : ControllerBase
+    public class SeatController : BaseController
     {
         /// <summary>
-        /// The GET api/values 
+        /// Initializes a new instance of the <see cref="TestController"/> class.
         /// </summary>
-        /// <returns>
-        /// The <see cref="ActionResult"/>.
-        /// </returns>
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        /// <param name="mediator">The mediator.</param>
+        public SeatController(
+            IMediator mediator
+            //IOptions<AppConnectionStrings> options,
+            ) : base(mediator)
         {
-            return new string[] { "value1", "value2" };
         }
 
+
+               /// <summary>
+        /// Ges the get all seatst.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAllSeats")]
+        public async Task<IActionResult> GeGetAllSeatst()
+        {
+            var seats = await Mediator.Send(EnumerableQueryes.GetSeatAsIEnumerableQuery);
+            return new ObjectResult(new
+            {
+                seats = seats,
+            });
+        }
+
+
+        //https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code
         /// <summary>
         /// The GET api/values/5
         /// </summary>
@@ -34,9 +52,10 @@
         /// The <see cref="ActionResult"/>.
         /// </returns>
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return $"value {id}";
+            var result = await Mediator.Send(ByIdSingleQueryes.GetSingleSeatQuery(id));
+            return new ObjectResult(new { Seat = result });
         }
 
         /// <summary>
