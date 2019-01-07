@@ -5,4 +5,8 @@
     <Configurations>Debug;Release;Nout</Configurations>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="6.0.0" />
+  </ItemGroup>
+
 </Project>

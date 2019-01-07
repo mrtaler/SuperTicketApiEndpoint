@@ -2,9 +2,9 @@
 {
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
+    using SuperTicketApi.ApiEndpoint.Cqrs.Commands.Area;
     using SuperTicketApi.ApiEndpoint.ViewModel;
     using SuperTicketApi.Domain.MainContext.Queries;
-    using SuperTicketApi.Domain.MainContext.Queries.GetSingleDomainEntity;
     using System.Threading.Tasks;
 
 
@@ -74,10 +74,15 @@
         /// The <see cref="ActionResult"/>.
         /// </returns>
         [HttpPost]
-        public ActionResult<string> Post([FromBody] CreateAreaViewModel createAreaViewModel)
+        public async Task<IActionResult> Post([FromBody] CreateAreaViewModel createAreaViewModel)
         {
+            var result = await Mediator.Send(new PresenterCreateAreaCommand(createAreaViewModel));
 
-            return $"value is {1}";
+            return new ObjectResult(new
+            {
+                newId = result.Object,
+                ForObject = createAreaViewModel
+            });
         }
 
         /// <summary>

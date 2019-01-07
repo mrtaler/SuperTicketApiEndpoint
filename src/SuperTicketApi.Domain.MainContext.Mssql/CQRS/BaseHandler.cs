@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
+﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS
 {
     using MediatR;
     using Serilog;
