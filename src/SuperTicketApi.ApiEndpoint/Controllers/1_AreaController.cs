@@ -1,43 +1,29 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Controllers
 {
     using MediatR;
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Options;
-    using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
-    using SuperTicketApi.Domain.MainContext.Queries.GetListOfDomainEntity;
-    using System.Linq;
+    using SuperTicketApi.ApiEndpoint.Cqrs.Commands.Area;
+    using SuperTicketApi.ApiEndpoint.ViewModel;
+    using SuperTicketApi.Domain.MainContext.Queries;
+    using System.Threading.Tasks;
+
 
     /// <summary>
-    /// The values controller.
+    /// The Test controller.
     /// </summary>
     [ApiVersion("1.0")]
-    [ApiVersion("2.1")]
     [Route("api/v{api-version:apiVersion}/[controller]")]
-    [ApiController]
-    public class ValuessssssssssController : ControllerBase
+    public class AreaController : BaseController
     {
-        private IHostingEnvironment env;
-
-        private IOptions<AppConnectionStrings> opt;
         /// <summary>
-        /// In process messaging service. Glue between layers of the application
+        /// Initializes a new instance of the <see cref="TestController"/> class.
         /// </summary>
-        protected IMediator Mediator { get; set; }
-
-        private AppConnectionStrings connectionStrings;
-        public ValuessssssssssController(
-            IMediator mediator,
+        /// <param name="mediator">The mediator.</param>
+        public AreaController(
+            IMediator mediator
             //IOptions<AppConnectionStrings> options,
-            IHostingEnvironment env,
-            AppConnectionStrings connectionStrings)
+            ) : base(mediator)
         {
-            this.Mediator = mediator;
-            this.env = env;
-            //this.opt = options;
-            this.connectionStrings = connectionStrings;
-
-
         }
 
 
@@ -47,20 +33,18 @@
         /// <returns>
         /// The <see cref="ActionResult"/>.
         /// </returns>
-        [HttpGet("GetEnvironmentVariable")]
-        public IActionResult Get()
+        [HttpGet("GetAllAreas")]
+        public async Task<IActionResult> GetAreas()
         {
-            //  var tt = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            var tt = Mediator.Send(new GetAreaAsIEnumerableQuery()).Result;
-            var tt1 = tt.FirstOrDefault();
+            var areas = await Mediator.Send(EnumerableQueryes.GetAreaAsIEnumerableQuery);
+
+
             return new ObjectResult(new
             {
-                // ConnectionsStringFromIOptions = opt.Value.MssqlConnectionString,
-                // connectionStringsFromAppConnectionStrings = connectionStrings.MssqlConnectionString,
-                ASPNETCORE_ENVIRONMENT = env.EnvironmentName,
-                GetAreaAsIEnumerableQueryResult = tt
+                areas = areas,
             });
         }
+
         //https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code
 
         /// <summary>
@@ -73,9 +57,11 @@
         /// The <see cref="ActionResult"/>.
         /// </returns>
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return $"value {id}";
+            var result = await Mediator.Send(ByIdSingleQueryes.GetSingleAreaQuery(id));
+
+            return new ObjectResult(new { area = result });
         }
 
         /// <summary>
@@ -88,9 +74,15 @@
         /// The <see cref="ActionResult"/>.
         /// </returns>
         [HttpPost]
-        public ActionResult<string> Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] CreateAreaViewModel createAreaViewModel)
         {
-            return $"value is {value}";
+            var result = await Mediator.Send(new PresenterCreateAreaCommand(createAreaViewModel));
+
+            return new ObjectResult(new
+            {
+                newId = result.Object,
+                ForObject = createAreaViewModel
+            });
         }
 
         /// <summary>

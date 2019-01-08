@@ -16,7 +16,7 @@
         /// <typeparam name="TProjection">The dto projection</typeparam>
         /// <param name="entity">The source entity to project</param>
         /// <returns>The projected type</returns>
-        public static TProjection ProjectedAs<TProjection>(this Entity item)
+        public static TProjection ProjectedAs<TProjection>(this DomainEntity item)
             where TProjection : class, new()
         {
             var adapter = TypeAdapterFactory.CreateAdapter();
@@ -29,7 +29,7 @@
         /// <typeparam name="TProjection">The dtop projection type</typeparam>
         /// <param name="items">the collection of entity items</param>
         /// <returns>Projected collection</returns>
-        public static List<TProjection> ProjectedAsCollection<TProjection>(this IEnumerable<Entity> items)
+        public static List<TProjection> ProjectedAsCollection<TProjection>(this IEnumerable<DomainEntity> items)
             where TProjection : class, new()
         {
             var adapter = TypeAdapterFactory.CreateAdapter();

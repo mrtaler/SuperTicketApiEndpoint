@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SuperTicketApi.ApiSettings\SuperTicketApi.ApiSettings.csproj" />
+    <ProjectReference Include="..\SuperTicketApi.Domain.MainContext.Command\SuperTicketApi.Domain.MainContext.Command.csproj" />
     <ProjectReference Include="..\SuperTicketApi.Domain.MainContext.DTO\SuperTicketApi.Domain.MainContext.DTO.csproj" />
     <ProjectReference Include="..\SuperTicketApi.Domain.MainContext.Queries\SuperTicketApi.Domain.MainContext.Queries.csproj" />
     <ProjectReference Include="..\SuperTicketApi.Domain.Seedwork\SuperTicketApi.Domain.Seedwork.csproj" />

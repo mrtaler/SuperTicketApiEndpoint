@@ -3,7 +3,7 @@
     /// <summary>
     /// The entity.
     /// </summary>
-    public abstract class Entity
+    public abstract class DomainEntity
     {
 
     }
