@@ -6,5 +6,11 @@
 
     public class GetSingleLayoutQuery : IRequest<Layout>
     {
+        public int Id { get; set; }
+
+        public GetSingleLayoutQuery( int id  )
+        {
+            Id = id;
+        }
     }
 }
