@@ -6,5 +6,11 @@
 
     public class GetSingleVenueQuery : IRequest<Venue>
     {
+        public int Id { get; set; }
+
+        public GetSingleVenueQuery( int id  )
+        {
+            Id = id;
+        }
     }
 }

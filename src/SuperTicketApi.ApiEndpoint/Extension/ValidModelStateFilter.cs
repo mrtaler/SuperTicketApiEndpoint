@@ -7,6 +7,8 @@
 
     using Serilog;
 
+    using SuperTicketApi.Domain.Seedwork;
+
     public class ValidModelStateFilter : IActionFilter
     {
         private readonly ILogger log;
