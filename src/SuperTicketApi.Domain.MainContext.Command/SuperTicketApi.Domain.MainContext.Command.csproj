@@ -9,4 +9,8 @@
     <PackageReference Include="MediatR" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SuperTicketApi.Domain.MainContext.DTO\SuperTicketApi.Domain.MainContext.DTO.csproj" />
+  </ItemGroup>
+
 </Project>

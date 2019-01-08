@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SuperTicketApi.Domain.MainContext.DTO.Models;
 
 namespace SuperTicketApi.Domain.MainContext.Command.CreateCommands
 {
@@ -8,5 +9,13 @@ namespace SuperTicketApi.Domain.MainContext.Command.CreateCommands
         public string Description { get; set; }
         public int CoordX { get; set; }
         public int CoordY { get; set; }
+    }
+
+    public class CreateCustomAreaCommand : Area, IRequest<DalCommandResponse>
+    {
+        CreateCustomAreaCommand()
+        {
+            //CoordX
+        }
     }
 }
