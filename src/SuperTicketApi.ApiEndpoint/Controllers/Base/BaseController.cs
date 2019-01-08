@@ -1,6 +1,7 @@
-﻿namespace SuperTicketApi.ApiEndpoint.Controllers
+﻿namespace SuperTicketApi.ApiEndpoint.Controllers.Base
 {
     using MediatR;
+
     using Microsoft.AspNetCore.Mvc;
 
     /// <summary>

@@ -1,8 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace SuperTicketApi.ApiEndpoint.ViewModel
+﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.Event
 {
+    using System;
+    using System.Collections.Generic;
+
+    using SuperTicketApi.ApiEndpoint.ViewModel.EventArea;
+
     public class EventViewModel : ApiViewModel
     {
         public string Name { get; set; }

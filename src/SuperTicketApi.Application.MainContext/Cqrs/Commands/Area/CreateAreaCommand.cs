@@ -1,22 +1,16 @@
-﻿using MediatR;
-using SuperTicketApi.ApiEndpoint.ViewModel;
-
-namespace SuperTicketApi.ApiEndpoint.Cqrs.Commands.Area
+﻿namespace SuperTicketApi.Application.MainContext.Cqrs.Commands.Area
 {
+    using MediatR;
+
+    /// <summary>
+    /// The presenter create area command.
+    /// </summary>
     public class PresenterCreateAreaCommand : IRequest<CommandResponse>
     {
         public int LayoutId { get; set; }
         public string Description { get; set; }
         public int CoordX { get; set; }
         public int CoordY { get; set; }
-
-        public PresenterCreateAreaCommand(CreateAreaViewModel createAreaViewModel)
-        {
-            LayoutId = createAreaViewModel.LayoutId;
-            Description = createAreaViewModel.Description;
-            CoordX = createAreaViewModel.CoordX;
-            CoordY = createAreaViewModel.CoordY;
-        }
 
         #region Command Authorization Options
 
@@ -40,6 +34,5 @@ namespace SuperTicketApi.ApiEndpoint.Cqrs.Commands.Area
          */
 
         #endregion
-
     }
 }

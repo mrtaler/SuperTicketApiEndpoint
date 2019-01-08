@@ -33,6 +33,9 @@
     <Reference Include="Microsoft.Extensions.Options">
       <HintPath>..\..\packages\microsoft.extensions.options\2.0.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
     </Reference>
+    <Reference Include="System.Design">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Design.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -2,11 +2,14 @@
 {
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
-    using SuperTicketApi.ApiEndpoint.Cqrs.Commands.Area;
+
     using SuperTicketApi.ApiEndpoint.ViewModel;
     using SuperTicketApi.Domain.MainContext.Queries;
     using System.Threading.Tasks;
 
+    using SuperTicketApi.ApiEndpoint.Controllers.Base;
+    using SuperTicketApi.ApiEndpoint.ViewModel.Area;
+    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Area;
 
     /// <summary>
     /// The Test controller.
@@ -16,12 +19,14 @@
     public class AreaController : BaseController
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TestController"/> class.
+        /// Initializes a new instance of the <see cref="AreaController"/> class. 
         /// </summary>
-        /// <param name="mediator">The mediator.</param>
+        /// <param name="mediator">
+        /// The mediator.
+        /// </param>
         public AreaController(
             IMediator mediator
-            //IOptions<AppConnectionStrings> options,
+            // IOptions<AppConnectionStrings> options,
             ) : base(mediator)
         {
         }
@@ -67,8 +72,8 @@
         /// <summary>
         /// The api/values
         /// </summary>
-        /// <param name="value">
-        /// The value.
+        /// <param name="createAreaViewModel">
+        /// The create Area View Model.
         /// </param>
         /// <returns>
         /// The <see cref="ActionResult"/>.
@@ -76,7 +81,8 @@
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateAreaViewModel createAreaViewModel)
         {
-            var result = await Mediator.Send(new PresenterCreateAreaCommand(createAreaViewModel));
+            
+            var result = await Mediator.Send(createAreaViewModel.ProjectedAs<PresenterCreateAreaCommand>());
 
             return new ObjectResult(new
             {

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace SuperTicketApi.ApiEndpoint.ViewModel
+﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.EventArea
 {
+    using System.Collections.Generic;
+
+    using SuperTicketApi.ApiEndpoint.ViewModel.EventSeat;
+
     public class EventAreaViewModel : ApiViewModel
     {
         public int EventId { get; set; }

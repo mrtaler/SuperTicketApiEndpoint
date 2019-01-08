@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
-
-namespace SuperTicketApi.ApiEndpoint.ViewModel
+﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.Layout
 {
+    using System.Collections.Generic;
+
+    using SuperTicketApi.ApiEndpoint.ViewModel.Area;
+    using SuperTicketApi.ApiEndpoint.ViewModel.Event;
+
     public class LayoutViewModel : ApiViewModel
     {
         public int VenueId { get; set; }

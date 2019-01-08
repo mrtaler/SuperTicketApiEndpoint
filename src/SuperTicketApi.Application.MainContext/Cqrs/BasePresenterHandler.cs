@@ -1,19 +1,17 @@
-﻿using MediatR;
-using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SuperTicketApi.ApiEndpoint.Cqrs.Commands.Area
+﻿namespace SuperTicketApi.Application.MainContext.Cqrs
 {
+    using MediatR;
+
+    using Serilog;
+
     /// <summary>
     /// base query command Handler
     /// </summary>
-    public class BasePresenterHandler
+    public class BaseApplicationHandler
     {
         protected readonly IMediator mediatr;
 
-        public BasePresenterHandler( IMediator mediatr)
+        public BaseApplicationHandler( IMediator mediatr)
         {
             this.mediatr = mediatr;
             Log.Information($"{this.GetType().Name} was started");

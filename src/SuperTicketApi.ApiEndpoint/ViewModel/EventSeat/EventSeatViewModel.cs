@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.ApiEndpoint.ViewModel
+﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.EventSeat
 {
     public class EventSeatViewModel :ApiViewModel
     {

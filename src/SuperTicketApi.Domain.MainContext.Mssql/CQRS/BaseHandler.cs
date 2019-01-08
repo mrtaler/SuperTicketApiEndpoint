@@ -1,13 +1,16 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS
 {
+    using System.Data;
+    using System.Linq;
+    using System.Reflection;
+
     using MediatR;
+
     using Serilog;
+
     using SuperTicketApi.Domain.MainContext.DTO.Attributes;
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using SuperTicketApi.Domain.Seedwork;
-    using System;
-    using System.Data;
-    using System.Linq;
 
     /// <summary>
     /// base query command Handler
@@ -18,7 +21,7 @@
         protected readonly IDbCommand command;
         protected readonly IMediator mediatr;
 
-        public BaseHandler(IUnitOfWorkFactory factory,IMediator mediatr)
+        public BaseHandler(IUnitOfWorkFactory factory, IMediator mediatr)
         {
             this.uow = factory.Create();
             this.command = uow.CreateCommand();
@@ -26,50 +29,18 @@
             Log.Information($"{this.GetType().Name} was started");
         }
 
-        /// <summary>
-        /// The get item.
-        /// </summary>
-        /// <param name="name">
-        /// The name.
-        /// </param>
-        /// <param name="reader">
-        /// The reader.
-        /// </param>
-        /// <returns>
-        /// The <see cref="object"/>.
-        /// </returns>
-        protected virtual object GetItem(string name, IDataReader reader)
+        protected string GetIdTableColumnName<T>() where T : DomainEntity
         {
-            return reader[name] is DBNull ? null : reader[name];
-        }
+            var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .FirstOrDefault(p => p.GetCustomAttributes(typeof(IdColumnAttribute), false).Count() == 1);
 
-        /// <summary>
-        /// The mapping method.
-        /// </summary>
-        /// <param name="reader">
-        /// The data <paramref name="reader"/>.
-        /// </param>
-        /// <typeparam name="TEntity">Database table class
-        /// </typeparam>
-        /// <returns>
-        /// The <see cref="TEntity"/>.
-        /// </returns>
-        protected TEntity Mapping<TEntity>(IDataReader reader) where TEntity : new()
-        {
-            var ret = new TEntity();
-            var columns = typeof(TEntity).GetProperties();
+            var dataBaseAttribute = (properties.GetCustomAttributes(typeof(DbColumnAttribute), true).FirstOrDefault() as DbColumnAttribute).columnName;
 
-            foreach (var item in columns)
-            {
-                var currentAttribute = item.GetCustomAttributes(typeof(DbColumnAttribute), true).FirstOrDefault() as DbColumnAttribute;
-                string dbColumnName = currentAttribute.columnName;
+            /*var dnAttribute = item.GetCustomAttributes(
+                        typeof(IdColumnAttribute), true
+                    ).FirstOrDefault() as IdColumnAttribute;*/
 
-                var propToSet = ret.GetType().GetProperty(item.Name);
-                var valueToSet = Convert.ChangeType(this.GetItem(dbColumnName, reader), propToSet.PropertyType);
-                propToSet.SetValue(ret, valueToSet);
-            }
-
-            return ret;
+            return dataBaseAttribute;
         }
     }
 }

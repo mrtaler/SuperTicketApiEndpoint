@@ -1,15 +1,15 @@
-﻿using FluentValidation.Results;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SuperTicketApi.ApiEndpoint.Cqrs
+﻿namespace SuperTicketApi.Application.MainContext.Cqrs
 {
+    using System;
+    using System.Collections.Generic;
+
+    using FluentValidation.Results;
+
     public class CommandResponse
     {
         public CommandResponse()
         {
-            isSuccess = false;
+            this.isSuccess = false;
         }
 
         public bool isSuccess { get; set; }

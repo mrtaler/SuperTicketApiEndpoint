@@ -1,24 +1,25 @@
-﻿using FluentValidation;
-using MediatR;
-
-namespace SuperTicketApi.ApiEndpoint.Cqrs.Commands.Area
+﻿namespace SuperTicketApi.Application.MainContext.Cqrs.Commands.Area
 {
+    using FluentValidation;
+
+    using MediatR;
+
     public class AreasValidator : AbstractValidator<PresenterCreateAreaCommand>
     {
         private readonly IMediator _mediator;
         public AreasValidator(IMediator mediator)
         {
-            _mediator = mediator;
+            this._mediator = mediator;
 
-            RuleFor(x => x.LayoutId)
+            this.RuleFor(x => x.LayoutId)
                 .NotEmpty()
                 .WithMessage("Please set an LayoutId");
-            RuleFor(x => x.Description)
+            this.RuleFor(x => x.Description)
                 .Length(3, 200).WithMessage("Arar descripton must be bewtween 3-200 characters in length")
-                .Must(NotExist).WithMessage(x => $"{x.Description} already exists");
-            RuleFor(x => x.CoordX)
+                .Must(this.NotExist).WithMessage(x => $"{x.Description} already exists");
+            this.RuleFor(x => x.CoordX)
                 .NotEmpty().WithMessage("Please set an CoordX");
-            RuleFor(x => x.CoordY)
+            this.RuleFor(x => x.CoordY)
                 .NotEmpty().WithMessage("Please set an CoordY");
         }
 

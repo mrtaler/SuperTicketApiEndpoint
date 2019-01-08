@@ -1,24 +1,25 @@
-﻿using System;
-
-namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
+﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
 {
-    using MediatR;
-    using Serilog;
-    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
-    using SuperTicketApi.Domain.MainContext.DTO.Models;
-    using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
-    using SuperTicketApi.Domain.MainContext.Queries.GetSingleDomainEntity;
-    using SuperTicketApi.Domain.Seedwork;
     using System.Data;
     using System.Linq;
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
 
+    using MediatR;
+
+    using Serilog;
+
+    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
+    using SuperTicketApi.Domain.MainContext.DTO.Models;
+    using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
+    using SuperTicketApi.Domain.MainContext.Queries.GetSingleDomainEntity;
+    using SuperTicketApi.Domain.Seedwork;
+
     /// <summary>
     /// The get query as i enumerable handler.
     /// </summary>
-    public class GetQueryAsSingleeHandler : BaseHandler,
+    public class GetQueryAsSingleeHandler : BaseQueryHandler,
         IRequestHandler<GetSingleAreaQuery, Area>,
         IRequestHandler<GetSingleEventAreaQuery, EventArea>,
         IRequestHandler<GetSingleEventQuery, Event>,
@@ -32,23 +33,6 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
             Log.Information($"{this.GetType().Name} was started");
         }
 
-        private string GetIdTableColumnName<T>() where T : DomainEntity
-        {
-            var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                .FirstOrDefault(p => p.GetCustomAttributes(typeof(IdColumnAttribute), false).Count() ==1);
-
-            var dnAttribute = (properties.GetCustomAttributes(
-                             typeof(DbColumnAttribute), true
-                         ).FirstOrDefault() as DbColumnAttribute).columnName;
-
-            /*var dnAttribute = item.GetCustomAttributes(
-                        typeof(IdColumnAttribute), true
-                    ).FirstOrDefault() as IdColumnAttribute;*/
-
-            return dnAttribute;
-;
-        }
-
         private T GetSingleByIdFromDb<T>(int id) where T : DomainEntity, new()
         {
             var returnEntity = new T();
@@ -57,11 +41,9 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
                 return default(T);
             }
 
-            var columnName = GetIdTableColumnName<T>();
-
             this.command.CommandText = $"select * " +
                 $"from {typeof(T).GetAttributeValue((DbTableAttribute dbTable) => dbTable.TableName)} " +
-                $"where {GetIdTableColumnName<T>()} = {id}";
+                $"where {this.GetIdTableColumnName<T>()} = {id}";
              this.command.CommandType = CommandType.Text;
 
               using (var reader = this.command.ExecuteReader())
@@ -78,8 +60,8 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
                       $"{typeof(T).GetAttributeValue((DbTableAttribute dbTable) => dbTable.TableName)}" +
                       $" by id from DB");
               }
-            return returnEntity;
 
+            return returnEntity;
         }
 
         #region Implementation of IRequestHandler<in GetSingleAreaQuery,Area>
@@ -87,7 +69,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
         /// <inheritdoc />
         public async Task<Area> Handle(GetSingleAreaQuery request, CancellationToken cancellationToken)
         {
-            var retVal = GetSingleByIdFromDb<Area>(request.Id);
+            var retVal = this.GetSingleByIdFromDb<Area>(request.Id);
             return await Task.FromResult(retVal);
         }
 
@@ -98,7 +80,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
         /// <inheritdoc />
         public async Task<EventArea> Handle(GetSingleEventAreaQuery request, CancellationToken cancellationToken)
         {
-            var retVal = GetSingleByIdFromDb<EventArea>(request.Id);
+            var retVal = this.GetSingleByIdFromDb<EventArea>(request.Id);
             return await Task.FromResult(retVal);
         }
 
@@ -109,7 +91,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
         /// <inheritdoc />
         public async Task<Event> Handle(GetSingleEventQuery request, CancellationToken cancellationToken)
         {
-            var retVal = GetSingleByIdFromDb<Event>(request.Id);
+            var retVal = this.GetSingleByIdFromDb<Event>(request.Id);
             return await Task.FromResult(retVal);
         }
 
@@ -120,7 +102,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
         /// <inheritdoc />
         public async Task<EventSeat> Handle(GetSingleEventSeatQuery request, CancellationToken cancellationToken)
         {
-            var retVal = GetSingleByIdFromDb<EventSeat>(request.Id);
+            var retVal = this.GetSingleByIdFromDb<EventSeat>(request.Id);
             return await Task.FromResult(retVal);
         }
 
@@ -131,7 +113,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
         /// <inheritdoc />
         public async Task<Layout> Handle(GetSingleLayoutQuery request, CancellationToken cancellationToken)
         {
-            var retVal = GetSingleByIdFromDb<Layout>(request.Id);
+            var retVal = this.GetSingleByIdFromDb<Layout>(request.Id);
             return await Task.FromResult(retVal);
         }
 
@@ -142,7 +124,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
         /// <inheritdoc />
         public async Task<Seat> Handle(GetSingleSeatQuery request, CancellationToken cancellationToken)
         {
-            var retVal = GetSingleByIdFromDb<Seat>(request.Id);
+            var retVal = this.GetSingleByIdFromDb<Seat>(request.Id);
             return await Task.FromResult(retVal);
         }
 
@@ -153,7 +135,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
         /// <inheritdoc />
         public async Task<Venue> Handle(GetSingleVenueQuery request, CancellationToken cancellationToken)
         {
-            var retVal = GetSingleByIdFromDb<Venue>(request.Id);
+            var retVal = this.GetSingleByIdFromDb<Venue>(request.Id);
             return await Task.FromResult(retVal);
         }
 

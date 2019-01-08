@@ -1,16 +1,19 @@
-﻿using MediatR;
-using SuperTicketApi.Domain.MainContext.Command;
-using SuperTicketApi.Domain.MainContext.Command.CreateCommands;
-using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers
+﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers
 {
-    class CreateCommandHandler : BaseHandler,IRequestHandler<CreateAreaCommand, DalCommandResponse>
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Data.SqlClient;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using MediatR;
+
+    using SuperTicketApi.Domain.MainContext.Command;
+    using SuperTicketApi.Domain.MainContext.Command.CreateCommands;
+    using SuperTicketApi.Domain.MainContext.DTO.Models;
+    using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
+
+    class CreateCommandHandler : BaseCommandHandler, IRequestHandler<CreateAreaCommand, DalCommandResponse>
     {
         public CreateCommandHandler(IUnitOfWorkFactory factory, IMediator mediatr) : base(factory, mediatr)
         {
@@ -29,14 +32,12 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers
                     };
                 }
 
-                string sqlSp = "[dbo].[CreateArea]";
-
-
                 var newItemId = this.GetSqlParameter(
-                    parameterName: "AddedId",
+                    parameterName: "AddedId",  // this returned value
                     parameterDirection: ParameterDirection.Output,
                     sqlDbType: SqlDbType.Int,
                     size: 1);
+
                 var parametersList = new List<SqlParameter>
             {
                 newItemId,
@@ -46,7 +47,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers
                 this.GetSqlParameter("CoordY", request.CoordY)
             };
 
-                var returnValue = this.ExecuteSpNonQuery(sqlSp, command, parametersList);
+                var returnValue = this.ExecuteSpNonQuery(CreateSpCommandPattern.CreateArea, command, parametersList);
 
                 // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
 
@@ -63,88 +64,6 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers
             {
                 return new DalCommandResponse { Message = ex.Message };
             }
-        }
-
-
-        /// <summary>
-        /// The get sql <c>param</c>.
-        /// </summary>
-        /// <param name="parameterName">
-        /// The parameter name.
-        /// </param>
-        /// <param name="parameterValue">
-        /// The parameter value.
-        /// </param>
-        /// <returns>
-        /// The <see cref="SqlParameter"/>.
-        /// </returns>
-        protected SqlParameter GetSqlParameter(
-            string parameterName,
-            object parameterValue)
-        {
-            return new SqlParameter
-            {
-                ParameterName = $"@{parameterName}",
-                Value = parameterValue
-            };
-        }
-
-        /// <summary>
-        /// The get sql parameter.
-        /// </summary>
-        /// <param name="parameterName">The parameter name.</param>
-        /// <param name="parameterDirection">The parameter direction.</param>
-        /// <param name="sqlDbType">Parameter type</param>
-        /// <param name="size">parameter <paramref name="size"/>(for string)</param>
-        /// <returns>
-        /// The <see cref="System.Data.SqlClient.SqlParameter" /> .
-        /// </returns>
-        protected SqlParameter GetSqlParameter(
-            string parameterName,
-            ParameterDirection parameterDirection,
-            SqlDbType sqlDbType,
-            int size = 1)
-        {
-            return new SqlParameter
-            {
-                ParameterName = $"@{parameterName}",
-                Direction = parameterDirection,
-                Size = size,
-                SqlDbType = sqlDbType
-            };
-        }
-
-        /// <summary>
-        /// The execute sp non query.
-        /// </summary>
-        /// <param name="sqlSp">
-        /// The sql store procedure.
-        /// </param>
-        /// <param name="connection">
-        /// The <paramref name="connection"/>.
-        /// </param>
-        /// <param name="parameters">
-        /// The <paramref name="parameters"/>.
-        /// </param>
-        /// <returns>
-        /// The <see cref="int"/>.
-        /// </returns>
-        protected int ExecuteSpNonQuery(
-            string sqlSp,
-            IDbCommand command,
-            IEnumerable<SqlParameter> parameters)
-        {
-            command.CommandText = sqlSp;
-            command.CommandType = CommandType.StoredProcedure;
-
-            //  this.Logger.Info($"Run SQL {nameof(CommandType.StoredProcedure)}: {command.CommandText}");
-
-            foreach (var parameter in parameters)
-            {
-                command.Parameters.Add(parameter);
-            }
-
-            return command.ExecuteNonQuery();
         }
     }
 }

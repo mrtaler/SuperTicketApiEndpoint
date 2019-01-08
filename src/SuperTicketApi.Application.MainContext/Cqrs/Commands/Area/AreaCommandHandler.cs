@@ -1,27 +1,28 @@
-﻿using FluentValidation.Results;
-using MediatR;
-using SuperTicketApi.ApiEndpoint.Cqrs;
-using SuperTicketApi.ApiEndpoint.Cqrs.Commands.Area;
-using SuperTicketApi.Domain.MainContext.Command.CreateCommands;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace SuperTicketApi.DistributedServices.Seedwork.Cqrs.Commands.Area
+﻿namespace SuperTicketApi.Application.MainContext.Cqrs.Commands.Area
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using FluentValidation.Results;
+
+    using MediatR;
+
+    using SuperTicketApi.Domain.MainContext.Command.CreateCommands;
+
     /// <summary>
     /// Area command for presenter Layer
     /// </summary>
     /// <seealso cref="BasePresenterHandler" />
     /// <seealso cref="MediatR.IRequestHandler{ApiEndpoint.Cqrs.Commands.Area.CreateAreaCommand, ApiEndpoint.Cqrs.CommandResponse}" />
-    public class AreaPresenterCommandHandler : BasePresenterHandler,
+    public class AreaCommandHandler : BaseApplicationHandler,
        IRequestHandler<PresenterCreateAreaCommand, CommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AreaCommandHandler"/> class.
         /// </summary>
         /// <param name="mediatr">The mediatr.</param>
-        public AreaPresenterCommandHandler(IMediator mediatr) : base(mediatr)
+        public AreaCommandHandler(IMediator mediatr) : base(mediatr)
         {
         }
 
@@ -54,7 +55,7 @@ namespace SuperTicketApi.DistributedServices.Seedwork.Cqrs.Commands.Area
                 };
 
                 //! then call create area command from database level
-                var commRes = await mediatr.Send(dalCommand);
+                var commRes = await this.mediatr.Send(dalCommand);
                 //! then geet seponse from DAL, and send created ID to Presenter
                 if (commRes.isSuccess)
                 {

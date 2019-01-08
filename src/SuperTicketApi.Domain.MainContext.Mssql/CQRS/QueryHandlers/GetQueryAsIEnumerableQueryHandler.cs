@@ -1,20 +1,21 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
 {
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     using MediatR;
+
     using Serilog;
-    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
+
     using SuperTicketApi.Domain.MainContext.DTO.Models;
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using SuperTicketApi.Domain.MainContext.Queries.GetListOfDomainEntity;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// The get query as i enumerable handler.
     /// </summary>
-    public class GetQueryAsIEnumerableQueryHandler : BaseHandler,
+    public class GetQueryAsIEnumerableQueryHandler : BaseQueryHandler,
         IRequestHandler<GetAreaAsIEnumerableQuery, IEnumerable<Area>>,
         IRequestHandler<GetEventAreaAsIEnumerableQuery, IEnumerable<EventArea>>,
         IRequestHandler<GetEventAsIEnumerableQuery, IEnumerable<Event>>,
@@ -23,40 +24,20 @@
         IRequestHandler<GetSeatAsIEnumerableQuery, IEnumerable<Seat>>,
         IRequestHandler<GetVenueAsIEnumerableQuery, IEnumerable<Venue>>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetQueryAsIEnumerableQueryHandler"/> class.
+        /// </summary>
+        /// <param name="factory">
+        /// The factory.
+        /// </param>
+        /// <param name="mediatr">
+        /// The <paramref name="mediatr"/>.
+        /// </param>
         public GetQueryAsIEnumerableQueryHandler(
             IUnitOfWorkFactory factory,
             IMediator mediatr) : base(factory, mediatr)
         {
             Log.Information($"{this.GetType().Name} was started");
-        }
-
-        private IEnumerable<T> GetAllFromDb<T>() where T : new()
-        {
-            var returnList = new List<T>();
-            if (this.command.Connection.State != ConnectionState.Open)
-            {
-                return null;
-            }
-
-            this.command.CommandText = $"select * " +
-                                      $"from {typeof(T).GetAttributeValue((DbTableAttribute dbTable) => dbTable.TableName)}";
-            this.command.CommandType = CommandType.Text;
-
-            using (var reader = this.command.ExecuteReader())
-            {
-                Log.Information($"Run SQL command: {this.command.CommandText}");
-                Log.Warning($"{nameof(this.Handle)} connection state: {this.command.Connection.State}");
-                while (reader.Read())
-                {
-                    var art = this.Mapping<T>(reader);
-                    returnList.Add(art);
-                }
-
-                Log.Information($"Read from DB: {returnList.Count} entities");
-            }
-
-            return returnList;
-
         }
 
         #region Implementation of IRequestHandler<in GetAreaAsIEnumerableQuery,IEnumerable<Area>>
@@ -66,7 +47,6 @@
         {
             var returnList = GetAllFromDb<Area>();
             return await Task.FromResult(returnList);
-
         }
 
         #endregion

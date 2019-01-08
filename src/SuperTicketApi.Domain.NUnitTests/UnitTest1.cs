@@ -1,14 +1,7 @@
-using NUnit.Framework;
-
-namespace Tests
+namespace SuperTicketApi.Domain.NUnitTests
 {
-    using SuperTicketApi.Domain.MainContext.DTO.Models;
-    using SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers;
-    using SuperTicketApi.Domain.MainContext.Queries.GetListOfDomainEntity;
-    using SuperTicketApi.Domain.Seedwork;
     using System;
     using System.Data;
-    using System.Data.Common;
     using System.Data.SqlClient;
     using System.Threading;
     using System.Threading.Tasks;
@@ -17,8 +10,13 @@ namespace Tests
 
     using Moq;
 
+    using NUnit.Framework;
+
+    using SuperTicketApi.Domain.MainContext.DTO.Models;
+    using SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers;
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
-    using SuperTicketApi.Domain.MainContext.Mssql.UnitOfWorks;
+    using SuperTicketApi.Domain.MainContext.Queries.GetListOfDomainEntity;
+    using SuperTicketApi.Domain.Seedwork;
 
     internal class AdoNetUnitOfWorkTest : INetUnitOfWork, IUnitOfWork
     {
@@ -126,7 +124,8 @@ namespace Tests
                 CoordX = 1,
                 CoordY = 1
             };
-            sut = new GetQueryAsIEnumerableQueryHandler(new UnitOfWorkFactoryTest(@"Data Source=EPBYGOMW0360\EPBYGOMW0360;Database=SuperTicketApiMssqlTests;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;"), Mediator);
+            this.sut = new GetQueryAsIEnumerableQueryHandler(new UnitOfWorkFactoryTest(@"Data Source=EPBYGOMW0360\EPBYGOMW0360;Database=SuperTicketApiMssqlTests;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;"), this.Mediator);
+
             var mockedDataReader = new Mock<IDataReader>();
             bool readFlag = true;
             mockedDataReader.Setup(x => x.Read()).Returns(() => readFlag).Callback(() => readFlag = false);
@@ -144,20 +143,10 @@ namespace Tests
         public async Task ReturnCorrectEnum()
         {
             CancellationTokenSource cts = new CancellationTokenSource();
-            var result = await sut.Handle(message, cts.Token);
+            var result = await this.sut.Handle(this.message, cts.Token);
             Assert.NotNull(result);
         }
 
 
-        [Test]
-        public void GetSqlCommand()
-        {
-            string spoName ="spoTest";
-            DataAccess da = new DataAccess();
-            SqlCommand response = da.GetSqlCommand(spoName);
-
-            Assert.IsNotNull(response);
-            Assert.AreEqual(spoName, response.CommandText);
-        }
     }
 }

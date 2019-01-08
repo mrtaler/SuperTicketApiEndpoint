@@ -6,6 +6,7 @@
     using SuperTicketApi.Domain.MainContext.Queries.GetSingleDomainEntity;
     using System.Threading.Tasks;
 
+    using SuperTicketApi.ApiEndpoint.Controllers.Base;
 
     /// <summary>
     /// The Test controller.
@@ -15,7 +16,7 @@
     public class EventSeatController : BaseController
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TestController"/> class.
+        /// Initializes a new instance of the <see cref="EventSeatController"/> class.
         /// </summary>
         /// <param name="mediator">The mediator.</param>
         public EventSeatController(
