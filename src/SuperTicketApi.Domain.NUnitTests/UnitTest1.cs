@@ -8,11 +8,14 @@ namespace Tests
     using SuperTicketApi.Domain.Seedwork;
     using System;
     using System.Data;
+    using System.Data.Common;
     using System.Data.SqlClient;
     using System.Threading;
     using System.Threading.Tasks;
 
     using MediatR;
+
+    using Moq;
 
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using SuperTicketApi.Domain.MainContext.Mssql.UnitOfWorks;
@@ -124,7 +127,18 @@ namespace Tests
                 CoordY = 1
             };
             sut = new GetQueryAsIEnumerableQueryHandler(new UnitOfWorkFactoryTest(@"Data Source=EPBYGOMW0360\EPBYGOMW0360;Database=SuperTicketApiMssqlTests;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;"), Mediator);
+            var mockedDataReader = new Mock<IDataReader>();
+            bool readFlag = true;
+            mockedDataReader.Setup(x => x.Read()).Returns(() => readFlag).Callback(() => readFlag = false);
+
+            mockedDataReader.Setup(x => x["AreaId"]).Returns("1");
+            mockedDataReader.Setup(x => x["LayoutId"]).Returns("1");
+            mockedDataReader.Setup(x => x["Description"]).Returns("London");
+            mockedDataReader.Setup(x => x["CoordX"]).Returns("1");
+            mockedDataReader.Setup(x => x["CoordY"]).Returns("1");
         }
+        // https://stackoverflow.com/questions/34944462/moq-and-sqlconnection
+        // https://stackoverflow.com/questions/6376715/how-to-mock-sqlparametercollection-using-moq 
 
         [Test]
         public async Task ReturnCorrectEnum()
@@ -132,6 +146,18 @@ namespace Tests
             CancellationTokenSource cts = new CancellationTokenSource();
             var result = await sut.Handle(message, cts.Token);
             Assert.NotNull(result);
+        }
+
+
+        [Test]
+        public void GetSqlCommand()
+        {
+            string spoName ="spoTest";
+            DataAccess da = new DataAccess();
+            SqlCommand response = da.GetSqlCommand(spoName);
+
+            Assert.IsNotNull(response);
+            Assert.AreEqual(spoName, response.CommandText);
         }
     }
 }

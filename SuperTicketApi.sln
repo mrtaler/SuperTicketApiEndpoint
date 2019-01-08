@@ -43,7 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Domain.MainC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CQRS", "CQRS", "{190655D7-E917-47E4-87A6-552DCECE045B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Domain.NUnitTests", "src\SuperTicketApi.Domain.NUnitTests\SuperTicketApi.Domain.NUnitTests.csproj", "{F3FC5EA8-2E42-4700-8AF1-1A3FD82C95E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Domain.NUnitTests", "src\SuperTicketApi.Domain.NUnitTests\SuperTicketApi.Domain.NUnitTests.csproj", "{F3FC5EA8-2E42-4700-8AF1-1A3FD82C95E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
