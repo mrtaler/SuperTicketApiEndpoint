@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-
+    <Configurations>Debug;Release;Home;Nout</Configurations>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
