@@ -1,12 +1,12 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers
 {
+    using MediatR;
+    using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
+    using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
-
-    using MediatR;
-
-    using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
+    using System.Globalization;
 
     public class BaseCommandHandler : BaseHandler
     {
@@ -33,10 +33,10 @@
             object parameterValue)
         {
             return new SqlParameter
-                       {
-                           ParameterName = $"@{parameterName}",
-                           Value = parameterValue
-                       };
+            {
+                ParameterName = $"@{parameterName}",
+                Value = parameterValue
+            };
         }
 
         /// <summary>
@@ -56,12 +56,12 @@
             int size = 1)
         {
             return new SqlParameter
-                       {
-                           ParameterName = $"@{parameterName}",
-                           Direction = parameterDirection,
-                           Size = size,
-                           SqlDbType = sqlDbType
-                       };
+            {
+                ParameterName = $"@{parameterName}",
+                Direction = parameterDirection,
+                Size = size,
+                SqlDbType = sqlDbType
+            };
         }
 
         /// <summary>
@@ -94,12 +94,64 @@
                 command.Parameters.Add(parameter);
             }
 
-         /*   var com = command.ExecuteReader();
+            DataBaseErrors dbError;
+            var com = command.ExecuteReader(CommandBehavior.CloseConnection);
+
             while (com.Read())
             {
-                var art = com;
-            }*/
-            return command.ExecuteNonQuery();
+                dbError = new DataBaseErrors(com);
+            }
+
+            return 1; //command.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// The get item.
+        /// </summary>
+        /// <param name="name">
+        /// The name.
+        /// </param>
+        /// <param name="reader">
+        /// The reader.
+        /// </param>
+        /// <returns>
+        /// The <see cref="object"/>.
+        /// </returns>
+        protected virtual object GetItem(string name, IDataReader reader)
+        {
+            return reader[name] is DBNull ? null : reader[name];
+        }
+    }
+
+    public class DataBaseErrors
+    {
+        public string ErrorNumber { get; } //= GetItem("ErrorNumber", com);
+        public string ErrorSeverity { get; }// = GetItem("ErrorSeverity", com);
+        public string ErrorState { get; } //= GetItem("ErrorState", com);
+        public string ErrorProcedure { get; }// = GetItem("ErrorProcedure", com);
+        public string ErrorLine { get; } //= GetItem("ErrorLine", com);
+        public string ErrorMessage { get; } //= GetItem("ErrorMessage", com);
+
+        public DataBaseErrors(IDataReader reader)
+        {
+            ErrorNumber = reader.GetValueAsString<string>("ErrorNumber");
+
+            ErrorSeverity = reader.GetValueAsString<string>("ErrorSeverity");
+            ErrorState = reader.GetValueAsString<string>("ErrorState");
+            ErrorProcedure = reader.GetValueAsString<string>("ErrorProcedure");
+            ErrorLine = reader.GetValueAsString<string>("ErrorLine");
+            ErrorMessage = reader.GetValueAsString<string>("ErrorMessage");
+        }
+
+    }
+
+    public static class DbReaderExtension
+    {
+        public static T GetValueAsString<T>(
+            this IDataReader reader,
+            string fieldName) where T : class
+        {
+            return reader[fieldName] is DBNull ? null : (T)Convert.ChangeType(reader[fieldName], typeof(T), CultureInfo.InvariantCulture);
         }
     }
 }

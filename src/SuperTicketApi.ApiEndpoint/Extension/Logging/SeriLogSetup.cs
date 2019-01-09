@@ -50,7 +50,6 @@
                     .Override("Microsoft", LogEventLevel.Warning)
                     .MinimumLevel.Override("System", LogEventLevel.Error)
                     .WriteTo.MSSqlServer(configuration["Serilog:ConnectionString"], configuration["Serilog:TableName"], LogEventLevel.Information, columnOptions: columnOptions, autoCreateSqlTable: true)
-                    .WriteTo.Seq("http://localhost:5341")
                     .CreateLogger());
         }
     }
