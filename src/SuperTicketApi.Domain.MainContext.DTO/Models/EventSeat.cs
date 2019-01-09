@@ -10,7 +10,7 @@
     /// <para><c>SQL:</c>TABLE [dbo].[EventSeats]</para>
     /// </remarks>
     [DbTable("EventSeats")]
-    public class EventSeat : Entity, IEntity<int>
+    public class EventSeat : DomainEntity, IEntity<int>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EventSeat"/> class.

@@ -7,6 +7,11 @@
 
     using Serilog;
 
+    using SuperTicketApi.Domain.Seedwork;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.Filters.IActionFilter" />
     public class ValidModelStateFilter : IActionFilter
     {
         private readonly ILogger log;
