@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
 {
+    using MediatR;
+
+    using Serilog.Core;
+
     // Unlike Performance and Tracing behavior, this behavior will ONLY run as a pre-processor.
     // Please note the differences in the way the classes are written.
 
@@ -38,6 +42,20 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
             Log.Information("Request: {name} {@request} {@user}", name, request, user);
 
             return Task.CompletedTask;
+        }
+    }
+
+    public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    {
+        public async Task<TResponse> Handle(
+            TRequest request,
+            CancellationToken cancellationToken,
+            RequestHandlerDelegate<TResponse> next)
+        {
+            Log.Information($"Handling {typeof(TRequest).Name}");
+            var response = await next();
+            Log.Information($"Handled {typeof(TResponse).Name}");
+            return response;
         }
     }
 }
