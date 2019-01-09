@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[UpdateVenue] @id INT
+﻿CREATE PROCEDURE [dbo].[UpdateVenue] @VenueId INT
 , @Description NVARCHAR(120)
 , @Address NVARCHAR(200)
 , @Phone NVARCHAR(30)
@@ -10,7 +10,7 @@ BEGIN
 		SET [Description] = @Description
 		   ,[Address] = @Address
 		   ,[Phone] = @Phone
-		WHERE IDENTITYCOL = @id
+		WHERE IDENTITYCOL = @VenueId
 	END TRY
 	BEGIN CATCH
 		EXECUTE [dbo].[GetErrorInfo];

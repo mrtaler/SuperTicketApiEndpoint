@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[UpdateEventSeat] @id INT
+﻿CREATE PROCEDURE [dbo].[UpdateEventSeat] @EventSeatId INT
 , @Row INT
 , @Number INT
 , @State INT
@@ -10,7 +10,7 @@ BEGIN
 		SET [Row] = @Row
 		   ,[Number] = @Number
 		   ,[State] = @State
-		WHERE IDENTITYCOL = @id
+		WHERE IDENTITYCOL = @EventSeatId
 	END TRY
 	BEGIN CATCH
 		EXECUTE [dbo].[GetErrorInfo];

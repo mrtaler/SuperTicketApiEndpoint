@@ -93,6 +93,7 @@
     <Folder Include="StoredProcedures\Create" />
     <Folder Include="StoredProcedures\Update" />
     <Folder Include="StoredProcedures\Update\UpdateAdm" />
+    <Folder Include="StoredProcedures\Delete" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Area.sql" />
@@ -130,6 +131,13 @@
     <Build Include="StoredProcedures\Update\UpdateSeat.sql" />
     <Build Include="StoredProcedures\Update\UpdateVenue.sql" />
     <Build Include="admSCHEMA.sql" />
+    <Build Include="StoredProcedures\Delete\DeleteByIdSeat.sql" />
+    <Build Include="StoredProcedures\Delete\DeleteByIdLayout.sql" />
+    <Build Include="StoredProcedures\Delete\DeleteByIdArea.sql" />
+    <Build Include="StoredProcedures\Delete\DeleteByIdEvent.sql" />
+    <Build Include="StoredProcedures\Delete\DeleteByIdVenue.sql" />
+    <Build Include="StoredProcedures\Delete\DeleteByIdEventArea.sql" />
+    <Build Include="StoredProcedures\Delete\DeleteByIdEventSeat.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SuperTicketApi.Database.Mssql.publish.xml" />

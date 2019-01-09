@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [adm].[UpdateEventArea] @id INT
+﻿CREATE PROCEDURE [adm].[UpdateEventArea] @EventAreaId INT
 , @EventId INT
 , @Description NVARCHAR(200)
 , @CoordX INT
@@ -14,7 +14,7 @@ BEGIN
 		   ,[CoordX] = @CoordX
 		   ,[CoordY] = @CoordY
 		   ,[Price] = @Price
-		WHERE IDENTITYCOL = @id
+		WHERE IDENTITYCOL = @EventAreaId
 	END TRY
 	BEGIN CATCH
 		EXECUTE [dbo].[GetErrorInfo];

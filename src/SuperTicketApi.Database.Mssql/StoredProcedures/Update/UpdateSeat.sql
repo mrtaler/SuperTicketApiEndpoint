@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[UpdateSeat] @id INT
+﻿CREATE PROCEDURE [dbo].[UpdateSeat] @SeatId INT
 , @Row INT
 , @Number INT
 AS
@@ -8,7 +8,7 @@ BEGIN
 		UPDATE [dbo].[Seats]
 		SET [Row] = @Row
 		   ,[Number] = @Number
-		WHERE IDENTITYCOL = @id
+		WHERE IDENTITYCOL = @SeatId
 	END TRY
 	BEGIN CATCH
 		EXECUTE [dbo].[GetErrorInfo];

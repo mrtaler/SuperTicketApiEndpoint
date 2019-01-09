@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [adm].[UpdateArea] @id INT
+﻿CREATE PROCEDURE [adm].[UpdateArea] @AreaId INT
 , @LayoutId INT
 , @Description NVARCHAR(200)
 , @CoordX INT
@@ -12,7 +12,7 @@ BEGIN
 		   ,[Description] = @Description
 		   ,[CoordX] = @CoordX
 		   ,[CoordY] = @CoordY
-		WHERE IDENTITYCOL = @id
+		WHERE IDENTITYCOL = @AreaId
 	END TRY
 	BEGIN CATCH
 		EXECUTE [dbo].[GetErrorInfo];

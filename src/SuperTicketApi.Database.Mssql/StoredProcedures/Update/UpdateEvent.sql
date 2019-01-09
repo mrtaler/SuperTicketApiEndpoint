@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[UpdateEvent] @id INT
+﻿CREATE PROCEDURE [dbo].[UpdateEvent] @EventId INT
 , @Name NVARCHAR(120)
 , @Banner NVARCHAR(MAX)
 , @Description NVARCHAR(MAX)
@@ -14,7 +14,7 @@ BEGIN
 		   ,[Description] = @Description
 		   ,[StartAt] = @StartAt
 		   ,[Runtime] = @Runtime
-		WHERE IDENTITYCOL = @id
+		WHERE IDENTITYCOL = @EventId
 	END TRY
 	BEGIN CATCH
 		EXECUTE [dbo].[GetErrorInfo];

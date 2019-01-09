@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[UpdateLayout] @id INT
+﻿CREATE PROCEDURE [dbo].[UpdateLayout] @LayoutId INT
 , @Description NVARCHAR(120)
 AS
 BEGIN
@@ -6,7 +6,7 @@ BEGIN
 	BEGIN TRY
 		UPDATE [dbo].[Layouts]
 		SET [Description] = @Description
-		WHERE IDENTITYCOL = @id
+		WHERE IDENTITYCOL = @LayoutId
 	END TRY
 	BEGIN CATCH
 		EXECUTE [dbo].[GetErrorInfo];
