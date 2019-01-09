@@ -13,7 +13,7 @@
         /// Project a type using a DTO
         /// </summary>
         /// <typeparam name="TProjection">The dto projection</typeparam>
-        /// <param name="entity">The source entity to project</param>
+        /// <param name="item">The source entity to project</param>
         /// <returns>The projected type</returns>
         public static TProjection ProjectedAs<TProjection>(this ApiViewModel item)
             where TProjection : class, new()

@@ -56,11 +56,12 @@
                     Message = "new entity in Area Table was added",
                     Object = retId
                 };
-                return retResp;
+                return await Task.FromResult (retResp);
             }
             catch (System.Exception ex)
             {
-                return new DalCommandResponse { Message = ex.Message };
+                var ret = new DalCommandResponse { Message = ex.Message };
+                return await Task.FromResult (ret);
             }
         }
 
