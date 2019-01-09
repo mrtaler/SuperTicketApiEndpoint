@@ -6,5 +6,11 @@
 
     public class GetSingleSeatQuery : IRequest<Seat>
     {
+        public int Id { get; set; }
+
+        public GetSingleSeatQuery( int id  )
+        {
+            Id = id;
+        }
     }
 }

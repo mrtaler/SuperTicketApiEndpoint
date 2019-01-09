@@ -6,5 +6,11 @@
 
     public class GetSingleAreaQuery : IRequest<Area>
     {
+        public int Id { get; set; }
+
+        public GetSingleAreaQuery( int id  )
+        {
+            Id = id;
+        }
     }
 }

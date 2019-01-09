@@ -6,5 +6,11 @@
 
     public class GetSingleEventAreaQuery : IRequest<EventArea>
     {
+        public int Id { get; set; }
+
+        public GetSingleEventAreaQuery( int id  )
+        {
+            Id = id;
+        }
     }
 }

@@ -19,4 +19,13 @@
 
         public List<Expression<Func<T, string>>> Columns { get; set; }
     }
+
+    // method for add to each class when need to use column extension
+    /*
+    protected string GetPropertyName(Expression<Func<T, string>> expression)
+    {
+    var memberExpersion = (ConstantExpression)expression.Body;
+
+        return memberExpersion.Value.ToString();
+    }*/
 }
