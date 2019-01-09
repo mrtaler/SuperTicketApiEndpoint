@@ -5,7 +5,7 @@
     /// <summary>
     /// The auditable entity.
     /// </summary>
-    public abstract class AuditableEntity : Entity, IAuditableEntity
+    public abstract class AuditableEntity : DomainEntity, IAuditableEntity
     {
         /// <summary>
         /// Gets or sets the created by.

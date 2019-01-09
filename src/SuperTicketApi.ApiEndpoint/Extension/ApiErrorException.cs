@@ -3,6 +3,10 @@
     using System;
     using System.Runtime.Serialization;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Exception" />
     public abstract class ApiErrorException : Exception
     {
         /// <summary>

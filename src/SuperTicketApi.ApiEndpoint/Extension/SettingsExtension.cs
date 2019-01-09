@@ -29,7 +29,6 @@
         /// <param name="builder">
         /// The builder.
         /// </param>
-        /// <param name="env">Environment Var</param>
         /// <returns>
         /// The <see cref="IConfigurationBuilder"/>.
         /// </returns>

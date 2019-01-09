@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SuperTicketApi.Application.BoundedContext.DTO\SuperTicketApi.Application.BoundedContext.DTO.csproj" />
     <ProjectReference Include="..\SuperTicketApi.Domain.MainContext.Mssql\SuperTicketApi.Domain.MainContext.Mssql.csproj" />
     <ProjectReference Include="..\SuperTicketApi.Domain.Seedwork\SuperTicketApi.Domain.Seedwork.csproj" />
     <ProjectReference Include="..\SuperTicketApi.Infrastructure.Crosscutting\SuperTicketApi.Infrastructure.Crosscutting.csproj" />

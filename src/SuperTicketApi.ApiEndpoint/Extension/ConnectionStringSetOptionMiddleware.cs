@@ -16,6 +16,9 @@ namespace SuperTicketApi.ApiEndpoint.Extension
     using SuperTicketApi.ApiSettings.JsonSettings;
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class ConnectionStringSetOptionMiddleware
     {
         private readonly RequestDelegate next;
