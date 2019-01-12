@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.Domain.MainContext.Command.CreateCommands
+﻿namespace SuperTicketApi.Domain.MainContext.Command
 {
     /// <summary>
     /// The create store procedure command pattern.
@@ -6,37 +6,37 @@
     public static class CreateSpCommandPattern
     {
         /// <summary>
-        /// The create area.
+        /// The create area Command
         /// </summary>
         public static string CreateArea => "[dbo].[CreateArea]";
 
         /// <summary>
-        /// The create event.
+        /// The create event Command
         /// </summary>
         public static string CreateEvent => "[dbo].[CreateEvent]";
 
         /// <summary>
-        /// The create event area.
+        /// The create event area Command
         /// </summary>
         public static string CreateEventArea => "[dbo].[CreateEventArea]";
 
         /// <summary>
-        /// The create event seat.
+        /// The create event seat Command
         /// </summary>
         public static string CreateEventSeat => "[dbo].[CreateEventSeat]";
 
         /// <summary>
-        /// The create layout.
+        /// The create layout Command
         /// </summary>
         public static string CreateLayout => "[dbo].[CreateLayout]";
 
         /// <summary>
-        /// The create seat.
+        /// The create seat Command
         /// </summary>
         public static string CreateSeat => "[dbo].[CreateSeat]";
 
         /// <summary>
-        /// The create venue.
+        /// The create venue Command
         /// </summary>
         public static string CreateVenue => "[dbo].[CreateVenue]";
     }

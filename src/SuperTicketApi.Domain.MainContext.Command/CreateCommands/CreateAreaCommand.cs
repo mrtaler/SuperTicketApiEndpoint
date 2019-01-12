@@ -1,9 +1,12 @@
-﻿using MediatR;
-
-using SuperTicketApi.Domain.MainContext.DTO.Attributes;
-
-namespace SuperTicketApi.Domain.MainContext.Command.CreateCommands
+﻿namespace SuperTicketApi.Domain.MainContext.Command.CreateCommands
 {
+    using MediatR;
+
+    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
+
+    /// <summary>
+    /// The create area command.
+    /// </summary>
     public class CreateAreaCommand : IRequest<DalCommandResponse>
     {
         /// <summary>
@@ -41,6 +44,10 @@ namespace SuperTicketApi.Domain.MainContext.Command.CreateCommands
         /// </remarks>
         [DbColumn("CoordY")]
         public int CoordY { get; set; }
+
+        /// <summary>
+        /// The command.
+        /// </summary>
         public string Command => CreateSpCommandPattern.CreateArea;
     }
 }

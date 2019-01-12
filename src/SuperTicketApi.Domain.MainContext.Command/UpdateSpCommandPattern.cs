@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.Domain.MainContext.Command.CreateCommands
+﻿namespace SuperTicketApi.Domain.MainContext.Command
 {
     /// <summary>
     /// The update store procedure command pattern.

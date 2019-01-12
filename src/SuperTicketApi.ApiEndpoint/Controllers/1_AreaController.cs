@@ -11,6 +11,7 @@
     using System.Threading.Tasks;
 
     using SuperTicketApi.Domain.MainContext.Command.Delete;
+    using SuperTicketApi.Domain.MainContext.Command.Update;
 
     /// <summary>
     /// The Test controller.
@@ -106,18 +107,18 @@
         {
             var result = await this.Mediator.Send(
                 updateModel.ProjectedAs<UpdateAreaCommand>());
-            if (result.isSuccess)
+            if (result.IsSuccess)
             {
                 return new ObjectResult(new
                 {
-                    Success = result.isSuccess,
+                    Success = result.IsSuccess,
                     NewId = result.Object,
                 });
             }
 
             return new ObjectResult(new
             {
-                Success = result.isSuccess,
+                Success = result.IsSuccess,
                 Error = result.Message,
             });
         }
@@ -135,18 +136,18 @@
         public async Task<IActionResult> Delete(int id)
         {
             var result = await this.Mediator.Send(new DeleteAreaCommand(id));
-            if (result.isSuccess)
+            if (result.IsSuccess)
             {
                 return new ObjectResult(new
                 {
-                    Success = result.isSuccess,
+                    Success = result.IsSuccess,
                     NewId = result.Object,
                 });
             }
 
             return new ObjectResult(new
             {
-                Success = result.isSuccess,
+                Success = result.IsSuccess,
                 Error = result.Message,
             });
         }

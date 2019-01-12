@@ -4,6 +4,9 @@
 
     using SuperTicketApi.Domain.MainContext.DTO.Attributes;
 
+    /// <summary>
+    /// The create venue command.
+    /// </summary>
     public class CreateVenueCommand : IRequest<DalCommandResponse>
     {
         /// <summary>
@@ -32,6 +35,10 @@
         /// </remarks>
         [DbColumn("Phone")]
         public string Phone { get; set; }
+
+        /// <summary>
+        /// The command.
+        /// </summary>
         public string Command => CreateSpCommandPattern.CreateVenue;
     }
 }

@@ -4,9 +4,13 @@
 
     using SuperTicketApi.Domain.MainContext.DTO.Attributes;
 
+    /// <summary>
+    /// The create event seat command.
+    /// </summary>
     public class CreateEventSeatCommand : IRequest<DalCommandResponse>
 
-    { /// <summary>
+    {
+        /// <summary>
         /// Gets or sets the event areas id.
         /// </summary>
         /// <remarks>
@@ -41,6 +45,10 @@
         /// </remarks>
         [DbColumn("State")]
         public int State { get; set; }
+
+        /// <summary>
+        /// The command.
+        /// </summary>
         public string Command => CreateSpCommandPattern.CreateEventSeat;
     }
 }

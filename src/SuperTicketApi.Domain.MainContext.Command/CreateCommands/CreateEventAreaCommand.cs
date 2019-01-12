@@ -4,6 +4,9 @@
 
     using SuperTicketApi.Domain.MainContext.DTO.Attributes;
 
+    /// <summary>
+    /// The create event area command.
+    /// </summary>
     public class CreateEventAreaCommand : IRequest<DalCommandResponse>
     {
         /// <summary>
@@ -50,6 +53,10 @@
         /// </remarks>
         [DbColumn("Price")]
         public decimal Price { get; set; }
+
+        /// <summary>
+        /// The command.
+        /// </summary>
         public string Command => CreateSpCommandPattern.CreateEventArea;
     }
 }

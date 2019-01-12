@@ -6,6 +6,9 @@
 
     using SuperTicketApi.Domain.MainContext.DTO.Attributes;
 
+    /// <summary>
+    /// The create event command.
+    /// </summary>
     public class CreateEventCommand : IRequest<DalCommandResponse>
     {
         /// <summary>
@@ -61,6 +64,10 @@
         /// </remarks>
         [DbColumn("LayoutId")]
         public int LayoutId { get; set; }
+
+        /// <summary>
+        /// The command.
+        /// </summary>
         public string Command => CreateSpCommandPattern.CreateEvent;
     }
 }

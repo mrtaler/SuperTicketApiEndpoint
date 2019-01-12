@@ -12,6 +12,7 @@
     using SuperTicketApi.Domain.MainContext.Command;
     using SuperTicketApi.Domain.MainContext.Command.CreateCommands;
     using SuperTicketApi.Domain.MainContext.Command.Delete;
+    using SuperTicketApi.Domain.MainContext.Command.Update;
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
 
     class CreateCommandHandler 
@@ -55,7 +56,7 @@
                 var retId = (int)newItemId.Value;
                 var retResp = new DalCommandResponse
                 {
-                    isSuccess = true,
+                    IsSuccess = true,
                     Message = "new entity in Area Table was added",
                     Object = retId
                 };
@@ -106,7 +107,7 @@
                 // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
                 var retResp = new DalCommandResponse
                 {
-                    isSuccess = true,
+                    IsSuccess = true,
                     Message = "Entity was Updated",
                     Object = request
                 };
@@ -155,7 +156,7 @@
                 // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
                 var retResp = new DalCommandResponse
                 {
-                    isSuccess = true,
+                    IsSuccess = true,
                     Message = "Entity was Updated",
                     Object = request
                 };

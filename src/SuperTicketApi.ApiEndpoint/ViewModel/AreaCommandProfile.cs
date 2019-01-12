@@ -1,7 +1,8 @@
-﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.Area
+﻿namespace SuperTicketApi.ApiEndpoint.ViewModel
 {
+    using SuperTicketApi.ApiEndpoint.ViewModel.Area;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Area;
-    using SuperTicketApi.Domain.MainContext.Command.CreateCommands;
+    using SuperTicketApi.Domain.MainContext.Command.Update;
 
     /// <summary>
     /// The area command profile.

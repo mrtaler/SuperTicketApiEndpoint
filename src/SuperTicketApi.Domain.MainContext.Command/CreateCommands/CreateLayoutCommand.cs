@@ -4,6 +4,9 @@
 
     using SuperTicketApi.Domain.MainContext.DTO.Attributes;
 
+    /// <summary>
+    /// The create layout command.
+    /// </summary>
     public class CreateLayoutCommand : IRequest<DalCommandResponse>
     {
         /// <summary>
@@ -23,6 +26,10 @@
         /// </remarks>
         [DbColumn("Description")]
         public string Description { get; set; }
+
+        /// <summary>
+        /// The command.
+        /// </summary>
         public string Command => CreateSpCommandPattern.CreateLayout;
     }
 }

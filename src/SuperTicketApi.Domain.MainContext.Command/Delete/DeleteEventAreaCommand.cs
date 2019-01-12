@@ -2,6 +2,9 @@
 {
     using MediatR;
 
+    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
+    using SuperTicketApi.Domain.MainContext.DTO.Models;
+
     /// <summary>
     /// The delete event area command.
     /// </summary>
@@ -21,6 +24,7 @@
         /// <summary>
         /// Gets the id.
         /// </summary>
+        [IdColumn(typeof(EventArea))]
         public int Id { get; private set; }
 
         /// <summary>

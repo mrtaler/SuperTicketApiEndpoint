@@ -4,6 +4,9 @@
 
     using SuperTicketApi.Domain.MainContext.DTO.Attributes;
 
+    /// <summary>
+    /// The create seat command.
+    /// </summary>
     public class CreateSeatCommand : IRequest<DalCommandResponse>
     {
         /// <summary>
@@ -32,6 +35,10 @@
         /// </remarks>
         [DbColumn("Number")]
         public int Number { get; set; }
+
+        /// <summary>
+        /// The command.
+        /// </summary>
         public string Command => CreateSpCommandPattern.CreateSeat;
     }
 }

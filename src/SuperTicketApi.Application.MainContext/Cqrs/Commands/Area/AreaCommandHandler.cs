@@ -58,7 +58,7 @@
                 var commRes = await this.mediatr.Send(dalCommand);
 
                 // ! then geet seponse from DAL, and send created ID to Presenter
-                if (commRes.isSuccess)
+                if (commRes.IsSuccess)
                 {
                     var resp = new CommandResponse
                                    {
