@@ -13,17 +13,17 @@
         /// <summary>
         /// The and.
         /// </summary>
-        private const string AND = " and ";
+        private const string And = " and ";
 
         /// <summary>
         /// The or.
         /// </summary>
-        private const string OR = " or ";
+        private const string Or = " or ";
 
         /// <summary>
         /// The ops.
         /// </summary>
-        private static Dictionary<ExpressionType, String> ops = new Dictionary<ExpressionType, String>();
+        private static Dictionary<ExpressionType, string> ops = new Dictionary<ExpressionType, string>();
 
         static SqlParametrBuilder()
         {
@@ -53,7 +53,7 @@
 
         }
 
-        static string makeMethodCallPredicate(MethodCallExpression expression)
+        static string MakeMethodCallPredicate(MethodCallExpression expression)
         {
             StringBuilder sql = new StringBuilder();
             if (expression.Method.Name == "StartsWith")
@@ -61,10 +61,11 @@
                 sql.Append(string.Format("{0} like '{1}%'", (expression.Object as MemberExpression).Member.Name, expression.Arguments[0]).Replace("\"", string.Empty));
 
             }
+
             return sql.ToString();
         }
 
-        static string makeOperationPredicate(BinaryExpression expression)
+        static string MakeOperationPredicate(BinaryExpression expression)
         {
             StringBuilder sql = new StringBuilder();
             if (expression.Left.NodeType == ExpressionType.MemberAccess)
@@ -72,6 +73,7 @@
                 sql.Append((expression.Left as MemberExpression).Member.Name);
 
             }
+
             if (expression.Left.NodeType == ExpressionType.Constant)
             {
                 sql.Append((expression.Left as ConstantExpression).Value);
@@ -89,7 +91,7 @@
 
             if (expression.Right.NodeType == ExpressionType.Constant)
             {
-                var value = getValue(expression.Right as ConstantExpression);
+                var value = GetValue(expression.Right as ConstantExpression);
 
                 if (value == "null")
                 {
@@ -102,7 +104,7 @@
             return sql.ToString();
         }
 
-        static object getValue(ConstantExpression expression)
+        static object GetValue(ConstantExpression expression)
         {
 
             switch (expression.Type.ToString())
@@ -121,10 +123,11 @@
         static string CheckExpression(BinaryExpression expression)
         {
             StringBuilder sql = new StringBuilder();
-            if (isOperation(expression.NodeType))
+            if (IsOperation(expression.NodeType))
             {
-                sql.Append(makeOperationPredicate(expression));
+                sql.Append(MakeOperationPredicate(expression));
             }
+
             if (expression.Left.NodeType == ExpressionType.AndAlso)
             {
                 sql.Append(CheckExpression(expression.Left as BinaryExpression));
@@ -137,22 +140,22 @@
 
             if (expression.Left.NodeType == ExpressionType.Call)
             {
-                sql.Append(makeMethodCallPredicate(expression.Left as MethodCallExpression));
+                sql.Append(MakeMethodCallPredicate(expression.Left as MethodCallExpression));
             }
 
-            if (isOperation(expression.Left.NodeType))
+            if (IsOperation(expression.Left.NodeType))
             {
-                sql.Append(makeOperationPredicate(expression.Left as BinaryExpression));
+                sql.Append(MakeOperationPredicate(expression.Left as BinaryExpression));
             }
 
             if (expression.NodeType == ExpressionType.OrElse)
             {
-                sql.Append(OR);
+                sql.Append(Or);
             }
 
             if (expression.NodeType == ExpressionType.AndAlso)
             {
-                sql.Append(AND);
+                sql.Append(And);
             }
 
             if (expression.Right.NodeType == ExpressionType.AndAlso)
@@ -168,18 +171,18 @@
             if (expression.Right.NodeType == ExpressionType.Call)
             {
 
-                sql.Append(makeMethodCallPredicate(expression.Right as MethodCallExpression));
+                sql.Append(MakeMethodCallPredicate(expression.Right as MethodCallExpression));
             }
 
-            if (isOperation(expression.Right.NodeType))
+            if (IsOperation(expression.Right.NodeType))
             {
-                sql.Append(makeOperationPredicate(expression.Right as BinaryExpression));
+                sql.Append(MakeOperationPredicate(expression.Right as BinaryExpression));
             }
 
             return sql.ToString();
         }
 
-        static bool isOperation(ExpressionType type)
+        static bool IsOperation(ExpressionType type)
         {
             switch (type)
             {

@@ -1,12 +1,12 @@
 ﻿namespace SuperTicketApi.Application.Seedwork.Common
 {
     using System.Collections.Generic;
-
+    using SuperTicketApi.Application.BoundedContext.DTO.Dto;
     using SuperTicketApi.Domain.Seedwork;
 
     public interface IEditableService<TEntity, TEntityDto>
-        where TEntity : Entity 
-        where TEntityDto : Entity
+        where TEntity : DomainEntity 
+        where TEntityDto : BusinesEntity
     {
         TEntity Add(TEntity item);
         TEntityDto Add(TEntityDto item);

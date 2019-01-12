@@ -1,0 +1,14 @@
+﻿CREATE PROCEDURE [dbo].[DeleteByIdLayout] @LayoutId INT
+AS
+BEGIN
+	SET NOCOUNT ON;
+	BEGIN TRY
+
+		DELETE FROM [dbo].[Layouts]
+		WHERE IDENTITYCOL = @LayoutId
+	END TRY
+	BEGIN CATCH
+		EXECUTE [dbo].[GetErrorInfo];
+	END CATCH
+END
+GO

@@ -8,8 +8,6 @@
 
     using FluentValidation.AspNetCore;
 
-    using MediatR.Extensions.Autofac.DependencyInjection;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -25,11 +23,11 @@
     using Serilog.Events;
 
     using SuperTicketApi.ApiEndpoint.Extension;
-    using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.Application.MainContext;
     using SuperTicketApi.Domain.MainContext.Mssql;
-    using SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers;
+    using SuperTicketApi.Infrastructure.Crosscutting.Adapter;
     using SuperTicketApi.Infrastructure.Crosscutting.Implementation;
+    using SuperTicketApi.Infrastructure.Crosscutting.Implementation.Adapter;
 
     using ILogger = Serilog.ILogger;
 
@@ -44,30 +42,33 @@
         /// <param name="configuration">
         /// The configuration.
         /// </param>
+        /// <param name="env">
+        /// The env.
+        /// </param>
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             this.Configuration = configuration;
             string pathSettingsAssembly = Assembly.GetAssembly(typeof(Startup)).Location;
             
-            #region Setup Serilog for Logging
             // Core is set up to use the global, statically accessible logger from Serilog.
             // It must be set up in the main entrpoint and does not require a DI container
             // Create a logger with configured sinks, enrichers, and minimum level
             // Serilog's global, statically accessible logger, is set via Log.Logger and can be invoked using the static methods on the Log class.
             // File Sink is commented out and can be replaced with Serilogs vast library of available sinks
-
-            Log.Logger = new LoggerConfiguration().MinimumLevel.Verbose()
-                 .WriteTo.Trace(/*LogEventLevel.Verbose*/)
-                  .WriteTo.ApplicationInsights("4f6ea94a-c353-4351-9f71-574900d5b176").WriteTo.RollingFile(
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                .WriteTo.Trace(/*LogEventLevel.Verbose*/)
+                .WriteTo.ApplicationInsights("4f6ea94a-c353-4351-9f71-574900d5b176")
+                .WriteTo.RollingFile(
                     "log-{Date}.txt"/*$"{Path.GetDirectoryName(pathSettingsAssembly)}\\Log.txt"*/,
                     LogEventLevel.Verbose,
                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level}:{EventId} [{SourceContext}] {Message}{NewLine}{Exception}")
-            .WriteTo.Console(theme: Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme.Code/*LogEventLevel.Debug*/) //<-- This will give us output to our Kestrel console
-            //.WriteTo.File("_logs/log-.txt", rollingInterval: RollingInterval.Day) //<-- Write our logs to a local text file with rolling interval configuration
+                .WriteTo.Console(theme: Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme.Code/*LogEventLevel.Debug*/) // <-- This will give us output to our Kestrel console
+            // .WriteTo.File("_logs/log-.txt", rollingInterval: RollingInterval.Day) //<-- Write our logs to a local text file with rolling interval configuration
             .CreateLogger();
             Log.Information("The global logger has been configured.");
             Log.Information("Hello, Serilog!");
-            #endregion
+            
         }
 
         /// <summary>
@@ -81,6 +82,9 @@
         /// <param name="services">
         /// The services.
         /// </param>
+        /// <returns>
+        /// The <see cref="IServiceProvider"/>.
+        /// </returns>
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             var builder = new ContainerBuilder();
@@ -178,9 +182,10 @@
                 });
                 */
 
+            services.AddScoped<ITypeAdapterFactory, AutomapperTypeAdapterFactory>();
+            TypeAdapterFactory.SetCurrent(services.BuildServiceProvider().GetService<ITypeAdapterFactory>());
+
             services.AddRouting(options => options.LowercaseUrls = true);
-            var asss = typeof(GetQueryAsIEnumerableQueryHandler).Assembly;
-           // services.AddMediatR(asss);
             services.AddMvc()
                 .AddFluentValidation().AddJsonOptions(options =>
                     {
@@ -188,14 +193,18 @@
                             new CamelCasePropertyNamesContractResolver();
                     })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-      //      var rr = this.Configuration.GetSection(nameof(AppConnectionStrings)).Get<AppConnectionStrings>();
+
+            // var rr = this.Configuration.GetSection(nameof(AppConnectionStrings)).Get<AppConnectionStrings>();
             builder.Populate(services);
-           // builder.AddMediatR(asss);
+
+            // builder.AddMediatR(asss);
             builder.RegisterModule(new MainContextMssqlModule());
             builder.RegisterModule(new SuperTicketApiInfrastructureCrosscuttingModule());
-           // builder.RegisterModule(new MainContextModule());
-            builder.Register(c => new AppConnectionStrings(c.Resolve<IConfiguration>())).AsSelf();
+            builder.RegisterModule(new MainContextModule());
+           // builder.Register(c => new AppConnectionStrings(c.Resolve<IConfiguration>())).AsSelf();
 
+            // builder.AddMediatR(
+            // typeof(AreaPresenterCommandHandler).GetTypeInfo().Assembly);
             var container = builder.Build();
             return new AutofacServiceProvider(container);
         }
@@ -209,13 +218,18 @@
         /// <param name="env">
         /// The env.
         /// </param>
+        /// <param name="loggerFactory">
+        /// The logger Factory.
+        /// </param>
+        /// <param name="provider">
+        /// The provider.
+        /// </param>
         public void Configure(
             IApplicationBuilder app,
             IHostingEnvironment env,
             ILoggerFactory loggerFactory,
             IApiVersionDescriptionProvider provider)
         {
-
             /*if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -225,9 +239,8 @@
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }*/
-
-           // loggerFactory.AddSerilog();
-
+            
+            // loggerFactory.AddSerilog();
             var option = new RewriteOptions();
             option.AddRedirect("^$", "swagger");
             app.UseRewriter(option);
@@ -249,15 +262,13 @@
             app.UseHttpsRedirection();
             app.UseDefaultFiles();
             app.UseStaticFiles();
-
-          //  app.UseApiKey();
-          //  app.UseCorrelationId();
-           // app.UseConnectionString();
-        //    app.UseResponseCaching();
-
+            
+            // app.UseApiKey();
+            // app.UseCorrelationId();
+            // app.UseConnectionString();
+            // app.UseResponseCaching();
             // app.UseCors("AllowAll");
             app.UseMvc();
-
         }
     }
 }

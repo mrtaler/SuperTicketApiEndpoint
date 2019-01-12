@@ -1,11 +1,14 @@
 ﻿namespace SuperTicketApi.Application.BoundedContext.DTO.Dto
 {
-    using SuperTicketApi.Domain.Seedwork;
+    public abstract class BusinesEntity
+    {
+
+    }
 
     /// <summary>
     /// The event address. TABLE[dbo].[EventAddress]
     /// </summary>
-    public class EventAddressDto : Entity
+    public class EventAddressDto : BusinesEntity
     {
         /// <summary>
         /// Gets or sets the id.  [EventAddresId] INT NOT NULL PRIMARY KEY, 

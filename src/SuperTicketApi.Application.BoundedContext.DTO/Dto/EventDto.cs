@@ -2,9 +2,7 @@
 {
     using System;
 
-    using SuperTicketApi.Domain.Seedwork;
-
-    public class EventDto : Entity
+    public class EventDto : BusinesEntity
     {
         /// <summary>
         /// Gets or sets the id.  [EventId] int primary key identity,
@@ -39,7 +37,7 @@
         /// <summary>
         /// Gets or sets the fk_ event place id. [Fk_EventPlaceId] int NOT NULL, 
         /// </summary>
-        public int Fk_EventPlaceId { get; set; }
+        public int FkEventPlaceId { get; set; }
 
         /// <summary>
         /// Gets or sets the max seats.  [MaxSeats] INT NOT NULL,

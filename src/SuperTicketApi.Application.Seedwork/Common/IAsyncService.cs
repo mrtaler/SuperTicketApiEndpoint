@@ -3,12 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
+    using SuperTicketApi.Application.BoundedContext.DTO.Dto;
     using SuperTicketApi.Domain.Seedwork;
 
     public interface IAsyncService<TEntity, TEntityDto> : IDisposable
-        where TEntity : Entity
-        where TEntityDto : Entity
+        where TEntity : DomainEntity
+        where TEntityDto : BusinesEntity
     {
 
         Task<TEntity> GetAsync(object id);
