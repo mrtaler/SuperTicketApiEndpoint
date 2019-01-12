@@ -37,7 +37,7 @@
         [HttpGet("GetAllEvents")]
         public async Task<IActionResult> GetAllEvents()
         {
-            var events = await this.Mediator.Send(EnumerableQueryes.GetEventAsIEnumerableQuery);
+            var events = await this.Mediator.Send(EnumerableQueryPattern.GetEventAsIEnumerableQuery);
             return new ObjectResult(new
             {
                 events = events,
@@ -58,7 +58,7 @@
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.Mediator.Send(ByIdSingleQueryes.GetSingleEventQuery(id));
+            var result = await this.Mediator.Send(ByIdSingleQueryPattern.GetSingleEventQuery(id));
             return new ObjectResult(new { Event = result });
         }
 

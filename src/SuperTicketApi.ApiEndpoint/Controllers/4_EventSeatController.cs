@@ -37,7 +37,7 @@
         [HttpGet("GetAllEventSeats")]
         public async Task<IActionResult> GetAllEventSeats()
         {
-            var eventSeats = await this.Mediator.Send(EnumerableQueryes.GetEventSeatAsIEnumerableQuery);
+            var eventSeats = await this.Mediator.Send(EnumerableQueryPattern.GetEventSeatAsIEnumerableQuery);
             return new ObjectResult(new
             {
                 eventSeats = eventSeats,
@@ -57,7 +57,7 @@
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.Mediator.Send(ByIdSingleQueryes.GetSingleEventSeatQuery(id));
+            var result = await this.Mediator.Send(ByIdSingleQueryPattern.GetSingleEventSeatQuery(id));
             return new ObjectResult(new { EventSeat = result });
         }
 

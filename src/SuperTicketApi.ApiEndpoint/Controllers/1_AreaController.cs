@@ -41,7 +41,7 @@
         [HttpGet("GetAllAreas")]
         public async Task<IActionResult> GetAreas()
         {
-            var areas = await this.Mediator.Send(EnumerableQueryes.GetAreaAsIEnumerableQuery);
+            var areas = await this.Mediator.Send(EnumerableQueryPattern.GetAreaAsIEnumerableQuery);
 
             return new ObjectResult(new { allAreas = areas });
         }
@@ -58,7 +58,7 @@
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.Mediator.Send(ByIdSingleQueryes.GetSingleAreaQuery(id));
+            var result = await this.Mediator.Send(ByIdSingleQueryPattern.GetSingleAreaQuery(id));
 
             return new ObjectResult(new { area = result });
         }

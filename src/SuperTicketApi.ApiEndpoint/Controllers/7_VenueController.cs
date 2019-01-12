@@ -30,7 +30,7 @@
         [HttpGet("GetAllVenues")]
         public async Task<IActionResult> GetAllVenues()
         {
-            var venues = await this.Mediator.Send(EnumerableQueryes.GetVenueAsIEnumerableQuery);
+            var venues = await this.Mediator.Send(EnumerableQueryPattern.GetVenueAsIEnumerableQuery);
 
             return new ObjectResult(new
             {
@@ -50,7 +50,7 @@
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.Mediator.Send(ByIdSingleQueryes.GetSingleVenueQuery(id));
+            var result = await this.Mediator.Send(ByIdSingleQueryPattern.GetSingleVenueQuery(id));
             return new ObjectResult(new { Venue = result });
         }
 

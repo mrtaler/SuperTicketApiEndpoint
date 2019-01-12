@@ -37,7 +37,7 @@
         [HttpGet("GetAllLayouts")]
         public async Task<IActionResult> GetAllLayouts()
         {
-            var layouts = await this.Mediator.Send(EnumerableQueryes.GetLayoutAsIEnumerableQuery);
+            var layouts = await this.Mediator.Send(EnumerableQueryPattern.GetLayoutAsIEnumerableQuery);
             return new ObjectResult(new
             {
                 layouts = layouts,
@@ -58,7 +58,7 @@
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.Mediator.Send(ByIdSingleQueryes.GetSingleLayoutQuery(id));
+            var result = await this.Mediator.Send(ByIdSingleQueryPattern.GetSingleLayoutQuery(id));
             return new ObjectResult(new { Layout = result });
         }
 
