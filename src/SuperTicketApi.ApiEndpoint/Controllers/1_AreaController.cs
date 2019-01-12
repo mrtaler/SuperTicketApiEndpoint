@@ -24,7 +24,7 @@
         /// <param name="mediator">
         /// The mediator.
         /// </param>
-        public AreaController(IMediator mediator, ITables repos)
+        public AreaController(IMediator mediator)
             : base(mediator)
         {
         }
