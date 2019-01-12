@@ -1,38 +1,37 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.Area
 {
+    using System.Collections.Generic;
+
+    using SuperTicketApi.ApiEndpoint.ViewModel.Seat;
+
     /// <summary>
-    /// 
+    /// The area view model.
     /// </summary>
-    /// <seealso cref="SuperTicketApi.ApiEndpoint.ViewModel.ApiViewModel" />
-    public class CreateAreaViewModel:ApiViewModel
+    public class UpdateAreaViewModel : ApiViewModel
     {
         /// <summary>
-        /// Gets or sets the layout identifier.
+        /// Gets or sets the id.
         /// </summary>
-        /// <value>
-        /// The layout identifier.
-        /// </value>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the layout id.
+        /// </summary>
         public int LayoutId { get; set; }
+
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
-        /// <value>
-        /// The description.
-        /// </value>
         public string Description { get; set; }
+
         /// <summary>
         /// Gets or sets the coord x.
         /// </summary>
-        /// <value>
-        /// The coord x.
-        /// </value>
         public int CoordX { get; set; }
+
         /// <summary>
         /// Gets or sets the coord y.
         /// </summary>
-        /// <value>
-        /// The coord y.
-        /// </value>
         public int CoordY { get; set; }
     }
 }

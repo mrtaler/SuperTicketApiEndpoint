@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers
+﻿namespace SuperTicketApi.Domain.MainContext.Command.CreateCommands
 {
     /// <summary>
     /// The create store procedure command pattern.

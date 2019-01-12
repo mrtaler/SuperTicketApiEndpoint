@@ -1,25 +1,27 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers
 {
+    using MediatR;
+    using SuperTicketApi.Domain.MainContext.Command;
+    using SuperTicketApi.Domain.MainContext.Command.CreateCommands;
+    using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using System.Collections.Generic;
     using System.Data;
-    using System.Data.SqlClient;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using MediatR;
-
-    using SuperTicketApi.Domain.MainContext.Command;
-    using SuperTicketApi.Domain.MainContext.Command.CreateCommands;
-    using SuperTicketApi.Domain.MainContext.DTO.Models;
-    using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
-
-    class CreateCommandHandler : BaseCommandHandler, IRequestHandler<CreateAreaCommand, DalCommandResponse>
+    class CreateCommandHandler 
+        : BaseCommandHandler, IRequestHandler<CreateAreaCommand, DalCommandResponse>
     {
-        public CreateCommandHandler(IUnitOfWorkFactory factory, IMediator mediatr) : base(factory, mediatr)
+        public CreateCommandHandler(
+            IUnitOfWorkFactory factory, IMediator mediatr)
+            : base(factory, mediatr)
         {
         }
 
-        public async Task<DalCommandResponse> Handle(CreateAreaCommand request, CancellationToken cancellationToken)
+        public async Task<DalCommandResponse> Handle(
+            CreateAreaCommand request,
+            CancellationToken cancellationToken)
         {
             try
             {
@@ -38,16 +40,12 @@
                     sqlDbType: SqlDbType.Int,
                     size: 1);
 
-                var parametersList = new List<SqlParameter>
-            {
-                newItemId,
-                this.GetSqlParameter("LayoutId", request.LayoutId),
-                this.GetSqlParameter("Description", request.Description),
-                this.GetSqlParameter("CoordX", request.CoordX),
-                this.GetSqlParameter("CoordY", request.CoordY)
-            };
+                var paramList = GetDbParametrs(request, newItemId).ToList();
 
-                var returnValue = this.ExecuteSpNonQuery(CreateSpCommandPattern.CreateArea, command, parametersList);
+                this.ExecuteSpWithReader(
+                     request.Command,
+                     command,
+                     paramList);
 
                 // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
 
@@ -58,6 +56,58 @@
                     Message = "new entity in Area Table was added",
                     Object = retId
                 };
+                return await Task.FromResult (retResp);
+            }
+            catch (System.Exception ex)
+            {
+                var ret = new DalCommandResponse { Message = ex.Message };
+                return await Task.FromResult (ret);
+            }
+        }
+
+
+    }
+
+    class UpdateCommandHandler :
+        BaseCommandHandler,
+        IRequestHandler<UpdateAreaCommand, DalCommandResponse>
+    {
+        public UpdateCommandHandler(
+            IUnitOfWorkFactory factory, IMediator mediatr)
+            : base(factory, mediatr)
+        {
+        }
+
+        public async Task<DalCommandResponse> Handle(
+            UpdateAreaCommand request,
+            CancellationToken cancellationToken)
+        {
+            try
+            {
+                if (this.command.Connection.State != ConnectionState.Open)
+                {
+                    return new DalCommandResponse
+                    {
+                        Message = "One or more validation errors occurred.",
+                        DbValidationErrors = new List<string> { "connection was closed" }
+                    };
+                }
+
+                var paramList = GetDbParametrs(request).ToList();
+
+                this.ExecuteSpWithReader(
+                     request.Command,
+                     command,
+                     paramList);
+
+                // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
+
+                var retResp = new DalCommandResponse
+                {
+                    isSuccess = true,
+                    Message = "Entity was Updated",
+                    Object = request
+                };
                 return retResp;
             }
             catch (System.Exception ex)
@@ -65,5 +115,57 @@
                 return new DalCommandResponse { Message = ex.Message };
             }
         }
+
+
+    }
+    class DeleteCommandHandler :
+        BaseCommandHandler,
+        IRequestHandler<DeleteAreaCommand, DalCommandResponse>
+    {
+        public DeleteCommandHandler(
+            IUnitOfWorkFactory factory, IMediator mediatr)
+            : base(factory, mediatr)
+        {
+        }
+
+        public async Task<DalCommandResponse> Handle(
+            DeleteAreaCommand request,
+            CancellationToken cancellationToken)
+        {
+            try
+            {
+                if (this.command.Connection.State != ConnectionState.Open)
+                {
+                    return new DalCommandResponse
+                    {
+                        Message = "One or more validation errors occurred.",
+                        DbValidationErrors = new List<string> { "connection was closed" }
+                    };
+                }
+
+                var paramList = GetDbParametrs(request).ToList();
+
+                this.ExecuteSpWithReader(
+                     request.Command,
+                     command,
+                     paramList);
+
+                // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
+
+                var retResp = new DalCommandResponse
+                {
+                    isSuccess = true,
+                    Message = "Entity was Updated",
+                    Object = request
+                };
+                return retResp;
+            }
+            catch (System.Exception ex)
+            {
+                return new DalCommandResponse { Message = ex.Message };
+            }
+        }
+
+
     }
 }

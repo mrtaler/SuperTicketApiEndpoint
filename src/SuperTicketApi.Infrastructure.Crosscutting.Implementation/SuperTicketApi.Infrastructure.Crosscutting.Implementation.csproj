@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -17,12 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SuperTicketApi.Infrastructure.Crosscutting\SuperTicketApi.Infrastructure.Crosscutting.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Microsoft.Extensions.DependencyModel">
-      <HintPath>..\..\packages\microsoft.extensions.dependencymodel\2.0.4\lib\netstandard1.6\Microsoft.Extensions.DependencyModel.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,12 +1,15 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers
 {
     using MediatR;
+    using SuperTicketApi.Domain.MainContext.Command;
+    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
     using System.Globalization;
+    using System.Linq;
 
     public class BaseCommandHandler : BaseHandler
     {
@@ -79,7 +82,7 @@
         /// <returns>
         /// The <see cref="int"/>.
         /// </returns>
-        protected int ExecuteSpNonQuery(
+        protected void ExecuteSpWithReader(
             string sqlSp,
             IDbCommand command,
             IEnumerable<SqlParameter> parameters)
@@ -94,33 +97,62 @@
                 command.Parameters.Add(parameter);
             }
 
-            DataBaseErrors dbError;
+            DataBaseErrors dbError = null;
             var com = command.ExecuteReader(CommandBehavior.CloseConnection);
 
             while (com.Read())
             {
                 dbError = new DataBaseErrors(com);
+                throw new DatabaseException(dbError);
+
             }
 
-            return 1; //command.ExecuteNonQuery();
+
+            //  return result; //command.ExecuteNonQuery();
         }
 
         /// <summary>
-        /// The get item.
+        /// The mapping method.
         /// </summary>
-        /// <param name="name">
-        /// The name.
-        /// </param>
         /// <param name="reader">
-        /// The reader.
+        /// The data <paramref name="reader"/>.
         /// </param>
+        /// <typeparam name="TEntity">Database table class
+        /// </typeparam>
         /// <returns>
-        /// The <see cref="object"/>.
+        /// The <see cref="TEntity"/>.
         /// </returns>
-        protected virtual object GetItem(string name, IDataReader reader)
+        protected List<SqlParameter> GetDbParametrs(
+            IRequest<DalCommandResponse> entity,
+            SqlParameter returnParametr = null)
         {
-            return reader[name] is DBNull ? null : reader[name];
+            var dataBaseParam = new List<SqlParameter>();
+            if (returnParametr != null)
+            {
+                dataBaseParam.Add(returnParametr);
+            }
+
+            var columns = entity.GetType().GetProperties();
+
+            foreach (var item in columns)
+            {
+                var currentAttribute = item.GetCustomAttributes(typeof(DbColumnAttribute), true).FirstOrDefault() as DbColumnAttribute;
+                if (currentAttribute != null)
+                {
+                    string dbColumnName = currentAttribute.columnName;
+
+                    var value = item.GetValue(entity);
+
+                    var sqlParam = this.GetSqlParameter(dbColumnName, value);
+
+                    dataBaseParam.Add(sqlParam);
+                }
+            }
+
+            return dataBaseParam;
         }
+
+
     }
 
     public class DataBaseErrors
@@ -144,14 +176,15 @@
         }
 
     }
-
     public static class DbReaderExtension
     {
         public static T GetValueAsString<T>(
             this IDataReader reader,
             string fieldName) where T : class
         {
-            return reader[fieldName] is DBNull ? null : (T)Convert.ChangeType(reader[fieldName], typeof(T), CultureInfo.InvariantCulture);
+            return reader[fieldName] is DBNull
+                ? null
+                : (T)Convert.ChangeType(reader[fieldName], typeof(T), CultureInfo.InvariantCulture);
         }
     }
 }

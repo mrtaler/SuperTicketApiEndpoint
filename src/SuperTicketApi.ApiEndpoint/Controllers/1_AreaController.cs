@@ -10,6 +10,7 @@
     using SuperTicketApi.ApiEndpoint.Controllers.Base;
     using SuperTicketApi.ApiEndpoint.ViewModel.Area;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Area;
+    using SuperTicketApi.Domain.MainContext.Command.CreateCommands;
 
     /// <summary>
     /// The Test controller.
@@ -82,25 +83,53 @@
             
             var result = await Mediator.Send(createAreaViewModel.ProjectedAs<PresenterCreateAreaCommand>());
 
+            if (result.isSuccess)
+            {
+                return new ObjectResult(new
+                {
+                    Success=result.isSuccess,
+                    NewId = result.Object,
+                });
+            }
+
             return new ObjectResult(new
             {
-                newId = result.Object,
-                ForObject = createAreaViewModel
+                Success=result.isSuccess,
+                Error = result.Message,
+
             });
+
+
+
         }
 
         /// <summary>
         /// The PUT api/values/5
         /// </summary>
-        /// <param name="id">
-        /// The <paramref name="id"/>.
-        /// </param>
-        /// <param name="value">
-        /// The value.
+        /// <param name="updateModel">
+        /// The updated Model.
         /// </param>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult>  Put([FromBody] UpdateAreaViewModel updateModel)
         {
+            var result = await Mediator.Send(
+                updateModel.ProjectedAs<UpdateAreaCommand>());
+            if (result.isSuccess)
+            {
+                return new ObjectResult(new
+                {
+                    Success = result.isSuccess,
+                    NewId = result.Object,
+                });
+            }
+
+            return new ObjectResult(new
+            {
+                Success = result.isSuccess,
+                Error = result.Message,
+
+            });
+
         }
 
 
@@ -111,8 +140,25 @@
         /// The <paramref name="id"/>.
         /// </param>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+          public async Task<IActionResult>  Delete(int id)
         {
+            var result = await Mediator.Send(new DeleteAreaCommand(id));
+            if (result.isSuccess)
+            {
+                return new ObjectResult(new
+                {
+                    Success = result.isSuccess,
+                    NewId = result.Object,
+                });
+            }
+
+            return new ObjectResult(new
+            {
+                Success = result.isSuccess,
+                Error = result.Message,
+
+            });
+            
         }
     }
 }
