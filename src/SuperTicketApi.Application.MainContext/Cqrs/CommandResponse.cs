@@ -1,6 +1,5 @@
 ﻿namespace SuperTicketApi.Application.MainContext.Cqrs
 {
-    using System;
     using System.Collections.Generic;
 
     using FluentValidation.Results;

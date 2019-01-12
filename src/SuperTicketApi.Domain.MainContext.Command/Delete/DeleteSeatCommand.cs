@@ -8,7 +8,7 @@
     /// <summary>
     /// The delete seat command.
     /// </summary>
-    public class DeleteSeatCommand : IRequest<CommandResponse>
+    public class DeleteSeatCommand : IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteSeatCommand"/> class.

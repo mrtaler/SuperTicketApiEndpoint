@@ -1,45 +1,42 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS
 {
     using System.Data;
-    using System.Linq;
-    using System.Reflection;
 
     using MediatR;
 
     using Serilog;
 
-    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
-    using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
-    using SuperTicketApi.Domain.Seedwork;
+    using SuperTicketApi.Domain.MainContext.DTO;
 
     /// <summary>
     /// base query command Handler
     /// </summary>
     public class BaseHandler
     {
-        protected readonly INetUnitOfWork Uow;
-        protected readonly IDbCommand Command;
+        /// <summary>
+        /// The uow.
+        /// </summary>
+        protected readonly ITabledUnitOfWork UnitOfWork;
+
+        /// <summary>
+        /// The mediatr.
+        /// </summary>
         protected readonly IMediator Mediatr;
 
-        public BaseHandler(IUnitOfWorkFactory factory, IMediator mediatr)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseHandler"/> class.
+        /// </summary>
+        /// <param name="factory">
+        /// The factory.
+        /// </param>
+        /// <param name="mediatr">
+        /// The mediatr.
+        /// </param>
+        public BaseHandler(ITabledUnitOfWork unitOfWork, IMediator mediatr)
         {
-            this.Uow = factory.Create();
-            this.Command = this.Uow.CreateCommand();
+            this.UnitOfWork = unitOfWork;
             this.Mediatr = mediatr;
             Log.Information($"{this.GetType().Name} was started");
-        }
-
-        protected string GetIdTableColumnName<T>() where T : DomainEntity
-        {
-            var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                .FirstOrDefault(p => p.GetCustomAttributes(typeof(IdColumnAttribute), false).Count() == 1);
-
-            var dataBaseAttribute = (properties.GetCustomAttributes(typeof(DbColumnAttribute), true).FirstOrDefault() as DbColumnAttribute).ColumnName;
-
-            /*var dnAttribute = item.GetCustomAttributes(
-                        typeof(IdColumnAttribute), true
-                    ).FirstOrDefault() as IdColumnAttribute;*/
-            return dataBaseAttribute;
         }
     }
 }

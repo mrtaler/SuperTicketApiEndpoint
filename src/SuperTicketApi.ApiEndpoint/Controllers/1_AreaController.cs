@@ -6,12 +6,10 @@
     using SuperTicketApi.ApiEndpoint.ViewModel;
     using SuperTicketApi.ApiEndpoint.ViewModel.Area;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Area;
-    using SuperTicketApi.Domain.MainContext.Command.CreateCommands;
-    using SuperTicketApi.Domain.MainContext.Queries;
-    using System.Threading.Tasks;
-
     using SuperTicketApi.Domain.MainContext.Command.Delete;
     using SuperTicketApi.Domain.MainContext.Command.Update;
+    using SuperTicketApi.Domain.MainContext.Queries;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// The Test controller.
@@ -26,10 +24,9 @@
         /// <param name="mediator">
         /// The mediator.
         /// </param>
-        public AreaController(IMediator mediator)
+        public AreaController(IMediator mediator, ITables repos)
             : base(mediator)
         {
-            // IOptions<AppConnectionStrings> options,
         }
 
         /// <summary>

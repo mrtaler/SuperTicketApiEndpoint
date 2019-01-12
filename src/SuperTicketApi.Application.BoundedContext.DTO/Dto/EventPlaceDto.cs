@@ -1,7 +1,5 @@
 ﻿namespace SuperTicketApi.Application.BoundedContext.DTO.Dto
 {
-    using SuperTicketApi.Domain.Seedwork;
-
     /// <summary>
     /// The event place. TABLE [dbo].[EventPlace]
     /// </summary>

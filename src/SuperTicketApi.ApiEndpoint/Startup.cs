@@ -8,8 +8,6 @@
 
     using FluentValidation.AspNetCore;
 
-    using MediatR.Extensions.Autofac.DependencyInjection;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -25,11 +23,8 @@
     using Serilog.Events;
 
     using SuperTicketApi.ApiEndpoint.Extension;
-    using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.Application.MainContext;
-    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Area;
     using SuperTicketApi.Domain.MainContext.Mssql;
-    using SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers;
     using SuperTicketApi.Infrastructure.Crosscutting.Adapter;
     using SuperTicketApi.Infrastructure.Crosscutting.Implementation;
     using SuperTicketApi.Infrastructure.Crosscutting.Implementation.Adapter;
@@ -206,7 +201,7 @@
             builder.RegisterModule(new MainContextMssqlModule());
             builder.RegisterModule(new SuperTicketApiInfrastructureCrosscuttingModule());
             builder.RegisterModule(new MainContextModule());
-            builder.Register(c => new AppConnectionStrings(c.Resolve<IConfiguration>())).AsSelf();
+           // builder.Register(c => new AppConnectionStrings(c.Resolve<IConfiguration>())).AsSelf();
 
             // builder.AddMediatR(
             // typeof(AreaPresenterCommandHandler).GetTypeInfo().Assembly);

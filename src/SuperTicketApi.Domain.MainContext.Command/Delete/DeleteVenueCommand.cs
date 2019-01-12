@@ -8,7 +8,7 @@
     /// <summary>
     /// The delete venue command.
     /// </summary>
-    public class DeleteVenueCommand : IRequest<CommandResponse>
+    public class DeleteVenueCommand : IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteVenueCommand"/> class.

@@ -5,6 +5,6 @@
     /// </summary>
     public abstract class DomainEntity
     {
-
+        public string Command { get; set; }
     }
 }

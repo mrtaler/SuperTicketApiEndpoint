@@ -8,7 +8,7 @@
     /// <summary>
     /// The delete event seat command.
     /// </summary>
-    public class DeleteEventSeatCommand : IRequest<CommandResponse>
+    public class DeleteEventSeatCommand : IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteEventSeatCommand"/> class.

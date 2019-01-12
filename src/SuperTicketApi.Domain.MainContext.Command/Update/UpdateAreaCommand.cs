@@ -7,7 +7,7 @@
     /// <summary>
     /// The update area command.
     /// </summary>
-    public class UpdateAreaCommand : Area, IRequest<CommandResponse>
+    public class UpdateAreaCommand : Area, IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAreaCommand"/> class.

@@ -7,7 +7,7 @@
     /// <summary>
     /// The update event seat command.
     /// </summary>
-    public class UpdateEventSeatCommand : EventSeat, IRequest<CommandResponse>
+    public class UpdateEventSeatCommand : EventSeat, IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateEventSeatCommand"/> class.

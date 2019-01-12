@@ -8,7 +8,7 @@
     /// <summary>
     /// The delete event area command.
     /// </summary>
-    public class DeleteEventAreaCommand : IRequest<CommandResponse>
+    public class DeleteEventAreaCommand : IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteEventAreaCommand"/> class.

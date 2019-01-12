@@ -7,7 +7,7 @@
     /// <summary>
     /// The update event area command.
     /// </summary>
-    public class UpdateEventAreaCommand : EventArea, IRequest<CommandResponse>
+    public class UpdateEventAreaCommand : EventArea, IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateEventAreaCommand"/> class.

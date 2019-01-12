@@ -7,7 +7,7 @@
     /// <summary>
     /// The update layout command.
     /// </summary>
-    public class UpdateLayoutCommand : Layout, IRequest<CommandResponse>
+    public class UpdateLayoutCommand : Layout, IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateLayoutCommand"/> class.

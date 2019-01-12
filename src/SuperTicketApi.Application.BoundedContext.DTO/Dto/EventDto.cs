@@ -2,8 +2,6 @@
 {
     using System;
 
-    using SuperTicketApi.Domain.Seedwork;
-
     public class EventDto : BusinesEntity
     {
         /// <summary>

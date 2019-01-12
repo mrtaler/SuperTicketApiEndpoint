@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers.General
+﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS
 {
     using System;
     using System.Data;

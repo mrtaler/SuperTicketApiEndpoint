@@ -7,7 +7,7 @@
     /// <summary>
     /// The create venue command.
     /// </summary>
-    public class CreateVenueCommand : IRequest<CommandResponse>
+    public class CreateVenueCommand : IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Gets or sets the description.

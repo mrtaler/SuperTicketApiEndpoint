@@ -8,8 +8,8 @@
 
     using Serilog;
 
+    using SuperTicketApi.Domain.MainContext.DTO;
     using SuperTicketApi.Domain.MainContext.DTO.Models;
-    using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using SuperTicketApi.Domain.MainContext.Queries.GetListOfDomainEntity;
 
     /// <summary>
@@ -27,15 +27,15 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="GetQueryAsIEnumerableQueryHandler"/> class.
         /// </summary>
-        /// <param name="factory">
-        /// The factory.
+        /// <param name="unitOfWork">
+        /// The unit Of Work.
         /// </param>
         /// <param name="mediatr">
         /// The <paramref name="mediatr"/>.
         /// </param>
         public GetQueryAsIEnumerableQueryHandler(
-            IUnitOfWorkFactory factory,
-            IMediator mediatr) : base(factory, mediatr)
+           ITabledUnitOfWork unitOfWork,
+            IMediator mediatr) : base(unitOfWork, mediatr)
         {
             Log.Information($"{this.GetType().Name} was started");
         }
@@ -45,7 +45,7 @@
         /// <inheritdoc />
         public async Task<IEnumerable<Area>> Handle(GetAreaAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            var returnList = this.GetAllFromDb<Area>();
+            var returnList = this.UnitOfWork.AreaRepository.GetAll();
             return await Task.FromResult(returnList);
         }
 
@@ -56,7 +56,7 @@
         /// <inheritdoc />
         public async Task<IEnumerable<EventArea>> Handle(GetEventAreaAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            var returnList = this.GetAllFromDb<EventArea>();
+           var returnList = this.UnitOfWork.EventAreaRepository.GetAll();
             return await Task.FromResult(returnList);
         }
 
@@ -67,7 +67,7 @@
         /// <inheritdoc />
         public async Task<IEnumerable<Event>> Handle(GetEventAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            var returnList = this.GetAllFromDb<Event>();
+          var returnList = this.UnitOfWork.EventRepository.GetAll();
             return await Task.FromResult(returnList);
         }
 
@@ -78,7 +78,7 @@
         /// <inheritdoc />
         public async Task<IEnumerable<EventSeat>> Handle(GetEventSeatAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            var returnList = this.GetAllFromDb<EventSeat>();
+            var returnList = this.UnitOfWork.EventSeatRepository.GetAll();
             return await Task.FromResult(returnList);
         }
 
@@ -89,7 +89,7 @@
         /// <inheritdoc />
         public async Task<IEnumerable<Layout>> Handle(GetLayoutAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            var returnList = this.GetAllFromDb<Layout>();
+            var returnList = this.UnitOfWork.LayoutRepository.GetAll();
             return await Task.FromResult(returnList);
         }
 
@@ -100,7 +100,7 @@
         /// <inheritdoc />
         public async Task<IEnumerable<Seat>> Handle(GetSeatAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            var returnList = this.GetAllFromDb<Seat>();
+           var returnList = this.UnitOfWork.SeatRepository.GetAll();
             return await Task.FromResult(returnList);
         }
 
@@ -111,11 +111,10 @@
         /// <inheritdoc />
         public async Task<IEnumerable<Venue>> Handle(GetVenueAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            var returnList = this.GetAllFromDb<Venue>();
+          var returnList = this.UnitOfWork.VenueRepository.GetAll();
             return await Task.FromResult(returnList);
         }
 
         #endregion
-
     }
 }

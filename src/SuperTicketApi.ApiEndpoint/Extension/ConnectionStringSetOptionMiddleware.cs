@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SuperTicketApi.ApiEndpoint.Extension
@@ -13,7 +11,6 @@ namespace SuperTicketApi.ApiEndpoint.Extension
     using Serilog;
     using Serilog.Events;
 
-    using SuperTicketApi.ApiSettings.JsonSettings;
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
 
     /// <summary>

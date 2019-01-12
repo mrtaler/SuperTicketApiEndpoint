@@ -7,7 +7,7 @@
     /// <summary>
     /// The update seat command.
     /// </summary>
-    public class UpdateSeatCommand : Seat, IRequest<CommandResponse>
+    public class UpdateSeatCommand : Seat, IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateSeatCommand"/> class.

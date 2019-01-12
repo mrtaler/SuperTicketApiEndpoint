@@ -1,9 +1,5 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.Area
 {
-    using System.Collections.Generic;
-
-    using SuperTicketApi.ApiEndpoint.ViewModel.Seat;
-
     /// <summary>
     /// The area view model.
     /// </summary>

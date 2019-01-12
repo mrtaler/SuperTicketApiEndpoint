@@ -1,7 +1,6 @@
 ﻿namespace SuperTicketApi.ApiEndpoint
 {
     using System.IO;
-    using System.Reflection;
 
     using Autofac.Extensions.DependencyInjection;
 

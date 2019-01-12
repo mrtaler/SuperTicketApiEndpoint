@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SuperTicketApi.ApiEndpoint.ViewModel
+﻿namespace SuperTicketApi.ApiEndpoint.ViewModel
 {
     /// <summary>
     /// The api view model.

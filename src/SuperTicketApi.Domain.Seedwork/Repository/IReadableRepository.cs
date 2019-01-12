@@ -2,31 +2,30 @@
 {
     using System.Collections.Generic;
 
-    using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
-
     /// <summary>
     /// The ReadableRepository <see langword="interface"/>.
     /// </summary>
     /// <typeparam name="TEntity"> db Entity
     /// </typeparam>
-    public interface IReadableRepository<TEntity> where TEntity : class
+    public interface IReadableRepository<TEntity>
+        where TEntity : DomainEntity, new()
     {
         /// <summary>
         /// <see cref="Get"/> all elements of type TEntity in repository
         /// </summary>
         /// <returns>List of selected elements</returns>
-        IEnumerable<TEntity> GetAll(IColumnSpecification<TEntity> columns);
+        IEnumerable<TEntity> GetAll();
 
         /// <summary>
         /// The get by id.
         /// </summary>
-        /// <param name="TEntity">
-        /// The t entity.
+        /// <param name="id">
+        /// The id.
         /// </param>
         /// <returns>
         /// The <see cref="TEntity"/>.
         /// </returns>
-        TEntity GetById(int id, IColumnSpecification<TEntity> columns);
+        TEntity GetById(int id);
 
         /*   /// <summary>
            /// The get all.

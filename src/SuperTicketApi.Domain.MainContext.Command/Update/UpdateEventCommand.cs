@@ -7,7 +7,7 @@
     /// <summary>
     /// The update event command.
     /// </summary>
-    public class UpdateEventCommand : Event, IRequest<CommandResponse>
+    public class UpdateEventCommand : Event, IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateEventCommand"/> class.

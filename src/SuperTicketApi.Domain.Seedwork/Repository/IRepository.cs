@@ -2,23 +2,25 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
-
-    using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
 
     /// <summary>
     /// The Repository <see langword="interface"/>.
     /// </summary>
     /// <typeparam name="TEntity">db Entities
     /// </typeparam>
-    public interface IRepository<TEntity> : IReadableRepository<TEntity>/*, IAsyncRepository<TEntity>*/, IDisposable
-        where TEntity : class
+    public interface IRepository<TEntity> : IReadableRepository<TEntity> /*, IAsyncRepository<TEntity>*/, IDisposable
+        where TEntity : DomainEntity, new()
     {
         /// <summary>
         /// Add <paramref name="item"/> into repository
         /// </summary>
-        /// <param name="item">Item to add to repository</param>
-        void Add(TEntity item);
+        /// <param name="item">
+        /// Item to add to repository
+        /// </param>
+        /// <returns>
+        /// The <see cref="int"/>new id for Added entity
+        /// </returns>
+        int Add(TEntity item);
 
         /// <summary>
         /// Add <c>items</c> into repository
@@ -81,16 +83,5 @@
                 /// <param name="entity">h h</param>
                 void Refresh(TEntity entity);
                 */
-
-        /// <summary>
-        /// The mapping.
-        /// </summary>
-        /// <param name="reader">
-        /// The <paramref name="reader"/>.
-        /// </param>
-        /// <returns>
-        /// The <see cref="T"/>.
-        /// </returns>
-        TEntity Mapping(IDataReader reader, IColumnSpecification<TEntity> columns);
     }
 }

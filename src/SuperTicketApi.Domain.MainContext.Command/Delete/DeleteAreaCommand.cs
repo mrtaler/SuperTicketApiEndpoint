@@ -8,7 +8,7 @@
     /// <summary>
     /// The delete area command.
     /// </summary>
-    public class DeleteAreaCommand : IRequest<CommandResponse>
+    public class DeleteAreaCommand : IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteAreaCommand"/> class.
