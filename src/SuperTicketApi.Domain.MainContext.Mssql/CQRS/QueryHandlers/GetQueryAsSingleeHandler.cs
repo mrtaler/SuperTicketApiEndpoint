@@ -1,8 +1,6 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
 {
     using System.Data;
-    using System.Linq;
-    using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
 

@@ -1,10 +1,8 @@
-﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers
+﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers.General
 {
-    using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
-    using System.Globalization;
     using System.Linq;
 
     using MediatR;
@@ -13,6 +11,9 @@
     using SuperTicketApi.Domain.MainContext.DTO.Attributes;
     using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
 
+    /// <summary>
+    /// The base command handler.
+    /// </summary>
     public class BaseCommandHandler : BaseHandler
     {
         /// <inheritdoc />
@@ -75,16 +76,16 @@
         /// <param name="sqlSp">
         /// The sql store procedure.
         /// </param>
-        /// <param name="connection">
-        /// The <paramref name="connection"/>.
+        /// <param name="command">
+        /// The command.
         /// </param>
         /// <param name="parameters">
         /// The <paramref name="parameters"/>.
         /// </param>
         /// <returns>
-        /// The <see cref="int"/>.
+        /// The <see cref="int"/>Affected Records 
         /// </returns>
-        protected void ExecuteSpWithReader(
+        protected int ExecuteSpWithReader(
             string sqlSp,
             IDbCommand command,
             IEnumerable<SqlParameter> parameters)
@@ -98,39 +99,37 @@
                 command.Parameters.Add(parameter);
             }
 
-            DataBaseErrors dbError = null;
             var com = command.ExecuteReader(CommandBehavior.CloseConnection);
-
+            
             while (com.Read())
             {
-                dbError = new DataBaseErrors(com);
-                throw new DatabaseException(dbError);
-
+                throw new DatabaseException(new DataBaseErrors(com));
             }
 
-
-            // return result; //command.ExecuteNonQuery();
+            return com.RecordsAffected;
         }
 
         /// <summary>
         /// The mapping method.
         /// </summary>
-        /// <param name="reader">
-        /// The data <paramref name="reader"/>.
+        /// <param name="entity">
+        /// The <paramref name="entity"/>.
         /// </param>
-        /// <typeparam name="TEntity">Database table class
-        /// </typeparam>
+        /// <param name="returnParameter">
+        /// The return parameter.
+        /// </param>
         /// <returns>
-        /// The <see cref="TEntity"/>.
+        /// The <see cref="List"></see>
+        ///     Sql Parameter
         /// </returns>
-        protected List<SqlParameter> GetDbParametrs(
-            IRequest<DalCommandResponse> entity,
-            SqlParameter returnParametr = null)
+        protected List<SqlParameter> GetSqlParameters(
+            IRequest<CommandResponse> entity,
+            SqlParameter returnParameter = null)
         {
             var dataBaseParam = new List<SqlParameter>();
-            if (returnParametr != null)
+            if (returnParameter != null)
             {
-                dataBaseParam.Add(returnParametr);
+                dataBaseParam.Add(returnParameter);
             }
 
             var columns = entity.GetType().GetProperties();
@@ -140,52 +139,17 @@
                 var currentAttribute = item.GetCustomAttributes(typeof(DbColumnAttribute), true).FirstOrDefault() as DbColumnAttribute;
                 if (currentAttribute != null)
                 {
-                    string dbColumnName = currentAttribute.ColumnName;
+                    string dataBaseColumnName = currentAttribute.ColumnName;
 
                     var value = item.GetValue(entity);
 
-                    var sqlParam = this.GetSqlParameter(dbColumnName, value);
+                    var sqlParam = this.GetSqlParameter(dataBaseColumnName, value);
 
                     dataBaseParam.Add(sqlParam);
                 }
             }
 
             return dataBaseParam;
-        }
-
-
-    }
-
-    public class DataBaseErrors
-    {
-        public string ErrorNumber { get; } // = GetItem("ErrorNumber", com);
-        public string ErrorSeverity { get; }// = GetItem("ErrorSeverity", com);
-        public string ErrorState { get; } // = GetItem("ErrorState", com);
-        public string ErrorProcedure { get; }// = GetItem("ErrorProcedure", com);
-        public string ErrorLine { get; } // = GetItem("ErrorLine", com);
-        public string ErrorMessage { get; } // = GetItem("ErrorMessage", com);
-
-        public DataBaseErrors(IDataReader reader)
-        {
-            this.ErrorNumber = reader.GetValueAsString<string>("ErrorNumber");
-
-            this.ErrorSeverity = reader.GetValueAsString<string>("ErrorSeverity");
-            this.ErrorState = reader.GetValueAsString<string>("ErrorState");
-            this.ErrorProcedure = reader.GetValueAsString<string>("ErrorProcedure");
-            this.ErrorLine = reader.GetValueAsString<string>("ErrorLine");
-            this.ErrorMessage = reader.GetValueAsString<string>("ErrorMessage");
-        }
-
-    }
-    public static class DbReaderExtension
-    {
-        public static T GetValueAsString<T>(
-            this IDataReader reader,
-            string fieldName) where T : class
-        {
-            return reader[fieldName] is DBNull
-                ? null
-                : (T)Convert.ChangeType(reader[fieldName], typeof(T), CultureInfo.InvariantCulture);
         }
     }
 }

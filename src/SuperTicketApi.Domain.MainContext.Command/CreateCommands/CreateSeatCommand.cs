@@ -7,7 +7,7 @@
     /// <summary>
     /// The create seat command.
     /// </summary>
-    public class CreateSeatCommand : IRequest<DalCommandResponse>
+    public class CreateSeatCommand : IRequest<CommandResponse>
     {
         /// <summary>
         /// Gets or sets the area id.

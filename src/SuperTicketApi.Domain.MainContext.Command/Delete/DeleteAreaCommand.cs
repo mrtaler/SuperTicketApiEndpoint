@@ -8,7 +8,7 @@
     /// <summary>
     /// The delete area command.
     /// </summary>
-    public class DeleteAreaCommand : IRequest<DalCommandResponse>
+    public class DeleteAreaCommand : IRequest<CommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteAreaCommand"/> class.

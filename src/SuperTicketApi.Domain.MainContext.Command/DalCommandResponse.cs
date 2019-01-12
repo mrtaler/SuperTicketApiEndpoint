@@ -2,15 +2,17 @@
 {
     using System.Collections.Generic;
 
+    using FluentValidation.Results;
+
     /// <summary>
     /// The Data Access Level command response.
     /// </summary>
-    public class DalCommandResponse
+    public class CommandResponse
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DalCommandResponse"/> class.
+        /// Initializes a new instance of the <see cref="CommandResponse"/> class.
         /// </summary>
-        public DalCommandResponse()
+        public CommandResponse()
         {
             this.IsSuccess = false;
         }
@@ -34,5 +36,10 @@
         /// Gets or sets the db validation errors.
         /// </summary>
         public List<string> DbValidationErrors { get; set; }
+
+        /// <summary>
+        /// Gets or sets the validation errors.
+        /// </summary>
+        public IList<ValidationFailure> ValidationErrors { get; set; }
     }
 }

@@ -7,7 +7,7 @@
     /// <summary>
     /// The create event area command.
     /// </summary>
-    public class CreateEventAreaCommand : IRequest<DalCommandResponse>
+    public class CreateEventAreaCommand : IRequest<CommandResponse>
     {
         /// <summary>
         /// Gets or sets the event id.

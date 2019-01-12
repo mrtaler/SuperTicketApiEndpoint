@@ -8,7 +8,7 @@
     /// <summary>
     /// The delete event command.
     /// </summary>
-    public class DeleteEventCommand : IRequest<DalCommandResponse>
+    public class DeleteEventCommand : IRequest<CommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteEventCommand"/> class.

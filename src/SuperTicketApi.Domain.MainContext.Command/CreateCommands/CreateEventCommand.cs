@@ -9,7 +9,7 @@
     /// <summary>
     /// The create event command.
     /// </summary>
-    public class CreateEventCommand : IRequest<DalCommandResponse>
+    public class CreateEventCommand : IRequest<CommandResponse>
     {
         /// <summary>
         /// Gets or sets the name.

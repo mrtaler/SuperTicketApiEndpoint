@@ -8,7 +8,7 @@
     /// <summary>
     /// The delete venue command.
     /// </summary>
-    public class DeleteVenueCommand : IRequest<DalCommandResponse>
+    public class DeleteVenueCommand : IRequest<CommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteVenueCommand"/> class.

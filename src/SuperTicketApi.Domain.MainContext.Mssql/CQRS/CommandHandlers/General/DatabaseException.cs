@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers
+﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers.General
 {
+    using System;
+
     public class DatabaseException : Exception
     {
         public DatabaseException(string message)

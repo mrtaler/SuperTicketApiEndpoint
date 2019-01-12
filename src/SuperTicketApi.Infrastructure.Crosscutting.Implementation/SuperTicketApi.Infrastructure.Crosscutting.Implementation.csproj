@@ -5,6 +5,7 @@
     <Configurations>Debug;Release;Home;Nout</Configurations>
     <AssemblyName>SuperTicketApi.Infrastructure.Crosscutting.Implementation</AssemblyName>
     <RootNamespace>SuperTicketApi.Infrastructure.Crosscutting.Implementation</RootNamespace>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

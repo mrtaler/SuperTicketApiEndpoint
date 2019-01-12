@@ -7,7 +7,7 @@
     /// <summary>
     /// The update layout command.
     /// </summary>
-    public class UpdateLayoutCommand : Layout, IRequest<DalCommandResponse>
+    public class UpdateLayoutCommand : Layout, IRequest<CommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateLayoutCommand"/> class.

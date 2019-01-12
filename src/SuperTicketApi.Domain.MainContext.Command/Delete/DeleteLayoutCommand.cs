@@ -8,7 +8,7 @@
     /// <summary>
     /// The delete layout command.
     /// </summary>
-    public class DeleteLayoutCommand : IRequest<DalCommandResponse>
+    public class DeleteLayoutCommand : IRequest<CommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteLayoutCommand"/> class.

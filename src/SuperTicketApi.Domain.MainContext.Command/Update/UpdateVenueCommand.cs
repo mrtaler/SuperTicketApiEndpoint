@@ -7,7 +7,7 @@
     /// <summary>
     /// The update venue command.
     /// </summary>
-    public class UpdateVenueCommand : Venue, IRequest<DalCommandResponse>
+    public class UpdateVenueCommand : Venue, IRequest<CommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateVenueCommand"/> class.

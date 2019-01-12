@@ -6,6 +6,8 @@
 
     using MediatR.Extensions.Autofac.DependencyInjection;
 
+    using Microsoft.Extensions.Options;
+
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.Domain.MainContext.DTO.Models;
     using SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers;
@@ -29,7 +31,9 @@
         /// <inheritdoc />
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => new UnitOfWorkFactory(c.Resolve<AppConnectionStrings>().MssqlConnectionString))
+
+            builder.Register(c => new UnitOfWorkFactory(
+                    c.Resolve<IOptions <AppConnectionStrings>>().Value.MssqlConnectionString))
 
                 // IOptions <AppConnectionStrings>>().Value.MssqlConnectionString
                 .As<IUnitOfWorkFactory>().InstancePerLifetimeScope();

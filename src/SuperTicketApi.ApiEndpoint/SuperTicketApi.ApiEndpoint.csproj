@@ -6,6 +6,7 @@
     <StartupObject></StartupObject>
     <Configurations>Debug;Release;Home;Nout</Configurations>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
