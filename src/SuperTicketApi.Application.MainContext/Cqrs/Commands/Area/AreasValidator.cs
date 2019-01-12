@@ -6,10 +6,10 @@
 
     public class AreasValidator : AbstractValidator<PresenterCreateAreaCommand>
     {
-        private readonly IMediator _mediator;
+        private readonly IMediator mediator;
         public AreasValidator(IMediator mediator)
         {
-            this._mediator = mediator;
+            this.mediator = mediator;
 
             this.RuleFor(x => x.LayoutId)
                 .NotEmpty()

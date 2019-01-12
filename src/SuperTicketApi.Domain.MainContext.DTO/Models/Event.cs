@@ -17,7 +17,9 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="Event"/> class.
         /// </summary>
-        public Event() { }
+        public Event()
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Event"/> class.

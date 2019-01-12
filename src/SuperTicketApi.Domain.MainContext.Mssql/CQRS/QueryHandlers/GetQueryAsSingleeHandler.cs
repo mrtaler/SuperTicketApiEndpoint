@@ -36,20 +36,20 @@
         private T GetSingleByIdFromDb<T>(int id) where T : DomainEntity, new()
         {
             var returnEntity = new T();
-            if (this.command.Connection.State != ConnectionState.Open)
+            if (this.Command.Connection.State != ConnectionState.Open)
             {
                 return default(T);
             }
 
-            this.command.CommandText = $"select * " +
+            this.Command.CommandText = $"select * " +
                 $"from {typeof(T).GetAttributeValue((DbTableAttribute dbTable) => dbTable.TableName)} " +
                 $"where {this.GetIdTableColumnName<T>()} = {id}";
-             this.command.CommandType = CommandType.Text;
+             this.Command.CommandType = CommandType.Text;
 
-              using (var reader = this.command.ExecuteReader())
+              using (var reader = this.Command.ExecuteReader())
               {
-                  Log.Information($"Run SQL command: {this.command.CommandText}");
-                  Log.Warning($"{nameof(this.Handle)} connection state: {this.command.Connection.State}");
+                  Log.Information($"Run SQL command: {this.Command.CommandText}");
+                  Log.Warning($"{nameof(this.Handle)} connection state: {this.Command.Connection.State}");
                   if (reader.Read())
                   {
                      returnEntity = this.Mapping<T>(reader);

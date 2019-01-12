@@ -33,7 +33,7 @@
         {
             try
             {
-                AreasValidator validator = new AreasValidator(this.mediatr);
+                AreasValidator validator = new AreasValidator(this.Mediatr);
                 ValidationResult validationResult = validator.Validate(request);
                 if (!validationResult.IsValid)
                 {
@@ -55,14 +55,14 @@
                                      };
 
                 // ! then call create area command from database level
-                var commRes = await this.mediatr.Send(dalCommand);
+                var commRes = await this.Mediatr.Send(dalCommand);
 
                 // ! then geet seponse from DAL, and send created ID to Presenter
                 if (commRes.IsSuccess)
                 {
                     var resp = new CommandResponse
                                    {
-                                       isSuccess = true,
+                                       IsSuccess = true,
                                        Message = "new entity in Area Table was added",
                                        Object = commRes.Object
                                    };
@@ -72,7 +72,7 @@
                 {
                     var resp = new CommandResponse
                                    {
-                                       isSuccess = false, Message = commRes.Message, Object = commRes.Object,
+                                       IsSuccess = false, Message = commRes.Message, Object = commRes.Object,
                                    };
                     return resp;
                 }

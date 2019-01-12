@@ -77,18 +77,18 @@
         {
             var result = await this.Mediator.Send(createAreaViewModel.ProjectedAs<PresenterCreateAreaCommand>());
 
-            if (result.isSuccess)
+            if (result.IsSuccess)
             {
                 return new ObjectResult(new
                 {
-                    Success = result.isSuccess,
+                    Success = result.IsSuccess,
                     NewId = result.Object,
                 });
             }
 
             return new ObjectResult(new
             {
-                Success = result.isSuccess,
+                Success = result.IsSuccess,
                 Error = result.Message,
             });
         }

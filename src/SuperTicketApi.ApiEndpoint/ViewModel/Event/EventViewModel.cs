@@ -57,7 +57,7 @@
         /// <value>
         /// The layout identifier.
         /// </value>
-        public int LayoutID { get; set; }
+        public int LayoutId { get; set; }
 
         /// <summary>
         /// Gets or sets the event area.

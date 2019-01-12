@@ -15,7 +15,9 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="EventSeat"/> class.
         /// </summary>
-        public EventSeat() { }
+        public EventSeat()
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventSeat"/> class.

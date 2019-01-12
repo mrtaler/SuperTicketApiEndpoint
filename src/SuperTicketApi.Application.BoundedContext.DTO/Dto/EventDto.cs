@@ -39,7 +39,7 @@
         /// <summary>
         /// Gets or sets the fk_ event place id. [Fk_EventPlaceId] int NOT NULL, 
         /// </summary>
-        public int Fk_EventPlaceId { get; set; }
+        public int FkEventPlaceId { get; set; }
 
         /// <summary>
         /// Gets or sets the max seats.  [MaxSeats] INT NOT NULL,

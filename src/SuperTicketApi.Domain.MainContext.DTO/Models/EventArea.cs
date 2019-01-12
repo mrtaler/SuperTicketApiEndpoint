@@ -15,7 +15,9 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="EventArea"/> class.
         /// </summary>
-        public EventArea() { }
+        public EventArea()
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventArea"/> class.

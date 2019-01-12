@@ -23,19 +23,19 @@
         protected IEnumerable<T> GetAllFromDb<T>() where T : new()
         {
             var returnList = new List<T>();
-            if (this.command.Connection.State != ConnectionState.Open)
+            if (this.Command.Connection.State != ConnectionState.Open)
             {
                 return null;
             }
 
-            this.command.CommandText = $"select * " +
+            this.Command.CommandText = $"select * " +
                                        $"from {typeof(T).GetAttributeValue((DbTableAttribute dbTable) => dbTable.TableName)}";
-            this.command.CommandType = CommandType.Text;
+            this.Command.CommandType = CommandType.Text;
 
-            using (var reader = this.command.ExecuteReader())
+            using (var reader = this.Command.ExecuteReader())
             {
-                Log.Information($"Run SQL command: {this.command.CommandText}");
-                Log.Warning($"Handler for {typeof(T).Name} connection state: {this.command.Connection.State}");
+                Log.Information($"Run SQL command: {this.Command.CommandText}");
+                Log.Warning($"Handler for {typeof(T).Name} connection state: {this.Command.Connection.State}");
                 while (reader.Read())
                 {
                     var art = this.Mapping<T>(reader);
@@ -84,7 +84,7 @@
             foreach (var item in columns)
             {
                 var currentAttribute = item.GetCustomAttributes(typeof(DbColumnAttribute), true).FirstOrDefault() as DbColumnAttribute;
-                string dbColumnName = currentAttribute.columnName;
+                string dbColumnName = currentAttribute.ColumnName;
 
                 var propToSet = ret.GetType().GetProperty(item.Name);
                 var valueToSet = Convert.ChangeType(this.GetItem(dbColumnName, reader), propToSet.PropertyType);

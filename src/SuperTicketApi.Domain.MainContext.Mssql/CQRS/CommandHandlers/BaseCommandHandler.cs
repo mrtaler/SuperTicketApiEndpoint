@@ -140,7 +140,7 @@
                 var currentAttribute = item.GetCustomAttributes(typeof(DbColumnAttribute), true).FirstOrDefault() as DbColumnAttribute;
                 if (currentAttribute != null)
                 {
-                    string dbColumnName = currentAttribute.columnName;
+                    string dbColumnName = currentAttribute.ColumnName;
 
                     var value = item.GetValue(entity);
 

@@ -17,15 +17,15 @@
     /// </summary>
     public class BaseHandler
     {
-        protected readonly INetUnitOfWork uow;
-        protected readonly IDbCommand command;
-        protected readonly IMediator mediatr;
+        protected readonly INetUnitOfWork Uow;
+        protected readonly IDbCommand Command;
+        protected readonly IMediator Mediatr;
 
         public BaseHandler(IUnitOfWorkFactory factory, IMediator mediatr)
         {
-            this.uow = factory.Create();
-            this.command = this.uow.CreateCommand();
-            this.mediatr = mediatr;
+            this.Uow = factory.Create();
+            this.Command = this.Uow.CreateCommand();
+            this.Mediatr = mediatr;
             Log.Information($"{this.GetType().Name} was started");
         }
 
@@ -34,7 +34,7 @@
             var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .FirstOrDefault(p => p.GetCustomAttributes(typeof(IdColumnAttribute), false).Count() == 1);
 
-            var dataBaseAttribute = (properties.GetCustomAttributes(typeof(DbColumnAttribute), true).FirstOrDefault() as DbColumnAttribute).columnName;
+            var dataBaseAttribute = (properties.GetCustomAttributes(typeof(DbColumnAttribute), true).FirstOrDefault() as DbColumnAttribute).ColumnName;
 
             /*var dnAttribute = item.GetCustomAttributes(
                         typeof(IdColumnAttribute), true

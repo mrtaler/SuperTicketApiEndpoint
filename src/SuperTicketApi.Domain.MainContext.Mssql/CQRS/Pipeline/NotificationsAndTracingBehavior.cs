@@ -17,11 +17,11 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
 
         // MediatR property and constructor for TracingBehavior are not mandatory in cases where you don't need a dependancy such as MediatR injected.
         // Here we need MediatR in order to send notifications after processing the handler.
-        private readonly IMediator _mediatr;
+        private readonly IMediator mediatr;
 
         public NotificationsAndTracingBehavior(IMediator mediatr)
         {
-            this._mediatr = mediatr;
+            this.mediatr = mediatr;
         }
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
@@ -39,7 +39,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
              * ------------------------------------------------------*/
             // Send test 'ping' notification after all handlers completed processing.
             var ping = new Ping { Message = "Ping..." };
-            await this._mediatr.Publish(ping);
+            await this.mediatr.Publish(ping);
 
             /* -----------------------------------------------------
              * ^ PUBLISHING STRATEGY ^
@@ -65,7 +65,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
             // You can inject pipeline functionality on specific result status...
             if (typeof(TResponse).Name == "CommandResponse")
             {
-                if (!(response as CommandResponse).isSuccess)
+                if (!(response as CommandResponse).IsSuccess)
                 {
                     Log.Warning("{name} attempted execution with issues: {message}", typeof(TRequest).Name, (response as CommandResponse).Message);
                 }
@@ -75,7 +75,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
             // ...As well as on specific command types with a specific result scenario:
             if (typeof(TRequest).Name == "CreateAccountCommand")
             {
-                if (!(response as CommandResponse).isSuccess && (response as CommandResponse).ValidationErrors != null)
+                if (!(response as CommandResponse).IsSuccess && (response as CommandResponse).ValidationErrors != null)
                 {
 
 

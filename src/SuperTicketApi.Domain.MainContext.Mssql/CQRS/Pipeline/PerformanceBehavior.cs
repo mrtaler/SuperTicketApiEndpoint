@@ -12,22 +12,22 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
     public class PerformanceBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
         // We run a stopwatch on every request and log a warning for any requests that exceed our threshold.
-        private readonly Stopwatch _timer;
+        private readonly Stopwatch timer;
 
         public PerformanceBehavior()
         {
-            this._timer = new Stopwatch();
+            this.timer = new Stopwatch();
         }
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            this._timer.Start();
+            this.timer.Start();
 
             var response = await next();
 
-            this._timer.Stop();
+            this.timer.Stop();
 
-            if (this._timer.ElapsedMilliseconds > 500)
+            if (this.timer.ElapsedMilliseconds > 500)
             {
                 var name = typeof(TRequest).Name;
 
@@ -41,7 +41,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
                 // STRUCTURED LOGGING
                 // Use structured logging to capture the full object.
                 // Serilog provides the @ destructuring operator to help preserve object structure for our logs.
-                Log.Warning("Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@request} {@user}", name, this._timer.ElapsedMilliseconds, request, user);
+                Log.Warning("Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@request} {@user}", name, this.timer.ElapsedMilliseconds, request, user);
 
             }
 

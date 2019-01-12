@@ -30,7 +30,7 @@
         {
             try
             {
-                if (this.command.Connection.State != ConnectionState.Open)
+                if (this.Command.Connection.State != ConnectionState.Open)
                 {
                     return new DalCommandResponse
                     {
@@ -49,7 +49,7 @@
 
                 this.ExecuteSpWithReader(
                      request.Command,
-                     this.command,
+                     this.Command,
                      paramList);
 
                 // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
@@ -88,7 +88,7 @@
         {
             try
             {
-                if (this.command.Connection.State != ConnectionState.Open)
+                if (this.Command.Connection.State != ConnectionState.Open)
                 {
                     return new DalCommandResponse
                     {
@@ -101,7 +101,7 @@
 
                 this.ExecuteSpWithReader(
                      request.Command,
-                     this.command,
+                     this.Command,
                      paramList);
 
                 // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
@@ -137,7 +137,7 @@
         {
             try
             {
-                if (this.command.Connection.State != ConnectionState.Open)
+                if (this.Command.Connection.State != ConnectionState.Open)
                 {
                     return new DalCommandResponse
                     {
@@ -150,7 +150,7 @@
 
                 this.ExecuteSpWithReader(
                      request.Command,
-                     this.command,
+                     this.Command,
                      paramList);
 
                 // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");

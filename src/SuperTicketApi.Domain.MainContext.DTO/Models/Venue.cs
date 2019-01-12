@@ -15,7 +15,9 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="Venue"/> class.
         /// </summary>
-        public Venue() { }
+        public Venue()
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Venue"/> class.

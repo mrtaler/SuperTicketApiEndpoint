@@ -429,11 +429,11 @@
         IService<TEntity, TEntityDto>
         where TEntity : DomainEntity, new() where TEntityDto : BusinesEntity, new()
     {
-        protected readonly IUnitOfWorkFactory uow;
+        protected readonly IUnitOfWorkFactory Uow;
 
-        public Service(IUnitOfWorkFactory _uow)
+        public Service(IUnitOfWorkFactory uow)
         {
-            this.uow = _uow;
+            this.Uow = uow;
         }
 
         #region Implementation of IReadableService<TEntity,TEntityDto>

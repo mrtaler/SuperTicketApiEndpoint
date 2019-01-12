@@ -9,11 +9,11 @@
     /// </summary>
     public class BaseApplicationHandler
     {
-        protected readonly IMediator mediatr;
+        protected readonly IMediator Mediatr;
 
         public BaseApplicationHandler( IMediator mediatr)
         {
-            this.mediatr = mediatr;
+            this.Mediatr = mediatr;
             Log.Information($"{this.GetType().Name} was started");
         }
     }
