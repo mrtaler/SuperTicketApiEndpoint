@@ -54,7 +54,7 @@ namespace SuperTicketApi.ApiEndpoint.Extension
             {
                 // todo sector for different connection strings 
                // var path = GetConnectionStringPath(application);
-            //    databaseOption.Value.ConnectionString = databaseOption.Value.MssqlConnectionString;
+            // databaseOption.Value.ConnectionString = databaseOption.Value.MssqlConnectionString;
             }
             catch (Exception e)
             {
@@ -69,7 +69,6 @@ namespace SuperTicketApi.ApiEndpoint.Extension
         private string GetConnectionStringPath(string organisationCode)
         {
             // todo create multiselect for connection strings for mssql and oracle
-
             return $"databaseOption.Value.MssqlConnectionString";
         }
     }

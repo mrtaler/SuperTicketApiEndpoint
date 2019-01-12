@@ -7,3 +7,6 @@ The classes represented here are a result of collaboration with the non-technica
 Model transformations are facilitated through the AutoMapper Nuget Package
 
     dotnet add package AutoMapper
+
+
+###### https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code

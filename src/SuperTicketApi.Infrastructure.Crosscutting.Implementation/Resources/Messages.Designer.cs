@@ -15,891 +15,1059 @@ namespace SuperTicketApi.Infrastructure.Crosscutting.Implementation.Resources {
     /// <summary>
     ///   Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
     /// </summary>
+
     // Этот класс создан автоматически классом StronglyTypedResourceBuilder
     // с помощью такого средства, как ResGen или Visual Studio.
     // Чтобы добавить или удалить член, измените файл .ResX и снова запустите ResGen
     // с параметром /str или перестройте свой проект VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute(
+        "System.Resources.Tools.StronglyTypedResourceBuilder",
+        "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Messages {
-        
+    internal class Messages
+    {
         private static ResourceManager resourceMan;
-        
+
         private static CultureInfo resourceCulture;
-        
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Messages() {
+
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+            "Microsoft.Performance",
+            "CA1811:AvoidUncalledPrivateCode")]
+        internal Messages()
+        {
         }
-        
 
         /// <summary>
         ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
         /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
-                    ResourceManager temp = new global::System.Resources.ResourceManager("SuperTiket.Infrastructure.Crosscutting.NetFramework.Resources.Messages", typeof(Messages).Assembly);
+        [global::System.ComponentModel.EditorBrowsableAttribute(
+            global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
+                    ResourceManager temp = new global::System.Resources.ResourceManager(
+                        "SuperTiket.Infrastructure.Crosscutting.NetFramework.Resources.Messages",
+                        typeof(Messages).Assembly);
                     resourceMan = temp;
                 }
 
                 return resourceMan;
             }
         }
-        
 
         /// <summary>
         ///   Перезаписывает свойство CurrentUICulture текущего потока для всех
         ///   обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
         /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static CultureInfo Culture {
-            get {
+        [global::System.ComponentModel.EditorBrowsableAttribute(
+            global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
 
-            set {
+            set
+            {
                 resourceCulture = value;
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot perform the transfer, invalid data in accounts specifications.
         /// </summary>
-        internal static string Application_error_CannotPerformTransferInvalidAccounts {
-            get {
-                return ResourceManager.GetString("Application_error_CannotPerformTransferInvalidAccounts", resourceCulture);
+        internal static string Application_error_CannotPerformTransferInvalidAccounts
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_error_CannotPerformTransferInvalidAccounts",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Validation exception, check ValidationErrors for more information.
         /// </summary>
-        internal static string Application_exception_ApplicationValidationExceptionDefaultMessage {
-            get {
-                return ResourceManager.GetString("Application_exception_ApplicationValidationExceptionDefaultMessage", resourceCulture);
+        internal static string Application_exception_ApplicationValidationExceptionDefaultMessage
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_exception_ApplicationValidationExceptionDefaultMessage",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The country id is empty, you cannot add a new customer without country reference.
         /// </summary>
-        internal static string Application_exception_InvalidCountryIdentifier {
-            get {
+        internal static string Application_exception_InvalidCountryIdentifier
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_exception_InvalidCountryIdentifier", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The customer identifier is empty.
         /// </summary>
-        internal static string Application_exception_InvalidCustomerIdentifier {
-            get {
+        internal static string Application_exception_InvalidCustomerIdentifier
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_exception_InvalidCustomerIdentifier", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Invalid page index or page count data.
         /// </summary>
-        internal static string Application_exception_InvalidPageIndexOrPageCount {
-            get {
+        internal static string Application_exception_InvalidPageIndexOrPageCount
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_exception_InvalidPageIndexOrPageCount", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The order total is greater customer credit, you cannot perform new order.
         /// </summary>
-        internal static string Application_info_OrderTotalIsGreaterCustomerCredit {
-            get {
+        internal static string Application_info_OrderTotalIsGreaterCustomerCredit
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_info_OrderTotalIsGreaterCustomerCredit", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Bad Request.
         /// </summary>
-        internal static string Application_validation_BadRequest {
-            get {
+        internal static string Application_validation_BadRequest
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_validation_BadRequest", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Name is required.
         /// </summary>
-        internal static string Application_validation_BlogDto_Empty_Name {
-            get {
+        internal static string Application_validation_BlogDto_Empty_Name
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_validation_BlogDto_Empty_Name", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Url is required.
         /// </summary>
-        internal static string Application_validation_BlogDto_Empty_Url {
-            get {
+        internal static string Application_validation_BlogDto_Empty_Url
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_validation_BlogDto_Empty_Url", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Rating field is invalid.
         /// </summary>
-        internal static string Application_validation_BlogDto_Invalid_Rating {
-            get {
+        internal static string Application_validation_BlogDto_Invalid_Rating
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_validation_BlogDto_Invalid_Rating", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Validation exception, check ValidationErrors for more information.
         /// </summary>
-        internal static string Application_validation_Exception {
-            get {
+        internal static string Application_validation_Exception
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_validation_Exception", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на No records found.
         /// </summary>
-        internal static string Application_validation_No_Records_Found_Error {
-            get {
+        internal static string Application_validation_No_Records_Found_Error
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_validation_No_Records_Found_Error", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Null values.
         /// </summary>
-        internal static string Application_validation_Null_Parameters_Error {
-            get {
+        internal static string Application_validation_Null_Parameters_Error
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_validation_Null_Parameters_Error", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Content is required.
         /// </summary>
-        internal static string Application_validation_PostDto_Empty_Content {
-            get {
+        internal static string Application_validation_PostDto_Empty_Content
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_validation_PostDto_Empty_Content", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Title is required.
         /// </summary>
-        internal static string Application_validation_PostDto_Empty_Title {
-            get {
+        internal static string Application_validation_PostDto_Empty_Title
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_validation_PostDto_Empty_Title", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на BlogId field is invalid.
         /// </summary>
-        internal static string Application_validation_PostDto_Invalid_BlogId {
-            get {
+        internal static string Application_validation_PostDto_Invalid_BlogId
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_validation_PostDto_Invalid_BlogId", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Invalid data.
         /// </summary>
-        internal static string Application_validation_Validation_Error {
-            get {
+        internal static string Application_validation_Validation_Error
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_validation_Validation_Error", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot add a new book with a null book dto.
         /// </summary>
-        internal static string Application_warning_CannotAddBookWithNullInformation {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotAddBookWithNullInformation", resourceCulture);
+        internal static string Application_warning_CannotAddBookWithNullInformation
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotAddBookWithNullInformation",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot add customer. The dto is null or the country identifier is empty.
         /// </summary>
-        internal static string Application_warning_CannotAddCustomerWithEmptyInformation {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotAddCustomerWithEmptyInformation", resourceCulture);
+        internal static string Application_warning_CannotAddCustomerWithEmptyInformation
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotAddCustomerWithEmptyInformation",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot add not validated bank account.
         /// </summary>
-        internal static string Application_warning_CannotAddNotValidatedBankAccount {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotAddNotValidatedBankAccount", resourceCulture);
+        internal static string Application_warning_CannotAddNotValidatedBankAccount
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotAddNotValidatedBankAccount",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot add null bank account or bank account without customer identifier.
         /// </summary>
-        internal static string Application_warning_CannotAddNullBankAccountOrInvalidCustomer {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotAddNullBankAccountOrInvalidCustomer", resourceCulture);
+        internal static string Application_warning_CannotAddNullBankAccountOrInvalidCustomer
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotAddNullBankAccountOrInvalidCustomer",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot add a new order with a null order dto.
         /// </summary>
-        internal static string Application_warning_CannotAddOrderWithNullInformation {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotAddOrderWithNullInformation", resourceCulture);
+        internal static string Application_warning_CannotAddOrderWithNullInformation
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotAddOrderWithNullInformation",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot add a new software with a null order dto.
         /// </summary>
-        internal static string Application_warning_CannotAddSoftwareWithNullInformation {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotAddSoftwareWithNullInformation", resourceCulture);
+        internal static string Application_warning_CannotAddSoftwareWithNullInformation
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotAddSoftwareWithNullInformation",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot create bank account for not existing customer.
         /// </summary>
-        internal static string Application_warning_CannotCreateBankAccountForInvalidCustomer {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotCreateBankAccountForInvalidCustomer", resourceCulture);
+        internal static string Application_warning_CannotCreateBankAccountForInvalidCustomer
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotCreateBankAccountForInvalidCustomer",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot create a bank account for non existing customer.
         /// </summary>
-        internal static string Application_warning_CannotCreateBankAccountForNonExistingCustomer {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotCreateBankAccountForNonExistingCustomer", resourceCulture);
+        internal static string Application_warning_CannotCreateBankAccountForNonExistingCustomer
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotCreateBankAccountForNonExistingCustomer",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot create a new order for non existing customer.
         /// </summary>
-        internal static string Application_warning_CannotCreateOrderForNonExistingCustomer {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotCreateOrderForNonExistingCustomer", resourceCulture);
+        internal static string Application_warning_CannotCreateOrderForNonExistingCustomer
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotCreateOrderForNonExistingCustomer",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot get bank account activity for invalid or not existing account.
         /// </summary>
-        internal static string Application_warning_CannotGetActivitiesForInvalidOrNotExistingBankAccount {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotGetActivitiesForInvalidOrNotExistingBankAccount", resourceCulture);
+        internal static string Application_warning_CannotGetActivitiesForInvalidOrNotExistingBankAccount
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotGetActivitiesForInvalidOrNotExistingBankAccount",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot get orders from empty customer id.
         /// </summary>
-        internal static string Application_warning_CannotGetOrdersFromEmptyCustomerId {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotGetOrdersFromEmptyCustomerId", resourceCulture);
+        internal static string Application_warning_CannotGetOrdersFromEmptyCustomerId
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotGetOrdersFromEmptyCustomerId",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot lock bank account ,the identifier is empty.
         /// </summary>
-        internal static string Application_warning_CannotLockBankAccountWithEmptyIdentifier {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotLockBankAccountWithEmptyIdentifier", resourceCulture);
+        internal static string Application_warning_CannotLockBankAccountWithEmptyIdentifier
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotLockBankAccountWithEmptyIdentifier",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot lock non existing bank account, the unknown key is {0}.
         /// </summary>
-        internal static string Application_warning_CannotLockNonExistingBankAccount {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotLockNonExistingBankAccount", resourceCulture);
+        internal static string Application_warning_CannotLockNonExistingBankAccount
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotLockNonExistingBankAccount",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot remove customer with empty id.
         /// </summary>
-        internal static string Application_warning_CannotRemoveCustomerWithEmptyId {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotRemoveCustomerWithEmptyId", resourceCulture);
+        internal static string Application_warning_CannotRemoveCustomerWithEmptyId
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotRemoveCustomerWithEmptyId",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot remove a non existing customer.
         /// </summary>
-        internal static string Application_warning_CannotRemoveNonExistingCustomer {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotRemoveNonExistingCustomer", resourceCulture);
+        internal static string Application_warning_CannotRemoveNonExistingCustomer
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotRemoveNonExistingCustomer",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot add customer. The dto is null or the identifier is empty.
         /// </summary>
-        internal static string Application_warning_CannotUpdateCustomerWithEmptyInformation {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotUpdateCustomerWithEmptyInformation", resourceCulture);
+        internal static string Application_warning_CannotUpdateCustomerWithEmptyInformation
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotUpdateCustomerWithEmptyInformation",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot update a non existing customer.
         /// </summary>
-        internal static string Application_warning_CannotUpdateNonExistingCustomer {
-            get {
-                return ResourceManager.GetString("Application_warning_CannotUpdateNonExistingCustomer", resourceCulture);
+        internal static string Application_warning_CannotUpdateNonExistingCustomer
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_CannotUpdateNonExistingCustomer",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Invalid argument for FindCustomer, the customerid cannot be empty.
         /// </summary>
-        internal static string Application_warning_InvalidArgumentForFindCustomer {
-            get {
+        internal static string Application_warning_InvalidArgumentForFindCustomer
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_warning_InvalidArgumentForFindCustomer", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Invalid arguments when call to CustomerManagementService FindOrders.
         /// </summary>
-        internal static string Application_warning_InvalidArgumentForFindOrders {
-            get {
+        internal static string Application_warning_InvalidArgumentForFindOrders
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_warning_InvalidArgumentForFindOrders", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Invalid arguments when call to CustomerManagementService FindProducts.
         /// </summary>
-        internal static string Application_warning_InvalidArgumentForFindProducts {
-            get {
+        internal static string Application_warning_InvalidArgumentForFindProducts
+        {
+            get
+            {
                 return ResourceManager.GetString("Application_warning_InvalidArgumentForFindProducts", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Invalid arguments when call to CustomerManagementService FindCountries.
         /// </summary>
-        internal static string Application_warning_InvalidArgumentsForFindCountries {
-            get {
-                return ResourceManager.GetString("Application_warning_InvalidArgumentsForFindCountries", resourceCulture);
+        internal static string Application_warning_InvalidArgumentsForFindCountries
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_InvalidArgumentsForFindCountries",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Invalid arguments when call to CustomerManagementService FindCustomers.
         /// </summary>
-        internal static string Application_warning_InvalidArgumentsForFindCustomers {
-            get {
-                return ResourceManager.GetString("Application_warning_InvalidArgumentsForFindCustomers", resourceCulture);
+        internal static string Application_warning_InvalidArgumentsForFindCustomers
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Application_warning_InvalidArgumentsForFindCustomers",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на On Executing {0} at {1} .
         /// </summary>
-        internal static string Distributed_Services_info_OnExecuted {
-            get {
+        internal static string Distributed_Services_info_OnExecuted
+        {
+            get
+            {
                 return ResourceManager.GetString("Distributed_Services_info_OnExecuted", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на On Executed {0} at {1}.
         /// </summary>
-        internal static string Distributed_Services_info_OnExecuting {
-            get {
+        internal static string Distributed_Services_info_OnExecuting
+        {
+            get
+            {
                 return ResourceManager.GetString("Distributed_Services_info_OnExecuting", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Parameter: {0}.
         /// </summary>
-        internal static string Distributed_Services_info_Parameter {
-            get {
+        internal static string Distributed_Services_info_Parameter
+        {
+            get
+            {
                 return ResourceManager.GetString("Distributed_Services_info_Parameter", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot deposit money in locked account.
         /// </summary>
-        internal static string Domain_exception_BankAccountCannotDeposit {
-            get {
+        internal static string Domain_exception_BankAccountCannotDeposit
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_exception_BankAccountCannotDeposit", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot withdraw in bankaccount, this is locked or amount is greather than balance.
         /// </summary>
-        internal static string Domain_exception_BankAccountCannotWithdraw {
-            get {
+        internal static string Domain_exception_BankAccountCannotWithdraw
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_exception_BankAccountCannotWithdraw", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Invalid amount for withdraw operation.
         /// </summary>
-        internal static string Domain_exception_BankAccountInvalidWithdrawAmount {
-            get {
+        internal static string Domain_exception_BankAccountInvalidWithdrawAmount
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_exception_BankAccountInvalidWithdrawAmount", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Country is null or Country is in Transient state.
         /// </summary>
-        internal static string Domain_exception_CannotAssociateTransientOrNullCountry {
-            get {
-                return ResourceManager.GetString("Domain_exception_CannotAssociateTransientOrNullCountry", resourceCulture);
+        internal static string Domain_exception_CannotAssociateTransientOrNullCountry
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Domain_exception_CannotAssociateTransientOrNullCountry",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Customer is null or Customer is in Transient state.
         /// </summary>
-        internal static string Domain_exception_CannotAssociateTransientOrNullCustomer {
-            get {
-                return ResourceManager.GetString("Domain_exception_CannotAssociateTransientOrNullCustomer", resourceCulture);
+        internal static string Domain_exception_CannotAssociateTransientOrNullCustomer
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Domain_exception_CannotAssociateTransientOrNullCustomer",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Product is null or Product is in Transient state.
         /// </summary>
-        internal static string Domain_exception_CannotAssociateTransientOrNullProduct {
-            get {
-                return ResourceManager.GetString("Domain_exception_CannotAssociateTransientOrNullProduct", resourceCulture);
+        internal static string Domain_exception_CannotAssociateTransientOrNullProduct
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Domain_exception_CannotAssociateTransientOrNullProduct",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot transfer money to the same bank account.
         /// </summary>
-        internal static string Domain_exception_CannotTransferMoneyWhenFromIsTheSameAsTo {
-            get {
-                return ResourceManager.GetString("Domain_exception_CannotTransferMoneyWhenFromIsTheSameAsTo", resourceCulture);
+        internal static string Domain_exception_CannotTransferMoneyWhenFromIsTheSameAsTo
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Domain_exception_CannotTransferMoneyWhenFromIsTheSameAsTo",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Invalid data in order line, check the values, amount of items must be greater than zero.
         /// </summary>
-        internal static string Domain_exception_InvalidDataForOrderLine {
-            get {
+        internal static string Domain_exception_InvalidDataForOrderLine
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_exception_InvalidDataForOrderLine", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Invalid order number pattern .
         /// </summary>
-        internal static string Domain_exception_OrderNumberSpecificationInvalidOrderNumberPattern {
-            get {
-                return ResourceManager.GetString("Domain_exception_OrderNumberSpecificationInvalidOrderNumberPattern", resourceCulture);
+        internal static string Domain_exception_OrderNumberSpecificationInvalidOrderNumberPattern
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Domain_exception_OrderNumberSpecificationInvalidOrderNumberPattern",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Deposit from account with identifier {0}.
         /// </summary>
-        internal static string Domain_messages_TransactionFromMessage {
-            get {
+        internal static string Domain_messages_TransactionFromMessage
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_messages_TransactionFromMessage", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Withdraw to account with identifier {0}.
         /// </summary>
-        internal static string Domain_messages_TransactionToMessage {
-            get {
+        internal static string Domain_messages_TransactionToMessage
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_messages_TransactionToMessage", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The bank account number cannot be null or empty string.
         /// </summary>
-        internal static string Domain_validation_BankAccountBankAccountNumberCannotBeNull {
-            get {
-                return ResourceManager.GetString("Domain_validation_BankAccountBankAccountNumberCannotBeNull", resourceCulture);
+        internal static string Domain_validation_BankAccountBankAccountNumberCannotBeNull
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Domain_validation_BankAccountBankAccountNumberCannotBeNull",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The bank account check digits cannot be null or empty string.
         /// </summary>
-        internal static string Domain_validation_BankAccountBankCheckDigitsCannotBeNull {
-            get {
-                return ResourceManager.GetString("Domain_validation_BankAccountBankCheckDigitsCannotBeNull", resourceCulture);
+        internal static string Domain_validation_BankAccountBankCheckDigitsCannotBeNull
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Domain_validation_BankAccountBankCheckDigitsCannotBeNull",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The bank account national bank code cannot be null or empty string.
         /// </summary>
-        internal static string Domain_validation_BankAccountBankNationalBankCodeCannotBeNull {
-            get {
-                return ResourceManager.GetString("Domain_validation_BankAccountBankNationalBankCodeCannotBeNull", resourceCulture);
+        internal static string Domain_validation_BankAccountBankNationalBankCodeCannotBeNull
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Domain_validation_BankAccountBankNationalBankCodeCannotBeNull",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The bank account office number cannot be null or empty string.
         /// </summary>
-        internal static string Domain_validation_BankAccountBankOfficeNumberCannotBeNull {
-            get {
-                return ResourceManager.GetString("Domain_validation_BankAccountBankOfficeNumberCannotBeNull", resourceCulture);
+        internal static string Domain_validation_BankAccountBankOfficeNumberCannotBeNull
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Domain_validation_BankAccountBankOfficeNumberCannotBeNull",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The customer id  in bank account cannot be empty.
         /// </summary>
-        internal static string Domain_validation_BankAccountCustomerIdIsEmpty {
-            get {
+        internal static string Domain_validation_BankAccountCustomerIdIsEmpty
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_BankAccountCustomerIdIsEmpty", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The bank account number cannot be null.
         /// </summary>
-        internal static string Domain_validation_BankAccountNumberCannotBeNull {
-            get {
+        internal static string Domain_validation_BankAccountNumberCannotBeNull
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_BankAccountNumberCannotBeNull", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на CountryISOCode cannot be null or empty string.
         /// </summary>
-        internal static string Domain_validation_CountryCountryISOCodeCannotBeNull {
-            get {
-                return ResourceManager.GetString("Domain_validation_CountryCountryISOCodeCannotBeNull", resourceCulture);
+        internal static string Domain_validation_CountryCountryISOCodeCannotBeNull
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Domain_validation_CountryCountryISOCodeCannotBeNull",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на CountryName cannot be null or empty string.
         /// </summary>
-        internal static string Domain_validation_CountryCountryNameCannotBeNull {
-            get {
+        internal static string Domain_validation_CountryCountryNameCannotBeNull
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_CountryCountryNameCannotBeNull", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на CountryId is not associated for this Customer.
         /// </summary>
-        internal static string Domain_validation_CustomerCountryIdCannotBeEmpty {
-            get {
+        internal static string Domain_validation_CustomerCountryIdCannotBeEmpty
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_CustomerCountryIdCannotBeEmpty", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The FirstName property cannot be null or empty string.
         /// </summary>
-        internal static string Domain_validation_CustomerFirstNameCannotBeNull {
-            get {
+        internal static string Domain_validation_CustomerFirstNameCannotBeNull
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_CustomerFirstNameCannotBeNull", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The LastName property cannot be null or empty string.
         /// </summary>
-        internal static string Domain_validation_CustomerLastNameCannotBeBull {
-            get {
+        internal static string Domain_validation_CustomerLastNameCannotBeBull
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_CustomerLastNameCannotBeBull", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Customer is null or Customer is in Transient state.
         /// </summary>
-        internal static string Domain_validation_OrderCustomerIdCannotBenull {
-            get {
+        internal static string Domain_validation_OrderCustomerIdCannotBenull
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_OrderCustomerIdCannotBenull", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The Amount property cannot be less than 1.
         /// </summary>
-        internal static string Domain_validation_OrderLineAmountLessThanOne {
-            get {
+        internal static string Domain_validation_OrderLineAmountLessThanOne
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_OrderLineAmountLessThanOne", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The Discount cannot be less than 0 or greater than 1.
         /// </summary>
-        internal static string Domain_validation_OrderLineDiscountCannotBeLessThanZeroOrGreaterThanOne {
-            get {
-                return ResourceManager.GetString("Domain_validation_OrderLineDiscountCannotBeLessThanZeroOrGreaterThanOne", resourceCulture);
+        internal static string Domain_validation_OrderLineDiscountCannotBeLessThanZeroOrGreaterThanOne
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Domain_validation_OrderLineDiscountCannotBeLessThanZeroOrGreaterThanOne",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на OrderLine cannot have associated order.
         /// </summary>
-        internal static string Domain_validation_OrderLineOrderIdIsEmpty {
-            get {
+        internal static string Domain_validation_OrderLineOrderIdIsEmpty
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_OrderLineOrderIdIsEmpty", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The product id cannot be a empty identifier.
         /// </summary>
-        internal static string Domain_validation_OrderLineProductIdCannotBeNull {
-            get {
+        internal static string Domain_validation_OrderLineProductIdCannotBeNull
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_OrderLineProductIdCannotBeNull", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на UnitPrice cannot be less than zero.
         /// </summary>
-        internal static string Domain_validation_OrderLineUnitPriceLessThanZero {
-            get {
+        internal static string Domain_validation_OrderLineUnitPriceLessThanZero
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_OrderLineUnitPriceLessThanZero", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Amount in stock cannot be less than zero.
         /// </summary>
-        internal static string Domain_validation_ProductAmountLessThanZero {
-            get {
+        internal static string Domain_validation_ProductAmountLessThanZero
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_ProductAmountLessThanZero", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Description cannot be null or empty.
         /// </summary>
-        internal static string Domain_validation_ProductDescriptionCannotBeNullOrEmpty {
-            get {
-                return ResourceManager.GetString("Domain_validation_ProductDescriptionCannotBeNullOrEmpty", resourceCulture);
+        internal static string Domain_validation_ProductDescriptionCannotBeNullOrEmpty
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Domain_validation_ProductDescriptionCannotBeNullOrEmpty",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Title cannot be null or empty.
         /// </summary>
-        internal static string Domain_validation_ProductTitleCannotBeNullOrEmpty {
-            get {
+        internal static string Domain_validation_ProductTitleCannotBeNullOrEmpty
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_ProductTitleCannotBeNullOrEmpty", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на UnitPrice in stock cannot be less than zero.
         /// </summary>
-        internal static string Domain_validation_ProductUnitPriceLessThanZero {
-            get {
+        internal static string Domain_validation_ProductUnitPriceLessThanZero
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_ProductUnitPriceLessThanZero", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The {0} in {1} cannot be empty or null.
         /// </summary>
-        internal static string Domain_validation_PropertyIsEmptyOrNull {
-            get {
+        internal static string Domain_validation_PropertyIsEmptyOrNull
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_PropertyIsEmptyOrNull", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The value of {0} in {1} must be greater than {2} and less than {3}.
         /// </summary>
-        internal static string Domain_validation_PropertyOutOfRange {
-            get {
+        internal static string Domain_validation_PropertyOutOfRange
+        {
+            get
+            {
                 return ResourceManager.GetString("Domain_validation_PropertyOutOfRange", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на T must be an enumerated type.
         /// </summary>
-        internal static string Infrastructure_exception_InvalidEnumeratedType {
-            get {
+        internal static string Infrastructure_exception_InvalidEnumeratedType
+        {
+            get
+            {
                 return ResourceManager.GetString("Infrastructure_exception_InvalidEnumeratedType", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Not mapped found for type {0} to type {1}.
         /// </summary>
-        internal static string Infrastructure_exception_NotMapFoundForTypeAdapter {
-            get {
+        internal static string Infrastructure_exception_NotMapFoundForTypeAdapter
+        {
+            get
+            {
                 return ResourceManager.GetString("Infrastructure_exception_NotMapFoundForTypeAdapter", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на The type is not a fully qualified assembly name.
         /// </summary>
-        internal static string Infrastructure_exception_RegisterTypeMapConfigurationElementInvalidTypeValue {
-            get {
-                return ResourceManager.GetString("Infrastructure_exception_RegisterTypeMapConfigurationElementInvalidTypeValue", resourceCulture);
+        internal static string Infrastructure_exception_RegisterTypeMapConfigurationElementInvalidTypeValue
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Infrastructure_exception_RegisterTypeMapConfigurationElementInvalidTypeValue",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Invalid type, expected is RegisterTypesMapConfigurationElement.
         /// </summary>
-        internal static string Infrastructure_exception_RegisterTypesMapConfigurationInvalidType {
-            get {
-                return ResourceManager.GetString("Infrastructure_exception_RegisterTypesMapConfigurationInvalidType", resourceCulture);
+        internal static string Infrastructure_exception_RegisterTypesMapConfigurationInvalidType
+        {
+            get
+            {
+                return ResourceManager.GetString(
+                    "Infrastructure_exception_RegisterTypesMapConfigurationInvalidType",
+                    resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot add null entity into {0} repository.
         /// </summary>
-        internal static string Infrastructure_info_CannotAddNullEntity {
-            get {
+        internal static string Infrastructure_info_CannotAddNullEntity
+        {
+            get
+            {
                 return ResourceManager.GetString("Infrastructure_info_CannotAddNullEntity", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot modify null item into {0} repository.
         /// </summary>
-        internal static string Infrastructure_info_CannotModifyNullEntity {
-            get {
+        internal static string Infrastructure_info_CannotModifyNullEntity
+        {
+            get
+            {
                 return ResourceManager.GetString("Infrastructure_info_CannotModifyNullEntity", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot remove null entity into {0} repository.
         /// </summary>
-        internal static string Infrastructure_info_CannotRemoveNullEntity {
-            get {
+        internal static string Infrastructure_info_CannotRemoveNullEntity
+        {
+            get
+            {
                 return ResourceManager.GetString("Infrastructure_info_CannotRemoveNullEntity", resourceCulture);
             }
         }
-        
 
         /// <summary>
         ///   Ищет локализованную строку, похожую на Cannot track null item into {0} repository.
         /// </summary>
-        internal static string Infrastructure_info_CannotTrackNullEntity {
-            get {
+        internal static string Infrastructure_info_CannotTrackNullEntity
+        {
+            get
+            {
                 return ResourceManager.GetString("Infrastructure_info_CannotTrackNullEntity", resourceCulture);
             }
         }

@@ -1,0 +1,28 @@
+﻿namespace SuperTicketApi.Domain.MainContext.Command.CreateCommands
+{
+    using MediatR;
+
+    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
+
+    public class CreateLayoutCommand : IRequest<DalCommandResponse>
+    {
+        /// <summary>
+        /// Gets or sets the venue id.
+        /// </summary>
+        /// <remarks>
+        /// <para><c>SQL:</c>[VenueId] <see langword="int"/> NOT NULL.</para>
+        /// </remarks>
+        [DbColumn("VenueId")]
+        public int VenueId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        /// <remarks>
+        /// <para><c>SQL:</c>[Description] nvarchar(120) NOT NULL.</para>
+        /// </remarks>
+        [DbColumn("Description")]
+        public string Description { get; set; }
+        public string Command => CreateSpCommandPattern.CreateLayout;
+    }
+}

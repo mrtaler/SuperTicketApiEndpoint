@@ -10,7 +10,7 @@
 
         public GetSingleEventAreaQuery( int id  )
         {
-            Id = id;
+            this.Id = id;
         }
     }
 }

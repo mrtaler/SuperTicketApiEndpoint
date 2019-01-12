@@ -10,6 +10,7 @@
     using Microsoft.Extensions.Configuration;
 
     using SuperTicketApi.ApiEndpoint.Extension;
+
     /// <summary>
     /// 
     /// </summary>
@@ -23,6 +24,7 @@
         {
             CreateWebHostBuilder(args).Build().Run();
         }
+
         /// <summary>
         /// Creates the web host builder.
         /// </summary>
@@ -31,10 +33,9 @@
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
 
-            return WebHost.CreateDefaultBuilder(args)
-          
-                .UseContentRoot(Directory.GetCurrentDirectory())
+            return WebHost.CreateDefaultBuilder(args).UseContentRoot(Directory.GetCurrentDirectory())
                 .ConfigureServices(services => services.AddAutofac())
+
                 // .UseKestrel(o=> { o.AddServerHeader = true; }                )
                 .ConfigureAppConfiguration(
                 (hostingContext, config) =>

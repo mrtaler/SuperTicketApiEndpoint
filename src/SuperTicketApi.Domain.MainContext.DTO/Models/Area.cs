@@ -43,6 +43,7 @@
         }
 
         #region Implementation of IEntity<int>
+
         /// <inheritdoc />
         /// <remarks>
         /// <para><see cref="Area"/>Id</para>

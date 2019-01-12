@@ -1,10 +1,13 @@
-﻿using MediatR;
-using Serilog;
-using SuperTicketApi.Domain.MainContext.DTO.New;
-using System;
+﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Diagnostics;
+
+using MediatR;
+
+using Serilog;
+
+using SuperTicketApi.Domain.MainContext.DTO.New;
 
 namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
 {
@@ -14,12 +17,11 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
 
         // MediatR property and constructor for TracingBehavior are not mandatory in cases where you don't need a dependancy such as MediatR injected.
         // Here we need MediatR in order to send notifications after processing the handler.
-
         private readonly IMediator _mediatr;
 
         public NotificationsAndTracingBehavior(IMediator mediatr)
         {
-            _mediatr = mediatr;
+            this._mediatr = mediatr;
         }
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
@@ -28,18 +30,16 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
              * PRE/POST PIPELINE BEHAVIORS
              * ------------------------------------------------------*/
             // Sends trace statements to diagnostics/output window in Visual Studio during debugging
-
-            Trace.WriteLine(String.Concat("Handling: PreProcessor for ", typeof(TRequest).Name));
-            var response = await next(); //<-- Send request to the requested handler
-            Trace.WriteLine(String.Concat("Handled: PostProcessor for ", typeof(TRequest).Name));
+            Trace.WriteLine(string.Concat("Handling: PreProcessor for ", typeof(TRequest).Name));
+            var response = await next(); // <-- Send request to the requested handler
+            Trace.WriteLine(string.Concat("Handled: PostProcessor for ", typeof(TRequest).Name));
 
             /* ------------------------------------------------------
              * NOTIFICATIONS (Pub/Sub)
              * ------------------------------------------------------*/
             // Send test 'ping' notification after all handlers completed processing.
-
             var ping = new Ping { Message = "Ping..." };
-            await _mediatr.Publish(ping);
+            await this._mediatr.Publish(ping);
 
             /* -----------------------------------------------------
              * ^ PUBLISHING STRATEGY ^
@@ -60,7 +60,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
             // It is bad practice to place too much (if any) of the examples below within the pipeline.
             // It would likely be cleaner to include this logging within the commands themselves.
             // However it is important to point out the type of control you have within the MediatR pipeline
-            //-----------------------------------------------------------
+            // -----------------------------------------------------------
 
             // You can inject pipeline functionality on specific result status...
             if (typeof(TResponse).Name == "CommandResponse")
@@ -105,10 +105,10 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
         public Task Handle(Ping notification, CancellationToken cancellationToken)
         {
             // Sends trace statements to diagnostics/output window in Visual Studio during debugging
-            Trace.WriteLine(String.Concat("Pong 1: ", notification.Message));
+            Trace.WriteLine(string.Concat("Pong 1: ", notification.Message));
 
             // Log via Serilog:
-            Log.Information(String.Concat("Pong 1 Notification Called: ", notification.Message));
+            Log.Information(string.Concat("Pong 1 Notification Called: ", notification.Message));
 
             return Task.CompletedTask;
         }
@@ -118,12 +118,13 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
         public Task Handle(Ping notification, CancellationToken cancellationToken)
         {
             // Sends trace statements to diagnostics/output window in Visual Studio during debugging
-            Trace.WriteLine(String.Concat("Pong 2: ", notification.Message));
+            Trace.WriteLine(string.Concat("Pong 2: ", notification.Message));
 
             // Log via Serilog:
-            Log.Information(String.Concat("Pong 2 Notification Called: ", notification.Message));
+            Log.Information(string.Concat("Pong 2 Notification Called: ", notification.Message));
 
             return Task.CompletedTask;
         }
     }
+
 }/// https://github.com/asc-lab/dotnetcore-microservices-poc

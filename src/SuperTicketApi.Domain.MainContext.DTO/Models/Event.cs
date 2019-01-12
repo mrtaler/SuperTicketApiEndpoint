@@ -51,6 +51,7 @@
         }
 
         #region Implementation of IEntity<int>
+
         /// <inheritdoc />
         /// <remarks>
         /// <para><see cref="Event"/>Id</para>

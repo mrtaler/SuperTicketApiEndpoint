@@ -52,7 +52,6 @@
                   builder.AddJsonFile(sittingFile, optional: false, reloadOnChange: false);
               }
               */
-
             string pathSettingsAssembly = Assembly.GetAssembly(typeof(CustomSettings)).Location;
 
             // JsonSettings
@@ -96,7 +95,7 @@
             services.Configure<AppConnectionStrings>(configuration.GetSection(nameof(AppConnectionStrings)));
 
 
-            #region Configure AutoMapper (Instance Version) for ServiceModels
+            
 
             ///*----------------------------------------
             // * AutoMapper is also configured using the Static API within our Core library.
@@ -106,20 +105,19 @@
             // * The Core should have no knowledge of AutoMapper configurations in the layer above it.
             // * --------------------------------------*/
 
-            //var config = new MapperConfiguration(cfg => {
-            //    //cfg.AddProfile<AppProfile>();
-            //    cfg.CreateMap<CreateAccountServiceModel, CreateAccountCommand>();
-            //});
+            // var config = new MapperConfiguration(cfg => {
+            // //cfg.AddProfile<AppProfile>();
+            // cfg.CreateMap<CreateAccountServiceModel, CreateAccountCommand>();
+            // });
 
-            //var mapper = config.CreateMapper();
+            // var mapper = config.CreateMapper();
             //// or...
             ////IMapper mapper = new Mapper(config);
             ////var dest = mapper.Map<Source, Dest>(new Source());
 
             ////Add to our Service Provider:
-            //services.AddSingleton<IMapper>(mapper);
-
-            #endregion
+            // services.AddSingleton<IMapper>(mapper);
+            
        
             return services;
         }

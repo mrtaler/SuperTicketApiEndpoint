@@ -3,6 +3,7 @@
     using System.Collections.Generic;
 
     using SuperTicketApi.ApiEndpoint.ViewModel.EventSeat;
+
     /// <summary>
     /// 
     /// </summary>
@@ -16,6 +17,7 @@
         /// The event identifier.
         /// </value>
         public int EventId { get; set; }
+
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
@@ -23,6 +25,7 @@
         /// The description.
         /// </value>
         public string Description { get; set; }
+
         /// <summary>
         /// Gets or sets the coord x.
         /// </summary>
@@ -30,6 +33,7 @@
         /// The coord x.
         /// </value>
         public int CoordX { get; set; }
+
         /// <summary>
         /// Gets or sets the coord y.
         /// </summary>
@@ -37,6 +41,7 @@
         /// The coord y.
         /// </value>
         public int CoordY { get; set; }
+
         /// <summary>
         /// Gets or sets the price.
         /// </summary>
@@ -44,6 +49,7 @@
         /// The price.
         /// </value>
         public decimal Price { get; set; }
+
         /// <summary>
         /// Gets or sets the eventseat.
         /// </summary>

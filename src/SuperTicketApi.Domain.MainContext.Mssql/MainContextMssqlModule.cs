@@ -25,23 +25,19 @@
              connectionString = connection;
          }
          /*/
+
         /// <inheritdoc />
         protected override void Load(ContainerBuilder builder)
         {
-            builder
-                .Register(c => new UnitOfWorkFactory(
-                    c.Resolve<AppConnectionStrings>().MssqlConnectionString))
+            builder.Register(c => new UnitOfWorkFactory(c.Resolve<AppConnectionStrings>().MssqlConnectionString))
+
                 // IOptions <AppConnectionStrings>>().Value.MssqlConnectionString
                 .As<IUnitOfWorkFactory>().InstancePerLifetimeScope();
 
             /* builder
                  .RegisterType<UnitOfWork>()
                  .As<IUnitOfWork>().InstancePerLifetimeScope();*/
-
-            builder
-                .RegisterType<AdoNetUnitOfWork>()
-                .As<INetUnitOfWork>().InstancePerLifetimeScope();
-
+            builder.RegisterType<AdoNetUnitOfWork>().As<INetUnitOfWork>().InstancePerLifetimeScope();
 
             builder.AddMediatR(
                 typeof(GetQueryAsIEnumerableQueryHandler).GetTypeInfo().Assembly,
@@ -69,6 +65,7 @@
             builder.RegisterGeneric(typeof(IRequestPostProcessor<,>)).As(typeof(GenericRequestPostProcessor<,>));
             */
         }
+
         // https://github.com/INNVTV/NetCore-Clean-Architecture
     }
 }

@@ -13,6 +13,7 @@
         /// The event areas identifier.
         /// </value>
         public int EventAreasId { get; set; }
+
         /// <summary>
         /// Gets or sets the row.
         /// </summary>
@@ -20,6 +21,7 @@
         /// The row.
         /// </value>
         public int Row { get; set; }
+
         /// <summary>
         /// Gets or sets the number.
         /// </summary>
@@ -27,6 +29,7 @@
         /// The number.
         /// </value>
         public int Number { get; set; }
+
         /// <summary>
         /// Gets or sets the state.
         /// </summary>

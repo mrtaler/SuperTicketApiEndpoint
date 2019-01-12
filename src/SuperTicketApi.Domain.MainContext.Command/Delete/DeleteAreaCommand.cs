@@ -1,72 +1,35 @@
-﻿using MediatR;
-using SuperTicketApi.Domain.MainContext.Command.Delete;
-using SuperTicketApi.Domain.MainContext.DTO.Attributes;
-using SuperTicketApi.Domain.MainContext.DTO.Models;
-
-namespace SuperTicketApi.Domain.MainContext.Command.CreateCommands
+﻿namespace SuperTicketApi.Domain.MainContext.Command.Delete
 {
+    using MediatR;
+
+    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
+    using SuperTicketApi.Domain.MainContext.DTO.Models;
+
+    /// <summary>
+    /// The delete area command.
+    /// </summary>
     public class DeleteAreaCommand : IRequest<DalCommandResponse>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeleteAreaCommand"/> class.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
         public DeleteAreaCommand(int id)
         {
             this.Id = id;
         }
+
+        /// <summary>
+        /// Gets the id.
+        /// </summary>
         [IdColumn(typeof(Area))]
         public int Id { get; private set; }
+
+        /// <summary>
+        /// The command.
+        /// </summary>
         public string Command => DeleteSpCommandPattern.DeleteArea;
-    }
-    public class DeleteEventAreaCommand : IRequest<DalCommandResponse>
-    {
-        public DeleteEventAreaCommand(int id)
-        {
-            this.Id = id;
-        }
-        public int Id { get; private set; }
-        public string Command => DeleteSpCommandPattern.DeleteEventArea;
-    }
-    public class DeleteEventCommand : IRequest<DalCommandResponse>
-    {
-        public DeleteEventCommand(int id)
-        {
-            this.Id = id;
-        }
-        public int Id { get; private set; }
-        public string Command => DeleteSpCommandPattern.DeleteEvent;
-    }
-    public class DeleteEventSeatCommand : IRequest<DalCommandResponse>
-    {
-        public DeleteEventSeatCommand(int id)
-        {
-            this.Id = id;
-        }
-        public int Id { get; private set; }
-        public string Command => DeleteSpCommandPattern.DeleteEventSeat;
-    }
-    public class DeleteLayoutCommand : IRequest<DalCommandResponse>
-    {
-        public DeleteLayoutCommand(int id)
-        {
-            this.Id = id;
-        }
-        public int Id { get; private set; }
-        public string Command => DeleteSpCommandPattern.DeleteLayout;
-    }
-    public class DeleteSeatCommand : IRequest<DalCommandResponse>
-    {
-        public DeleteSeatCommand(int id)
-        {
-            this.Id = id;
-        }
-        public int Id { get; private set; }
-        public string Command => DeleteSpCommandPattern.DeleteSeat;
-    }
-    public class DeleteVenueCommand : IRequest<DalCommandResponse>
-    {
-        public DeleteVenueCommand(int id)
-        {
-            this.Id = id;
-        }
-        public int Id { get; private set; }
-        public string Command => DeleteSpCommandPattern.DeleteVenue;
     }
 }

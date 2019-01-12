@@ -38,48 +38,44 @@
                 if (!validationResult.IsValid)
                 {
                     var resp = new CommandResponse
-                    {
-                        Message = "One or more validation errors occurred.",
-                        ValidationErrors = validationResult.Errors
-                    };
+                                   {
+                                       Message = "One or more validation errors occurred.",
+                                       ValidationErrors = validationResult.Errors
+                                   };
                     return resp;
                 }
 
-                //! todo create map from CreateAreaVM to map area database
+                // ! todo create map from CreateAreaVM to map area database
                 var dalCommand = new CreateAreaCommand
-                {
-                    Description = request.Description,
-                    LayoutId = request.LayoutId,
-                    CoordX = request.CoordX,
-                    CoordY = request.CoordY
-                };
+                                     {
+                                         Description = request.Description,
+                                         LayoutId = request.LayoutId,
+                                         CoordX = request.CoordX,
+                                         CoordY = request.CoordY
+                                     };
 
-                //! then call create area command from database level
+                // ! then call create area command from database level
                 var commRes = await this.mediatr.Send(dalCommand);
-                //! then geet seponse from DAL, and send created ID to Presenter
+
+                // ! then geet seponse from DAL, and send created ID to Presenter
                 if (commRes.isSuccess)
                 {
                     var resp = new CommandResponse
-                    {
-                        isSuccess = true,
-                        Message = "new entity in Area Table was added",
-                        Object = commRes.Object
-                    };
+                                   {
+                                       isSuccess = true,
+                                       Message = "new entity in Area Table was added",
+                                       Object = commRes.Object
+                                   };
                     return resp;
                 }
                 else
                 {
                     var resp = new CommandResponse
-                    {
-                        isSuccess = false,
-                        Message = commRes.Message,
-                        Object = commRes.Object,
-                    };
+                                   {
+                                       isSuccess = false, Message = commRes.Message, Object = commRes.Object,
+                                   };
                     return resp;
                 }
-
-
-
             }
             catch (Exception ex)
             {

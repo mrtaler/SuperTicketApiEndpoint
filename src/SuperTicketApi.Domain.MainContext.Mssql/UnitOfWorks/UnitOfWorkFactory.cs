@@ -11,6 +11,7 @@
         {
             this.connectionString = connection;
         }
+
         public INetUnitOfWork Create()
         {
             var adoNetContext = new AdoNetUnitOfWork(this.connectionString, false);

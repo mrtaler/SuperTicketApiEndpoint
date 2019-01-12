@@ -1,15 +1,17 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers
 {
-    using MediatR;
-    using SuperTicketApi.Domain.MainContext.Command;
-    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
-    using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
     using System.Globalization;
     using System.Linq;
+
+    using MediatR;
+
+    using SuperTicketApi.Domain.MainContext.Command;
+    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
+    using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
 
     public class BaseCommandHandler : BaseHandler
     {
@@ -90,8 +92,7 @@
             command.CommandText = sqlSp;
             command.CommandType = CommandType.StoredProcedure;
 
-            //  this.Logger.Info($"Run SQL {nameof(CommandType.StoredProcedure)}: {command.CommandText}");
-
+            // this.Logger.Info($"Run SQL {nameof(CommandType.StoredProcedure)}: {command.CommandText}");
             foreach (var parameter in parameters)
             {
                 command.Parameters.Add(parameter);
@@ -108,7 +109,7 @@
             }
 
 
-            //  return result; //command.ExecuteNonQuery();
+            // return result; //command.ExecuteNonQuery();
         }
 
         /// <summary>
@@ -157,22 +158,22 @@
 
     public class DataBaseErrors
     {
-        public string ErrorNumber { get; } //= GetItem("ErrorNumber", com);
+        public string ErrorNumber { get; } // = GetItem("ErrorNumber", com);
         public string ErrorSeverity { get; }// = GetItem("ErrorSeverity", com);
-        public string ErrorState { get; } //= GetItem("ErrorState", com);
+        public string ErrorState { get; } // = GetItem("ErrorState", com);
         public string ErrorProcedure { get; }// = GetItem("ErrorProcedure", com);
-        public string ErrorLine { get; } //= GetItem("ErrorLine", com);
-        public string ErrorMessage { get; } //= GetItem("ErrorMessage", com);
+        public string ErrorLine { get; } // = GetItem("ErrorLine", com);
+        public string ErrorMessage { get; } // = GetItem("ErrorMessage", com);
 
         public DataBaseErrors(IDataReader reader)
         {
-            ErrorNumber = reader.GetValueAsString<string>("ErrorNumber");
+            this.ErrorNumber = reader.GetValueAsString<string>("ErrorNumber");
 
-            ErrorSeverity = reader.GetValueAsString<string>("ErrorSeverity");
-            ErrorState = reader.GetValueAsString<string>("ErrorState");
-            ErrorProcedure = reader.GetValueAsString<string>("ErrorProcedure");
-            ErrorLine = reader.GetValueAsString<string>("ErrorLine");
-            ErrorMessage = reader.GetValueAsString<string>("ErrorMessage");
+            this.ErrorSeverity = reader.GetValueAsString<string>("ErrorSeverity");
+            this.ErrorState = reader.GetValueAsString<string>("ErrorState");
+            this.ErrorProcedure = reader.GetValueAsString<string>("ErrorProcedure");
+            this.ErrorLine = reader.GetValueAsString<string>("ErrorLine");
+            this.ErrorMessage = reader.GetValueAsString<string>("ErrorMessage");
         }
 
     }

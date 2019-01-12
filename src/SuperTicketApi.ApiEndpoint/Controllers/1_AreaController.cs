@@ -2,15 +2,15 @@
 {
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
-
-    using SuperTicketApi.ApiEndpoint.ViewModel;
-    using SuperTicketApi.Domain.MainContext.Queries;
-    using System.Threading.Tasks;
-
     using SuperTicketApi.ApiEndpoint.Controllers.Base;
+    using SuperTicketApi.ApiEndpoint.ViewModel;
     using SuperTicketApi.ApiEndpoint.ViewModel.Area;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Area;
     using SuperTicketApi.Domain.MainContext.Command.CreateCommands;
+    using SuperTicketApi.Domain.MainContext.Queries;
+    using System.Threading.Tasks;
+
+    using SuperTicketApi.Domain.MainContext.Command.Delete;
 
     /// <summary>
     /// The Test controller.
@@ -20,16 +20,16 @@
     public class AreaController : BaseController
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AreaController"/> class. 
+        /// Initializes a new instance of the <see cref="AreaController"/> class.
         /// </summary>
         /// <param name="mediator">
         /// The mediator.
         /// </param>
-        public AreaController(
-            IMediator mediator) : base(mediator)   // IOptions<AppConnectionStrings> options,
+        public AreaController(IMediator mediator)
+            : base(mediator)
         {
+            // IOptions<AppConnectionStrings> options,
         }
-
 
         /// <summary>
         /// The GET api/values 
@@ -40,16 +40,10 @@
         [HttpGet("GetAllAreas")]
         public async Task<IActionResult> GetAreas()
         {
-            var areas = await Mediator.Send(EnumerableQueryes.GetAreaAsIEnumerableQuery);
+            var areas = await this.Mediator.Send(EnumerableQueryes.GetAreaAsIEnumerableQuery);
 
-
-            return new ObjectResult(new
-            {
-                areas = areas,
-            });
+            return new ObjectResult(new { allAreas = areas });
         }
-
-        //https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code
 
         /// <summary>
         /// The GET api/values/5
@@ -63,7 +57,7 @@
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await Mediator.Send(ByIdSingleQueryes.GetSingleAreaQuery(id));
+            var result = await this.Mediator.Send(ByIdSingleQueryes.GetSingleAreaQuery(id));
 
             return new ObjectResult(new { area = result });
         }
@@ -80,27 +74,22 @@
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateAreaViewModel createAreaViewModel)
         {
-            
-            var result = await Mediator.Send(createAreaViewModel.ProjectedAs<PresenterCreateAreaCommand>());
+            var result = await this.Mediator.Send(createAreaViewModel.ProjectedAs<PresenterCreateAreaCommand>());
 
             if (result.isSuccess)
             {
                 return new ObjectResult(new
                 {
-                    Success=result.isSuccess,
+                    Success = result.isSuccess,
                     NewId = result.Object,
                 });
             }
 
             return new ObjectResult(new
             {
-                Success=result.isSuccess,
+                Success = result.isSuccess,
                 Error = result.Message,
-
             });
-
-
-
         }
 
         /// <summary>
@@ -109,10 +98,13 @@
         /// <param name="updateModel">
         /// The updated Model.
         /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult>  Put([FromBody] UpdateAreaViewModel updateModel)
+        public async Task<IActionResult> Put([FromBody] UpdateAreaViewModel updateModel)
         {
-            var result = await Mediator.Send(
+            var result = await this.Mediator.Send(
                 updateModel.ProjectedAs<UpdateAreaCommand>());
             if (result.isSuccess)
             {
@@ -127,11 +119,8 @@
             {
                 Success = result.isSuccess,
                 Error = result.Message,
-
             });
-
         }
-
 
         /// <summary>
         /// The DELETE api/values/5
@@ -139,10 +128,13 @@
         /// <param name="id">
         /// The <paramref name="id"/>.
         /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpDelete("{id}")]
-          public async Task<IActionResult>  Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = await Mediator.Send(new DeleteAreaCommand(id));
+            var result = await this.Mediator.Send(new DeleteAreaCommand(id));
             if (result.isSuccess)
             {
                 return new ObjectResult(new
@@ -156,9 +148,7 @@
             {
                 Success = result.isSuccess,
                 Error = result.Message,
-
             });
-            
         }
     }
 }

@@ -14,7 +14,7 @@
 
         public bool isSuccess { get; set; }
         public string Message { get; set; }
-        public Object Object { get; set; }
+        public object Object { get; set; }
 
         public IList<ValidationFailure> ValidationErrors;
     }

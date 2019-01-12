@@ -32,7 +32,6 @@
         private bool Exemption { get; set; } //<-- Allows for exemptions
             
          */
-
         #endregion
     }
 }

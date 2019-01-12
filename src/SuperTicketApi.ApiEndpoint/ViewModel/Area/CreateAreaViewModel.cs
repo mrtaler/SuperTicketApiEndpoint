@@ -13,6 +13,7 @@
         /// The layout identifier.
         /// </value>
         public int LayoutId { get; set; }
+
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
@@ -20,6 +21,7 @@
         /// The description.
         /// </value>
         public string Description { get; set; }
+
         /// <summary>
         /// Gets or sets the coord x.
         /// </summary>
@@ -27,6 +29,7 @@
         /// The coord x.
         /// </value>
         public int CoordX { get; set; }
+
         /// <summary>
         /// Gets or sets the coord y.
         /// </summary>

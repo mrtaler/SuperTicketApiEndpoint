@@ -10,7 +10,7 @@
 
         public GetSingleVenueQuery( int id  )
         {
-            Id = id;
+            this.Id = id;
         }
     }
 }

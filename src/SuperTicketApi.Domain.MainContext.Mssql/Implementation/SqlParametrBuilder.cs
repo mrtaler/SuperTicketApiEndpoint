@@ -23,7 +23,7 @@
         /// <summary>
         /// The ops.
         /// </summary>
-        private static Dictionary<ExpressionType, String> ops = new Dictionary<ExpressionType, String>();
+        private static Dictionary<ExpressionType, string> ops = new Dictionary<ExpressionType, string>();
 
         static SqlParametrBuilder()
         {
@@ -61,6 +61,7 @@
                 sql.Append(string.Format("{0} like '{1}%'", (expression.Object as MemberExpression).Member.Name, expression.Arguments[0]).Replace("\"", string.Empty));
 
             }
+
             return sql.ToString();
         }
 
@@ -72,6 +73,7 @@
                 sql.Append((expression.Left as MemberExpression).Member.Name);
 
             }
+
             if (expression.Left.NodeType == ExpressionType.Constant)
             {
                 sql.Append((expression.Left as ConstantExpression).Value);
@@ -125,6 +127,7 @@
             {
                 sql.Append(makeOperationPredicate(expression));
             }
+
             if (expression.Left.NodeType == ExpressionType.AndAlso)
             {
                 sql.Append(CheckExpression(expression.Left as BinaryExpression));

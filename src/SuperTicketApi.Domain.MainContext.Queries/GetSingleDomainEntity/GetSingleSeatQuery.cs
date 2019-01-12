@@ -10,7 +10,7 @@
 
         public GetSingleSeatQuery( int id  )
         {
-            Id = id;
+            this.Id = id;
         }
     }
 }

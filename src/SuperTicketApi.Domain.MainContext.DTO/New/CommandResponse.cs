@@ -4,17 +4,19 @@ using System.Text;
 
 namespace SuperTicketApi.Domain.MainContext.DTO.New
 {
+    using FluentValidation.Results;
+
     public class CommandResponse
     {
         public CommandResponse()
         {
-            isSuccess = false;
+            this.isSuccess = false;
         }
 
         public bool isSuccess { get; set; }
         public string Message { get; set; }
-        public Object Object { get; set; }
+        public object Object { get; set; }
 
-        public IList<FluentValidation.Results.ValidationFailure> ValidationErrors;
+        public IList<ValidationFailure> ValidationErrors;
     }
 }

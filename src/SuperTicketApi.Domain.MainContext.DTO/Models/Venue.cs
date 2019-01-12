@@ -37,6 +37,7 @@
         }
 
         #region Implementation of IEntity<int>
+
         /// <inheritdoc />
         /// <remarks>
         /// <para><see cref="Venue"/>Id</para>

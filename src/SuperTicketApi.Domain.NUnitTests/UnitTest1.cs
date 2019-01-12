@@ -88,6 +88,7 @@ namespace SuperTicketApi.Domain.NUnitTests
         {
             this.connectionString = connection;
         }
+
         public INetUnitOfWork Create()
         {
             var adoNetContext = new AdoNetUnitOfWorkTest(this.connectionString, false);
@@ -110,21 +111,21 @@ namespace SuperTicketApi.Domain.NUnitTests
          }
          */
         private readonly GetAreaAsIEnumerableQuery message;
+
         private readonly Area area;
+
         private readonly GetQueryAsIEnumerableQueryHandler sut;
-        private IMediator Mediator=>null;
+
+        private IMediator Mediator => null;
 
         public GetAreaAsIEnumerableQueryHandlerShould()
         {
             this.message = new GetAreaAsIEnumerableQuery();
-            this.area = new Area()
-            {
-                LayoutId = 1,
-                Description = "Test1",
-                CoordX = 1,
-                CoordY = 1
-            };
-            this.sut = new GetQueryAsIEnumerableQueryHandler(new UnitOfWorkFactoryTest(@"Data Source=EPBYGOMW0360\EPBYGOMW0360;Database=SuperTicketApiMssqlTests;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;"), this.Mediator);
+            this.area = new Area() { LayoutId = 1, Description = "Test1", CoordX = 1, CoordY = 1 };
+            this.sut = new GetQueryAsIEnumerableQueryHandler(
+                new UnitOfWorkFactoryTest(
+                    @"Data Source=EPBYGOMW0360\EPBYGOMW0360;Database=SuperTicketApiMssqlTests;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;"),
+                this.Mediator);
 
             var mockedDataReader = new Mock<IDataReader>();
             bool readFlag = true;
@@ -136,9 +137,9 @@ namespace SuperTicketApi.Domain.NUnitTests
             mockedDataReader.Setup(x => x["CoordX"]).Returns("1");
             mockedDataReader.Setup(x => x["CoordY"]).Returns("1");
         }
+
         // https://stackoverflow.com/questions/34944462/moq-and-sqlconnection
         // https://stackoverflow.com/questions/6376715/how-to-mock-sqlparametercollection-using-moq 
-
         [Test]
         public async Task ReturnCorrectEnum()
         {
@@ -146,7 +147,5 @@ namespace SuperTicketApi.Domain.NUnitTests
             var result = await this.sut.Handle(this.message, cts.Token);
             Assert.NotNull(result);
         }
-
-
     }
 }

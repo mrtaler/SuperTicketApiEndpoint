@@ -23,9 +23,9 @@
         /// </summary>
         public CorrelationIdMiddleware(RequestDelegate next, IOptions<CorrelationIdOptions> options, ILogger logger)
         {
-            _next = next ?? throw new ArgumentNullException(nameof(next));
-            _options = options ?? throw new ArgumentNullException(nameof(options));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            this._next = next ?? throw new ArgumentNullException(nameof(next));
+            this._options = options ?? throw new ArgumentNullException(nameof(options));
+            this._logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         /// <summary>
@@ -33,11 +33,11 @@
         /// </summary>
         public Task Invoke(HttpContext context)
         {
-            var options = _options.Value;
+            var options = this._options.Value;
             if (!context.Request.Headers.TryGetValue(options.Header, out var correlationId))
             {
                 var error = new ApiError("Correlation Id is missing");
-                _logger.ApiError(error, LogEventLevel.Error);
+                this._logger.ApiError(error, LogEventLevel.Error);
                 return context.WriteErrorAsync(error);
             }
             else
@@ -50,8 +50,9 @@
                             context.Response.Headers.Add(options.Header, new[] { (string)correlationId });
                             return Task.CompletedTask;
                         }
+
                 );
-                return _next.Invoke(context);
+                return this._next.Invoke(context);
             }
         }
     }

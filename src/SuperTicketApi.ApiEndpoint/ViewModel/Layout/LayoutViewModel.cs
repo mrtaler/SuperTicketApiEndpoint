@@ -18,6 +18,7 @@
         /// The venue identifier.
         /// </value>
         public int VenueId { get; set; }
+
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
@@ -25,6 +26,7 @@
         /// The description.
         /// </value>
         public string Description { get; set; }
+
         /// <summary>
         /// Gets or sets the area.
         /// </summary>
@@ -32,6 +34,7 @@
         /// The area.
         /// </value>
         public List<AreaViewModel> Area { get; set; }
+
         /// <summary>
         /// Gets or sets the event.
         /// </summary>

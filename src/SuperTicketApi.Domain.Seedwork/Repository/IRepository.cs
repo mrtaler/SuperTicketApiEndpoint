@@ -1,9 +1,10 @@
 ﻿namespace SuperTicketApi.Domain.Seedwork.Repository
 {
-    using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Data;
+
+    using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
 
     /// <summary>
     /// The Repository <see langword="interface"/>.

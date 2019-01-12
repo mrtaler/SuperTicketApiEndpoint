@@ -45,7 +45,7 @@
         /// <inheritdoc />
         public async Task<IEnumerable<Area>> Handle(GetAreaAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            var returnList = GetAllFromDb<Area>();
+            var returnList = this.GetAllFromDb<Area>();
             return await Task.FromResult(returnList);
         }
 
@@ -56,7 +56,7 @@
         /// <inheritdoc />
         public async Task<IEnumerable<EventArea>> Handle(GetEventAreaAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            var returnList = GetAllFromDb<EventArea>();
+            var returnList = this.GetAllFromDb<EventArea>();
             return await Task.FromResult(returnList);
         }
 
@@ -67,7 +67,7 @@
         /// <inheritdoc />
         public async Task<IEnumerable<Event>> Handle(GetEventAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            var returnList = GetAllFromDb<Event>();
+            var returnList = this.GetAllFromDb<Event>();
             return await Task.FromResult(returnList);
         }
 
@@ -78,7 +78,7 @@
         /// <inheritdoc />
         public async Task<IEnumerable<EventSeat>> Handle(GetEventSeatAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            var returnList = GetAllFromDb<EventSeat>();
+            var returnList = this.GetAllFromDb<EventSeat>();
             return await Task.FromResult(returnList);
         }
 
@@ -89,7 +89,7 @@
         /// <inheritdoc />
         public async Task<IEnumerable<Layout>> Handle(GetLayoutAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            var returnList = GetAllFromDb<Layout>();
+            var returnList = this.GetAllFromDb<Layout>();
             return await Task.FromResult(returnList);
         }
 
@@ -100,7 +100,7 @@
         /// <inheritdoc />
         public async Task<IEnumerable<Seat>> Handle(GetSeatAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            var returnList = GetAllFromDb<Seat>();
+            var returnList = this.GetAllFromDb<Seat>();
             return await Task.FromResult(returnList);
         }
 
@@ -111,7 +111,7 @@
         /// <inheritdoc />
         public async Task<IEnumerable<Venue>> Handle(GetVenueAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
-            var returnList = GetAllFromDb<Venue>();
+            var returnList = this.GetAllFromDb<Venue>();
             return await Task.FromResult(returnList);
         }
 

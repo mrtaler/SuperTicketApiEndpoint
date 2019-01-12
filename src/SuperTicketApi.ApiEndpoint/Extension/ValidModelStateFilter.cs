@@ -8,6 +8,7 @@
     using Serilog;
 
     using SuperTicketApi.Domain.Seedwork;
+
     /// <summary>
     /// 
     /// </summary>

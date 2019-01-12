@@ -24,7 +24,7 @@
         public BaseHandler(IUnitOfWorkFactory factory, IMediator mediatr)
         {
             this.uow = factory.Create();
-            this.command = uow.CreateCommand();
+            this.command = this.uow.CreateCommand();
             this.mediatr = mediatr;
             Log.Information($"{this.GetType().Name} was started");
         }
@@ -39,7 +39,6 @@
             /*var dnAttribute = item.GetCustomAttributes(
                         typeof(IdColumnAttribute), true
                     ).FirstOrDefault() as IdColumnAttribute;*/
-
             return dataBaseAttribute;
         }
     }

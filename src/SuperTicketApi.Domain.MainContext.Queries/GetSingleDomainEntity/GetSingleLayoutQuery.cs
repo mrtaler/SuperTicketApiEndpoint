@@ -10,7 +10,7 @@
 
         public GetSingleLayoutQuery( int id  )
         {
-            Id = id;
+            this.Id = id;
         }
     }
 }

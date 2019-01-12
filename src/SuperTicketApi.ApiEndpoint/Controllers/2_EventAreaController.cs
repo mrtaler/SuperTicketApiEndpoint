@@ -2,11 +2,9 @@
 {
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
-    using SuperTicketApi.Domain.MainContext.Queries;
-    using SuperTicketApi.Domain.MainContext.Queries.GetSingleDomainEntity;
-    using System.Threading.Tasks;
-
     using SuperTicketApi.ApiEndpoint.Controllers.Base;
+    using SuperTicketApi.Domain.MainContext.Queries;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// The Test controller.
@@ -19,13 +17,9 @@
         /// Initializes a new instance of the <see cref="EventAreaController"/> class.
         /// </summary>
         /// <param name="mediator">The mediator.</param>
-        public EventAreaController(
-            IMediator mediator
-            //IOptions<AppConnectionStrings> options,
-            ) : base(mediator)
+        public EventAreaController(IMediator mediator) : base(mediator)
         {
         }
-
 
         /// <summary>
         /// Gets all event areas.
@@ -34,14 +28,13 @@
         [HttpGet("GetAllEventAreas")]
         public async Task<IActionResult> GetAllEventAreas()
         {
-            var eventAreas = await Mediator.Send(EnumerableQueryes.GetEventAreaAsIEnumerableQuery);
+            var eventAreas = await this.Mediator.Send(EnumerableQueryes.GetEventAreaAsIEnumerableQuery);
             return new ObjectResult(new
             {
                 eventAreas = eventAreas,
             });
         }
 
-        //https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code
         /// <summary>
         /// The GET api/values/5
         /// </summary>
@@ -54,7 +47,7 @@
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await Mediator.Send(ByIdSingleQueryes.GetSingleEventAreaQuery(id));
+            var result = await this.Mediator.Send(ByIdSingleQueryes.GetSingleEventAreaQuery(id));
             return new ObjectResult(new { EventArea = result });
         }
 
@@ -68,7 +61,7 @@
         /// The <see cref="ActionResult"/>.
         /// </returns>
         [HttpPost]
-        public ActionResult<string> Post([FromBody] string value)
+       public async Task<IActionResult> Post([FromBody] string value)
         {
             return $"value is {value}";
         }
@@ -83,7 +76,7 @@
         /// The value.
         /// </param>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] string value)
         {
         }
 
@@ -95,7 +88,7 @@
         /// The <paramref name="id"/>.
         /// </param>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
         }
     }

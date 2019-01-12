@@ -10,7 +10,7 @@
 
         public GetSingleEventQuery( int id  )
         {
-            Id = id;
+            this.Id = id;
         }
     }
 }

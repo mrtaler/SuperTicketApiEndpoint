@@ -1,8 +1,9 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.Event
 {
-    using SuperTicketApi.ApiEndpoint.ViewModel.EventArea;
     using System;
     using System.Collections.Generic;
+
+    using SuperTicketApi.ApiEndpoint.ViewModel.EventArea;
 
     /// <summary>
     /// 

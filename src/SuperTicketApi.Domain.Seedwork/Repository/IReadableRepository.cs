@@ -1,7 +1,8 @@
 ﻿namespace SuperTicketApi.Domain.Seedwork.Repository
 {
-    using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
     using System.Collections.Generic;
+
+    using SuperTicketApi.Domain.Seedwork.Specifications.Interfaces;
 
     /// <summary>
     /// The ReadableRepository <see langword="interface"/>.

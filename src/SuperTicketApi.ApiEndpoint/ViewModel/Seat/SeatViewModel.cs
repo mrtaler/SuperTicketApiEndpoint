@@ -13,6 +13,7 @@
         /// The area identifier.
         /// </value>
         public int AreaId { get; set; }
+
         /// <summary>
         /// Gets or sets the row.
         /// </summary>
@@ -20,6 +21,7 @@
         /// The row.
         /// </value>
         public int Row { get; set; }
+
         /// <summary>
         /// Gets or sets the number.
         /// </summary>

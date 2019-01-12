@@ -10,7 +10,7 @@
 
         public GetSingleAreaQuery( int id  )
         {
-            Id = id;
+            this.Id = id;
         }
     }
 }

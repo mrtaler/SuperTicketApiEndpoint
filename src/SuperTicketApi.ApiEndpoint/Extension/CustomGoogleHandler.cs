@@ -15,11 +15,13 @@
     using Newtonsoft.Json.Linq;
 
     using SuperTicketApi.ApiSettings.JsonSettings.GoogleOptions;
+
     /// <summary>
     /// 
     /// </summary>
     /// <seealso cref="GoogleAuthOptions" />
     public class CustomGoogleHandler : OAuthHandler<GoogleAuthOptions>
+
     {/// <summary>
     /// 
     /// </summary>
@@ -30,6 +32,7 @@
         public CustomGoogleHandler(IOptionsMonitor<GoogleAuthOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)
             : base(options, logger, encoder, clock)
         { }
+
         /// <summary>
         /// Creates the ticket asynchronous.
         /// </summary>
@@ -75,6 +78,7 @@
 
             return false;
         }
+
         /// <summary>
         /// Handles the remote callback asynchronous.
         /// </summary>

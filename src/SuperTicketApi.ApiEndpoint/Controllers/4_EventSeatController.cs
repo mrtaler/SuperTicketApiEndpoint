@@ -1,12 +1,14 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Controllers
 {
-    using MediatR;
-    using Microsoft.AspNetCore.Mvc;
-    using SuperTicketApi.Domain.MainContext.Queries;
-    using SuperTicketApi.Domain.MainContext.Queries.GetSingleDomainEntity;
     using System.Threading.Tasks;
 
+    using MediatR;
+
+    using Microsoft.AspNetCore.Mvc;
+
     using SuperTicketApi.ApiEndpoint.Controllers.Base;
+    using SuperTicketApi.Domain.MainContext.Queries;
+    using SuperTicketApi.Domain.MainContext.Queries.GetSingleDomainEntity;
 
     /// <summary>
     /// The Test controller.
@@ -21,13 +23,12 @@
         /// <param name="mediator">The mediator.</param>
         public EventSeatController(
             IMediator mediator
-            //IOptions<AppConnectionStrings> options,
-            ) : base(mediator)
+
+            // IOptions<AppConnectionStrings> options,
+        )
+            : base(mediator)
         {
         }
-
-
-      
 
         /// <summary>
         /// Gets all event seats.
@@ -36,14 +37,14 @@
         [HttpGet("GetAllEventSeats")]
         public async Task<IActionResult> GetAllEventSeats()
         {
-            var eventSeats = await Mediator.Send(EnumerableQueryes.GetEventSeatAsIEnumerableQuery);
+            var eventSeats = await this.Mediator.Send(EnumerableQueryes.GetEventSeatAsIEnumerableQuery);
             return new ObjectResult(new
             {
                 eventSeats = eventSeats,
             });
         }
 
-        //https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code
+        // https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code
         /// <summary>
         /// The GET api/values/5
         /// </summary>
@@ -56,7 +57,7 @@
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await Mediator.Send(ByIdSingleQueryes.GetSingleEventSeatQuery(id));
+            var result = await this.Mediator.Send(ByIdSingleQueryes.GetSingleEventSeatQuery(id));
             return new ObjectResult(new { EventSeat = result });
         }
 
@@ -70,7 +71,7 @@
         /// The <see cref="ActionResult"/>.
         /// </returns>
         [HttpPost]
-        public ActionResult<string> Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] string value)
         {
             return $"value is {value}";
         }
@@ -85,7 +86,7 @@
         /// The value.
         /// </param>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] string value)
         {
         }
 
@@ -97,7 +98,7 @@
         /// The <paramref name="id"/>.
         /// </param>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
         }
     }
