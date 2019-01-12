@@ -25,9 +25,7 @@
         /// The mediator.
         /// </param>
         public AreaController(
-            IMediator mediator
-            // IOptions<AppConnectionStrings> options,
-            ) : base(mediator)
+            IMediator mediator) : base(mediator)   // IOptions<AppConnectionStrings> options,
         {
         }
 
