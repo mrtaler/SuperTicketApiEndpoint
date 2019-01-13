@@ -6,6 +6,9 @@
 
     using SuperTicketApi.Domain.MainContext.DTO.Models;
 
+    /// <summary>
+    /// The get event as i enumerable query.
+    /// </summary>
     public class GetEventAsIEnumerableQuery : IRequest<IEnumerable<Event>>
     {
     }

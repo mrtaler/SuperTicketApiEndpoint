@@ -14,18 +14,18 @@
     {
         private const string ApiKeyHeaderName = "x-api-key";
 
-        private readonly RequestDelegate _next;
-        private readonly IApplicationAccessRepository _repo;
-        private readonly ILogger _logger;
+        private readonly RequestDelegate next;
+        private readonly IApplicationAccessRepository repo;
+        private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiKeyMiddleware"/> class.
         /// </summary>
         public ApiKeyMiddleware(RequestDelegate next, IApplicationAccessRepository repo, ILogger logger)
         {
-            this._next = next;
-            this._repo = repo;
-            this._logger = logger;
+            this.next = next;
+            this.repo = repo;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -36,18 +36,18 @@
             if (!context.Request.Headers.Keys.Contains(ApiKeyHeaderName))
             {
                 var error = new ApiError("API Key is missing");
-                this._logger.ApiError(error);
+                this.logger.ApiError(error);
                 return context.WriteErrorAsync(error, HttpStatusCode.BadRequest);
             }
-            else if (!this._repo.CheckValidApiKey(context.Request.Headers[ApiKeyHeaderName]))
+            else if (!this.repo.CheckValidApiKey(context.Request.Headers[ApiKeyHeaderName]))
             {
                 var error = new ApiError("Invalid API Key");
-                this._logger.ApiError(error);
+                this.logger.ApiError(error);
                 return context.WriteErrorAsync(error, HttpStatusCode.Unauthorized);
             }
             else
             {
-                return this._next.Invoke(context);
+                return this.next.Invoke(context);
             }
         }
     }
