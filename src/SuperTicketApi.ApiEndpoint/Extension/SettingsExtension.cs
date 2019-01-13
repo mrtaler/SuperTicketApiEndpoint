@@ -1,13 +1,9 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Extension
 {
-    using System.IO;
-    using System.Reflection;
-
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.PlatformAbstractions;
-
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.ApiSettings.JsonSettings.CorrelationIdOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.CustomSettings;
@@ -15,8 +11,9 @@
     using SuperTicketApi.ApiSettings.JsonSettings.GitHubOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.GoogleOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.TokenAuthOptions;
-
     using Swashbuckle.AspNetCore.Swagger;
+    using System.IO;
+    using System.Reflection;
 
     /// <summary>
     /// The settings extension.
@@ -94,10 +91,7 @@
             services.Configure<CorrelationIdOptions>(configuration.GetSection(nameof(CorrelationIdOptions)));
             services.Configure<AppConnectionStrings>(configuration.GetSection(nameof(AppConnectionStrings)));
 
-
-            
-
-            ///*----------------------------------------
+            /*----------------------------------------
             // * AutoMapper is also configured using the Static API within our Core library.
             // * We also use the instance implementation seperatly here within the Services project.
             // * ---------------------------------------
@@ -117,8 +111,8 @@
 
             ////Add to our Service Provider:
             // services.AddSingleton<IMapper>(mapper);
-            
-       
+
+
             return services;
         }
 

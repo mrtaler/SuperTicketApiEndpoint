@@ -13,9 +13,15 @@
         /// <summary>
         /// Project a type using a DTO
         /// </summary>
-        /// <typeparam name="TProjection">The dto projection</typeparam>
-        /// <param name="entity">The source entity to project</param>
-        /// <returns>The projected type</returns>
+        /// <typeparam name="TProjection">
+        /// The dto projection
+        /// </typeparam>
+        /// <param name="item">
+        /// The item.
+        /// </param>
+        /// <returns>
+        /// The projected type
+        /// </returns>
         public static TProjection ProjectedAs<TProjection>(this IDomainCommand item)
             where TProjection : class, new()
         {

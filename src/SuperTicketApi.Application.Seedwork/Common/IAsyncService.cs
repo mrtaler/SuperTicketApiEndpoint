@@ -3,12 +3,16 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using SuperTicketApi.Application.BoundedContext.DTO.Dto;
+
+    using SuperTicketApi.Application.BoundedContext.DTO;
+    using SuperTicketApi.Domain.MainContext.DTO.Models;
     using SuperTicketApi.Domain.Seedwork;
+
+    using IBusinessDto = SuperTicketApi.Application.Seedwork.IBusinessDto;
 
     public interface IAsyncService<TEntity, TEntityDto> : IDisposable
         where TEntity : DomainEntity
-        where TEntityDto : BusinesEntity
+        where TEntityDto : IBusinessDto
     {
 
         Task<TEntity> GetAsync(object id);

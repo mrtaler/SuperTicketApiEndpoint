@@ -1,15 +1,30 @@
-﻿namespace SuperTicketApi.Application.MainContext.Cqrs.Commands.Area
+﻿namespace SuperTicketApi.Application.MainContext.Cqrs.Commands.Create
 {
     using MediatR;
 
     /// <summary>
     /// The presenter create area command.
     /// </summary>
-    public class PresenterCreateAreaCommand : IRequest<CommandResponse>
+    public class PresenterCreateAreaCommand : IBusinesCommand, IRequest<CommandResponse>
     {
+        /// <summary>
+        /// Gets or sets the layout id.
+        /// </summary>
         public int LayoutId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the CoordX.
+        /// </summary>
         public int CoordX { get; set; }
+
+        /// <summary>
+        /// Gets or sets the CoordY.
+        /// </summary>
         public int CoordY { get; set; }
 
         #region Command Authorization Options

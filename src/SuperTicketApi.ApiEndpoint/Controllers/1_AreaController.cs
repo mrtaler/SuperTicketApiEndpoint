@@ -9,7 +9,7 @@
     using SuperTicketApi.ApiEndpoint.Controllers.Base;
     using SuperTicketApi.ApiEndpoint.ViewModel;
     using SuperTicketApi.ApiEndpoint.ViewModel.Area;
-    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Area;
+    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
     using SuperTicketApi.Domain.MainContext.Command.Delete;
     using SuperTicketApi.Domain.MainContext.Command.Update;
     using SuperTicketApi.Domain.MainContext.Queries;
@@ -66,23 +66,23 @@
         /// <summary>
         /// The api/values
         /// </summary>
-        /// <param name="createAreaViewModel">
+        /// <param name="createViewModel">
         /// The create Area View Model.
         /// </param>
         /// <returns>
         /// The <see cref="ActionResult"/>.
         /// </returns>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateAreaViewModel createAreaViewModel)
+        public async Task<IActionResult> Post([FromBody] CreateAreaViewModel createViewModel)
         {
-            var result = await this.Mediator.Send(createAreaViewModel.ProjectedAs<PresenterCreateAreaCommand>());
+            var result = await this.Mediator.Send(createViewModel.ProjectedAs<PresenterCreateAreaCommand>());
 
             if (result.IsSuccess)
             {
                 return new ObjectResult(new
                 {
                     Success = result.IsSuccess,
-                    NewId = result.Object,
+                    NewEntity = result.Object,
                 });
             }
 

@@ -6,16 +6,17 @@
 
     using MediatR.Extensions.Autofac.DependencyInjection;
 
-    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Area;
+    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
 
-    // using SuperTicketApi.Application.MainContext.Implementation;
-    // using SuperTicketApi.Application.MainContext.Interfaces;
+    /// <summary>
+    /// The main context module.
+    /// </summary>
     public class MainContextModule : Autofac.Module
     {
         /// <inheritdoc />
         protected override void Load(ContainerBuilder builder)
         {
-            builder.AddMediatR(typeof(AreaCommandHandler).GetTypeInfo().Assembly);
+            builder.AddMediatR(typeof(PresenterCreateAreaCommand).GetTypeInfo().Assembly);
 
             // builder.RegisterType<EventAddressService>().As<IEventAddressService>();
             // builder.RegisterType<EventPlaceService>().As<IEventPlaceService>();

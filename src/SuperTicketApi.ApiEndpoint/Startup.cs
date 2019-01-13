@@ -58,7 +58,7 @@
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.Trace(/*LogEventLevel.Verbose*/)
-                .WriteTo.ApplicationInsights("4f6ea94a-c353-4351-9f71-574900d5b176")
+                .WriteTo.ApplicationInsightsEvents("4f6ea94a-c353-4351-9f71-574900d5b176")
                 .WriteTo.RollingFile(
                     "log-{Date}.txt"/*$"{Path.GetDirectoryName(pathSettingsAssembly)}\\Log.txt"*/,
                     LogEventLevel.Verbose,

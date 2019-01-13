@@ -45,12 +45,13 @@
             try
             {
                 var retId = this.UnitOfWork.AreaRepository.Add(request.ProjectedAs<Area>());
-
+                var returnedObject = request.ProjectedAs<Area>();
+                returnedObject.Id = retId;
                 var retResp = new CommandResponse
                 {
                     IsSuccess = true,
                     Message = "new entity in Area Table was added",
-                    Object = retId
+                    Object = returnedObject
                 };
                 return await Task.FromResult(retResp);
             }
@@ -67,12 +68,13 @@
             try
             {
                 var retId = this.UnitOfWork.EventAreaRepository.Add(request.ProjectedAs<EventArea>());
-
+                var returnedObject = request.ProjectedAs<EventArea>();
+                returnedObject.Id = retId;
                 var retResp = new CommandResponse
                 {
                     IsSuccess = true,
-                    Message = "new entity in Area Table was added",
-                    Object = retId
+                    Message = "new entity in EventArea Table was added",
+                    Object = returnedObject
                 };
                 return await Task.FromResult(retResp);
             }
@@ -89,12 +91,13 @@
             try
             {
                 var retId = this.UnitOfWork.EventRepository.Add(request.ProjectedAs<Event>());
-
+                var returnedObject = request.ProjectedAs<Event>();
+                returnedObject.Id = retId;
                 var retResp = new CommandResponse
                 {
                     IsSuccess = true,
                     Message = "new entity in Event Table was added",
-                    Object = retId
+                    Object = returnedObject
                 };
                 return await Task.FromResult(retResp);
             }
@@ -111,12 +114,13 @@
             try
             {
                 var retId = this.UnitOfWork.EventSeatRepository.Add(request.ProjectedAs<EventSeat>());
-
+                var returnedObject = request.ProjectedAs<EventSeat>();
+                returnedObject.Id = retId;
                 var retResp = new CommandResponse
                 {
                     IsSuccess = true,
                     Message = "new entity in EventSeat Table was added",
-                    Object = retId
+                    Object = returnedObject
                 };
                 return await Task.FromResult(retResp);
             }
@@ -133,12 +137,13 @@
             try
             {
                 var retId = this.UnitOfWork.LayoutRepository.Add(request.ProjectedAs<Layout>());
-
+                var returnedObject = request.ProjectedAs<Layout>();
+                returnedObject.Id = retId;
                 var retResp = new CommandResponse
                 {
                     IsSuccess = true,
                     Message = "new entity in Layout Table was added",
-                    Object = retId
+                    Object = returnedObject
                 };
                 return await Task.FromResult(retResp);
             }
@@ -155,12 +160,13 @@
             try
             {
                 var retId = this.UnitOfWork.SeatRepository.Add(request.ProjectedAs<Seat>());
-
+                var returnedObject = request.ProjectedAs<Seat>();
+                returnedObject.Id = retId;
                 var retResp = new CommandResponse
                 {
                     IsSuccess = true,
                     Message = "new entity in Seat Table was added",
-                    Object = retId
+                    Object = returnedObject
                 };
                 return await Task.FromResult(retResp);
             }
@@ -177,12 +183,13 @@
             try
             {
                 var retId = this.UnitOfWork.VenueRepository.Add(request.ProjectedAs<Venue>());
-
+                var returnedObject = request.ProjectedAs<Venue>();
+                returnedObject.Id = retId;
                 var retResp = new CommandResponse
                 {
                     IsSuccess = true,
                     Message = "new entity in Venue Table was added",
-                    Object = retId
+                    Object = returnedObject
                 };
                 return await Task.FromResult(retResp);
             }

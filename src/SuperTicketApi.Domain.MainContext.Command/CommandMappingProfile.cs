@@ -82,8 +82,6 @@
                 .PreserveReferences()
                 .ReverseMap();
 
-            
-
             #region Delete
 
             this.CreateMap<Area, DeleteAreaDomainCommand>()
@@ -130,7 +128,6 @@
                 .ReverseMap();
 
             #endregion
-
         }
     }
 }

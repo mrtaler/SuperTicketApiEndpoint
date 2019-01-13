@@ -1,12 +1,27 @@
-﻿namespace SuperTicketApi.Application.MainContext.Cqrs.Commands.Area
+﻿namespace SuperTicketApi.Application.MainContext.Cqrs.Validators
 {
     using FluentValidation;
 
     using MediatR;
 
+    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
+
+    /// <summary>
+    /// The areas validator.
+    /// </summary>
     public class AreasValidator : AbstractValidator<PresenterCreateAreaCommand>
     {
+        /// <summary>
+        /// The mediator.
+        /// </summary>
         private readonly IMediator mediator;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AreasValidator"/> class.
+        /// </summary>
+        /// <param name="mediator">
+        /// The mediator.
+        /// </param>
         public AreasValidator(IMediator mediator)
         {
             this.mediator = mediator;
@@ -23,6 +38,15 @@
                 .NotEmpty().WithMessage("Please set an CoordY");
         }
 
+        /// <summary>
+        /// The not exist.
+        /// </summary>
+        /// <param name="description">
+        /// The description.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         private bool NotExist(string description)
         {
             // =========================================================================
