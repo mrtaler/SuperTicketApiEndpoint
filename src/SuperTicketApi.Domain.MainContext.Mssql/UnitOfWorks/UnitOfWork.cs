@@ -1,12 +1,13 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.UnitOfWorks
 {
+    using System;
+
     using Microsoft.Extensions.Options;
+
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.Domain.MainContext.DTO;
     using SuperTicketApi.Domain.MainContext.DTO.IndividualRepositories;
     using SuperTicketApi.Domain.MainContext.Mssql.Repositories;
-
-    using System;
 
     /// <summary>
     /// The ado net unit of work.

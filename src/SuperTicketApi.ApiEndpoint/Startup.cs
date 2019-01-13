@@ -110,12 +110,6 @@
                             });
                 });*/
 
-
-
-
-
-
-
             /*
              services.AddAuthentication(
                     CookieAuthenticationDefaults.AuthenticationScheme
@@ -181,18 +175,16 @@
                     };
                 });
                 */
-
             services.AddScoped<ITypeAdapterFactory, AutomapperTypeAdapterFactory>();
             TypeAdapterFactory.SetCurrent(services.BuildServiceProvider().GetService<ITypeAdapterFactory>());
 
             services.AddRouting(options => options.LowercaseUrls = true);
-            services.AddMvc()
-                .AddFluentValidation().AddJsonOptions(options =>
-                    {
-                        options.SerializerSettings.ContractResolver =
-                            new CamelCasePropertyNamesContractResolver();
-                    })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().AddFluentValidation()
+                .AddJsonOptions(
+                    options =>
+                        {
+                            options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                        }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // var rr = this.Configuration.GetSection(nameof(AppConnectionStrings)).Get<AppConnectionStrings>();
             builder.Populate(services);
@@ -201,7 +193,8 @@
             builder.RegisterModule(new MainContextMssqlModule());
             builder.RegisterModule(new SuperTicketApiInfrastructureCrosscuttingModule());
             builder.RegisterModule(new MainContextModule());
-           // builder.Register(c => new AppConnectionStrings(c.Resolve<IConfiguration>())).AsSelf();
+
+            // builder.Register(c => new AppConnectionStrings(c.Resolve<IConfiguration>())).AsSelf();
 
             // builder.AddMediatR(
             // typeof(AreaPresenterCommandHandler).GetTypeInfo().Assembly);

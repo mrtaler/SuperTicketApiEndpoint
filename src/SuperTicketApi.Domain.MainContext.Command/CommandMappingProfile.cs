@@ -47,7 +47,7 @@
                 .ReverseMap();
 
 
-            #region Update
+            
 
             this.CreateMap<Area, UpdateAreaDomainCommand>()
               .ForMember(dto => dto.LayoutId, m => m.MapFrom(e => e.LayoutId))
@@ -82,7 +82,7 @@
                 .PreserveReferences()
                 .ReverseMap();
 
-            #endregion
+            
 
             #region Delete
 

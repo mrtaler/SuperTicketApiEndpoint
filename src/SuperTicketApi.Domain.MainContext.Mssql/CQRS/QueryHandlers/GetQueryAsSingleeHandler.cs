@@ -1,12 +1,15 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+
     using MediatR;
+
     using Serilog;
+
     using SuperTicketApi.Domain.MainContext.DTO;
     using SuperTicketApi.Domain.MainContext.DTO.Models;
     using SuperTicketApi.Domain.MainContext.Queries.GetSingleDomainEntity;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// The get query as i enumerable handler.

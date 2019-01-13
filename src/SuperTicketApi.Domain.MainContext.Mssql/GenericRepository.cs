@@ -1,17 +1,19 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql
 {
-    using Serilog;
-    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
-    using SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers.General;
-    using SuperTicketApi.Domain.MainContext.Mssql.UnitOfWorks;
-    using SuperTicketApi.Domain.Seedwork;
-    using SuperTicketApi.Domain.Seedwork.Repository;
     using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
     using System.Linq;
     using System.Reflection;
+
+    using Serilog;
+
+    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
+    using SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers.General;
+    using SuperTicketApi.Domain.MainContext.Mssql.UnitOfWorks;
+    using SuperTicketApi.Domain.Seedwork;
+    using SuperTicketApi.Domain.Seedwork.Repository;
 
     /// <summary>
     /// Generic Repository

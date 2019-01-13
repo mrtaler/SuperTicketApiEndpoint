@@ -1,11 +1,14 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
 {
-    using MediatR;
-    using Serilog;
-    using SuperTicketApi.Domain.MainContext.Command;
     using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
+
+    using MediatR;
+
+    using Serilog;
+
+    using SuperTicketApi.Domain.MainContext.Command;
 
     /// <summary>
     /// The notifications and tracing behavior.

@@ -1,7 +1,11 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Controllers
 {
+    using System.Threading.Tasks;
+
     using MediatR;
+
     using Microsoft.AspNetCore.Mvc;
+
     using SuperTicketApi.ApiEndpoint.Controllers.Base;
     using SuperTicketApi.ApiEndpoint.ViewModel;
     using SuperTicketApi.ApiEndpoint.ViewModel.Area;
@@ -9,7 +13,6 @@
     using SuperTicketApi.Domain.MainContext.Command.Delete;
     using SuperTicketApi.Domain.MainContext.Command.Update;
     using SuperTicketApi.Domain.MainContext.Queries;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// The Test controller.
