@@ -1,0 +1,14 @@
+﻿CREATE PROCEDURE [dbo].[DeleteByIdEvent] @EventId INT
+AS
+BEGIN
+	SET NOCOUNT ON;
+	BEGIN TRY
+
+		DELETE FROM [dbo].[Events]
+		WHERE IDENTITYCOL = @EventId
+	END TRY
+	BEGIN CATCH
+		EXECUTE [dbo].[GetErrorInfo];
+	END CATCH
+END
+GO

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SuperTicketApi.ApiEndpoint.Extension
@@ -13,9 +11,11 @@ namespace SuperTicketApi.ApiEndpoint.Extension
     using Serilog;
     using Serilog.Events;
 
-    using SuperTicketApi.ApiSettings.JsonSettings;
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class ConnectionStringSetOptionMiddleware
     {
         private readonly RequestDelegate next;
@@ -51,7 +51,7 @@ namespace SuperTicketApi.ApiEndpoint.Extension
             {
                 // todo sector for different connection strings 
                // var path = GetConnectionStringPath(application);
-            //    databaseOption.Value.ConnectionString = databaseOption.Value.MssqlConnectionString;
+            // databaseOption.Value.ConnectionString = databaseOption.Value.MssqlConnectionString;
             }
             catch (Exception e)
             {
@@ -66,7 +66,6 @@ namespace SuperTicketApi.ApiEndpoint.Extension
         private string GetConnectionStringPath(string organisationCode)
         {
             // todo create multiselect for connection strings for mssql and oracle
-
             return $"databaseOption.Value.MssqlConnectionString";
         }
     }

@@ -1,13 +1,9 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Extension
 {
-    using System.IO;
-    using System.Reflection;
-
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.PlatformAbstractions;
-
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.ApiSettings.JsonSettings.CorrelationIdOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.CustomSettings;
@@ -15,8 +11,9 @@
     using SuperTicketApi.ApiSettings.JsonSettings.GitHubOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.GoogleOptions;
     using SuperTicketApi.ApiSettings.JsonSettings.TokenAuthOptions;
-
     using Swashbuckle.AspNetCore.Swagger;
+    using System.IO;
+    using System.Reflection;
 
     /// <summary>
     /// The settings extension.
@@ -29,7 +26,6 @@
         /// <param name="builder">
         /// The builder.
         /// </param>
-        /// <param name="env">Environment Var</param>
         /// <returns>
         /// The <see cref="IConfigurationBuilder"/>.
         /// </returns>
@@ -53,7 +49,6 @@
                   builder.AddJsonFile(sittingFile, optional: false, reloadOnChange: false);
               }
               */
-
             string pathSettingsAssembly = Assembly.GetAssembly(typeof(CustomSettings)).Location;
 
             // JsonSettings
@@ -96,10 +91,7 @@
             services.Configure<CorrelationIdOptions>(configuration.GetSection(nameof(CorrelationIdOptions)));
             services.Configure<AppConnectionStrings>(configuration.GetSection(nameof(AppConnectionStrings)));
 
-
-            #region Configure AutoMapper (Instance Version) for ServiceModels
-
-            ///*----------------------------------------
+            /*----------------------------------------
             // * AutoMapper is also configured using the Static API within our Core library.
             // * We also use the instance implementation seperatly here within the Services project.
             // * ---------------------------------------
@@ -107,21 +99,20 @@
             // * The Core should have no knowledge of AutoMapper configurations in the layer above it.
             // * --------------------------------------*/
 
-            //var config = new MapperConfiguration(cfg => {
-            //    //cfg.AddProfile<AppProfile>();
-            //    cfg.CreateMap<CreateAccountServiceModel, CreateAccountCommand>();
-            //});
+            // var config = new MapperConfiguration(cfg => {
+            // //cfg.AddProfile<AppProfile>();
+            // cfg.CreateMap<CreateAccountServiceModel, CreateAccountCommand>();
+            // });
 
-            //var mapper = config.CreateMapper();
+            // var mapper = config.CreateMapper();
             //// or...
             ////IMapper mapper = new Mapper(config);
             ////var dest = mapper.Map<Source, Dest>(new Source());
 
             ////Add to our Service Provider:
-            //services.AddSingleton<IMapper>(mapper);
+            // services.AddSingleton<IMapper>(mapper);
 
-            #endregion
-       
+
             return services;
         }
 
