@@ -103,7 +103,7 @@
         public async Task<IActionResult> Put([FromBody] UpdateAreaViewModel updateModel)
         {
             var result = await this.Mediator.Send(
-                updateModel.ProjectedAs<UpdateAreaCommand>());
+                updateModel.ProjectedAs<UpdateAreaDomainCommand>());
             if (result.IsSuccess)
             {
                 return new ObjectResult(new
@@ -132,7 +132,7 @@
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.Mediator.Send(new DeleteAreaCommand(id));
+            var result = await this.Mediator.Send(new DeleteAreaDomainCommand(id));
             if (result.IsSuccess)
             {
                 return new ObjectResult(new

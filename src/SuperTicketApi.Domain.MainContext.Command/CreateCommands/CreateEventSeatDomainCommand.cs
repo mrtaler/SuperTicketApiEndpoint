@@ -7,7 +7,7 @@
     /// <summary>
     /// The create event seat command.
     /// </summary>
-    public class CreateEventSeatCommand : IRequest<CommandResponse>, IDomainCommand
+    public class CreateEventSeatDomainCommand : IRequest<CommandResponse>, IDomainCommand
 
     {
         /// <summary>

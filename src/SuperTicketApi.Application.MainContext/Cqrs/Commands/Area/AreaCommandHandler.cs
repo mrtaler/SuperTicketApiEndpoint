@@ -46,7 +46,7 @@
                 }
 
                 // ! todo create map from CreateAreaVM to map area database
-                var dalCommand = new CreateAreaCommand
+                var dalCommand = new CreateAreaDomainCommand
                                      {
                                          Description = request.Description,
                                          LayoutId = request.LayoutId,

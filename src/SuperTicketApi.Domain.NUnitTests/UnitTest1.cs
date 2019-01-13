@@ -12,13 +12,26 @@ namespace SuperTicketApi.Domain.NUnitTests
     using System.Linq;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// The get area as i enumerable query handler should.
+    /// </summary>
     [TestFixture]
     public class GetAreaAsIEnumerableQueryHandlerShould
     {
+        /// <summary>
+        /// The area repository.
+        /// </summary>
         private Mock<IAreaRepository> areaRepository;
+
+        /// <summary>
+        /// The unit of work.
+        /// </summary>
         private Mock<ITabledUnitOfWork> unitOfWork;
+
+        /// <summary>
+        /// The objects.
+        /// </summary>
         private List<Area> objects;
-        IMediator mediator;
 
         [SetUp]
         public void Initialize()

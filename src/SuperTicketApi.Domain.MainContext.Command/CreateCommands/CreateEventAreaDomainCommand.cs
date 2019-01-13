@@ -5,18 +5,18 @@
     using SuperTicketApi.Domain.MainContext.DTO.Attributes;
 
     /// <summary>
-    /// The create area command.
+    /// The create event area command.
     /// </summary>
-    public class CreateAreaCommand : IRequest<CommandResponse>, IDomainCommand
+    public class CreateEventAreaDomainCommand : IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
-        /// Gets or sets the layout id.
+        /// Gets or sets the event id.
         /// </summary>
         /// <remarks>
-        /// <para><c>SQL:</c>[LayoutId] <see langword="int"/> NOT NULL.</para>
+        /// <para><c>SQL:</c>[EventId] <see langword="int"/> NOT NULL.</para>
         /// </remarks>
-        [DbColumn("LayoutId")]
-        public int LayoutId { get; set; }
+        [DbColumn("EventId")]
+        public int EventId { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
@@ -28,7 +28,7 @@
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the CoordX.
+        /// Gets or sets the coordX.
         /// </summary>
         /// <remarks>
         /// <para><c>SQL:</c>[CoordX] <see langword="int"/> NOT NULL.</para>
@@ -37,7 +37,7 @@
         public int CoordX { get; set; }
 
         /// <summary>
-        /// Gets or sets the CoordY.
+        /// Gets or sets the coordY.
         /// </summary>
         /// <remarks>
         /// <para><c>SQL:</c>[CoordY] <see langword="int"/> NOT NULL.</para>
@@ -46,8 +46,17 @@
         public int CoordY { get; set; }
 
         /// <summary>
+        /// Gets or sets the price.
+        /// </summary>
+        /// <remarks>
+        /// <para><c>SQL:</c>[Price] <see langword="decimal"/>(18, 2) NOT NULL.</para>
+        /// </remarks>
+        [DbColumn("Price")]
+        public decimal Price { get; set; }
+
+        /// <summary>
         /// The command.
         /// </summary>
-        public string Command => CreateSpCommandPattern.CreateArea;
+        public string Command => CreateSpCommandPattern.CreateEventArea;
     }
 }

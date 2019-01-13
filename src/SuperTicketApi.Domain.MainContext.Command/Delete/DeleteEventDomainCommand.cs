@@ -6,17 +6,17 @@
     using SuperTicketApi.Domain.MainContext.DTO.Models;
 
     /// <summary>
-    /// The delete venue command.
+    /// The delete event command.
     /// </summary>
-    public class DeleteVenueCommand : IRequest<CommandResponse>, IDomainCommand
+    public class DeleteEventDomainCommand : IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeleteVenueCommand"/> class.
+        /// Initializes a new instance of the <see cref="DeleteEventDomainCommand"/> class.
         /// </summary>
         /// <param name="id">
         /// The id.
         /// </param>
-        public DeleteVenueCommand(int id)
+        public DeleteEventDomainCommand(int id)
         {
             this.Id = id;
         }
@@ -24,12 +24,12 @@
         /// <summary>
         /// Gets the id.
         /// </summary>
-        [IdColumn(typeof(Venue))]
+        [IdColumn(typeof(Event))]
         public int Id { get; private set; }
 
         /// <summary>
         /// The command.
         /// </summary>
-        public string Command => DeleteSpCommandPattern.DeleteVenue;
+        public string Command => DeleteSpCommandPattern.DeleteEvent;
     }
 }

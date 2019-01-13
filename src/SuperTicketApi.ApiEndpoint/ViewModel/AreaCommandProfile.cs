@@ -24,7 +24,7 @@
                 .PreserveReferences()
                 .ReverseMap();
 
-            this.CreateMap<UpdateAreaViewModel, UpdateAreaCommand>()
+            this.CreateMap<UpdateAreaViewModel, UpdateAreaDomainCommand>()
                 .ForMember(dto => dto.Id, m => m.MapFrom(e => e.Id))
                 .ForMember(dto => dto.LayoutId, m => m.MapFrom(e => e.LayoutId))
                 .ForMember(dto => dto.Description, m => m.MapFrom(e => e.Description))

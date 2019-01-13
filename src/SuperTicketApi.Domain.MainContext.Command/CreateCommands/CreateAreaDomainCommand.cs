@@ -5,18 +5,18 @@
     using SuperTicketApi.Domain.MainContext.DTO.Attributes;
 
     /// <summary>
-    /// The create event area command.
+    /// The create area command.
     /// </summary>
-    public class CreateEventAreaCommand : IRequest<CommandResponse>, IDomainCommand
+    public class CreateAreaDomainCommand : IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
-        /// Gets or sets the event id.
+        /// Gets or sets the layout id.
         /// </summary>
         /// <remarks>
-        /// <para><c>SQL:</c>[EventId] <see langword="int"/> NOT NULL.</para>
+        /// <para><c>SQL:</c>[LayoutId] <see langword="int"/> NOT NULL.</para>
         /// </remarks>
-        [DbColumn("EventId")]
-        public int EventId { get; set; }
+        [DbColumn("LayoutId")]
+        public int LayoutId { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
@@ -28,7 +28,7 @@
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the coordX.
+        /// Gets or sets the CoordX.
         /// </summary>
         /// <remarks>
         /// <para><c>SQL:</c>[CoordX] <see langword="int"/> NOT NULL.</para>
@@ -37,7 +37,7 @@
         public int CoordX { get; set; }
 
         /// <summary>
-        /// Gets or sets the coordY.
+        /// Gets or sets the CoordY.
         /// </summary>
         /// <remarks>
         /// <para><c>SQL:</c>[CoordY] <see langword="int"/> NOT NULL.</para>
@@ -46,17 +46,8 @@
         public int CoordY { get; set; }
 
         /// <summary>
-        /// Gets or sets the price.
-        /// </summary>
-        /// <remarks>
-        /// <para><c>SQL:</c>[Price] <see langword="decimal"/>(18, 2) NOT NULL.</para>
-        /// </remarks>
-        [DbColumn("Price")]
-        public decimal Price { get; set; }
-
-        /// <summary>
         /// The command.
         /// </summary>
-        public string Command => CreateSpCommandPattern.CreateEventArea;
+        public string Command => CreateSpCommandPattern.CreateArea;
     }
 }

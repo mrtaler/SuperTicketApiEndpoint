@@ -7,7 +7,7 @@
     /// <summary>
     /// The create layout command.
     /// </summary>
-    public class CreateLayoutCommand : IRequest<CommandResponse>, IDomainCommand
+    public class CreateLayoutDomainCommand : IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Gets or sets the venue id.

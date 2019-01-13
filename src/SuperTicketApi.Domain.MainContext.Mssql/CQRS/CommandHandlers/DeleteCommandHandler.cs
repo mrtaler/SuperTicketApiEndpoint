@@ -17,13 +17,13 @@
     /// </summary>
     internal class DeleteCommandHandler :
         BaseCommandHandler,
-        IRequestHandler<DeleteAreaCommand, CommandResponse>,
-        IRequestHandler<DeleteEventAreaCommand, CommandResponse>,
-        IRequestHandler<DeleteEventCommand, CommandResponse>,
-        IRequestHandler<DeleteEventSeatCommand, CommandResponse>,
-        IRequestHandler<DeleteLayoutCommand, CommandResponse>,
-        IRequestHandler<DeleteSeatCommand, CommandResponse>,
-        IRequestHandler<DeleteVenueCommand, CommandResponse>
+        IRequestHandler<DeleteAreaDomainCommand, CommandResponse>,
+        IRequestHandler<DeleteEventAreaDomainCommand, CommandResponse>,
+        IRequestHandler<DeleteEventDomainCommand, CommandResponse>,
+        IRequestHandler<DeleteEventSeatDomainCommand, CommandResponse>,
+        IRequestHandler<DeleteLayoutDomainCommand, CommandResponse>,
+        IRequestHandler<DeleteSeatDomainCommand, CommandResponse>,
+        IRequestHandler<DeleteVenueDomainCommand, CommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteCommandHandler"/> class.
@@ -40,7 +40,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(DeleteAreaCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(DeleteAreaDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -63,7 +63,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(DeleteEventAreaCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(DeleteEventAreaDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -86,7 +86,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(DeleteEventCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(DeleteEventDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -109,7 +109,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(DeleteEventSeatCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(DeleteEventSeatDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -132,7 +132,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(DeleteLayoutCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(DeleteLayoutDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -155,7 +155,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(DeleteSeatCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(DeleteSeatDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -178,7 +178,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(DeleteVenueCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(DeleteVenueDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {

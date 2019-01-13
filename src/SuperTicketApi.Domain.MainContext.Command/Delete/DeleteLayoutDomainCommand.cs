@@ -8,15 +8,15 @@
     /// <summary>
     /// The delete layout command.
     /// </summary>
-    public class DeleteLayoutCommand : IRequest<CommandResponse>, IDomainCommand
+    public class DeleteLayoutDomainCommand : IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeleteLayoutCommand"/> class.
+        /// Initializes a new instance of the <see cref="DeleteLayoutDomainCommand"/> class.
         /// </summary>
         /// <param name="id">
         /// The id.
         /// </param>
-        public DeleteLayoutCommand(int id)
+        public DeleteLayoutDomainCommand(int id)
         {
             this.Id = id;
         }

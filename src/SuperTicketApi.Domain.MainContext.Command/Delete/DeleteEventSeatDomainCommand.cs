@@ -8,15 +8,15 @@
     /// <summary>
     /// The delete event seat command.
     /// </summary>
-    public class DeleteEventSeatCommand : IRequest<CommandResponse>, IDomainCommand
+    public class DeleteEventSeatDomainCommand : IRequest<CommandResponse>, IDomainCommand
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeleteEventSeatCommand"/> class.
+        /// Initializes a new instance of the <see cref="DeleteEventSeatDomainCommand"/> class.
         /// </summary>
         /// <param name="id">
         /// The id.
         /// </param>
-        public DeleteEventSeatCommand(int id)
+        public DeleteEventSeatDomainCommand(int id)
         {
             this.Id = id;
         }

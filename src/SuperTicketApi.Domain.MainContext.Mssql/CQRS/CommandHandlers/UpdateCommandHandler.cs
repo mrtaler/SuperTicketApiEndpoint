@@ -17,13 +17,13 @@
     /// </summary>
     internal class UpdateCommandHandler :
         BaseCommandHandler,
-        IRequestHandler<UpdateAreaCommand, CommandResponse>,
-        IRequestHandler<UpdateEventAreaCommand, CommandResponse>,
-        IRequestHandler<UpdateEventCommand, CommandResponse>,
-        IRequestHandler<UpdateEventSeatCommand, CommandResponse>,
-        IRequestHandler<UpdateLayoutCommand, CommandResponse>,
-        IRequestHandler<UpdateSeatCommand, CommandResponse>,
-        IRequestHandler<UpdateVenueCommand, CommandResponse>
+        IRequestHandler<UpdateAreaDomainCommand, CommandResponse>,
+        IRequestHandler<UpdateEventAreaDomainCommand, CommandResponse>,
+        IRequestHandler<UpdateEventDomainCommand, CommandResponse>,
+        IRequestHandler<UpdateEventSeatDomainCommand, CommandResponse>,
+        IRequestHandler<UpdateLayoutDomainCommand, CommandResponse>,
+        IRequestHandler<UpdateSeatDomainCommand, CommandResponse>,
+        IRequestHandler<UpdateVenueDomainCommand, CommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCommandHandler"/> class.
@@ -40,7 +40,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(UpdateAreaCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(UpdateAreaDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -64,7 +64,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(UpdateEventAreaCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(UpdateEventAreaDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -88,7 +88,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(UpdateEventDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -112,7 +112,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(UpdateEventSeatCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(UpdateEventSeatDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -136,7 +136,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(UpdateLayoutCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(UpdateLayoutDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -160,7 +160,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(UpdateSeatCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(UpdateSeatDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -184,7 +184,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(UpdateVenueCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(UpdateVenueDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {

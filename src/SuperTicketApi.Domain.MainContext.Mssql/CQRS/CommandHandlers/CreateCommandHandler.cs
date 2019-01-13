@@ -17,13 +17,13 @@
     /// </summary>
     internal class CreateCommandHandler
         : BaseCommandHandler,
-          IRequestHandler<CreateAreaCommand, CommandResponse>,
-          IRequestHandler<CreateEventAreaCommand, CommandResponse>,
-          IRequestHandler<CreateEventCommand, CommandResponse>,
-          IRequestHandler<CreateEventSeatCommand, CommandResponse>,
-          IRequestHandler<CreateLayoutCommand, CommandResponse>,
-          IRequestHandler<CreateSeatCommand, CommandResponse>,
-          IRequestHandler<CreateVenueCommand, CommandResponse>
+          IRequestHandler<CreateAreaDomainCommand, CommandResponse>,
+          IRequestHandler<CreateEventAreaDomainCommand, CommandResponse>,
+          IRequestHandler<CreateEventDomainCommand, CommandResponse>,
+          IRequestHandler<CreateEventSeatDomainCommand, CommandResponse>,
+          IRequestHandler<CreateLayoutDomainCommand, CommandResponse>,
+          IRequestHandler<CreateSeatDomainCommand, CommandResponse>,
+          IRequestHandler<CreateVenueDomainCommand, CommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCommandHandler"/> class.
@@ -40,7 +40,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(CreateAreaCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(CreateAreaDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -62,7 +62,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(CreateEventAreaCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(CreateEventAreaDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -84,7 +84,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(CreateEventCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(CreateEventDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -106,7 +106,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(CreateEventSeatCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(CreateEventSeatDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -128,7 +128,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(CreateLayoutCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(CreateLayoutDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -150,7 +150,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(CreateSeatCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(CreateSeatDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -172,7 +172,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(CreateVenueCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(CreateVenueDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
