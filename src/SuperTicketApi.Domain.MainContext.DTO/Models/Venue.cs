@@ -10,13 +10,15 @@
     /// <para><c>SQL:</c>[dbo].[Venues]</para>
     /// </remarks>
     [DbTable("Venues")]
-    public class Venue : Entity, IEntity<int>
+    public class Venue : DomainEntity, IEntity<int>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Venue"/> class.
         /// </summary>
-        public Venue() { }
-        
+        public Venue()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Venue"/> class.
         /// </summary>
@@ -37,6 +39,7 @@
         }
 
         #region Implementation of IEntity<int>
+
         /// <inheritdoc />
         /// <remarks>
         /// <para><see cref="Venue"/>Id</para>

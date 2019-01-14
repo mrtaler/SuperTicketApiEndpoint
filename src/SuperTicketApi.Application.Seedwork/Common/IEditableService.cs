@@ -2,11 +2,15 @@
 {
     using System.Collections.Generic;
 
+    using SuperTicketApi.Application.BoundedContext.DTO;
+    using SuperTicketApi.Domain.MainContext.DTO.Models;
     using SuperTicketApi.Domain.Seedwork;
 
+    using IBusinessDto = SuperTicketApi.Application.Seedwork.IBusinessDto;
+
     public interface IEditableService<TEntity, TEntityDto>
-        where TEntity : Entity 
-        where TEntityDto : Entity
+        where TEntity : DomainEntity 
+        where TEntityDto : IBusinessDto
     {
         TEntity Add(TEntity item);
         TEntityDto Add(TEntityDto item);

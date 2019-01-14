@@ -14,18 +14,18 @@
 
     internal class CorrelationIdMiddleware
     {
-        private readonly RequestDelegate _next;
-        private readonly IOptions<CorrelationIdOptions> _options;
-        private readonly ILogger _logger;
+        private readonly RequestDelegate next;
+        private readonly IOptions<CorrelationIdOptions> options;
+        private readonly ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CorrelationIdMiddleware"/> class.
         /// </summary>
         public CorrelationIdMiddleware(RequestDelegate next, IOptions<CorrelationIdOptions> options, ILogger logger)
         {
-            _next = next ?? throw new ArgumentNullException(nameof(next));
-            _options = options ?? throw new ArgumentNullException(nameof(options));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            this.next = next ?? throw new ArgumentNullException(nameof(next));
+            this.options = options ?? throw new ArgumentNullException(nameof(options));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         /// <summary>
@@ -33,11 +33,11 @@
         /// </summary>
         public Task Invoke(HttpContext context)
         {
-            var options = _options.Value;
+            var options = this.options.Value;
             if (!context.Request.Headers.TryGetValue(options.Header, out var correlationId))
             {
                 var error = new ApiError("Correlation Id is missing");
-                _logger.ApiError(error, LogEventLevel.Error);
+                this.logger.ApiError(error, LogEventLevel.Error);
                 return context.WriteErrorAsync(error);
             }
             else
@@ -50,8 +50,9 @@
                             context.Response.Headers.Add(options.Header, new[] { (string)correlationId });
                             return Task.CompletedTask;
                         }
+
                 );
-                return _next.Invoke(context);
+                return this.next.Invoke(context);
             }
         }
     }

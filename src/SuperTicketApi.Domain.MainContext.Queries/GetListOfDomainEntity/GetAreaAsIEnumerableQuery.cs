@@ -6,6 +6,9 @@
 
     using SuperTicketApi.Domain.MainContext.DTO.Models;
 
+    /// <summary>
+    /// The get area as i enumerable query.
+    /// </summary>
     public class GetAreaAsIEnumerableQuery : IRequest<IEnumerable<Area>>
     {
     }
