@@ -10,7 +10,7 @@
     /// <para><c>SQL:</c>TABLE [dbo].[Areas]</para>
     /// </remarks>
     [DbTable("Areas")]
-    public class Area : Entity, IEntity<int>
+    public class Area : DomainEntity, IEntity<int>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Area"/> class.
@@ -43,6 +43,7 @@
         }
 
         #region Implementation of IEntity<int>
+
         /// <inheritdoc />
         /// <remarks>
         /// <para><see cref="Area"/>Id</para>

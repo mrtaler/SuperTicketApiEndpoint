@@ -6,5 +6,16 @@
 
     public class GetSingleEventQuery : IRequest<Event>
     {
+        
+
+        public GetSingleEventQuery(int id)
+        {
+            this.Id = id;
+        }
+
+        /// <summary>
+        /// Gets the id.
+        /// </summary>
+        public int Id { get; private set; }
     }
 }

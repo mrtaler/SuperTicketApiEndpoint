@@ -7,3 +7,9 @@ The classes represented here are a result of collaboration with the non-technica
 Model transformations are facilitated through the AutoMapper Nuget Package
 
     dotnet add package AutoMapper
+
+
+###### https://stackoverflow.com/questions/42360139/asp-net-core-return-json-with-status-code
+###### https://github.com/INNVTV/NetCore-Clean-Architecture
+###### https://stackoverflow.com/questions/34944462/moq-and-sqlconnection
+###### https://stackoverflow.com/questions/6376715/how-to-mock-sqlparametercollection-using-moq 
