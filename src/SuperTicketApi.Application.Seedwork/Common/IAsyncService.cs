@@ -6,9 +6,11 @@
 
     using SuperTicketApi.Domain.Seedwork;
 
+    using IBusinessDto = SuperTicketApi.Application.Seedwork.IBusinessDto;
+
     public interface IAsyncService<TEntity, TEntityDto> : IDisposable
-        where TEntity : Entity
-        where TEntityDto : Entity
+        where TEntity : DomainEntity
+        where TEntityDto : IBusinessDto
     {
 
         Task<TEntity> GetAsync(object id);

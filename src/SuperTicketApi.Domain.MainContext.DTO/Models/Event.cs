@@ -12,12 +12,14 @@
     /// <para><c>SQL:</c>TABLE [dbo].[Events]</para>
     /// </remarks>
     [DbTable("Events")]
-    public class Event : Entity, IEntity<int>
+    public class Event : DomainEntity, IEntity<int>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Event"/> class.
         /// </summary>
-        public Event() { }
+        public Event()
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Event"/> class.
@@ -51,6 +53,7 @@
         }
 
         #region Implementation of IEntity<int>
+
         /// <inheritdoc />
         /// <remarks>
         /// <para><see cref="Event"/>Id</para>

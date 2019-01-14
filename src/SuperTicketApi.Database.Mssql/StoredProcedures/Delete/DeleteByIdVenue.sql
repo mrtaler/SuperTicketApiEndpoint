@@ -1,0 +1,13 @@
+﻿CREATE PROCEDURE [dbo].[DeleteByIdVenue] @VenueId INT
+AS
+BEGIN
+	SET NOCOUNT ON;
+	BEGIN TRY
+		DELETE FROM [dbo].[Venues]
+		WHERE IDENTITYCOL = @VenueId
+	END TRY
+	BEGIN CATCH
+		EXECUTE [dbo].[GetErrorInfo];
+	END CATCH
+END
+GO
