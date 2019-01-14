@@ -65,7 +65,7 @@
                 */
                 // ! todo create map from CreateAreaVM to map area database
                 var dalCommand = request.ProjectedAs<UpdateAreaDomainCommand>();
-
+                dalCommand.SwitchToAdminMode();
                 // ! then call create area command from database level
                 var commRes = await this.Mediatr.Send(dalCommand);
 
@@ -122,7 +122,7 @@
 
                 // ! todo create map from CreateAreaVM to map area database
                 var dalCommand = request.ProjectedAs<UpdateEventAreaDomainCommand>();
-
+                 dalCommand.SwitchToAdminMode();
                 // ! then call create area command from database level
                 var commRes = await this.Mediatr.Send(dalCommand);
 
@@ -178,7 +178,7 @@
 
                 // ! todo create map from CreateAreaVM to map area database
                 var dalCommand = request.ProjectedAs<UpdateEventDomainCommand>();
-
+                 dalCommand.SwitchToAdminMode();
                 // ! then call create area command from database level
                 var commRes = await this.Mediatr.Send(dalCommand);
 
@@ -234,7 +234,7 @@
 
                 // ! todo create map from CreateAreaVM to map area database
                 var dalCommand = request.ProjectedAs<UpdateEventSeatDomainCommand>();
-
+                 dalCommand.SwitchToAdminMode();
                 // ! then call create area command from database level
                 var commRes = await this.Mediatr.Send(dalCommand);
 
@@ -290,7 +290,7 @@
 
                 // ! todo create map from CreateAreaVM to map area database
                 var dalCommand = request.ProjectedAs<UpdateLayoutDomainCommand>();
-
+                 dalCommand.SwitchToAdminMode();
                 // ! then call create area command from database level
                 var commRes = await this.Mediatr.Send(dalCommand);
 
@@ -347,7 +347,7 @@
 
                 // ! todo create map from CreateAreaVM to map area database
                 var dalCommand = request.ProjectedAs<UpdateSeatDomainCommand>();
-
+                 dalCommand.SwitchToAdminMode();
                 // ! then call create area command from database level
                 var commRes = await this.Mediatr.Send(dalCommand);
 
@@ -404,7 +404,7 @@
 
                 // ! todo create map from CreateAreaVM to map area database
                 var dalCommand = request.ProjectedAs<UpdateVenueDomainCommand>();
-
+                 dalCommand.SwitchToAdminMode();
                 // ! then call create area command from database level
                 var commRes = await this.Mediatr.Send(dalCommand);
 

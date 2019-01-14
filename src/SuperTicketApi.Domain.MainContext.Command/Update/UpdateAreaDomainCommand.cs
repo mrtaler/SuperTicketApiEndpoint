@@ -12,7 +12,7 @@
         /// <summary>
         /// The is admin mode.
         /// </summary>
-        private readonly bool isAdminMode;
+        private bool isAdminMode;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAreaDomainCommand"/> class.
@@ -30,11 +30,16 @@
         /// </param>
         public UpdateAreaDomainCommand(bool isAdminMode = false)
         {
+            SwitchToAdminMode(isAdminMode);
+        }
+
+        public void SwitchToAdminMode(bool isAdminMode = true)
+        {
             this.isAdminMode = isAdminMode;
         }
 
         /// <summary>
-        /// Gets the command.
+        /// Gets the commands
         /// </summary>
         public new string Command => !this.isAdminMode
                 ? UpdateSpCommandPattern.UpdateArea

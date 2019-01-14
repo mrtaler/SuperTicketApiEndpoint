@@ -12,7 +12,7 @@
         /// <summary>
         /// The is admin mode.
         /// </summary>
-        private readonly bool isAdminMode;
+        private  bool isAdminMode;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateVenueDomainCommand"/> class.
@@ -29,6 +29,11 @@
         /// The is admin mode.
         /// </param>
         public UpdateVenueDomainCommand(bool isAdminMode = false)
+        {
+            SwitchToAdminMode(isAdminMode);
+        }
+
+        public void SwitchToAdminMode(bool isAdminMode = true)
         {
             this.isAdminMode = isAdminMode;
         }

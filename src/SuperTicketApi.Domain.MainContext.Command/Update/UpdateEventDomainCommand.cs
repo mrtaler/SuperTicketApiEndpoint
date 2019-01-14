@@ -12,7 +12,7 @@
         /// <summary>
         /// The is admin mode.
         /// </summary>
-        private readonly bool isAdminMode;
+        private bool isAdminMode;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateEventDomainCommand"/> class.
@@ -30,9 +30,14 @@
         /// </param>
         public UpdateEventDomainCommand(bool isAdminMode = false)
         {
-            this.isAdminMode = isAdminMode;
+            SwitchToAdminMode(isAdminMode);
         }
 
+        public void SwitchToAdminMode(bool isAdminMode = true)
+        {
+            this.isAdminMode = isAdminMode;
+        }
+        
         /// <summary>
         /// Gets the command.
         /// </summary>

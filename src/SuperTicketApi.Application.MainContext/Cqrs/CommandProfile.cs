@@ -19,35 +19,35 @@
         public CommandProfile()
         {
             // Create command
-            this.CreateMap<CreateAreaDomainCommand, PresenterCreateAreaCommand>()
+            this.CreateMap<PresenterCreateAreaCommand ,CreateAreaDomainCommand>()
                 .PreserveReferences();
-            this.CreateMap<CreateEventAreaDomainCommand, PresenterCreateEventAreaCommand>()
+            this.CreateMap<PresenterCreateEventAreaCommand,CreateEventAreaDomainCommand >()
                .PreserveReferences();
-            this.CreateMap<CreateEventDomainCommand, PresenterCreateEventCommand>()
+            this.CreateMap<PresenterCreateEventCommand,CreateEventDomainCommand >()
                .PreserveReferences();
-            this.CreateMap<CreateEventSeatDomainCommand, PresenterCreateEventSeatCommand>()
+            this.CreateMap<PresenterCreateEventSeatCommand,CreateEventSeatDomainCommand >()
                .PreserveReferences();
-            this.CreateMap<CreateLayoutDomainCommand, PresenterCreateLayoutCommand>()
+            this.CreateMap<PresenterCreateLayoutCommand,CreateLayoutDomainCommand >()
                .PreserveReferences();
-            this.CreateMap<CreateSeatDomainCommand, PresenterCreateSeatCommand>()
+            this.CreateMap<PresenterCreateSeatCommand,CreateSeatDomainCommand >()
                .PreserveReferences();
-            this.CreateMap<CreateVenueDomainCommand, PresenterCreateVenueCommand>()
+            this.CreateMap<PresenterCreateVenueCommand,CreateVenueDomainCommand >()
                .PreserveReferences();
 
             // Create command
-            this.CreateMap<UpdateAreaDomainCommand, PresenterUpdateAreaCommand>()
+            this.CreateMap<PresenterUpdateAreaCommand , UpdateAreaDomainCommand>()
                 .PreserveReferences();
-            this.CreateMap<UpdateEventAreaDomainCommand, PresenterUpdateEventAreaCommand>()
+            this.CreateMap<PresenterUpdateEventAreaCommand,UpdateEventAreaDomainCommand >()
                .PreserveReferences();
-            this.CreateMap<UpdateEventDomainCommand, PresenterUpdateEventCommand>()
+            this.CreateMap<PresenterUpdateEventCommand,UpdateEventDomainCommand >()
                .PreserveReferences();
-            this.CreateMap<UpdateEventSeatDomainCommand, PresenterUpdateEventSeatCommand>()
+            this.CreateMap<PresenterUpdateEventSeatCommand,UpdateEventSeatDomainCommand >()
                .PreserveReferences();
-            this.CreateMap<UpdateLayoutDomainCommand, PresenterUpdateLayoutCommand>()
+            this.CreateMap<PresenterUpdateLayoutCommand,UpdateLayoutDomainCommand >()
                .PreserveReferences();
-            this.CreateMap<UpdateSeatDomainCommand, PresenterUpdateSeatCommand>()
+            this.CreateMap<PresenterUpdateSeatCommand,UpdateSeatDomainCommand >()
                .PreserveReferences();
-            this.CreateMap<UpdateVenueDomainCommand, PresenterUpdateVenueCommand>()
+            this.CreateMap<PresenterUpdateVenueCommand,UpdateVenueDomainCommand >()
                .PreserveReferences();
 
             // Create command

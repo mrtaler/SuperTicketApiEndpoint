@@ -105,8 +105,9 @@
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] UpdateAreaViewModel updateModel)
         {
-            var result = await this.Mediator.Send(
-                updateModel.ProjectedAs<PresenterUpdateAreaCommand>());
+            var command =
+                updateModel.ProjectedAs<PresenterUpdateAreaCommand>();
+            var result = await this.Mediator.Send(command);
             if (result.IsSuccess)
             {
                 return new ObjectResult(new
