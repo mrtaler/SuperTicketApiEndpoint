@@ -1,7 +1,7 @@
 namespace SuperTicketApi.NUnitTests
 {
-    using NUnit.Framework;
 
+    using NUnit.Framework;
     using SuperTicketApi.ApiEndpoint.ViewModel;
     using SuperTicketApi.ApiEndpoint.ViewModel.Area;
     using SuperTicketApi.ApiEndpoint.ViewModel.Event;
@@ -11,23 +11,24 @@ namespace SuperTicketApi.NUnitTests
     using SuperTicketApi.ApiEndpoint.ViewModel.Seat;
     using SuperTicketApi.ApiEndpoint.ViewModel.Venue;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
+    using SuperTicketApi.Infrastructure.Crosscutting.Implementation.Adapter;
 
     /// <summary>
-    /// The test command profile.
+    /// The projections extension methods.
     /// </summary>
-    public class TestCommandProfile
-        : AutoMapper.Profile
+    public static class ApiViewModelExtensionMethodsForTest
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TestCommandProfile"/> class. 
+        /// Project a type using a DTO
         /// </summary>
-        public TestCommandProfile()
+        /// <typeparam name="TProjection">The dto projection</typeparam>
+        /// <param name="item">The source entity to project</param>
+        /// <returns>The projected type</returns>
+        public static TProjection TestProjectedAs<TProjection>(this ApiViewModel item)
+            where TProjection : class, new()
         {
-            #region Create presenter Command
-            this.CreateMap<CreateAreaViewModel, PresenterCreateAreaCommand>()
-                .PreserveReferences()
-                .ReverseMap();
-            #endregion
+            var adapter = new AutomapperTypeAdapterFactory().Create();
+            return adapter.Adapt<TProjection>(item);
         }
     }
 
@@ -40,16 +41,27 @@ namespace SuperTicketApi.NUnitTests
         private CreateLayoutViewModel createLayoutViewModel;
         private CreateSeatViewModel createSeatViewModel;
         private CreateVenueViewModel createVenueViewModel;
+
         [SetUp]
         public void ConverterShould()
         {
             this.createAreaViewModel = new CreateAreaViewModel
-                                      {
-                                          LayoutId = 1,
-                                          Description = "CreateAreaViewModelDescription",
-                                          CoordX = 2,
-                                          CoordY = 3
-                                      };
+            {
+                LayoutId = 1,
+                Description = "CreateAreaViewModelDescription",
+                CoordX = 2,
+                CoordY = 3
+            };
+
+            this.createEventAreaViewModel = new CreateEventAreaViewModel
+            {
+                CoordX = 1,
+                CoordY = 2,
+                Description = "CreateEventAreaViewModelDescription",
+                EventId = 11,
+                Price = 123142M
+            };
+
         }
 
         /// <summary>
@@ -58,14 +70,26 @@ namespace SuperTicketApi.NUnitTests
         [Test]
         public void CreateAreaViewModelReturnCommand()
         {
-         /*   var command = this.createAreaViewModel.ProjectedAs<PresenterCreateAreaCommand>();
+            var command = createAreaViewModel.TestProjectedAs<PresenterCreateAreaCommand>();
+
             Assert.IsInstanceOf<PresenterCreateAreaCommand>(command);
             Assert.AreEqual(command.LayoutId, 1);
             Assert.AreEqual(command.Description, "CreateAreaViewModelDescription");
             Assert.AreEqual(command.CoordX, 2);
-            Assert.AreEqual(command.CoordY, 3);*/
-
-            Assert.Pass();
+            Assert.AreEqual(command.CoordY, 3);
         }
+
+        //[Test]
+        //public void createEventAreaViewModelReturnCommand()
+        //{
+        //    var command = createEventAreaViewModel.TestProjectedAs<PresenterCreateEventAreaCommand>();
+
+        //    Assert.IsInstanceOf<PresenterCreateEventAreaCommand>(command);
+        //    Assert.AreEqual(command.EventId, 11);
+        //    Assert.AreEqual(command.Description, "CreateEventAreaViewModelDescription");
+        //    Assert.AreEqual(command.CoordX, 1);
+        //    Assert.AreEqual(command.CoordY, 2);
+        //    Assert.AreEqual(command.Price, 123142M);
+        //}
     }
 }
