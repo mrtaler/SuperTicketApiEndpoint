@@ -10,6 +10,7 @@
     using SuperTicketApi.ApiEndpoint.ViewModel.EventArea;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Delete;
+    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Update;
 
     /// <summary>
     /// The Test controller.
@@ -95,6 +96,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
+         [HttpPut]
         public async Task<IActionResult> Put([FromBody] UpdateEventAreaViewModel updateModel)
         {
             var result = await this.Mediator.Send(

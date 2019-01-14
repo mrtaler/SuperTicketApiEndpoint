@@ -11,6 +11,7 @@
     using SuperTicketApi.ApiEndpoint.ViewModel.Area;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Delete;
+    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Update;
     using SuperTicketApi.Domain.MainContext.Queries;
 
     /// <summary>

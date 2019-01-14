@@ -8,6 +8,7 @@
     using SuperTicketApi.ApiEndpoint.ViewModel.Seat;
     using SuperTicketApi.ApiEndpoint.ViewModel.Venue;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
+    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Update;
 
     /// <summary>
     /// The area command profile.

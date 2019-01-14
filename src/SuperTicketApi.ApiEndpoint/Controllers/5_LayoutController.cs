@@ -11,6 +11,7 @@
     using SuperTicketApi.ApiEndpoint.ViewModel.Layout;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Delete;
+    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Update;
     using SuperTicketApi.Domain.MainContext.Queries;
 
     /// <summary>
@@ -100,6 +101,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
+         [HttpPut]
         public async Task<IActionResult> Put([FromBody] UpdateLayoutViewModel updateModel)
         {
             var result = await this.Mediator.Send(

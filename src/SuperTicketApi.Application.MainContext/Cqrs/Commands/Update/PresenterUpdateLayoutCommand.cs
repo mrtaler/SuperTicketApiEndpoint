@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.Application.MainContext.Cqrs.Commands.Create
+﻿namespace SuperTicketApi.Application.MainContext.Cqrs.Commands.Update
 {
     using MediatR;
 
