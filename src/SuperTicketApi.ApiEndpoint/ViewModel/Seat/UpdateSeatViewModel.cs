@@ -1,11 +1,12 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.Seat
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="SuperTicketApi.ApiEndpoint.ViewModel.ApiViewModel" />
-    public class CreateSeatViewModel : ApiViewModel
+    public class UpdateSeatViewModel : ApiViewModel
     {
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
         /// <summary>
         /// Gets or sets the area identifier.
         /// </summary>

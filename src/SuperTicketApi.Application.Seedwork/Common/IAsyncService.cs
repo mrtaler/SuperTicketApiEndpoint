@@ -4,8 +4,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using SuperTicketApi.Application.BoundedContext.DTO;
-    using SuperTicketApi.Domain.MainContext.DTO.Models;
     using SuperTicketApi.Domain.Seedwork;
 
     using IBusinessDto = SuperTicketApi.Application.Seedwork.IBusinessDto;

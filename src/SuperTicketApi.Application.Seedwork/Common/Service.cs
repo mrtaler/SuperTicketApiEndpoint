@@ -1,10 +1,5 @@
 ﻿namespace SuperTicketApi.Application.Seedwork.Common
 {
-    using System;
-    using System.Collections.Generic;
-    using SuperTicketApi.Domain.MainContext.Mssql.Interfaces;
-    using SuperTicketApi.Domain.Seedwork;
-
     /*  public abstract class Service<TEntity, TEntityDto> : IService<TEntity, TEntityDto>
       where TEntity : Entity, new()
       where TEntityDto : Entity, new()

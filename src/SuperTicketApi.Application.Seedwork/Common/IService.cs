@@ -1,7 +1,5 @@
 ﻿namespace SuperTicketApi.Application.Seedwork.Common
 {
-    using SuperTicketApi.Application.BoundedContext.DTO;
-    using SuperTicketApi.Domain.MainContext.DTO.Models;
     using SuperTicketApi.Domain.Seedwork;
 
     using IBusinessDto = SuperTicketApi.Application.Seedwork.IBusinessDto;

@@ -1,13 +1,8 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.EventArea
 {
-    using System.Collections.Generic;
-
-    using SuperTicketApi.ApiEndpoint.ViewModel.EventSeat;
-
     /// <summary>
-    /// 
+    /// The create event area view model.
     /// </summary>
-    /// <seealso cref="SuperTicketApi.ApiEndpoint.ViewModel.ApiViewModel" />
     public class CreateEventAreaViewModel : ApiViewModel
     {
         /// <summary>
@@ -50,14 +45,4 @@
         /// </value>
         public decimal Price { get; set; }
     }
-
-    /*
-      Area
-    EventArea
-    Event
-    EventSeat
-    Layout
-    Seat
-    Venue
-    */
 }

@@ -5,7 +5,7 @@
     /// <summary>
     /// The presenter create area command.
     /// </summary>
-    public class PresenterCreateAreaCommand : IBusinesCommand, IRequest<CommandResponse>
+    public class PresenterCreateAreaCommand : IBusinessCommand, IRequest<CommandResponse>
     {
         /// <summary>
         /// Gets or sets the layout id.

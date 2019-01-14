@@ -6,14 +6,4 @@
     public abstract class ApiViewModel
     {
     }
-
- /*
-   Area
- EventArea
- Event
- EventSeat
- Layout
- Seat
- Venue
- */
 }

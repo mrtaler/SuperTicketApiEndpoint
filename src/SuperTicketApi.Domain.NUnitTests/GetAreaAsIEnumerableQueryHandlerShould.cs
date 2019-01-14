@@ -7,7 +7,6 @@ namespace SuperTicketApi.Domain.NUnitTests
     using SuperTicketApi.Domain.MainContext.DTO.Models;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// The get area as i enumerable query handler should.

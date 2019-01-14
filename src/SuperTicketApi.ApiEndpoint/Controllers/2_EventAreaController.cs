@@ -9,6 +9,7 @@
     using SuperTicketApi.ApiEndpoint.ViewModel;
     using SuperTicketApi.ApiEndpoint.ViewModel.EventArea;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
+    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Delete;
 
     /// <summary>
     /// The Test controller.
@@ -85,30 +86,62 @@
             });
         }
 
-        ///// <summary>
-        ///// The PUT api/values/5
-        ///// </summary>
-        ///// <param name="id">
-        ///// The <paramref name="id"/>.
-        ///// </param>
-        ///// <param name="value">
-        ///// The value.
-        ///// </param>
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> Put(int id, [FromBody] string value)
-        //{
-        //}
+        /// <summary>
+        /// The PUT api/values/5
+        /// </summary>
+        /// <param name="updateModel">
+        /// The updated Model.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<IActionResult> Put([FromBody] UpdateEventAreaViewModel updateModel)
+        {
+            var result = await this.Mediator.Send(
+                updateModel.ProjectedAs<PresenterUpdateEventAreaCommand>());
+            if (result.IsSuccess)
+            {
+                return new ObjectResult(new
+                {
+                    Success = result.IsSuccess,
+                    NewId = result.Object,
+                });
+            }
 
+            return new ObjectResult(new
+            {
+                Success = result.IsSuccess,
+                Error = result.Message,
+            });
+        }
 
-        ///// <summary>
-        ///// The DELETE api/values/5
-        ///// </summary>
-        ///// <param name="id">
-        ///// The <paramref name="id"/>.
-        ///// </param>
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //}
+        /// <summary>
+        /// The DELETE api/values/5
+        /// </summary>
+        /// <param name="id">
+        /// The <paramref name="id"/>.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await this.Mediator.Send(new PresenterDeleteEventAreaCommand(id));
+            if (result.IsSuccess)
+            {
+                return new ObjectResult(new
+                {
+                    Success = result.IsSuccess,
+                    NewId = result.Object,
+                });
+            }
+
+            return new ObjectResult(new
+            {
+                Success = result.IsSuccess,
+                Error = result.Message,
+            });
+        }
     }
 }

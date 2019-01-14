@@ -52,6 +52,36 @@
                 .ReverseMap();
 
             #endregion
+
+            #region Update presenter Command
+            this.CreateMap<UpdateAreaViewModel, PresenterUpdateAreaCommand>()
+                .PreserveReferences()
+                .ReverseMap();
+
+            this.CreateMap<UpdateEventAreaViewModel, PresenterUpdateEventAreaCommand>()
+                .PreserveReferences()
+                .ReverseMap();
+
+            this.CreateMap<UpdateEventViewModel, PresenterUpdateEventCommand>()
+                .PreserveReferences()
+                .ReverseMap();
+
+            this.CreateMap<UpdateEventSeatViewModel, PresenterUpdateEventSeatCommand>()
+                .PreserveReferences()
+                .ReverseMap();
+
+            this.CreateMap<UpdateLayoutViewModel, PresenterUpdateLayoutCommand>()
+                .PreserveReferences()
+                .ReverseMap();
+
+            this.CreateMap<UpdateSeatViewModel, PresenterUpdateSeatCommand>()
+                .PreserveReferences()
+                .ReverseMap();
+
+            this.CreateMap<UpdateVenueViewModel, PresenterUpdateVenueCommand>()
+                .PreserveReferences()
+                .ReverseMap();
+            #endregion
         }
     }
 }

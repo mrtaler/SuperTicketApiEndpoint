@@ -1,14 +1,10 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.Event
 {
     using System;
-    using System.Collections.Generic;
-
-    using SuperTicketApi.ApiEndpoint.ViewModel.EventArea;
 
     /// <summary>
-    /// 
+    /// The create event view model.
     /// </summary>
-    /// <seealso cref="SuperTicketApi.ApiEndpoint.ViewModel.ApiViewModel" />
     public class CreateEventViewModel : ApiViewModel
     {
         /// <summary>
@@ -59,14 +55,4 @@
         /// </value>
         public int LayoutId { get; set; }
     }
-
-    /*
-      Area
-    EventArea
-    Event
-    EventSeat
-    Layout
-    Seat
-    Venue
-    */
 }

@@ -1,7 +1,5 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS
 {
-    using System.Data;
-
     using MediatR;
 
     using Serilog;

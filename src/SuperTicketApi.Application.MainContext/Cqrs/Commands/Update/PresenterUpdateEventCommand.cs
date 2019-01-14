@@ -7,8 +7,13 @@
     /// <summary>
     /// The presenter create event command.
     /// </summary>
-    public class PresenterCreateEventCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterUpdateEventCommand : IRequest<CommandResponse>, IBusinessCommand
     {
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
         /// <summary>
         /// Gets or sets the name.
         /// </summary>

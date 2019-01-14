@@ -10,8 +10,7 @@
     using SuperTicketApi.ApiEndpoint.ViewModel;
     using SuperTicketApi.ApiEndpoint.ViewModel.Area;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
-    using SuperTicketApi.Domain.MainContext.Command.Delete;
-    using SuperTicketApi.Domain.MainContext.Command.Update;
+    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Delete;
     using SuperTicketApi.Domain.MainContext.Queries;
 
     /// <summary>
@@ -102,11 +101,11 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> Put([FromBody] UpdateAreaViewModel updateModel)
         {
             var result = await this.Mediator.Send(
-                updateModel.ProjectedAs<UpdateAreaDomainCommand>());
+                updateModel.ProjectedAs<PresenterUpdateAreaCommand>());
             if (result.IsSuccess)
             {
                 return new ObjectResult(new
@@ -135,7 +134,7 @@
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.Mediator.Send(new DeleteAreaDomainCommand(id));
+            var result = await this.Mediator.Send(new PresenterDeleteAreaCommand(id));
             if (result.IsSuccess)
             {
                 return new ObjectResult(new

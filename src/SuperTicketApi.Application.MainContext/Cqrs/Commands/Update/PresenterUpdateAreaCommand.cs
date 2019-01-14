@@ -3,14 +3,19 @@
     using MediatR;
 
     /// <summary>
-    /// The presenter create event area command.
+    /// The presenter create area command.
     /// </summary>
-    public class PresenterCreateEventAreaCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterUpdateAreaCommand : IBusinessCommand, IRequest<CommandResponse>
     {
         /// <summary>
-        /// Gets or sets the event id.
+        /// Gets or sets the id.
         /// </summary>
-        public int EventId { get; set; }
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the layout id.
+        /// </summary>
+        public int LayoutId { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
@@ -18,19 +23,14 @@
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the coordX.
+        /// Gets or sets the CoordX.
         /// </summary>
         public int CoordX { get; set; }
 
         /// <summary>
-        /// Gets or sets the coordY.
+        /// Gets or sets the CoordY.
         /// </summary>
         public int CoordY { get; set; }
-
-        /// <summary>
-        /// Gets or sets the price.
-        /// </summary>
-        public decimal Price { get; set; }
 
         #region Command Authorization Options
 

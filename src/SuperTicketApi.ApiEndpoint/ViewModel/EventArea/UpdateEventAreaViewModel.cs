@@ -1,17 +1,23 @@
-﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.Area
+﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.EventArea
 {
     /// <summary>
-    /// The create area view model.
+    /// The update event area view model.
     /// </summary>
-    public class CreateAreaViewModel:ApiViewModel
+    public class UpdateEventAreaViewModel : ApiViewModel
     {
         /// <summary>
-        /// Gets or sets the layout identifier.
+        /// Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the event identifier.
         /// </summary>
         /// <value>
-        /// The layout identifier.
+        /// The event identifier.
         /// </value>
-        public int LayoutId { get; set; }
+        public int EventId { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
@@ -36,5 +42,13 @@
         /// The coord y.
         /// </value>
         public int CoordY { get; set; }
+
+        /// <summary>
+        /// Gets or sets the price.
+        /// </summary>
+        /// <value>
+        /// The price.
+        /// </value>
+        public decimal Price { get; set; }
     }
 }

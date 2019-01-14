@@ -1,6 +1,5 @@
 ﻿namespace SuperTicketApi.Application.MainContext.Cqrs
 {
-    using SuperTicketApi.Application.BoundedContext.DTO.Profiles;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
     using SuperTicketApi.Domain.MainContext.Command.CreateCommands;
 

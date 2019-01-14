@@ -2,8 +2,6 @@
 {
     using System.Collections.Generic;
 
-    using SuperTicketApi.Application.BoundedContext.DTO;
-    using SuperTicketApi.Domain.MainContext.DTO.Models;
     using SuperTicketApi.Domain.Seedwork;
 
     using IBusinessDto = SuperTicketApi.Application.Seedwork.IBusinessDto;

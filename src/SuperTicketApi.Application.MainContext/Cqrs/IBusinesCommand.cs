@@ -1,4 +1,9 @@
 ﻿namespace SuperTicketApi.Application.MainContext.Cqrs
 {
-    public interface IBusinesCommand { }
+    /// <summary>
+    /// The BusinesCommand interface.
+    /// </summary>
+    public interface IBusinessCommand
+    {
+    }
 }

@@ -3,8 +3,13 @@
     /// <summary>
     /// The venue view model.
     /// </summary>
-    public class CreateVenueViewModel : ApiViewModel
+    public class UpdateVenueViewModel : ApiViewModel
     {
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
         /// <summary>
         /// Gets or sets the description.
         /// </summary>

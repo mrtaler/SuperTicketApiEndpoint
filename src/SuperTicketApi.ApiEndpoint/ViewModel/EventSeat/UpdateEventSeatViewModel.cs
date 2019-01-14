@@ -1,17 +1,22 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.EventSeat
 {
     /// <summary>
-    /// The create event seat view model.
+    /// The update event seat view model.
     /// </summary>
-    public class CreateEventSeatViewModel : ApiViewModel
+    public class UpdateEventSeatViewModel : ApiViewModel
     {
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
         /// <summary>
         /// Gets or sets the event areas identifier.
         /// </summary>
         /// <value>
         /// The event areas identifier.
         /// </value>
-        public int EventAreasId { get; set; }
+        public int EventAreaId { get; set; }
 
         /// <summary>
         /// Gets or sets the row.

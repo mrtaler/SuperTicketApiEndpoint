@@ -5,8 +5,13 @@
     /// <summary>
     /// The presenter create event area command.
     /// </summary>
-    public class PresenterCreateEventAreaCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterUpdateEventAreaCommand : IRequest<CommandResponse>, IBusinessCommand
     {
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
         /// <summary>
         /// Gets or sets the event id.
         /// </summary>

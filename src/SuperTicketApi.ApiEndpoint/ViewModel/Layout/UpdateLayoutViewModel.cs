@@ -1,10 +1,12 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.Layout
 {
-    /// <summary>
-    /// The create layout view model.
-    /// </summary>
-    public class CreateLayoutViewModel : ApiViewModel
+    public class UpdateLayoutViewModel : ApiViewModel
     {
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        public int Id { get; set; }
+
         /// <summary>
         /// Gets or sets the venue identifier.
         /// </summary>

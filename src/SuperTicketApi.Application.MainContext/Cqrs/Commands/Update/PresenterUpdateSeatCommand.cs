@@ -3,14 +3,19 @@
     using MediatR;
 
     /// <summary>
-    /// The presenter create event seat command.
+    /// The presenter create seat command.
     /// </summary>
-    public class PresenterCreateEventSeatCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterUpdateSeatCommand : IRequest<CommandResponse>, IBusinessCommand
     {
         /// <summary>
-        /// Gets or sets the event areas id.
+        /// Gets or sets the id.
         /// </summary>
-        public int EventAreaId { get; set; }
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the area id.
+        /// </summary>
+        public int AreaId { get; set; }
 
         /// <summary>
         /// Gets or sets the row.
@@ -21,10 +26,5 @@
         /// Gets or sets the number.
         /// </summary>
         public int Number { get; set; }
-
-        /// <summary>
-        /// Gets or sets the state.
-        /// </summary>
-        public int State { get; set; }
     }
 }

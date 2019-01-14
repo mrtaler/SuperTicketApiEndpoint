@@ -5,7 +5,7 @@
     /// <summary>
     /// The presenter create seat command.
     /// </summary>
-    public class PresenterCreateSeatCommand : IRequest<CommandResponse>, IBusinesCommand
+    public class PresenterCreateSeatCommand : IRequest<CommandResponse>, IBusinessCommand
     {
         /// <summary>
         /// Gets or sets the area id.
