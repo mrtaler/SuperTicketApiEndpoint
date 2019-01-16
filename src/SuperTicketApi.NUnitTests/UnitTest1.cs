@@ -1,5 +1,6 @@
 namespace SuperTicketApi.NUnitTests
 {
+    using Moq;
 
     using NUnit.Framework;
     using SuperTicketApi.ApiEndpoint.ViewModel;
@@ -11,26 +12,8 @@ namespace SuperTicketApi.NUnitTests
     using SuperTicketApi.ApiEndpoint.ViewModel.Seat;
     using SuperTicketApi.ApiEndpoint.ViewModel.Venue;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
+    using SuperTicketApi.Infrastructure.Crosscutting.Adapter;
     using SuperTicketApi.Infrastructure.Crosscutting.Implementation.Adapter;
-
-    /// <summary>
-    /// The projections extension methods.
-    /// </summary>
-    public static class ApiViewModelExtensionMethodsForTest
-    {
-        /// <summary>
-        /// Project a type using a DTO
-        /// </summary>
-        /// <typeparam name="TProjection">The dto projection</typeparam>
-        /// <param name="item">The source entity to project</param>
-        /// <returns>The projected type</returns>
-        public static TProjection TestProjectedAs<TProjection>(this ApiViewModel item)
-            where TProjection : class, new()
-        {
-            var adapter = new AutomapperTypeAdapterFactory().Create();
-            return adapter.Adapt<TProjection>(item);
-        }
-    }
 
     public class Tests
     {
@@ -70,7 +53,8 @@ namespace SuperTicketApi.NUnitTests
         [Test]
         public void CreateAreaViewModelReturnCommand()
         {
-            var command = createAreaViewModel.TestProjectedAs<PresenterCreateAreaCommand>();
+
+            var command = createAreaViewModel.ProjectedAs<PresenterCreateAreaCommand>();
 
             Assert.IsInstanceOf<PresenterCreateAreaCommand>(command);
             Assert.AreEqual(command.LayoutId, 1);
@@ -82,7 +66,15 @@ namespace SuperTicketApi.NUnitTests
         //[Test]
         //public void createEventAreaViewModelReturnCommand()
         //{
-        //    var command = createEventAreaViewModel.TestProjectedAs<PresenterCreateEventAreaCommand>();
+        //    //var iTypeAdapterFactory = new AutomapperTypeAdapterFactory();
+
+        //    var mock = new Mock<ITypeAdapterFactory>();
+        //    mock.Setup(x => x.Create()).Returns(new AutomapperTypeAdapter());
+
+        //    var typeAdapterFactory = TypeAdapterFactory.CreateAdapter();
+
+        //    //  https://medium.com/@martinrybak/how-to-mock-singletons-and-static-methods-in-unit-tests-cbe915933c7d
+        //    var command = createEventAreaViewModel.ProjectedAs<PresenterCreateEventAreaCommand>();
 
         //    Assert.IsInstanceOf<PresenterCreateEventAreaCommand>(command);
         //    Assert.AreEqual(command.EventId, 11);

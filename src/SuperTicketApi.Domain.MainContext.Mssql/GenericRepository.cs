@@ -374,7 +374,7 @@
         /// <returns>
         /// The <see cref="TEntity"/>.
         /// </returns>
-        private TEntity Mapping(IDataReader reader)
+        public TEntity Mapping(IDataReader reader)
         {
             var ret = new TEntity();
             var columns = typeof(TEntity).GetProperties();

@@ -5,7 +5,9 @@ namespace SuperTicketApi.Domain.NUnitTests
     using SuperTicketApi.Domain.MainContext.DTO;
     using SuperTicketApi.Domain.MainContext.DTO.IndividualRepositories;
     using SuperTicketApi.Domain.MainContext.DTO.Models;
+    using SuperTicketApi.Domain.MainContext.Mssql.Repositories;
     using System.Collections.Generic;
+    using System.Data;
     using System.Linq;
 
     /// <summary>
@@ -28,6 +30,8 @@ namespace SuperTicketApi.Domain.NUnitTests
         /// The objects.
         /// </summary>
         private List<Area> objects;
+
+        protected Mock<IDataReader> datareader = new Mock<IDataReader>();
 
         /// <summary>
         /// The initialize.
@@ -72,6 +76,22 @@ namespace SuperTicketApi.Domain.NUnitTests
             var areas = uow.AreaRepository.GetAll();
             Assert.AreEqual(areas.Count(), 5);
 
+        }
+
+         [Test]
+        public void retSql()
+        {
+            datareader.Setup(x => x.Read()).Returns(true);
+
+            datareader.Setup(x => x["AreaId"]).Returns(1);
+            datareader.Setup(x => x["LayoutId"]).Returns(1);
+            datareader.Setup(x => x["Description"]).Returns("TestDescription1");
+            datareader.Setup(x => x["CoordX"]).Returns(1);
+            datareader.Setup(x => x["CoordY"]).Returns(1);
+
+            var gr = new AreaRepository("").Mapping(datareader.Object);
+
+            Assert.AreEqual(gr.Id, 1);
         }
     }
 }
