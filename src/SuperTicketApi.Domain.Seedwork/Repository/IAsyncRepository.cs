@@ -8,7 +8,8 @@
     /// </summary>
     /// <typeparam name="TEntity">Ef Class
     /// </typeparam>
-    public interface IAsyncRepository<TEntity> where TEntity : class
+    public interface IAsyncRepository<TEntity>
+        where TEntity : DomainEntity, new()
     {
         /// <summary>
         /// Get element by entity key - Async

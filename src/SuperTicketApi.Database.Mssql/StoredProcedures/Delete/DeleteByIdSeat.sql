@@ -1,0 +1,14 @@
+﻿CREATE PROCEDURE [dbo].[DeleteByIdSeat] @SeatId INT
+AS
+BEGIN
+	SET NOCOUNT ON;
+	BEGIN TRY
+
+		DELETE FROM [dbo].[Seats]
+		WHERE IDENTITYCOL = @SeatId
+	END TRY
+	BEGIN CATCH
+		EXECUTE [dbo].[GetErrorInfo];
+	END CATCH
+END
+GO
