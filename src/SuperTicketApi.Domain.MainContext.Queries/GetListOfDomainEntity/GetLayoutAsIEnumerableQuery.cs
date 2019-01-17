@@ -6,6 +6,9 @@
 
     using SuperTicketApi.Domain.MainContext.DTO.Models;
 
+    /// <summary>
+    /// The get layout as i enumerable query.
+    /// </summary>
     public class GetLayoutAsIEnumerableQuery : IRequest<IEnumerable<Layout>>
     {
     }

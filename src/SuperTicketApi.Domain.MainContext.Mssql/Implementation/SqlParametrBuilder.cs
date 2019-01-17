@@ -1,203 +1,252 @@
-﻿namespace SuperTicketApi.Domain.MainContext.Mssql.Implementation
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq.Expressions;
-    using System.Text;
+﻿//namespace SuperTicketApi.Domain.MainContext.Mssql.Implementation
+//{
+//    using System;
+//    using System.Collections.Generic;
+//    using System.Linq.Expressions;
+//    using System.Text;
 
-    /// <summary>
-    /// The predicate builder.
-    /// </summary>
-    public static class SqlParametrBuilder
-    {
-        /// <summary>
-        /// The and.
-        /// </summary>
-        private const string AND = " and ";
+//    /// <summary>
+//    /// The predicate builder.
+//    /// </summary>
+//    public static class SqlParametrBuilder
+//    {
+//        /// <summary>
+//        /// The and.
+//        /// </summary>
+//        private const string And = " and ";
 
-        /// <summary>
-        /// The or.
-        /// </summary>
-        private const string OR = " or ";
+//        /// <summary>
+//        /// The or.
+//        /// </summary>
+//        private const string Or = " or ";
 
-        /// <summary>
-        /// The ops.
-        /// </summary>
-        private static Dictionary<ExpressionType, String> ops = new Dictionary<ExpressionType, String>();
+//        /// <summary>
+//        /// The ops.
+//        /// </summary>
+//        private static Dictionary<ExpressionType, string> ops = new Dictionary<ExpressionType, string>();
 
-        static SqlParametrBuilder()
-        {
-            ops.Add(ExpressionType.Equal, " = ");
-            ops.Add(ExpressionType.NotEqual, " != ");
-            ops.Add(ExpressionType.GreaterThan, " > ");
-            ops.Add(ExpressionType.GreaterThanOrEqual, " >= ");
-            ops.Add(ExpressionType.LessThan, " <  ");
-            ops.Add(ExpressionType.LessThanOrEqual, " <=  ");
-            ops.Add(ExpressionType.And, " and  ");
-            ops.Add(ExpressionType.AndAlso, " and  ");
-            ops.Add(ExpressionType.Or, " or  ");
-            ops.Add(ExpressionType.OrElse, " or  ");
-        }
+//        static SqlParametrBuilder()
+//        {
+//            ops.Add(ExpressionType.Equal, " = ");
+//            ops.Add(ExpressionType.NotEqual, " != ");
+//            ops.Add(ExpressionType.GreaterThan, " > ");
+//            ops.Add(ExpressionType.GreaterThanOrEqual, " >= ");
+//            ops.Add(ExpressionType.LessThan, " <  ");
+//            ops.Add(ExpressionType.LessThanOrEqual, " <=  ");
+//            ops.Add(ExpressionType.And, " and  ");
+//            ops.Add(ExpressionType.AndAlso, " and  ");
+//            ops.Add(ExpressionType.Or, " or  ");
+//            ops.Add(ExpressionType.OrElse, " or  ");
+//        }
 
-        public static string MakeFilter<T>(Expression<Func<T, bool>> predicate)
-        {
-            var qq = predicate.Compile();
-            var member = predicate.Body as BinaryExpression;
-            if (predicate == null || member == null)
-            {
-                throw new ArgumentNullException("Your predicate is not in correct format!!!");
-            }
+//        /// <summary>
+//        /// The make filter.
+//        /// </summary>
+//        /// <param name="predicate">
+//        /// The predicate.
+//        /// </param>
+//        /// <typeparam name="T">
+//        /// </typeparam>
+//        /// <returns>
+//        /// The <see cref="string"/>.
+//        /// </returns>
+//        /// <exception cref="ArgumentNullException">
+//        /// </exception>
+//        public static string MakeFilter<T>(Expression<Func<T, bool>> predicate)
+//        {
+//            var qq = predicate.Compile();
+//            var member = predicate.Body as BinaryExpression;
+//            if (predicate == null || member == null)
+//            {
+//                throw new ArgumentNullException("Your predicate is not in correct format!!!");
+//            }
 
-            var sql = CheckExpression(member);
-            return sql;
+//            var sql = CheckExpression(member);
+//            return sql;
 
-        }
+//        }
 
-        static string makeMethodCallPredicate(MethodCallExpression expression)
-        {
-            StringBuilder sql = new StringBuilder();
-            if (expression.Method.Name == "StartsWith")
-            {
-                sql.Append(string.Format("{0} like '{1}%'", (expression.Object as MemberExpression).Member.Name, expression.Arguments[0]).Replace("\"", string.Empty));
+//        static string MakeMethodCallPredicate(MethodCallExpression expression)
+//        {
+//            StringBuilder sql = new StringBuilder();
+//            if (expression.Method.Name == "StartsWith")
+//            {
+//                sql.Append($"{(expression.Object as MemberExpression)?.Member.Name} like '{expression.Arguments[0]}%'".Replace("\"", string.Empty));
+//            }
 
-            }
-            return sql.ToString();
-        }
+//            return sql.ToString();
+//        }
 
-        static string makeOperationPredicate(BinaryExpression expression)
-        {
-            StringBuilder sql = new StringBuilder();
-            if (expression.Left.NodeType == ExpressionType.MemberAccess)
-            {
-                sql.Append((expression.Left as MemberExpression).Member.Name);
+//        /// <summary>
+//        /// The make operation predicate.
+//        /// </summary>
+//        /// <param name="expression">
+//        /// The expression.
+//        /// </param>
+//        /// <returns>
+//        /// The <see cref="string"/>.
+//        /// </returns>
+//        static string MakeOperationPredicate(BinaryExpression expression)
+//        {
+//            StringBuilder sql = new StringBuilder();
+//            if (expression.Left.NodeType == ExpressionType.MemberAccess)
+//            {
+//                sql.Append((expression.Left as MemberExpression)?.Member.Name);
+//            }
 
-            }
-            if (expression.Left.NodeType == ExpressionType.Constant)
-            {
-                sql.Append((expression.Left as ConstantExpression).Value);
-            }
+//            if (expression.Left.NodeType == ExpressionType.Constant)
+//            {
+//                sql.Append((expression.Left as ConstantExpression)?.Value);
+//            }
 
-            sql.Append(ops[expression.NodeType]);
+//            sql.Append(ops[expression.NodeType]);
 
 
-            if (expression.Right.NodeType == ExpressionType.MemberAccess)
-            {
-                /*  var www = (expression.Right as MemberExpression).Expression;
-            var value = getValue(www as ConstantExpression);*/
-                sql.Append((expression.Right as MemberExpression).Member.Name);
-            }
+//            if (expression.Right.NodeType == ExpressionType.MemberAccess)
+//            {
+//                /*  var www = (expression.Right as MemberExpression).Expression;
+//            var value = getValue(www as ConstantExpression);*/
+//                sql.Append((expression.Right as MemberExpression).Member.Name);
+//            }
 
-            if (expression.Right.NodeType == ExpressionType.Constant)
-            {
-                var value = getValue(expression.Right as ConstantExpression);
+//            if (expression.Right.NodeType == ExpressionType.Constant)
+//            {
+//                var value = GetValue(expression.Right as ConstantExpression);
 
-                if (value == "null")
-                {
-                    sql.Replace("=", "is");
-                }
+//                if (value == "null")
+//                {
+//                    sql.Replace("=", "is");
+//                }
 
-                sql.Append(value);
-            }
+//                sql.Append(value);
+//            }
 
-            return sql.ToString();
-        }
+//            return sql.ToString();
+//        }
 
-        static object getValue(ConstantExpression expression)
-        {
+//        /// <summary>
+//        /// The get value.
+//        /// </summary>
+//        /// <param name="expression">
+//        /// The expression.
+//        /// </param>
+//        /// <returns>
+//        /// The <see cref="object"/>.
+//        /// </returns>
+//        static object GetValue(ConstantExpression expression)
+//        {
+//            switch (expression.Type.ToString())
+//            {
+//                case "System.Int16":
+//                case "System.Int32":
+//                case "System.Int64":
+//                    return expression.Value;
+//                case "System.Object":
+//                    return "null";
+//                default:
+//                    return "'" + expression.Value + "'";
+//            }
+//        }
 
-            switch (expression.Type.ToString())
-            {
-                case "System.Int16":
-                case "System.Int32":
-                case "System.Int64":
-                    return expression.Value;
-                case "System.Object":
-                    return "null";
-                default:
-                    return "'" + expression.Value + "'";
-            }
-        }
+//        /// <summary>
+//        /// The check expression.
+//        /// </summary>
+//        /// <param name="expression">
+//        /// The expression.
+//        /// </param>
+//        /// <returns>
+//        /// The <see cref="string"/>.
+//        /// </returns>
+//        static string CheckExpression(BinaryExpression expression)
+//        {
+//            StringBuilder sql = new StringBuilder();
+//            if (IsOperation(expression.NodeType))
+//            {
+//                sql.Append(MakeOperationPredicate(expression));
+//            }
 
-        static string CheckExpression(BinaryExpression expression)
-        {
-            StringBuilder sql = new StringBuilder();
-            if (isOperation(expression.NodeType))
-            {
-                sql.Append(makeOperationPredicate(expression));
-            }
-            if (expression.Left.NodeType == ExpressionType.AndAlso)
-            {
-                sql.Append(CheckExpression(expression.Left as BinaryExpression));
-            }
+//            if (expression.Left.NodeType == ExpressionType.AndAlso)
+//            {
+//                sql.Append(CheckExpression(expression.Left as BinaryExpression));
+//            }
 
-            if (expression.Left.NodeType == ExpressionType.OrElse)
-            {
-                sql.Append(CheckExpression(expression.Left as BinaryExpression));
-            }
+//            if (expression.Left.NodeType == ExpressionType.OrElse)
+//            {
+//                sql.Append(CheckExpression(expression.Left as BinaryExpression));
+//            }
 
-            if (expression.Left.NodeType == ExpressionType.Call)
-            {
-                sql.Append(makeMethodCallPredicate(expression.Left as MethodCallExpression));
-            }
+//            if (expression.Left.NodeType == ExpressionType.Call)
+//            {
+//                sql.Append(MakeMethodCallPredicate(expression.Left as MethodCallExpression));
+//            }
 
-            if (isOperation(expression.Left.NodeType))
-            {
-                sql.Append(makeOperationPredicate(expression.Left as BinaryExpression));
-            }
+//            if (IsOperation(expression.Left.NodeType))
+//            {
+//                sql.Append(MakeOperationPredicate(expression.Left as BinaryExpression));
+//            }
 
-            if (expression.NodeType == ExpressionType.OrElse)
-            {
-                sql.Append(OR);
-            }
+//            if (expression.NodeType == ExpressionType.OrElse)
+//            {
+//                sql.Append(Or);
+//            }
 
-            if (expression.NodeType == ExpressionType.AndAlso)
-            {
-                sql.Append(AND);
-            }
+//            if (expression.NodeType == ExpressionType.AndAlso)
+//            {
+//                sql.Append(And);
+//            }
 
-            if (expression.Right.NodeType == ExpressionType.AndAlso)
-            {
-                sql.Append(CheckExpression(expression.Right as BinaryExpression));
-            }
+//            if (expression.Right.NodeType == ExpressionType.AndAlso)
+//            {
+//                sql.Append(CheckExpression(expression.Right as BinaryExpression));
+//            }
 
-            if (expression.Right.NodeType == ExpressionType.OrElse)
-            {
-                sql.Append(CheckExpression(expression.Right as BinaryExpression));
-            }
+//            if (expression.Right.NodeType == ExpressionType.OrElse)
+//            {
+//                sql.Append(CheckExpression(expression.Right as BinaryExpression));
+//            }
 
-            if (expression.Right.NodeType == ExpressionType.Call)
-            {
+//            if (expression.Right.NodeType == ExpressionType.Call)
+//            {
 
-                sql.Append(makeMethodCallPredicate(expression.Right as MethodCallExpression));
-            }
+//                sql.Append(MakeMethodCallPredicate(expression.Right as MethodCallExpression));
+//            }
 
-            if (isOperation(expression.Right.NodeType))
-            {
-                sql.Append(makeOperationPredicate(expression.Right as BinaryExpression));
-            }
+//            if (IsOperation(expression.Right.NodeType))
+//            {
+//                sql.Append(MakeOperationPredicate(expression.Right as BinaryExpression));
+//            }
 
-            return sql.ToString();
-        }
+//            return sql.ToString();
+//        }
 
-        static bool isOperation(ExpressionType type)
-        {
-            switch (type)
-            {
-                case ExpressionType.Equal:
+//        /// <summary>
+//        /// The is operation.
+//        /// </summary>
+//        /// <param name="type">
+//        /// The type.
+//        /// </param>
+//        /// <returns>
+//        /// The <see cref="bool"/>.
+//        /// </returns>
+//        static bool IsOperation(ExpressionType type)
+//        {
+//            switch (type)
+//            {
+//                case ExpressionType.Equal:
 
-                case ExpressionType.NotEqual:
+//                case ExpressionType.NotEqual:
 
-                case ExpressionType.GreaterThan:
+//                case ExpressionType.GreaterThan:
 
-                case ExpressionType.GreaterThanOrEqual:
+//                case ExpressionType.GreaterThanOrEqual:
 
-                case ExpressionType.LessThan:
+//                case ExpressionType.LessThan:
 
-                case ExpressionType.LessThanOrEqual:
-                    return true;
+//                case ExpressionType.LessThanOrEqual:
+//                    return true;
+//            }
 
-            }
-            return false;
-        }
-    }
-}
+//            return false;
+//        }
+//    }
+//}

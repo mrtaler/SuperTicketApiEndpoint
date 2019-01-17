@@ -4,9 +4,11 @@
 
     using SuperTicketApi.Domain.Seedwork;
 
+    using IBusinessDto = SuperTicketApi.Application.Seedwork.IBusinessDto;
+
     public interface IReadableService<TEntity, TEntityDto>
-        where TEntity : Entity
-        where TEntityDto : Entity
+        where TEntity : DomainEntity
+        where TEntityDto : IBusinessDto
     {
         TEntity Get(object id);
         TEntityDto GetDto(object id);
