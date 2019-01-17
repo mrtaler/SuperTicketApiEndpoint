@@ -1,5 +1,7 @@
 ﻿{
   "ConnectionStrings": {
-    "ProviderName": "System.Data.SqlClient123"
+    "ConnectionString": "",
+    "ProviderName": "",
+    "env": ""
   }
 }
