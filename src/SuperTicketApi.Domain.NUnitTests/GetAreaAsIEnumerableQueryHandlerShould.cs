@@ -6,6 +6,7 @@ namespace SuperTicketApi.Domain.NUnitTests
     using SuperTicketApi.Domain.MainContext.DTO.IndividualRepositories;
     using SuperTicketApi.Domain.MainContext.DTO.Models;
     using SuperTicketApi.Domain.MainContext.Mssql.Repositories;
+    using SuperTicketApi.Domain.Seedwork;
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
@@ -78,7 +79,7 @@ namespace SuperTicketApi.Domain.NUnitTests
 
         }
 
-         [Test]
+        [Test]
         public void retSql()
         {
             datareader.Setup(x => x.Read()).Returns(true);
@@ -89,7 +90,7 @@ namespace SuperTicketApi.Domain.NUnitTests
             datareader.Setup(x => x["CoordX"]).Returns(1);
             datareader.Setup(x => x["CoordY"]).Returns(1);
 
-            var gr = new AreaRepository("").Mapping(datareader.Object);
+            var gr = new AreaRepository(It.IsAny<string>(), It.IsAny<ISqlHelper>()).Mapping(datareader.Object);
 
             Assert.AreEqual(gr.Id, 1);
         }

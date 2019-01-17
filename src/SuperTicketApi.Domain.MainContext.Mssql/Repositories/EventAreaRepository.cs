@@ -2,6 +2,7 @@
 {
     using SuperTicketApi.Domain.MainContext.DTO.IndividualRepositories;
     using SuperTicketApi.Domain.MainContext.DTO.Models;
+    using SuperTicketApi.Domain.Seedwork;
 
     /// <summary>
     /// The EventAreaRepository interface.
@@ -14,8 +15,8 @@
         /// <param name="connection">
         /// The connection.
         /// </param>
-        public EventAreaRepository(string connection)
-               : base(connection)
+        public EventAreaRepository(string connection, ISqlHelper sqlHelper)
+            : base(connection, sqlHelper)
         {
         }
     }

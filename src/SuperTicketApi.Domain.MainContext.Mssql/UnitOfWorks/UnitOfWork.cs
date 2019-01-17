@@ -1,23 +1,24 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.UnitOfWorks
 {
-    using System;
-
     using Microsoft.Extensions.Options;
-
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.Domain.MainContext.DTO;
     using SuperTicketApi.Domain.MainContext.DTO.IndividualRepositories;
     using SuperTicketApi.Domain.MainContext.Mssql.Repositories;
+    using SuperTicketApi.Domain.Seedwork;
+    using System;
 
     /// <summary>
     /// The ado net unit of work.
     /// </summary>
-    public class UnitOfWork : ITabledUnitOfWork 
+    public class UnitOfWork : ITabledUnitOfWork
     {
         /// <summary>
         /// The connection string.
         /// </summary>
         private readonly string connectionString;
+
+        private readonly ISqlHelper sqlHelper;
 
         /// <summary>
         /// Gets the area.
@@ -60,8 +61,9 @@
         /// <param name="connectionString">
         /// The connection string.
         /// </param>
-        public UnitOfWork(IOptions<AppConnectionStrings> connectionString)
+        public UnitOfWork(IOptions<AppConnectionStrings> connectionString, ISqlHelper sqlHelper)
         {
+            this.sqlHelper = sqlHelper;
             this.connectionString = connectionString.Value.MssqlConnectionString;
         }
 
@@ -72,7 +74,7 @@
         /// </summary>
         public IAreaRepository AreaRepository =>
             this.areaRepository
-            ?? (this.areaRepository = new AreaRepository(this.connectionString));
+            ?? (this.areaRepository = new AreaRepository(this.connectionString, sqlHelper));
 
         /// <inheritdoc />
         /// <summary>
@@ -80,53 +82,53 @@
         /// </summary>
         public IEventRepository EventRepository =>
             this.eventRepository
-            ?? (this.eventRepository = new EventRepository(this.connectionString));
+            ?? (this.eventRepository = new EventRepository(this.connectionString, sqlHelper));
 
         /// <summary>
         /// The event area.
         /// </summary>
         public IEventAreaRepository EventAreaRepository =>
             this.eventAreaRepository
-            ?? (this.eventAreaRepository = new EventAreaRepository(this.connectionString));
+            ?? (this.eventAreaRepository = new EventAreaRepository(this.connectionString, sqlHelper));
 
         /// <summary>
         /// The event seat.
         /// </summary>
         public IEventSeatRepository EventSeatRepository =>
             this.eventSeatRepository
-            ?? (this.eventSeatRepository = new EventSeatRepository(this.connectionString));
+            ?? (this.eventSeatRepository = new EventSeatRepository(this.connectionString, sqlHelper));
 
         /// <summary>
         /// The layout.
         /// </summary>
         public ILayoutRepository LayoutRepository =>
             this.layoutRepository
-            ?? (this.layoutRepository = new LayoutRepository(this.connectionString));
+            ?? (this.layoutRepository = new LayoutRepository(this.connectionString, sqlHelper));
 
         /// <summary>
         /// The <see cref="seatRepository"/> repository
         /// </summary>
         public ISeatRepository SeatRepository =>
             this.seatRepository
-            ?? (this.seatRepository = new SeatRepository(this.connectionString));
+            ?? (this.seatRepository = new SeatRepository(this.connectionString, sqlHelper));
 
         /// <summary>
         /// The venue.
         /// </summary>
         public IVenueRepository VenueRepository =>
             this.venueRepository
-            ?? (this.venueRepository = new VenueRepository(this.connectionString));
+            ?? (this.venueRepository = new VenueRepository(this.connectionString, sqlHelper));
 
         /// <inheritdoc />
         public void Dispose()
         {
-          GC.SuppressFinalize(this);
+            GC.SuppressFinalize(this);
         }
 
         /// <inheritdoc />
         public void Commit()
         {
-           throw new NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

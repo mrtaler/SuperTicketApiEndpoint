@@ -9,8 +9,10 @@
     using SuperTicketApi.Domain.MainContext.DTO;
     using SuperTicketApi.Domain.MainContext.DTO.Models;
     using SuperTicketApi.Domain.MainContext.Mssql.CQRS.QueryHandlers;
+    using SuperTicketApi.Domain.MainContext.Mssql.Database;
     using SuperTicketApi.Domain.MainContext.Mssql.UnitOfWorks;
     using SuperTicketApi.Domain.MainContext.Queries.GetListOfDomainEntity;
+    using SuperTicketApi.Domain.Seedwork;
 
     /// <summary>
     /// The new module.
@@ -28,6 +30,9 @@
         {
             builder.RegisterType<UnitOfWork>()
                 .As<ITabledUnitOfWork>().InstancePerLifetimeScope();
+
+            builder.RegisterType<SqlServerSqlHelper>()
+                .As<ISqlHelper>().InstancePerLifetimeScope();
 
             builder.AddMediatR(
                 typeof(GetQueryAsIEnumerableQueryHandler).GetTypeInfo().Assembly,

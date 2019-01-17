@@ -1,19 +1,17 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql
 {
+    using Serilog;
+    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
+    using SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers.General;
+    using SuperTicketApi.Domain.MainContext.Mssql.UnitOfWorks;
+    using SuperTicketApi.Domain.Seedwork;
+    using SuperTicketApi.Domain.Seedwork.Repository;
     using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
     using System.Linq;
     using System.Reflection;
-
-    using Serilog;
-
-    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
-    using SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers.General;
-    using SuperTicketApi.Domain.MainContext.Mssql.UnitOfWorks;
-    using SuperTicketApi.Domain.Seedwork;
-    using SuperTicketApi.Domain.Seedwork.Repository;
 
     /// <summary>
     /// Generic Repository
@@ -23,18 +21,27 @@
         where TEntity : DomainEntity, new()
     {
         /// <summary>
+        /// The sql helper.
+        /// </summary>
+        private ISqlHelper sqlHelper;
+
+        /// <summary>
         /// The cmd.
         /// </summary>
         private string connectionString;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GenericRepository{T}"/> class.
+        /// Initializes a new instance of the <see cref="GenericRepository{TEntity}"/> class. 
         /// </summary>
-        /// <param name="context">
-        /// The _context.
+        /// <param name="connectionString">
+        /// The connection String.
         /// </param>
-        protected GenericRepository(string connectionString)
+        /// <param name="sqlHelper">
+        /// The sql Helper.
+        /// </param>
+        protected GenericRepository(string connectionString, ISqlHelper sqlHelper)
         {
+            this.sqlHelper = sqlHelper;
             this.connectionString = connectionString;
         }
 
@@ -69,7 +76,24 @@
         /// <inheritdoc />
         public IEnumerable<TEntity> GetAll()
         {
-            using (var connection = DataFactory.CreateConnection(this.connectionString))
+            var returnList = new List<TEntity>();
+            using (var con = sqlHelper.CreateConnection(this.connectionString))
+            {
+                var COMMAND = $"select * " +
+                                        $"from {typeof(TEntity).GetAttributeValue((DbTableAttribute dbTable) => dbTable.TableName)}";
+                using (var rdr = sqlHelper.ExecuteReader(con, COMMAND))
+                {
+                    while (rdr.Read())
+                    {
+                        var art = this.Mapping(rdr);
+                        returnList.Add(art);
+                    }
+                }
+            }
+
+            return returnList;
+
+           /* using (var connection = DataFactory.CreateConnection(this.connectionString))
             {
                 connection.Open();
                 var command = connection.CreateCommand();
@@ -100,7 +124,7 @@
                 }
 
                 return returnList;
-            }
+            }*/
         }
 
         /// <inheritdoc />
@@ -183,7 +207,7 @@
                 connection.Open();
                 var command = connection.CreateCommand();
 
-                 var dataBaseParam = new List<SqlParameter>();
+                var dataBaseParam = new List<SqlParameter>();
 
 
                 var idColumnName = this.GetIdTableColumnName();
@@ -192,7 +216,7 @@
                 var value = property.GetValue(item);
                 var sqlParam = this.GetSqlParameter(idColumnName, value);
                 dataBaseParam.Add(sqlParam);
-                
+
                 this.ExecuteSpWithReader(item.Command, command, dataBaseParam);
             }
         }
