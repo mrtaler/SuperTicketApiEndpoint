@@ -16,12 +16,31 @@
 
     using SuperTicketApi.ApiSettings.JsonSettings.GoogleOptions;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="GoogleAuthOptions" />
     public class CustomGoogleHandler : OAuthHandler<GoogleAuthOptions>
-    {
+
+    {/// <summary>
+    /// 
+    /// </summary>
+    /// <param name="options"></param>
+    /// <param name="logger"></param>
+    /// <param name="encoder"></param>
+    /// <param name="clock"></param>
         public CustomGoogleHandler(IOptionsMonitor<GoogleAuthOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)
             : base(options, logger, encoder, clock)
         { }
 
+        /// <summary>
+        /// Creates the ticket asynchronous.
+        /// </summary>
+        /// <param name="identity">The identity.</param>
+        /// <param name="properties">The properties.</param>
+        /// <param name="tokens">The tokens.</param>
+        /// <returns></returns>
+        /// <exception cref="HttpRequestException">An error occurred when retrieving Google user information ({response.StatusCode}</exception>
         protected override async Task<AuthenticationTicket> CreateTicketAsync(
             ClaimsIdentity identity,
             AuthenticationProperties properties,
@@ -46,6 +65,10 @@
             return new AuthenticationTicket(context.Principal, context.Properties, this.Scheme.Name);
         }
 
+        /// <summary>
+        /// Handles the request asynchronous.
+        /// </summary>
+        /// <returns></returns>
         public override async Task<bool> HandleRequestAsync()
         {
             if (this.Options.CallbackPath == this.Request.Path)
@@ -56,6 +79,10 @@
             return false;
         }
 
+        /// <summary>
+        /// Handles the remote callback asynchronous.
+        /// </summary>
+        /// <returns></returns>
         protected virtual async Task<bool> HandleRemoteCallbackAsync()
         {
             var ticket = await this.AuthenticateAsync().ConfigureAwait(false);

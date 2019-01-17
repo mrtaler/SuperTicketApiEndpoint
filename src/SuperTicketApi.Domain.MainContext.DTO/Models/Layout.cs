@@ -10,9 +10,32 @@
     /// <para><c>SQL:</c>TABLE [dbo].[Layouts]</para>
     /// </remarks>
     [DbTable("Layouts")]
-    public class Layout : Entity, IEntity<int>
+    public class Layout : DomainEntity, IEntity<int>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Layout"/> class.
+        /// </summary>
+        public Layout()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Layout"/> class.
+        /// </summary>
+        /// <param name="venueId">
+        /// The venue id.
+        /// </param>
+        /// <param name="description">
+        /// The description.
+        /// </param>
+        public Layout(int venueId, string description)
+        {
+            this.VenueId = venueId;
+            this.Description = description;
+        }
+
         #region Implementation of IEntity<int>
+
         /// <inheritdoc />
         /// <remarks>
         /// <para><see cref="Layout"/>Id</para>

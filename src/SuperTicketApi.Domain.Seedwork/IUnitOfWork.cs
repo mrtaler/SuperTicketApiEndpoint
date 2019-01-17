@@ -17,48 +17,48 @@
         /// <summary>
         /// Commit all changes made in a container.
         /// </summary>
-        ///<remarks>
+        /// <remarks>
         /// If the entity have fixed properties and any optimistic concurrency problem exists,  
         /// then an exception is thrown
-        ///</remarks>
+        /// </remarks>
         void Commit();
 
-      /*   /// <summary>
-        /// Commit all changes made in a container. Async
-        /// </summary>
-        ///<remarks>
-        /// If the entity have fixed properties and any optimistic concurrency problem exists,  
-        /// then an exception is thrown
-        ///</remarks>
-        Task<int> CommitAsync();
+        /*   /// <summary>
+          /// Commit all changes made in a container. Async
+          /// </summary>
+          ///<remarks>
+          /// If the entity have fixed properties and any optimistic concurrency problem exists,  
+          /// then an exception is thrown
+          ///</remarks>
+          Task<int> CommitAsync();
 
-       /// <summary>
-        /// Commit all changes made in  a container.
-        /// </summary>
-        ///<remarks>
-        /// If the entity have fixed properties and any optimistic concurrency problem exists,
-        /// then 'client changes' are refreshed - Client wins
-        ///</remarks>
-        void CommitAndRefreshChanges();
+          /// <summary>
+          /// Commit all changes made in  a container.
+          /// </summary>
+          ///<remarks>
+          /// If the entity have fixed properties and any optimistic concurrency problem exists,
+          /// then 'client changes' are refreshed - Client wins
+          ///</remarks>
+          void CommitAndRefreshChanges();
 
-        /// <summary>
-        /// Commit all changes made in  a container. Async
-        /// </summary>
-        ///<remarks>
-        /// If the entity have fixed properties and any optimistic concurrency problem exists,
-        /// then 'client changes' are refreshed - Client wins
-        ///</remarks>
-        Task<int> CommitAndRefreshChangesAsync();
+          /// <summary>
+          /// Commit all changes made in  a container. Async
+          /// </summary>
+          ///<remarks>
+          /// If the entity have fixed properties and any optimistic concurrency problem exists,
+          /// then 'client changes' are refreshed - Client wins
+          ///</remarks>
+          Task<int> CommitAndRefreshChangesAsync();
 
-        /// <summary>
-        /// Rollback tracked changes. See references of UnitOfWork pattern
-        /// </summary>
-        void RollbackChanges();
+          /// <summary>
+          /// Rollback tracked changes. See references of UnitOfWork pattern
+          /// </summary>
+          void RollbackChanges();
 
-        /// <summary>
-        /// Reload an entity with refresh option (Note. This generates adhoc querys)
-        /// </summary>
-        /// <param name="entity"></param>
-        void Refresh(object entity);*/
+          /// <summary>
+          /// Reload an entity with refresh option (Note. This generates adhoc querys)
+          /// </summary>
+          /// <param name="entity"></param>
+          void Refresh(object entity);*/
     }
 }

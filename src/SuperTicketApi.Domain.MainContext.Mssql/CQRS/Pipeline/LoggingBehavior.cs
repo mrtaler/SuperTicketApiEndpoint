@@ -1,29 +1,35 @@
-﻿using MediatR.Pipeline;
-using Microsoft.Extensions.Logging;
-using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
+﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
 {
-    // Unlike Performance and Tracing behavior, this behavior will ONLY run as a pre-processor.
-    // Please note the differences in the way the classes are written.
+    using System.Threading;
+    using System.Threading.Tasks;
 
+    using MediatR.Pipeline;
+
+    using Serilog;
+
+    /// <summary>
+    /// The logging behavior.
+    /// Unlike Performance and Tracing behavior, this behavior will ONLY run as a pre-processor.
+    /// Please note the differences in the way the classes are written.
+    /// </summary>
+    /// <typeparam name="TRequest">Mediatr TRequest
+    /// </typeparam>
     public class LoggingBehavior<TRequest> : IRequestPreProcessor<TRequest>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoggingBehavior{TRequest}"/> class.
+        /// </summary>
         public LoggingBehavior()
         {
         }
 
+        /// <inheritdoc />
         public Task Process(TRequest request, CancellationToken cancellationToken)
         {
             var name = typeof(TRequest).Name;
 
             // TODO: Add User/Caller Details, or include in Command
-            var user = "Create new entity for user ";//new User { Id = Guid.NewGuid(), Name = "John Smith" };
+            var user = "Create new entity for user "; // new User { Id = Guid.NewGuid(), Name = "John Smith" };
 
             // Uses Serilog's global, statically accessible logger, is set via Log.Logger in the startup/entrypoint of the host solution/project.
             // Sinks, enrichers, and minimum logging level are set up in the entry point.

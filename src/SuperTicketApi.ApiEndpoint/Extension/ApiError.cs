@@ -4,6 +4,9 @@
 
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class ApiError
     {
         /// <summary>
