@@ -23,8 +23,9 @@
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <GenerateCreateScript>True</GenerateCreateScript>
-    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
+    <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
     <TargetFrameworkProfile />
+    <CreateNewDatabase>True</CreateNewDatabase>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -36,6 +37,7 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CreateNewDatabase>True</CreateNewDatabase>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
@@ -47,6 +49,7 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CreateNewDatabase>True</CreateNewDatabase>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
@@ -55,6 +58,18 @@
     <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Home|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CreateNewDatabase>True</CreateNewDatabase>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Nout|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
@@ -65,6 +80,7 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CreateNewDatabase>True</CreateNewDatabase>
   </PropertyGroup>
   <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
@@ -73,16 +89,60 @@
     <Folder Include="Tables" />
     <Folder Include="ForeignKeys" />
     <Folder Include="Post" />
+    <Folder Include="StoredProcedures" />
+    <Folder Include="StoredProcedures\Create" />
+    <Folder Include="StoredProcedures\Update" />
+    <Folder Include="StoredProcedures\Update\UpdateAdm" />
+    <Folder Include="StoredProcedures\Delete" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\Events.sql" />
-    <Build Include="Tables\EventPlace.sql" />
-    <Build Include="Tables\EventAddress.sql" />
-    <Build Include="ForeignKeys\ForeignKey_EventPlace_to_EventAddres.sql" />
-    <Build Include="ForeignKeys\ForeignKey_Event_to_EventPlace.sql" />
+    <Build Include="Tables\Area.sql" />
+    <Build Include="Tables\Event.sql" />
+    <Build Include="Tables\EventArea.sql" />
+    <Build Include="Tables\EventSeat.sql" />
+    <Build Include="Tables\Layout.sql" />
+    <Build Include="Tables\Seat.sql" />
+    <Build Include="Tables\Venue.sql" />
+    <Build Include="ForeignKeys\FK_Area_EventSeat.sql" />
+    <Build Include="ForeignKeys\FK_Area_Seat.sql" />
+    <Build Include="ForeignKeys\FK_Event_EventArea.sql" />
+    <Build Include="ForeignKeys\FK_Layout_Area.sql" />
+    <Build Include="ForeignKeys\FK_Layout_Event.sql" />
+    <Build Include="ForeignKeys\FK_Venue_Layout.sql" />
+    <Build Include="StoredProcedures\Create\CreateArea.sql" />
+    <Build Include="StoredProcedures\Create\CreateEvent.sql" />
+    <Build Include="StoredProcedures\Create\CreateEventArea.sql" />
+    <Build Include="StoredProcedures\Create\CreateEventSeat.sql" />
+    <Build Include="StoredProcedures\Create\CreateLayout.sql" />
+    <Build Include="StoredProcedures\Create\CreateSeat.sql" />
+    <Build Include="StoredProcedures\Create\CreateVenue.sql" />
+    <Build Include="StoredProcedures\GetErrorInfo.sql" />
+    <Build Include="StoredProcedures\Update\UpdateAdm\UpdateArea.sql" />
+    <Build Include="StoredProcedures\Update\UpdateAdm\UpdateEvent.sql" />
+    <Build Include="StoredProcedures\Update\UpdateAdm\UpdateEventArea.sql" />
+    <Build Include="StoredProcedures\Update\UpdateAdm\UpdateEventSeat.sql" />
+    <Build Include="StoredProcedures\Update\UpdateAdm\UpdateLayout.sql" />
+    <Build Include="StoredProcedures\Update\UpdateAdm\UpdateSeat.sql" />
+    <Build Include="StoredProcedures\Update\UpdateArea.sql" />
+    <Build Include="StoredProcedures\Update\UpdateEvent.sql" />
+    <Build Include="StoredProcedures\Update\UpdateEventArea.sql" />
+    <Build Include="StoredProcedures\Update\UpdateEventSeat.sql" />
+    <Build Include="StoredProcedures\Update\UpdateLayout.sql" />
+    <Build Include="StoredProcedures\Update\UpdateSeat.sql" />
+    <Build Include="StoredProcedures\Update\UpdateVenue.sql" />
+    <Build Include="admSCHEMA.sql" />
+    <Build Include="StoredProcedures\Delete\DeleteByIdSeat.sql" />
+    <Build Include="StoredProcedures\Delete\DeleteByIdLayout.sql" />
+    <Build Include="StoredProcedures\Delete\DeleteByIdArea.sql" />
+    <Build Include="StoredProcedures\Delete\DeleteByIdEvent.sql" />
+    <Build Include="StoredProcedures\Delete\DeleteByIdVenue.sql" />
+    <Build Include="StoredProcedures\Delete\DeleteByIdEventArea.sql" />
+    <Build Include="StoredProcedures\Delete\DeleteByIdEventSeat.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SuperTicketApi.Database.Mssql.publish.xml" />
+    <None Include="SuperTicketApiMssql.publish.xml" />
+    <None Include="SuperTicketApi.Database.MssqlTests.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SuperTicketApi.Database.Mssql.refactorlog" />

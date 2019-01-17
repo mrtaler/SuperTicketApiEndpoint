@@ -4,7 +4,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <StartupObject></StartupObject>
-    <Configurations>Debug;Release;Home</Configurations>
+    <Configurations>Debug;Release;Home;Nout</Configurations>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -16,20 +18,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Home|AnyCPU'">
     <DocumentationFile>C:\Users\Siarhei_Linkevich\source\repos\SuperTicketApi\src\SuperTicketApi.ApiEndpoint\SuperTicketApi.ApiEndpoint.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Nout|AnyCPU'">
+    <DocumentationFile>C:\Users\mrtaler\Source\Repos\SuperTicketApiEndpoint\src\SuperTicketApi.ApiEndpoint\SuperTicketApi.ApiEndpoint.xml</DocumentationFile>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.8.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="4.5.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.1.2" />
+    <PackageReference Include="MediatR" Version="6.0.0" />
+    <PackageReference Include="MediatR.Extensions.AutofacBuilder" Version="1.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="6.0.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ApiExplorer" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="3.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.OData" Version="7.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="2.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
@@ -47,6 +55,7 @@
     <PackageReference Include="Serilog.Sinks.ColoredConsole" Version="3.0.1" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
     <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="6.5.0" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.1.2" />
     <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
     <PackageReference Include="Serilog.Sinks.Trace" Version="2.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
