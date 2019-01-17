@@ -7,7 +7,7 @@
     /// <summary>
     /// The create event seat command.
     /// </summary>
-    public class CreateEventSeatDomainCommand : IRequest<CommandResponse>, IDomainCommand
+    public class CreateEventSeatDomainCommand : IRequest<DomainCommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Gets or sets the event areas id.

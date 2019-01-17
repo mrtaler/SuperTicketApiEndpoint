@@ -7,7 +7,8 @@
     /// <summary>
     /// The delete area command.
     /// </summary>
-    public class PresenterDeleteAreaCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterDeleteAreaCommand : IBusinessCommand,
+        IRequest<ApplicationCommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PresenterDeleteAreaCommand"/> class. 

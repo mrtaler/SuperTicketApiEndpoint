@@ -5,7 +5,7 @@
     /// <summary>
     /// The presenter create venue command.
     /// </summary>
-    public class PresenterUpdateVenueCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterUpdateVenueCommand : IRequest<ApplicationCommandResponse>, IBusinessCommand
     {
         /// <summary>
         /// Gets or sets the id.

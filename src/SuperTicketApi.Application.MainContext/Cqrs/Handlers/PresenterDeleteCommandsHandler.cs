@@ -1,31 +1,24 @@
 ﻿namespace SuperTicketApi.Application.MainContext.Cqrs.Handlers
 {
+    using MediatR;
+    using SuperTicketApi.Application.BoundedContext.DTO.Dto;
+    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Delete;
+    using SuperTicketApi.Application.Seedwork;
+    using SuperTicketApi.Domain.MainContext.Command.Delete;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using FluentValidation.Results;
 
-    using MediatR;
-
-    using SuperTicketApi.Application.BoundedContext.DTO.Dto;
-    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
-    using SuperTicketApi.Application.MainContext.Cqrs.Validators;
-    using SuperTicketApi.Application.Seedwork;
-    using SuperTicketApi.Domain.MainContext.Command.CreateCommands;
-
-    /// <summary>
-    /// Area command for presenter Layer
-    /// </summary>
-    public class PresenterCreateCommandsHandler :
+    public class PresenterDeleteCommandsHandler :
         BaseApplicationHandler,
-        IRequestHandler<PresenterCreateAreaCommand, ApplicationCommandResponse>,
-        IRequestHandler<PresenterCreateEventAreaCommand, ApplicationCommandResponse>,
-        IRequestHandler<PresenterCreateEventCommand, ApplicationCommandResponse>,
-        IRequestHandler<PresenterCreateEventSeatCommand, ApplicationCommandResponse>,
-        IRequestHandler<PresenterCreateLayoutCommand, ApplicationCommandResponse>,
-        IRequestHandler<PresenterCreateSeatCommand, ApplicationCommandResponse>,
-        IRequestHandler<PresenterCreateVenueCommand, ApplicationCommandResponse>
+        IRequestHandler<PresenterDeleteAreaCommand, ApplicationCommandResponse>,
+        IRequestHandler<PresenterDeleteEventAreaCommand, ApplicationCommandResponse>,
+        IRequestHandler<PresenterDeleteEventCommand, ApplicationCommandResponse>,
+        IRequestHandler<PresenterDeleteEventSeatCommand, ApplicationCommandResponse>,
+        IRequestHandler<PresenterDeleteLayoutCommand, ApplicationCommandResponse>,
+        IRequestHandler<PresenterDeleteSeatCommand, ApplicationCommandResponse>,
+        IRequestHandler<PresenterDeleteVenueCommand, ApplicationCommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PresenterCreateCommandsHandler"/> class. 
@@ -33,7 +26,7 @@
         /// <param name="mediatr">
         /// The mediatr.
         /// </param>
-        public PresenterCreateCommandsHandler(IMediator mediatr) : base(mediatr)
+        public PresenterDeleteCommandsHandler(IMediator mediatr) : base(mediatr)
         {
         }
 
@@ -49,27 +42,15 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<ApplicationCommandResponse> Handle(PresenterCreateAreaCommand request, CancellationToken cancellationToken)
+        public async Task<ApplicationCommandResponse> Handle(
+            PresenterDeleteAreaCommand request,
+            CancellationToken cancellationToken)
         {
             try
             {
-                AreasValidator validator = new AreasValidator(this.Mediatr);
-                ValidationResult validationResult = validator.Validate(request);
-
-                if (!validationResult.IsValid)
-                {
-                    var resp = new ApplicationCommandResponse
-                    {
-                        Message = "One or more validation errors occurred.",
-                        ValidationErrors = validationResult.Errors
-                    };
-                    return resp;
-                }
-
                 // ! todo create map from CreateAreaVM to map area database
-                var dalCommand = request.ProjectedAs<CreateAreaDomainCommand>();
-
-                //! then call create area command from database level
+                var dalCommand = request.ProjectedAs<DeleteAreaDomainCommand>();
+                // ! then call create area command from database level
                 var commRes = await this.Mediatr.Send(dalCommand);
 
                 // ! then geet seponse from DAL, and send created ID to Presenter
@@ -104,27 +85,12 @@
         }
 
         /// <inheritdoc />
-        public async Task<ApplicationCommandResponse> Handle(PresenterCreateEventAreaCommand request, CancellationToken cancellationToken)
+        public async Task<ApplicationCommandResponse> Handle(PresenterDeleteEventAreaCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                /*
-                 AreasValidator validator = new AreasValidator(this.Mediatr);
-                 ValidationResult validationResult = validator.Validate(request);
-
-                  if (!validationResult.IsValid)
-                  {
-                      var resp = new CommandResponse
-                      {
-                          Message = "One or more validation errors occurred.",
-                          ValidationErrors = validationResult.Errors
-                      };
-                      return resp;
-                  }  
-                  */
-
                 // ! todo create map from CreateAreaVM to map area database
-                var dalCommand = request.ProjectedAs<CreateEventAreaDomainCommand>();
+                var dalCommand = request.ProjectedAs<DeleteEventAreaDomainCommand>();
 
                 // ! then call create area command from database level
                 var commRes = await this.Mediatr.Send(dalCommand);
@@ -160,27 +126,12 @@
         }
 
         /// <inheritdoc />
-        public async Task<ApplicationCommandResponse> Handle(PresenterCreateEventCommand request, CancellationToken cancellationToken)
+        public async Task<ApplicationCommandResponse> Handle(PresenterDeleteEventCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                /*
-                AreasValidator validator = new AreasValidator(this.Mediatr);
-                ValidationResult validationResult = validator.Validate(request);
-
-                if (!validationResult.IsValid)
-                {
-                    var resp = new CommandResponse
-                    {
-                        Message = "One or more validation errors occurred.",
-                        ValidationErrors = validationResult.Errors
-                    };
-                    return resp;
-                }
-                */
-
                 // ! todo create map from CreateAreaVM to map area database
-                var dalCommand = request.ProjectedAs<CreateEventDomainCommand>();
+                var dalCommand = request.ProjectedAs<DeleteEventDomainCommand>();
 
                 // ! then call create area command from database level
                 var commRes = await this.Mediatr.Send(dalCommand);
@@ -216,27 +167,12 @@
         }
 
         /// <inheritdoc />
-        public async Task<ApplicationCommandResponse> Handle(PresenterCreateEventSeatCommand request, CancellationToken cancellationToken)
+        public async Task<ApplicationCommandResponse> Handle(PresenterDeleteEventSeatCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                /*
-                AreasValidator validator = new AreasValidator(this.Mediatr);
-                ValidationResult validationResult = validator.Validate(request);
-
-                if (!validationResult.IsValid)
-                {
-                    var resp = new CommandResponse
-                    {
-                        Message = "One or more validation errors occurred.",
-                        ValidationErrors = validationResult.Errors
-                    };
-                    return resp;
-                }
-                */
-
                 // ! todo create map from CreateAreaVM to map area database
-                var dalCommand = request.ProjectedAs<CreateEventSeatDomainCommand>();
+                var dalCommand = request.ProjectedAs<DeleteEventSeatDomainCommand>();
 
                 // ! then call create area command from database level
                 var commRes = await this.Mediatr.Send(dalCommand);
@@ -272,27 +208,12 @@
         }
 
         /// <inheritdoc />
-        public async Task<ApplicationCommandResponse> Handle(PresenterCreateLayoutCommand request, CancellationToken cancellationToken)
+        public async Task<ApplicationCommandResponse> Handle(PresenterDeleteLayoutCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                /*
-                AreasValidator validator = new AreasValidator(this.Mediatr);
-                ValidationResult validationResult = validator.Validate(request);
-
-                if (!validationResult.IsValid)
-                {
-                    var resp = new CommandResponse
-                    {
-                        Message = "One or more validation errors occurred.",
-                        ValidationErrors = validationResult.Errors
-                    };
-                    return resp;
-                }
-                */
-
                 // ! todo create map from CreateAreaVM to map area database
-                var dalCommand = request.ProjectedAs<CreateLayoutDomainCommand>();
+                var dalCommand = request.ProjectedAs<DeleteLayoutDomainCommand>();
 
                 // ! then call create area command from database level
                 var commRes = await this.Mediatr.Send(dalCommand);
@@ -329,27 +250,12 @@
         }
 
         /// <inheritdoc />
-        public async Task<ApplicationCommandResponse> Handle(PresenterCreateSeatCommand request, CancellationToken cancellationToken)
+        public async Task<ApplicationCommandResponse> Handle(PresenterDeleteSeatCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                /*
-                AreasValidator validator = new AreasValidator(this.Mediatr);
-                ValidationResult validationResult = validator.Validate(request);
-
-                if (!validationResult.IsValid)
-                {
-                    var resp = new CommandResponse
-                    {
-                        Message = "One or more validation errors occurred.",
-                        ValidationErrors = validationResult.Errors
-                    };
-                    return resp;
-                }
-                */
-
                 // ! todo create map from CreateAreaVM to map area database
-                var dalCommand = request.ProjectedAs<CreateSeatDomainCommand>();
+                var dalCommand = request.ProjectedAs<DeleteSeatDomainCommand>();
 
                 // ! then call create area command from database level
                 var commRes = await this.Mediatr.Send(dalCommand);
@@ -386,27 +292,12 @@
         }
 
         /// <inheritdoc />
-        public async Task<ApplicationCommandResponse> Handle(PresenterCreateVenueCommand request, CancellationToken cancellationToken)
+        public async Task<ApplicationCommandResponse> Handle(PresenterDeleteVenueCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                /*
-                AreasValidator validator = new AreasValidator(this.Mediatr);
-                ValidationResult validationResult = validator.Validate(request);
-
-                if (!validationResult.IsValid)
-                {
-                    var resp = new CommandResponse
-                    {
-                        Message = "One or more validation errors occurred.",
-                        ValidationErrors = validationResult.Errors
-                    };
-                    return resp;
-                }
-                */
-
                 // ! todo create map from CreateAreaVM to map area database
-                var dalCommand = request.ProjectedAs<CreateVenueDomainCommand>();
+                var dalCommand = request.ProjectedAs<DeleteVenueDomainCommand>();
 
                 // ! then call create area command from database level
                 var commRes = await this.Mediatr.Send(dalCommand);

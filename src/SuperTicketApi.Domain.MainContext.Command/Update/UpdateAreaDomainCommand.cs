@@ -7,7 +7,7 @@
     /// <summary>
     /// The update area command.
     /// </summary>
-    public class UpdateAreaDomainCommand : Area, IRequest<CommandResponse>, IDomainCommand
+    public class UpdateAreaDomainCommand : Area, IRequest<DomainCommandResponse>, IDomainCommand
     {
         /// <summary>
         /// The is admin mode.

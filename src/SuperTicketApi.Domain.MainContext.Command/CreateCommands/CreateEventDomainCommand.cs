@@ -9,7 +9,7 @@
     /// <summary>
     /// The create event command.
     /// </summary>
-    public class CreateEventDomainCommand : IRequest<CommandResponse>, IDomainCommand
+    public class CreateEventDomainCommand : IRequest<DomainCommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Gets or sets the name.

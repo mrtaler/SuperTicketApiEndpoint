@@ -13,13 +13,13 @@
     /// <summary>
     /// The area command profile.
     /// </summary>
-    public class UiMapperProfile
+    public class UIViewModelToPresenterCommandMapper
         : AutoMapper.Profile
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UiMapperProfile"/> class.
+        /// Initializes a new instance of the <see cref="UIViewModelToPresenterCommandMapper"/> class.
         /// </summary>
-        public UiMapperProfile()
+        public UIViewModelToPresenterCommandMapper()
         {
             #region Create presenter Command
 

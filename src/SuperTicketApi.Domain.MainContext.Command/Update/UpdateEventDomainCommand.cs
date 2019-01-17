@@ -7,7 +7,7 @@
     /// <summary>
     /// The update event command.
     /// </summary>
-    public class UpdateEventDomainCommand : Event, IRequest<CommandResponse>, IDomainCommand
+    public class UpdateEventDomainCommand : Event, IRequest<DomainCommandResponse>, IDomainCommand
     {
         /// <summary>
         /// The is admin mode.

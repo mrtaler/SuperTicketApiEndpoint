@@ -7,7 +7,7 @@
     /// <summary>
     /// The update layout command.
     /// </summary>
-    public class UpdateLayoutDomainCommand : Layout, IRequest<CommandResponse>, IDomainCommand
+    public class UpdateLayoutDomainCommand : Layout, IRequest<DomainCommandResponse>, IDomainCommand
     {
         /// <summary>
         /// The is admin mode.

@@ -5,7 +5,7 @@
     /// <summary>
     /// The presenter create layout command.
     /// </summary>
-    public class PresenterUpdateLayoutCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterUpdateLayoutCommand : IRequest<ApplicationCommandResponse>, IBusinessCommand
     {
         /// <summary>
         /// Gets or sets the id.

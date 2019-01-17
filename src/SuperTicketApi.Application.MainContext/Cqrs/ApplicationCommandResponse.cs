@@ -4,9 +4,9 @@
 
     using FluentValidation.Results;
 
-    public class CommandResponse
+    public class ApplicationCommandResponse
     {
-        public CommandResponse()
+        public ApplicationCommandResponse()
         {
             this.IsSuccess = false;
         }

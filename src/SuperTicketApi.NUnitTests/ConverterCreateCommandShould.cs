@@ -35,7 +35,7 @@ namespace SuperTicketApi.NUnitTests
 
         public ConverterCreateCommandShould()
         {
-            Mapper.Initialize(cfg => { cfg.AddProfile(new UiMapperProfile()); });
+            Mapper.Initialize(cfg => { cfg.AddProfile(new UIViewModelToPresenterCommandMapper()); });
             var adapterFactory = TestHelper.MakeMock<ITypeAdapterFactory>(
                 x => x.Setup(y => y.Create()).Returns(new AutomapperTypeAdapter()));
 

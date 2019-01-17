@@ -7,7 +7,8 @@
     /// <summary>
     /// The delete layout command.
     /// </summary>
-    public class PresenterDeleteLayoutCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterDeleteLayoutCommand : IBusinessCommand,
+        IRequest<ApplicationCommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PresenterDeleteLayoutCommand"/> class. 

@@ -5,7 +5,7 @@
     /// <summary>
     /// The presenter create seat command.
     /// </summary>
-    public class PresenterUpdateSeatCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterUpdateSeatCommand : IRequest<ApplicationCommandResponse>, IBusinessCommand
     {
         /// <summary>
         /// Gets or sets the id.

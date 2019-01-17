@@ -8,8 +8,11 @@
     /// <summary>
     /// The delete area command.
     /// </summary>
-    public class DeleteAreaDomainCommand : IRequest<CommandResponse>, IDomainCommand
+    public class DeleteAreaDomainCommand : IRequest<DomainCommandResponse>, IDomainCommand
     {
+        public DeleteAreaDomainCommand()
+        {
+        }
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteAreaDomainCommand"/> class.
         /// </summary>

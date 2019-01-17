@@ -5,7 +5,7 @@
     /// <summary>
     /// The presenter create event area command.
     /// </summary>
-    public class PresenterCreateEventAreaCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterCreateEventAreaCommand : IRequest<ApplicationCommandResponse>, IBusinessCommand
     {
         /// <summary>
         /// Gets or sets the event id.

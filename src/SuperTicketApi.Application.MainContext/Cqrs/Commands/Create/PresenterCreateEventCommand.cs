@@ -7,7 +7,7 @@
     /// <summary>
     /// The presenter create event command.
     /// </summary>
-    public class PresenterCreateEventCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterCreateEventCommand : IRequest<ApplicationCommandResponse>, IBusinessCommand
     {
         /// <summary>
         /// Gets or sets the name.

@@ -8,8 +8,12 @@
     /// <summary>
     /// The delete event command.
     /// </summary>
-    public class DeleteEventDomainCommand : IRequest<CommandResponse>, IDomainCommand
+    public class DeleteEventDomainCommand : IRequest<DomainCommandResponse>, IDomainCommand
     {
+        public DeleteEventDomainCommand()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteEventDomainCommand"/> class.
         /// </summary>

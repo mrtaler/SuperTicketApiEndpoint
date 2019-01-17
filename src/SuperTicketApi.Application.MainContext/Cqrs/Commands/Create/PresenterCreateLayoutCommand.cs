@@ -5,7 +5,7 @@
     /// <summary>
     /// The presenter create layout command.
     /// </summary>
-    public class PresenterCreateLayoutCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterCreateLayoutCommand : IRequest<ApplicationCommandResponse>, IBusinessCommand
     {
         /// <summary>
         /// Gets or sets the venue id.

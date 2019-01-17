@@ -8,8 +8,12 @@
     /// <summary>
     /// The delete layout command.
     /// </summary>
-    public class DeleteLayoutDomainCommand : IRequest<CommandResponse>, IDomainCommand
+    public class DeleteLayoutDomainCommand : IRequest<DomainCommandResponse>, IDomainCommand
     {
+        public DeleteLayoutDomainCommand()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteLayoutDomainCommand"/> class.
         /// </summary>

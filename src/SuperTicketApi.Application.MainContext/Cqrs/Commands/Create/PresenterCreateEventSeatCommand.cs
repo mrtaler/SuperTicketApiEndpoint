@@ -5,7 +5,7 @@
     /// <summary>
     /// The presenter create event seat command.
     /// </summary>
-    public class PresenterCreateEventSeatCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterCreateEventSeatCommand : IRequest<ApplicationCommandResponse>, IBusinessCommand
     {
         /// <summary>
         /// Gets or sets the event areas id.

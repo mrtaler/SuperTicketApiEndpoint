@@ -17,13 +17,13 @@
     /// </summary>
     internal class UpdateCommandHandler :
         BaseCommandHandler,
-        IRequestHandler<UpdateAreaDomainCommand, CommandResponse>,
-        IRequestHandler<UpdateEventAreaDomainCommand, CommandResponse>,
-        IRequestHandler<UpdateEventDomainCommand, CommandResponse>,
-        IRequestHandler<UpdateEventSeatDomainCommand, CommandResponse>,
-        IRequestHandler<UpdateLayoutDomainCommand, CommandResponse>,
-        IRequestHandler<UpdateSeatDomainCommand, CommandResponse>,
-        IRequestHandler<UpdateVenueDomainCommand, CommandResponse>
+        IRequestHandler<UpdateAreaDomainCommand, DomainCommandResponse>,
+        IRequestHandler<UpdateEventAreaDomainCommand, DomainCommandResponse>,
+        IRequestHandler<UpdateEventDomainCommand, DomainCommandResponse>,
+        IRequestHandler<UpdateEventSeatDomainCommand, DomainCommandResponse>,
+        IRequestHandler<UpdateLayoutDomainCommand, DomainCommandResponse>,
+        IRequestHandler<UpdateSeatDomainCommand, DomainCommandResponse>,
+        IRequestHandler<UpdateVenueDomainCommand, DomainCommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCommandHandler"/> class.
@@ -40,14 +40,14 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(UpdateAreaDomainCommand request, CancellationToken cancellationToken)
+        public async Task<DomainCommandResponse> Handle(UpdateAreaDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 this.UnitOfWork.AreaRepository.Update(request.ProjectedAs<Area>());
 
                 // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
-                var retResp = new CommandResponse
+                var retResp = new DomainCommandResponse
                 {
                     IsSuccess = true,
                     Message = "Entity was Updated",
@@ -58,20 +58,20 @@
             }
             catch (Exception ex)
             {
-                var ret = new CommandResponse { Message = ex.Message };
+                var ret = new DomainCommandResponse { Message = ex.Message };
                 return await Task.FromResult(ret);
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(UpdateEventAreaDomainCommand request, CancellationToken cancellationToken)
+        public async Task<DomainCommandResponse> Handle(UpdateEventAreaDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 this.UnitOfWork.EventAreaRepository.Update(request.ProjectedAs<EventArea>());
 
                 // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
-                var retResp = new CommandResponse
+                var retResp = new DomainCommandResponse
                 {
                     IsSuccess = true,
                     Message = "Entity was Updated",
@@ -82,20 +82,20 @@
             }
             catch (Exception ex)
             {
-                var ret = new CommandResponse { Message = ex.Message };
+                var ret = new DomainCommandResponse { Message = ex.Message };
                 return await Task.FromResult(ret);
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(UpdateEventDomainCommand request, CancellationToken cancellationToken)
+        public async Task<DomainCommandResponse> Handle(UpdateEventDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 this.UnitOfWork.EventRepository.Update(request.ProjectedAs<Event>());
 
                 // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
-                var retResp = new CommandResponse
+                var retResp = new DomainCommandResponse
                 {
                     IsSuccess = true,
                     Message = "Entity was Updated",
@@ -106,20 +106,20 @@
             }
             catch (Exception ex)
             {
-                var ret = new CommandResponse { Message = ex.Message };
+                var ret = new DomainCommandResponse { Message = ex.Message };
                 return await Task.FromResult(ret);
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(UpdateEventSeatDomainCommand request, CancellationToken cancellationToken)
+        public async Task<DomainCommandResponse> Handle(UpdateEventSeatDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 this.UnitOfWork.EventSeatRepository.Update(request.ProjectedAs<EventSeat>());
 
                 // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
-                var retResp = new CommandResponse
+                var retResp = new DomainCommandResponse
                 {
                     IsSuccess = true,
                     Message = "Entity was Updated",
@@ -130,20 +130,20 @@
             }
             catch (Exception ex)
             {
-                var ret = new CommandResponse { Message = ex.Message };
+                var ret = new DomainCommandResponse { Message = ex.Message };
                 return await Task.FromResult(ret);
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(UpdateLayoutDomainCommand request, CancellationToken cancellationToken)
+        public async Task<DomainCommandResponse> Handle(UpdateLayoutDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 this.UnitOfWork.LayoutRepository.Update(request.ProjectedAs<Layout>());
 
                 // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
-                var retResp = new CommandResponse
+                var retResp = new DomainCommandResponse
                 {
                     IsSuccess = true,
                     Message = "Entity was Updated",
@@ -154,20 +154,20 @@
             }
             catch (Exception ex)
             {
-                var ret = new CommandResponse { Message = ex.Message };
+                var ret = new DomainCommandResponse { Message = ex.Message };
                 return await Task.FromResult(ret);
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(UpdateSeatDomainCommand request, CancellationToken cancellationToken)
+        public async Task<DomainCommandResponse> Handle(UpdateSeatDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 this.UnitOfWork.SeatRepository.Update(request.ProjectedAs<Seat>());
 
                 // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
-                var retResp = new CommandResponse
+                var retResp = new DomainCommandResponse
                 {
                     IsSuccess = true,
                     Message = "Entity was Updated",
@@ -178,20 +178,20 @@
             }
             catch (Exception ex)
             {
-                var ret = new CommandResponse { Message = ex.Message };
+                var ret = new DomainCommandResponse { Message = ex.Message };
                 return await Task.FromResult(ret);
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(UpdateVenueDomainCommand request, CancellationToken cancellationToken)
+        public async Task<DomainCommandResponse> Handle(UpdateVenueDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 this.UnitOfWork.VenueRepository.Update(request.ProjectedAs<Venue>());
 
                 // this.Logger.Info($"Change in db table {typeof(Area).Name} : {returnValue} entities");
-                var retResp = new CommandResponse
+                var retResp = new DomainCommandResponse
                 {
                     IsSuccess = true,
                     Message = "Entity was Updated",
@@ -202,7 +202,7 @@
             }
             catch (Exception ex)
             {
-                var ret = new CommandResponse { Message = ex.Message };
+                var ret = new DomainCommandResponse { Message = ex.Message };
                 return await Task.FromResult(ret);
             }
         }

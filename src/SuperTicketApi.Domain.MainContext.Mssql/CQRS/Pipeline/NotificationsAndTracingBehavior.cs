@@ -81,7 +81,7 @@
             // You can inject pipeline functionality on specific result status...
             if (typeof(TResponse).Name == "CommandResponse")
             {
-                if (response is CommandResponse cr && !cr.IsSuccess)
+                if (response is DomainCommandResponse cr && !cr.IsSuccess)
                 {
                     Log.Warning("{name} attempted execution with issues: {message}", typeof(TRequest).Name, cr.Message);
                 }
@@ -90,7 +90,7 @@
             // ...As well as on specific command types with a specific result scenario:
             if (typeof(TRequest).Name == "CreateAccountCommand")
             {
-                if ((response is CommandResponse cr) && !cr.IsSuccess && cr.ValidationErrors != null)
+                if ((response is DomainCommandResponse cr) && !cr.IsSuccess && cr.ValidationErrors != null)
                 {
 
 

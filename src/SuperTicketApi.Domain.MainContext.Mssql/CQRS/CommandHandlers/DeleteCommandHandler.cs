@@ -17,13 +17,13 @@
     /// </summary>
     internal class DeleteCommandHandler :
         BaseCommandHandler,
-        IRequestHandler<DeleteAreaDomainCommand, CommandResponse>,
-        IRequestHandler<DeleteEventAreaDomainCommand, CommandResponse>,
-        IRequestHandler<DeleteEventDomainCommand, CommandResponse>,
-        IRequestHandler<DeleteEventSeatDomainCommand, CommandResponse>,
-        IRequestHandler<DeleteLayoutDomainCommand, CommandResponse>,
-        IRequestHandler<DeleteSeatDomainCommand, CommandResponse>,
-        IRequestHandler<DeleteVenueDomainCommand, CommandResponse>
+        IRequestHandler<DeleteAreaDomainCommand, DomainCommandResponse>,
+        IRequestHandler<DeleteEventAreaDomainCommand, DomainCommandResponse>,
+        IRequestHandler<DeleteEventDomainCommand, DomainCommandResponse>,
+        IRequestHandler<DeleteEventSeatDomainCommand, DomainCommandResponse>,
+        IRequestHandler<DeleteLayoutDomainCommand, DomainCommandResponse>,
+        IRequestHandler<DeleteSeatDomainCommand, DomainCommandResponse>,
+        IRequestHandler<DeleteVenueDomainCommand, DomainCommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteCommandHandler"/> class.
@@ -40,13 +40,13 @@
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(DeleteAreaDomainCommand request, CancellationToken cancellationToken)
+        public async Task<DomainCommandResponse> Handle(DeleteAreaDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 this.UnitOfWork.AreaRepository.Delete(request.ProjectedAs<Area>());
 
-                var retResp = new CommandResponse
+                var retResp = new DomainCommandResponse
                 {
                     IsSuccess = true,
                     Message = "Entity was Deleted",
@@ -57,19 +57,19 @@
             }
             catch (Exception ex)
             {
-                var ret = new CommandResponse { Message = ex.Message };
+                var ret = new DomainCommandResponse { Message = ex.Message };
                 return await Task.FromResult(ret);
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(DeleteEventAreaDomainCommand request, CancellationToken cancellationToken)
+        public async Task<DomainCommandResponse> Handle(DeleteEventAreaDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 this.UnitOfWork.EventAreaRepository.Delete(request.ProjectedAs<EventArea>());
 
-                var retResp = new CommandResponse
+                var retResp = new DomainCommandResponse
                 {
                     IsSuccess = true,
                     Message = "Entity was Deleted",
@@ -80,19 +80,19 @@
             }
             catch (Exception ex)
             {
-                var ret = new CommandResponse { Message = ex.Message };
+                var ret = new DomainCommandResponse { Message = ex.Message };
                 return await Task.FromResult(ret);
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(DeleteEventDomainCommand request, CancellationToken cancellationToken)
+        public async Task<DomainCommandResponse> Handle(DeleteEventDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 this.UnitOfWork.EventRepository.Delete(request.ProjectedAs<Event>());
 
-                var retResp = new CommandResponse
+                var retResp = new DomainCommandResponse
                 {
                     IsSuccess = true,
                     Message = "Entity was Deleted",
@@ -103,19 +103,19 @@
             }
             catch (Exception ex)
             {
-                var ret = new CommandResponse { Message = ex.Message };
+                var ret = new DomainCommandResponse { Message = ex.Message };
                 return await Task.FromResult(ret);
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(DeleteEventSeatDomainCommand request, CancellationToken cancellationToken)
+        public async Task<DomainCommandResponse> Handle(DeleteEventSeatDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 this.UnitOfWork.EventSeatRepository.Delete(request.ProjectedAs<EventSeat>());
 
-                var retResp = new CommandResponse
+                var retResp = new DomainCommandResponse
                 {
                     IsSuccess = true,
                     Message = "Entity was Deleted",
@@ -126,19 +126,19 @@
             }
             catch (Exception ex)
             {
-                var ret = new CommandResponse { Message = ex.Message };
+                var ret = new DomainCommandResponse { Message = ex.Message };
                 return await Task.FromResult(ret);
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(DeleteLayoutDomainCommand request, CancellationToken cancellationToken)
+        public async Task<DomainCommandResponse> Handle(DeleteLayoutDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 this.UnitOfWork.LayoutRepository.Delete(request.ProjectedAs<Layout>());
 
-                var retResp = new CommandResponse
+                var retResp = new DomainCommandResponse
                 {
                     IsSuccess = true,
                     Message = "Entity was Deleted",
@@ -149,19 +149,19 @@
             }
             catch (Exception ex)
             {
-                var ret = new CommandResponse { Message = ex.Message };
+                var ret = new DomainCommandResponse { Message = ex.Message };
                 return await Task.FromResult(ret);
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(DeleteSeatDomainCommand request, CancellationToken cancellationToken)
+        public async Task<DomainCommandResponse> Handle(DeleteSeatDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 this.UnitOfWork.SeatRepository.Delete(request.ProjectedAs<Seat>());
 
-                var retResp = new CommandResponse
+                var retResp = new DomainCommandResponse
                 {
                     IsSuccess = true,
                     Message = "Entity was Deleted",
@@ -172,19 +172,19 @@
             }
             catch (Exception ex)
             {
-                var ret = new CommandResponse { Message = ex.Message };
+                var ret = new DomainCommandResponse { Message = ex.Message };
                 return await Task.FromResult(ret);
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(DeleteVenueDomainCommand request, CancellationToken cancellationToken)
+        public async Task<DomainCommandResponse> Handle(DeleteVenueDomainCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 this.UnitOfWork.VenueRepository.Delete(request.ProjectedAs<Venue>());
 
-                var retResp = new CommandResponse
+                var retResp = new DomainCommandResponse
                 {
                     IsSuccess = true,
                     Message = "Entity was Deleted",
@@ -195,7 +195,7 @@
             }
             catch (Exception ex)
             {
-                var ret = new CommandResponse { Message = ex.Message };
+                var ret = new DomainCommandResponse { Message = ex.Message };
                 return await Task.FromResult(ret);
             }
         }

@@ -7,7 +7,7 @@
     /// <summary>
     /// The update event seat command.
     /// </summary>
-    public class UpdateEventSeatDomainCommand : EventSeat, IRequest<CommandResponse>, IDomainCommand
+    public class UpdateEventSeatDomainCommand : EventSeat, IRequest<DomainCommandResponse>, IDomainCommand
     {
         /// <summary>
         /// The is admin mode.

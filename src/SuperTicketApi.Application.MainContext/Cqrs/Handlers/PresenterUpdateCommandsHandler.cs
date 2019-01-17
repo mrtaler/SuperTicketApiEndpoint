@@ -16,13 +16,13 @@
     /// </summary>
     public class PresenterUpdateCommandsHandler :
         BaseApplicationHandler,
-        IRequestHandler<PresenterUpdateAreaCommand, CommandResponse>,
-        IRequestHandler<PresenterUpdateEventAreaCommand, CommandResponse>,
-        IRequestHandler<PresenterUpdateEventCommand, CommandResponse>,
-        IRequestHandler<PresenterUpdateEventSeatCommand, CommandResponse>,
-        IRequestHandler<PresenterUpdateLayoutCommand, CommandResponse>,
-        IRequestHandler<PresenterUpdateSeatCommand, CommandResponse>,
-        IRequestHandler<PresenterUpdateVenueCommand, CommandResponse>
+        IRequestHandler<PresenterUpdateAreaCommand, ApplicationCommandResponse>,
+        IRequestHandler<PresenterUpdateEventAreaCommand, ApplicationCommandResponse>,
+        IRequestHandler<PresenterUpdateEventCommand, ApplicationCommandResponse>,
+        IRequestHandler<PresenterUpdateEventSeatCommand, ApplicationCommandResponse>,
+        IRequestHandler<PresenterUpdateLayoutCommand, ApplicationCommandResponse>,
+        IRequestHandler<PresenterUpdateSeatCommand, ApplicationCommandResponse>,
+        IRequestHandler<PresenterUpdateVenueCommand, ApplicationCommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PresenterCreateCommandsHandler"/> class. 
@@ -46,7 +46,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<CommandResponse> Handle(PresenterUpdateAreaCommand request, CancellationToken cancellationToken)
+        public async Task<ApplicationCommandResponse> Handle(PresenterUpdateAreaCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -74,7 +74,7 @@
                 {
                     var dtoResp = commRes.Object.ProjectedAs<AreaDto>();
 
-                    var resp = new CommandResponse
+                    var resp = new ApplicationCommandResponse
                     {
                         IsSuccess = true,
                         Message = "new entity in Area Table was added",
@@ -84,7 +84,7 @@
                 }
                 else
                 {
-                    var resp = new CommandResponse
+                    var resp = new ApplicationCommandResponse
                     {
                         IsSuccess = false,
                         Message = commRes.Message,
@@ -96,12 +96,12 @@
             catch (Exception ex)
             {
 
-                return new CommandResponse { Message = ex.Message };
+                return new ApplicationCommandResponse { Message = ex.Message };
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(PresenterUpdateEventAreaCommand request, CancellationToken cancellationToken)
+        public async Task<ApplicationCommandResponse> Handle(PresenterUpdateEventAreaCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -131,7 +131,7 @@
                 {
                     var dtoResp = commRes.Object.ProjectedAs<EventAreaDto>();
 
-                    var resp = new CommandResponse
+                    var resp = new ApplicationCommandResponse
                     {
                         IsSuccess = true,
                         Message = "new entity in Area Table was added",
@@ -141,7 +141,7 @@
                 }
                 else
                 {
-                    var resp = new CommandResponse
+                    var resp = new ApplicationCommandResponse
                     {
                         IsSuccess = false,
                         Message = commRes.Message,
@@ -152,12 +152,12 @@
             }
             catch (Exception ex)
             {
-                return new CommandResponse { Message = ex.Message };
+                return new ApplicationCommandResponse { Message = ex.Message };
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(PresenterUpdateEventCommand request, CancellationToken cancellationToken)
+        public async Task<ApplicationCommandResponse> Handle(PresenterUpdateEventCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -187,7 +187,7 @@
                 {
                     var dtoResp = commRes.Object.ProjectedAs<EventDto>();
 
-                    var resp = new CommandResponse
+                    var resp = new ApplicationCommandResponse
                     {
                         IsSuccess = true,
                         Message = "new entity in Area Table was added",
@@ -197,7 +197,7 @@
                 }
                 else
                 {
-                    var resp = new CommandResponse
+                    var resp = new ApplicationCommandResponse
                     {
                         IsSuccess = false,
                         Message = commRes.Message,
@@ -208,12 +208,12 @@
             }
             catch (Exception ex)
             {
-                return new CommandResponse { Message = ex.Message };
+                return new ApplicationCommandResponse { Message = ex.Message };
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(PresenterUpdateEventSeatCommand request, CancellationToken cancellationToken)
+        public async Task<ApplicationCommandResponse> Handle(PresenterUpdateEventSeatCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -243,7 +243,7 @@
                 {
                     var dtoResp = commRes.Object.ProjectedAs<EventSeatDto>();
 
-                    var resp = new CommandResponse
+                    var resp = new ApplicationCommandResponse
                     {
                         IsSuccess = true,
                         Message = "new entity in Area Table was added",
@@ -253,7 +253,7 @@
                 }
                 else
                 {
-                    var resp = new CommandResponse
+                    var resp = new ApplicationCommandResponse
                     {
                         IsSuccess = false,
                         Message = commRes.Message,
@@ -264,12 +264,12 @@
             }
             catch (Exception ex)
             {
-                return new CommandResponse { Message = ex.Message };
+                return new ApplicationCommandResponse { Message = ex.Message };
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(PresenterUpdateLayoutCommand request, CancellationToken cancellationToken)
+        public async Task<ApplicationCommandResponse> Handle(PresenterUpdateLayoutCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -299,7 +299,7 @@
                 {
                     var dtoResp = commRes.Object.ProjectedAs<LayoutDto>();
 
-                    var resp = new CommandResponse
+                    var resp = new ApplicationCommandResponse
                     {
                         IsSuccess = true,
                         Message = commRes.Message,
@@ -309,7 +309,7 @@
                 }
                 else
                 {
-                    var resp = new CommandResponse
+                    var resp = new ApplicationCommandResponse
                     {
                         IsSuccess = false,
                         Message = commRes.Message,
@@ -321,12 +321,12 @@
             catch (Exception ex)
             {
 
-                return new CommandResponse { Message = ex.Message };
+                return new ApplicationCommandResponse { Message = ex.Message };
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(PresenterUpdateSeatCommand request, CancellationToken cancellationToken)
+        public async Task<ApplicationCommandResponse> Handle(PresenterUpdateSeatCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -356,7 +356,7 @@
                 {
                     var dtoResp = commRes.Object.ProjectedAs<SeatDto>();
 
-                    var resp = new CommandResponse
+                    var resp = new ApplicationCommandResponse
                     {
                         IsSuccess = true,
                         Message = commRes.Message,
@@ -366,7 +366,7 @@
                 }
                 else
                 {
-                    var resp = new CommandResponse
+                    var resp = new ApplicationCommandResponse
                     {
                         IsSuccess = false,
                         Message = commRes.Message,
@@ -378,12 +378,12 @@
             catch (Exception ex)
             {
 
-                return new CommandResponse { Message = ex.Message };
+                return new ApplicationCommandResponse { Message = ex.Message };
             }
         }
 
         /// <inheritdoc />
-        public async Task<CommandResponse> Handle(PresenterUpdateVenueCommand request, CancellationToken cancellationToken)
+        public async Task<ApplicationCommandResponse> Handle(PresenterUpdateVenueCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -413,7 +413,7 @@
                 {
                     var dtoResp = commRes.Object.ProjectedAs<VenueDto>();
 
-                    var resp = new CommandResponse
+                    var resp = new ApplicationCommandResponse
                     {
                         IsSuccess = true,
                         Message = commRes.Message,
@@ -423,7 +423,7 @@
                 }
                 else
                 {
-                    var resp = new CommandResponse
+                    var resp = new ApplicationCommandResponse
                     {
                         IsSuccess = false,
                         Message = commRes.Message,
@@ -434,7 +434,7 @@
             }
             catch (Exception ex)
             {
-                return new CommandResponse { Message = ex.Message };
+                return new ApplicationCommandResponse { Message = ex.Message };
             }
         }
     }

@@ -7,7 +7,7 @@
     /// <summary>
     /// The update seat command.
     /// </summary>
-    public class UpdateSeatDomainCommand : Seat, IRequest<CommandResponse>, IDomainCommand
+    public class UpdateSeatDomainCommand : Seat, IRequest<DomainCommandResponse>, IDomainCommand
     {
         /// <summary>
         /// The is admin mode.

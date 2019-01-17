@@ -7,7 +7,8 @@
     /// <summary>
     /// The delete seat command.
     /// </summary>
-    public class PresenterDeleteSeatCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterDeleteSeatCommand : IBusinessCommand,
+        IRequest<ApplicationCommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PresenterDeleteSeatCommand"/> class. 

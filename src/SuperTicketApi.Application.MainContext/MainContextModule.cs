@@ -1,12 +1,11 @@
 ﻿namespace SuperTicketApi.Application.MainContext
 {
-    using System.Reflection;
-
     using Autofac;
-
     using MediatR.Extensions.Autofac.DependencyInjection;
-
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
+    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Delete;
+    using SuperTicketApi.Application.MainContext.Cqrs.Commands.Update;
+    using System.Reflection;
 
     /// <summary>
     /// The main context module.
@@ -17,6 +16,8 @@
         protected override void Load(ContainerBuilder builder)
         {
             builder.AddMediatR(typeof(PresenterCreateAreaCommand).GetTypeInfo().Assembly);
+            builder.AddMediatR(typeof(PresenterUpdateAreaCommand).GetTypeInfo().Assembly);
+            builder.AddMediatR(typeof(PresenterDeleteAreaCommand).GetTypeInfo().Assembly);
 
             // builder.RegisterType<EventAddressService>().As<IEventAddressService>();
             // builder.RegisterType<EventPlaceService>().As<IEventPlaceService>();

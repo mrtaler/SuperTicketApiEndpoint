@@ -92,74 +92,24 @@
             }
 
             return returnList;
-
-           /* using (var connection = DataFactory.CreateConnection(this.connectionString))
-            {
-                connection.Open();
-                var command = connection.CreateCommand();
-
-                var returnList = new List<TEntity>();
-
-                if (connection.State != ConnectionState.Open)
-                {
-                    return null;
-                }
-
-                command.CommandText = $"select * " +
-                                       $"from {typeof(TEntity).GetAttributeValue((DbTableAttribute dbTable) => dbTable.TableName)}";
-                command.CommandType = CommandType.Text;
-
-
-                using (var reader = command.ExecuteReader())
-                {
-                    Log.Information($"Run SQL command: {command.CommandText}");
-                    Log.Warning($"Handler for {typeof(TEntity).Name} connection state: {command.Connection.State}");
-                    while (reader.Read())
-                    {
-                        var art = this.Mapping(reader);
-                        returnList.Add(art);
-                    }
-
-                    Log.Information($"Read from DB: {returnList.Count} entities");
-                }
-
-                return returnList;
-            }*/
         }
 
         /// <inheritdoc />
         public TEntity GetById(int id)
         {
-            using (var connection = DataFactory.CreateConnection(this.connectionString))
+            using (var con = sqlHelper.CreateConnection(this.connectionString))
             {
-                connection.Open();
-                var command = connection.CreateCommand();
-
                 var returnEntity = new TEntity();
-                if (connection.State != ConnectionState.Open)
+                var COMMAND = $"select * " +
+                                        $"from {typeof(TEntity).GetAttributeValue((DbTableAttribute dbTable) => dbTable.TableName)} " +
+                                        $"where {this.GetIdTableColumnName()} = {id}";
+                using (var rdr = sqlHelper.ExecuteReader(con, COMMAND))
                 {
-                    return default(TEntity);
-                }
-
-                command.CommandText = $"select * " +
-                                           $"from {typeof(TEntity).GetAttributeValue((DbTableAttribute dbTable) => dbTable.TableName)} " +
-                                           $"where {this.GetIdTableColumnName()} = {id}";
-                command.CommandType = CommandType.Text;
-
-                using (var reader = command.ExecuteReader())
-                {
-                    Log.Information($"Run SQL command: {command.CommandText}");
-                    Log.Warning($"{nameof(this.GetById)} connection state: {command.Connection.State}");
-                    if (reader.Read())
+                   while (rdr.Read())
                     {
-                        returnEntity = this.Mapping(reader);
+                        returnEntity = this.Mapping(rdr);
                     }
-
-                    Log.Information($"Read table " +
-                                    $"{typeof(TEntity).GetAttributeValue((DbTableAttribute dbTable) => dbTable.TableName)}" +
-                                    $" by id from DB");
                 }
-
                 return returnEntity;
             }
         }

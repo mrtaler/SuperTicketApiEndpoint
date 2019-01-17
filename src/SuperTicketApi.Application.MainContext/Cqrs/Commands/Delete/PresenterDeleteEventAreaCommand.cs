@@ -7,7 +7,8 @@
     /// <summary>
     /// The delete event area command.
     /// </summary>
-    public class PresenterDeleteEventAreaCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterDeleteEventAreaCommand : IBusinessCommand,
+        IRequest<ApplicationCommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PresenterDeleteEventAreaCommand"/> class. 

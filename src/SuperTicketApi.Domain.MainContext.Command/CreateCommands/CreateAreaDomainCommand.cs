@@ -7,7 +7,7 @@
     /// <summary>
     /// The create area command.
     /// </summary>
-    public class CreateAreaDomainCommand : IRequest<CommandResponse>, IDomainCommand
+    public class CreateAreaDomainCommand : IRequest<DomainCommandResponse>, IDomainCommand
     {
         /// <summary>
         /// Gets or sets the layout id.

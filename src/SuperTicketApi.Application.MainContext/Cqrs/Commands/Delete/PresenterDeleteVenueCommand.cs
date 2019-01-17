@@ -7,7 +7,8 @@
     /// <summary>
     /// The delete venue command.
     /// </summary>
-    public class PresenterDeleteVenueCommand : IRequest<CommandResponse>, IBusinessCommand
+    public class PresenterDeleteVenueCommand : IBusinessCommand,
+        IRequest<ApplicationCommandResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PresenterDeleteVenueCommand"/> class. 

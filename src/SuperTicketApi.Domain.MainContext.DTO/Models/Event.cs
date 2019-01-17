@@ -97,7 +97,7 @@
         /// <para><c>SQL:</c>[StartAt] DATETIME NOT NULL.</para>
         /// </remarks>
         [DbColumn("StartAt")]
-        public DateTime StartAt { get; set; }
+        public DateTimeOffset StartAt { get; set; }
 
         /// <summary>
         /// Gets or sets the run time.

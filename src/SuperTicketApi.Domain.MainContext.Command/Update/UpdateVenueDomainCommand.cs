@@ -7,7 +7,7 @@
     /// <summary>
     /// The update venue command.
     /// </summary>
-    public class UpdateVenueDomainCommand : Venue, IRequest<CommandResponse>, IDomainCommand
+    public class UpdateVenueDomainCommand : Venue, IRequest<DomainCommandResponse>, IDomainCommand
     {
         /// <summary>
         /// The is admin mode.

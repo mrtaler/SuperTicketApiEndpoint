@@ -7,12 +7,12 @@
     /// <summary>
     /// The Data Access Level command response.
     /// </summary>
-    public class CommandResponse
+    public class DomainCommandResponse
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommandResponse"/> class.
+        /// Initializes a new instance of the <see cref="DomainCommandResponse"/> class.
         /// </summary>
-        public CommandResponse()
+        public DomainCommandResponse()
         {
             this.IsSuccess = false;
         }
