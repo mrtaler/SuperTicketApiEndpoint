@@ -2,6 +2,6 @@
   "ConnectionStrings": {
     "ConnectionString": "",
     "ProviderName": "",
-    "env": ""
+    "env": "https://stackoverflow.com/questions/45298562/azure-application-settings-not-overriding-my-appsettings-json-file-values"
   }
 }
