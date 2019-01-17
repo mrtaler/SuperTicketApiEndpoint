@@ -16,23 +16,45 @@ namespace SuperTicketApi.NUnitTests
     using SuperTicketApi.Infrastructure.NUnitTest;
     using System;
 
+    /// <summary>
+    /// ConverterCreateCommandShould
+    /// </summary>
+    /// <seealso cref="SuperTicketApi.Infrastructure.NUnitTest.TestBase" />
     [TestFixture]
     public class ConverterCreateCommandShould : TestBase
     {
+        /// <summary>
+        /// The create area view model
+        /// </summary>
         private CreateAreaViewModel createAreaViewModel;
-
+        /// <summary>
+        /// The create event area view model
+        /// </summary>
         private CreateEventAreaViewModel createEventAreaViewModel;
-
+        /// <summary>
+        /// The create event view model
+        /// </summary>
         private CreateEventViewModel createEventViewModel;
-
+        /// <summary>
+        /// The create event seat view model
+        /// </summary>
         private CreateEventSeatViewModel createEventSeatViewModel;
-
+        /// <summary>
+        /// The create layout view model
+        /// </summary>
         private CreateLayoutViewModel createLayoutViewModel;
-
+        /// <summary>
+        /// The create seat view model
+        /// </summary>
         private CreateSeatViewModel createSeatViewModel;
-
+        /// <summary>
+        /// The create venue view model
+        /// </summary>
         private CreateVenueViewModel createVenueViewModel;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConverterCreateCommandShould"/> class.
+        /// </summary>
         public ConverterCreateCommandShould()
         {
             Mapper.Initialize(cfg => { cfg.AddProfile(new UIViewModelToPresenterCommandMapper()); });
@@ -42,6 +64,9 @@ namespace SuperTicketApi.NUnitTests
             TypeAdapterFactory.SetCurrent(adapterFactory);
         }
 
+        /// <summary>
+        /// Sets up converter create command should.
+        /// </summary>
         [SetUp]
         public void SetUpConverterCreateCommandShould()
         {
@@ -102,6 +127,9 @@ namespace SuperTicketApi.NUnitTests
             Assert.That(command.CoordY, Is.EqualTo(createAreaViewModel.CoordY));
         }
 
+        /// <summary>
+        /// Returns the valid presenter create event area command.
+        /// </summary>
         [Test]
         public void ReturnValidPresenterCreateEventAreaCommand()
         {
@@ -116,6 +144,9 @@ namespace SuperTicketApi.NUnitTests
             Assert.That(command.Price, Is.EqualTo(createEventAreaViewModel.Price));
         }
 
+        /// <summary>
+        /// Returns the valid presenter create event command.
+        /// </summary>
         [Test]
         public void ReturnValidPresenterCreateEventCommand()
         {
@@ -130,6 +161,9 @@ namespace SuperTicketApi.NUnitTests
             Assert.That(command.LayoutId, Is.EqualTo(createEventViewModel.LayoutId));
         }
 
+        /// <summary>
+        /// Returns the valid presenter create event seat command.
+        /// </summary>
         [Test]
         public void ReturnValidPresenterCreateEventSeatCommand()
         {
@@ -142,6 +176,9 @@ namespace SuperTicketApi.NUnitTests
             Assert.That(command.State, Is.EqualTo(createEventSeatViewModel.State));
         }
 
+        /// <summary>
+        /// Returns the valid presenter create layout command.
+        /// </summary>
         [Test]
         public void ReturnValidPresenterCreateLayoutCommand()
         {
@@ -152,6 +189,9 @@ namespace SuperTicketApi.NUnitTests
             Assert.That(command.Description, Is.EqualTo(createLayoutViewModel.Description));
         }
 
+        /// <summary>
+        /// Returns the valid presenter create seat command.
+        /// </summary>
         [Test]
         public void ReturnValidPresenterCreateSeatCommand()
         {
@@ -163,6 +203,9 @@ namespace SuperTicketApi.NUnitTests
             Assert.That(command.Number, Is.EqualTo(createSeatViewModel.Number));
         }
 
+        /// <summary>
+        /// Returns the valid presenter create venue command.
+        /// </summary>
         [Test]
         public void ReturnValidPresenterCreateVenueCommand()
         {
