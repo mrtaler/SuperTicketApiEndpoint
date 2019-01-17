@@ -13,13 +13,13 @@
     /// <summary>
     /// The area command profile.
     /// </summary>
-    public class AreaCommandProfile
+    public class UiMapperProfile
         : AutoMapper.Profile
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AreaCommandProfile"/> class.
+        /// Initializes a new instance of the <see cref="UiMapperProfile"/> class.
         /// </summary>
-        public AreaCommandProfile()
+        public UiMapperProfile()
         {
             #region Create presenter Command
 
