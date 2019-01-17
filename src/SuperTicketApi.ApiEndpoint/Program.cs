@@ -1,14 +1,11 @@
 ﻿namespace SuperTicketApi.ApiEndpoint
 {
-    using System.IO;
-
     using Autofac.Extensions.DependencyInjection;
-
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
-
     using SuperTicketApi.ApiEndpoint.Extension;
+    using System.IO;
 
     /// <summary>
     /// 
@@ -39,10 +36,11 @@
                 .ConfigureAppConfiguration(
                 (hostingContext, config) =>
                     {
-                    config.SetBasePath(Directory.GetCurrentDirectory());
-                    config.AddJsonSettingsInProject();
-                    config.AddCommandLine(args);
-                })
+                        config.SetBasePath(Directory.GetCurrentDirectory());
+                        config.AddJsonSettingsInProject();
+                        config.AddCommandLine(args);
+                        config.AddEnvironmentVariables();
+                    })
                 .UseStartup<Startup>()
                 .UseIISIntegration()
                 .UseApplicationInsights();
