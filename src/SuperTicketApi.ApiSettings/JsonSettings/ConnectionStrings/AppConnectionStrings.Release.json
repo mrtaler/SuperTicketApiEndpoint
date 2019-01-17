@@ -1,5 +1,5 @@
 ﻿{
-  "AppConnectionStrings": {
+  "ConnectionStrings": {
     "ProviderName": "System.Data.SqlClient123"
   }
 }

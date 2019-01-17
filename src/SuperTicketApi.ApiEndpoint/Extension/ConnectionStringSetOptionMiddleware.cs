@@ -37,7 +37,7 @@ namespace SuperTicketApi.ApiEndpoint.Extension
         /// </summary>
         public Task Invoke(
             HttpContext context,
-            IOptionsSnapshot<AppConnectionStrings> databaseOption)
+            IOptionsSnapshot<ConnectionStrings> databaseOption)
         {
             var application = context.Request.Query["App"];
             if (string.IsNullOrEmpty(application))
