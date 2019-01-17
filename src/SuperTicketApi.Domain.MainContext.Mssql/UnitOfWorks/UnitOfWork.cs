@@ -61,10 +61,10 @@
         /// <param name="connectionString">
         /// The connection string.
         /// </param>
-        public UnitOfWork(IOptions<AppConnectionStrings> connectionString, ISqlHelper sqlHelper)
+        public UnitOfWork(IOptions<ConnectionStrings> connectionString, ISqlHelper sqlHelper)
         {
             this.sqlHelper = sqlHelper;
-            this.connectionString = connectionString.Value.MssqlConnectionString;
+            this.connectionString = connectionString.Value.ConnectionString;
         }
 
 
