@@ -540,28 +540,7 @@
                 }
             },
             "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/supticketapivm-rg/providers/Microsoft.Compute/virtualMachines/SupTicketApiVm/extensions/customScriptExtension'.",
-            "type": "Microsoft.Compute/virtualMachines/extensions",
-            "name": "[concat(parameters('virtualMachines_SupTicketApiVm_name'), '/', parameters('extensions_customScriptExtension_name'))]",
-            "apiVersion": "2018-06-01",
-            "location": "westeurope",
-            "scale": null,
-            "properties": {
-                "autoUpgradeMinorVersion": true,
-                "publisher": "Microsoft.Compute",
-                "type": "[concat(parameters('extensions_customScriptExtension_name'),'CustomScriptExtension', parameters('extensions_customScriptExtension_name'))]",
-                "typeHandlerVersion": "1.9",
-                "settings": {
-                    "commandToExecute": "[parameters('extensions_customScriptExtension_commandToExecute')]"
-                },
-                "protectedSettings": {}
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_SupTicketApiVm_name'))]"
-            ]
-        },
+        },      
         {
             "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/SupTicketApiVm-rg/providers/Microsoft.Network/networkSecurityGroups/SupTicketApiVm-nsg/securityRules/default-allow-rdp'.",
             "type": "Microsoft.Network/networkSecurityGroups/securityRules",
