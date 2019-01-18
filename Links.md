@@ -29,3 +29,16 @@
 ###### https://github.com/asc-lab/dotnetcore-microservices-poc
 ###### 
 ###### 
+override deploy parametrs 
+-vmName "SupTicketApiVm"
+-adminUsername "mrTaler"
+-adminPassword "$(vmPassword)" 
+-appInsightsLocation "West Europe"
+-vmSize "Standard_B2s" 
+-location "West Europe"
+-windowsOSVersion "2016-Datacenter-smalldisk" 
+-databaseServerName "superticketapivmserver"
+-databaseUsername "dbadmin" 
+-databasePassword "$(dbPassword)"
+-databaseLocation "West Europe" 
+-databaseName "SupTicketApiVm-db"
