@@ -1,6 +1,6 @@
 ﻿{
   "ConnectionStrings": {
-    "ConnectionString": "",
+    "ConnectionString": "Data Source=SupTicketApiVm\\TICKETAPISQLVM;Database=SuperTicketApiMssql;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;",
     "ProviderName": "",
     "env": "https://stackoverflow.com/questions/45298562/azure-application-settings-not-overriding-my-appsettings-json-file-values"
   }
