@@ -1,6 +1,5 @@
 namespace SuperTicketApi.NUnitTests
 {
-    using AutoMapper;
     using NUnit.Framework;
     using SuperTicketApi.ApiEndpoint.ViewModel;
     using SuperTicketApi.ApiEndpoint.ViewModel.Area;

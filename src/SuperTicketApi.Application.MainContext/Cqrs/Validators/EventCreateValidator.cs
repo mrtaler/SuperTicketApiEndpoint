@@ -25,7 +25,7 @@
 
             this.RuleFor(x => x.Name)
                 .NotEmpty()
-                .Length(3, 200).WithMessage("Arar descripton must be bewtween 3-120 characters in length")
+                .Length(3, 120).WithMessage("name must be bewtween 3-120 characters in length")
                 .Must(this.NotExist).WithMessage(x => $"{x.Description} already exists");
 
             // <para><c>SQL:</c>[Banner] nvarchar(max) NOT NULL.</para>
@@ -36,11 +36,11 @@
             this.RuleFor(x => x.Description)
                 .NotEmpty();
 
-            /// <para><c>SQL:</c>[StartAt] DATETIME NOT NULL.</para>
+            // <para><c>SQL:</c>[StartAt] DATETIME NOT NULL.</para>
             this.RuleFor(x => x.StartAt)
                 .NotEmpty();
 
-            /// <para><c>SQL:</c>[Runtime] TIME(7) NOT NULL.</para>
+            // <para><c>SQL:</c>[Runtime] TIME(7) NOT NULL.</para>
             this.RuleFor(x => x.RunTime)
                 .NotEmpty();
 

@@ -1,14 +1,11 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.Controllers
 {
-    using System.Threading.Tasks;
-
     using MediatR;
-
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
     using SuperTicketApi.ApiEndpoint.Controllers.Base;
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
-    using SuperTicketApi.Domain.MainContext.Queries;
+    using System.Threading.Tasks;
 
     [ApiVersion("1.0")]
     [Route("api/v{api-version:apiVersion}/[controller]")]
@@ -26,7 +23,7 @@
             IOptionsSnapshot<ConnectionStrings> connectionString)
             : base(mediator)
         {
-           this. connectionString = connectionString;
+            this.connectionString = connectionString;
         }
 
         /// <summary>
@@ -38,9 +35,10 @@
         [HttpGet("GetAllAreas")]
         public async Task<IActionResult> GetSettings()
         {
-           
+            var currentConnectionString = connectionString.Value.ConnectionString.Split(';')[0];
 
-            return new ObjectResult(new { connectionString });
+
+            return new ObjectResult(new { ConnectionString = currentConnectionString });
         }
     }
 }

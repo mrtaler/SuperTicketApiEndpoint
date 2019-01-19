@@ -3,15 +3,10 @@
     using FluentValidation;
     using MediatR;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
-    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
 
     /// <summary>
     /// The seat.
     /// </summary>
-    /// <remarks>
-    /// <para><c>SQL:</c>TABLE [dbo].[Seats]</para>
-    /// </remarks>
-    [DbTable("Seats")]
     public class SeatCreateValidator : AbstractValidator<PresenterCreateSeatCommand>
     {
         /// <summary>
@@ -20,26 +15,30 @@
         private readonly IMediator mediator;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Seat"/> class.
+        /// Initializes a new instance of the <see cref="SeatCreateValidator"/> class. 
         /// </summary>
+        /// <param name="mediator">
+        /// The mediator.
+        /// </param>
         public SeatCreateValidator(IMediator mediator)
         {
             this.mediator = mediator;
 
-            /// <para><c>SQL:</c>[AreaId] <see langword="int"/> NOT NULL</para>
-
+            // <para><c>SQL:</c>[AreaId] <see langword="int"/> NOT NULL</para>
             this.RuleFor(x => x.AreaId)
-                                .NotEmpty();
+                .Must(this.IsExist).WithMessage(x => $"{x.AreaId} already exists")
+                .NotEmpty();
 
-            /// <para><c>SQL:</c>[Row] <see langword="int"/> NOT NULL</para>
-
+            // <para><c>SQL:</c>[Row] <see langword="int"/> NOT NULL</para>
             this.RuleFor(x => x.Row)
-                                 .NotEmpty();
+                .NotEmpty();
 
-            /// <para><c>SQL:</c>[Number] <see langword="int"/> NOT NULL</para>
+            // <para><c>SQL:</c>[Number] <see langword="int"/> NOT NULL</para>
             this.RuleFor(x => x.Number)
-                                       .NotEmpty();
+                .NotEmpty();
         }
+
+
         private bool IsExist(int idToCheck)
         {
             return false;

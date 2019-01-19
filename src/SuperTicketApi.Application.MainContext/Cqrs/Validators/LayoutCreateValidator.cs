@@ -29,10 +29,12 @@
             /// <para><c>SQL:</c>[VenueId] <see langword="int"/> NOT NULL.</para>
 
             this.RuleFor(x => x.VenueId)
+                .Must(this.IsExist).WithMessage(x => $"{x.VenueId} already exists")
                            .NotEmpty();
 
             /// <para><c>SQL:</c>[Description] nvarchar(120) NOT NULL.</para>
             this.RuleFor(x => x.Description)
+                  .Length(3, 120).WithMessage("descripton must be bewtween 3-120 characters in length")
                           .NotEmpty();
         }
 

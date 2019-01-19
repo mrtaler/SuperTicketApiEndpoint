@@ -3,15 +3,10 @@
     using FluentValidation;
     using MediatR;
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
-    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
 
     /// <summary>
     /// The venue.
     /// </summary>
-    /// <remarks>
-    /// <para><c>SQL:</c>[dbo].[Venues]</para>
-    /// </remarks>
-    [DbTable("Venues")]
     public class VenueCreateValidator : AbstractValidator<PresenterCreateVenueCommand>
     {
         /// <summary>
@@ -20,49 +15,29 @@
         private readonly IMediator mediator;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Venue"/> class.
+        /// Initializes a new instance of the <see cref="VenueCreateValidator"/> class. 
         /// </summary>
+        /// <param name="mediator">
+        /// The mediator.
+        /// </param>
         public VenueCreateValidator(IMediator mediator)
         {
             this.mediator = mediator;
 
             // <para><c>SQL:</c>[Description] nvarchar(120) NOT NULL.</para>
             this.RuleFor(x => x.Description)
+                  .Length(3, 120).WithMessage("Description must be between 3-120 characters in length")
                 .NotEmpty();
 
-            /// <para><c>SQL:</c>[Address] nvarchar(200) NOT NULL.</para>
+            // <para><c>SQL:</c>[Address] nvarchar(200) NOT NULL.</para>
             this.RuleFor(x => x.Address)
+                  .Length(3, 200).WithMessage("Address must be between 3-200 characters in length")
                 .NotEmpty();
-            /// <para><c>SQL:</c>[Phone] nvarchar(30).</para>
+            
+            // <para><c>SQL:</c>[Phone] nvarchar(30).</para>
             this.RuleFor(x => x.Phone)
+                  .Length(3, 30).WithMessage("Phone must be between 3-200 characters in length")
                 .NotEmpty();
-
-        }
-        private bool IsExist(int idToCheck)
-        {
-            return false;
-        }
-
-        private bool NotExist(string description)
-        {
-            // =========================================================================
-            // VALIDATE ACCOUNT NAME IS UNIQUE (Via MediatR Query)
-            // =========================================================================
-            // Note: "NameKey" is transformed from "Name" and is used as a both a unique id as well as for pretty routes/urls
-            // Note: Consider using both "Name and ""NameKey" as UniqueKeys on your DocumentDB collection.
-            // -------------------------------------------------------------------------
-            // Note: Once these contraints are in place you could remove this manual check
-            // - however this process does ensure no exceptions are thrown and a cleaner response message is sent to the user.
-            // ----------------------------------------------------------------------------
-
-            /*var accountDetailsQuery = new GetAccountDetailsQuery { NameKey = Common.Transformations.NameKey.Transform(name) };
-            var accountDetails = _mediator.Send(accountDetailsQuery);
-
-            if (accountDetails.Result.Account != null)
-            {
-                return false;
-            }*/
-            return true;
         }
     }
 }

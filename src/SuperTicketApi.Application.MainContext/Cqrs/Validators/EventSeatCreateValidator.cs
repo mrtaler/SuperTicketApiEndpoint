@@ -29,6 +29,7 @@
             /// <para><c>SQL:</c>[EventAreaId] <see langword="int"/> NOT NULL,.</para>
 
             this.RuleFor(x => x.EventAreaId)
+                .Must(this.IsExist).WithMessage(x => $"{x.EventAreaId} already exists")
                     .NotEmpty();
 
 

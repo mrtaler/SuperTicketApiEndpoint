@@ -53,7 +53,7 @@
         {
             try
             {
-                AreasCreateValidator validator = new AreasCreateValidator(this.Mediatr);
+              /*  AreasCreateValidator validator = new AreasCreateValidator(this.Mediatr);
                 ValidationResult validationResult = validator.Validate(request);
 
                 if (!validationResult.IsValid)
@@ -65,6 +65,7 @@
                     };
                     return resp;
                 }
+                */
 
                 // ! todo create map from CreateAreaVM to map area database
                 var dalCommand = request.ProjectedAs<CreateAreaDomainCommand>();
