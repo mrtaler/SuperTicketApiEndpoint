@@ -53,7 +53,7 @@
         {
             try
             {
-                AreasValidator validator = new AreasValidator(this.Mediatr);
+                AreasCreateValidator validator = new AreasCreateValidator(this.Mediatr);
                 ValidationResult validationResult = validator.Validate(request);
 
                 if (!validationResult.IsValid)

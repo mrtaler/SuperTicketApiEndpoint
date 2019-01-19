@@ -40,18 +40,12 @@
             Log.Information($"{this.GetType().Name} was started");
         }
 
-        #region Implementation of IRequestHandler<in GetAreaAsIEnumerableQuery,IEnumerable<Area>>
-
         /// <inheritdoc />
         public async Task<IEnumerable<Area>> Handle(GetAreaAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
             var returnList = this.UnitOfWork.AreaRepository.GetAll();
             return await Task.FromResult(returnList);
         }
-
-        #endregion
-
-        #region Implementation of IRequestHandler<in GetEventAreaAsIEnumerableQuery,IEnumerable<EventArea>>
 
         /// <inheritdoc />
         public async Task<IEnumerable<EventArea>> Handle(GetEventAreaAsIEnumerableQuery request, CancellationToken cancellationToken)
@@ -60,20 +54,12 @@
             return await Task.FromResult(returnList);
         }
 
-        #endregion
-
-        #region Implementation of IRequestHandler<in GetEventAsIEnumerableQuery,IEnumerable<Event>>
-
         /// <inheritdoc />
         public async Task<IEnumerable<Event>> Handle(GetEventAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
           var returnList = this.UnitOfWork.EventRepository.GetAll();
             return await Task.FromResult(returnList);
         }
-
-        #endregion
-
-        #region Implementation of IRequestHandler<in GetEventSeatAsIEnumerableQuery,IEnumerable<EventSeat>>
 
         /// <inheritdoc />
         public async Task<IEnumerable<EventSeat>> Handle(GetEventSeatAsIEnumerableQuery request, CancellationToken cancellationToken)
@@ -82,20 +68,12 @@
             return await Task.FromResult(returnList);
         }
 
-        #endregion
-
-        #region Implementation of IRequestHandler<in GetLayoutAsIEnumerableQuery,IEnumerable<Layout>>
-
         /// <inheritdoc />
         public async Task<IEnumerable<Layout>> Handle(GetLayoutAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
             var returnList = this.UnitOfWork.LayoutRepository.GetAll();
             return await Task.FromResult(returnList);
         }
-
-        #endregion
-
-        #region Implementation of IRequestHandler<in GetSeatAsIEnumerableQuery,IEnumerable<Seat>>
 
         /// <inheritdoc />
         public async Task<IEnumerable<Seat>> Handle(GetSeatAsIEnumerableQuery request, CancellationToken cancellationToken)
@@ -104,17 +82,11 @@
             return await Task.FromResult(returnList);
         }
 
-        #endregion
-
-        #region Implementation of IRequestHandler<in GetVenueAsIEnumerableQuery,IEnumerable<Venue>>
-
         /// <inheritdoc />
         public async Task<IEnumerable<Venue>> Handle(GetVenueAsIEnumerableQuery request, CancellationToken cancellationToken)
         {
           var returnList = this.UnitOfWork.VenueRepository.GetAll();
             return await Task.FromResult(returnList);
         }
-
-        #endregion
     }
 }

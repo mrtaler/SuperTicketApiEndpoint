@@ -1,15 +1,18 @@
 ﻿namespace SuperTicketApi.Application.MainContext.Cqrs.Validators
 {
     using FluentValidation;
-
     using MediatR;
-
     using SuperTicketApi.Application.MainContext.Cqrs.Commands.Create;
+    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
 
     /// <summary>
-    /// The areas validator.
+    /// The venue.
     /// </summary>
-    public class AreasValidator : AbstractValidator<PresenterCreateAreaCommand>
+    /// <remarks>
+    /// <para><c>SQL:</c>[dbo].[Venues]</para>
+    /// </remarks>
+    [DbTable("Venues")]
+    public class VenueCreateValidator : AbstractValidator<PresenterCreateVenueCommand>
     {
         /// <summary>
         /// The mediator.
@@ -17,36 +20,29 @@
         private readonly IMediator mediator;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AreasValidator"/> class.
+        /// Initializes a new instance of the <see cref="Venue"/> class.
         /// </summary>
-        /// <param name="mediator">
-        /// The mediator.
-        /// </param>
-        public AreasValidator(IMediator mediator)
+        public VenueCreateValidator(IMediator mediator)
         {
             this.mediator = mediator;
 
-            this.RuleFor(x => x.LayoutId)
-                .NotEmpty()
-                .WithMessage("Please set an LayoutId");
+            // <para><c>SQL:</c>[Description] nvarchar(120) NOT NULL.</para>
             this.RuleFor(x => x.Description)
-                .Length(3, 200).WithMessage("Arar descripton must be bewtween 3-200 characters in length")
-                .Must(this.NotExist).WithMessage(x => $"{x.Description} already exists");
-            this.RuleFor(x => x.CoordX)
-                .NotEmpty().WithMessage("Please set an CoordX");
-            this.RuleFor(x => x.CoordY)
-                .NotEmpty().WithMessage("Please set an CoordY");
+                .NotEmpty();
+
+            /// <para><c>SQL:</c>[Address] nvarchar(200) NOT NULL.</para>
+            this.RuleFor(x => x.Address)
+                .NotEmpty();
+            /// <para><c>SQL:</c>[Phone] nvarchar(30).</para>
+            this.RuleFor(x => x.Phone)
+                .NotEmpty();
+
+        }
+        private bool IsExist(int idToCheck)
+        {
+            return false;
         }
 
-        /// <summary>
-        /// The not exist.
-        /// </summary>
-        /// <param name="description">
-        /// The description.
-        /// </param>
-        /// <returns>
-        /// The <see cref="bool"/>.
-        /// </returns>
         private bool NotExist(string description)
         {
             // =========================================================================
