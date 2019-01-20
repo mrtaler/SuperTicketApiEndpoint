@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
+﻿namespace SuperTicketApi.Infrastructure.Crosscutting.Implementation.Pipeline
 {
     using System.Threading;
     using System.Threading.Tasks;

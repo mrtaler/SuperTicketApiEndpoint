@@ -13,7 +13,7 @@
     /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [ApiController]
     [Produces("application/json")]
-    public class BaseController : ControllerBase
+    public partial class BaseController : ControllerBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseController"/> class.
@@ -30,33 +30,20 @@
 
         private ApiValidationError ValidationErrorSelector(ValidationFailure failure)
         {
-            var holder = new Dictionary<string, string>()
-            {
-                ["PropertyName"] = failure.FormattedMessagePlaceholderValues["PropertyName"].ToString(),
-                ["PropertyValue"] = failure.FormattedMessagePlaceholderValues["PropertyValue"].ToString()
-            };
             var retResult =
-        new ApiValidationError
-        {
-            PropertyName = failure.PropertyName,
-            AttemptedValue = failure.AttemptedValue?.ToString(),
-            ErrorMessage = failure.ErrorMessage,
-            CustomState = failure.CustomState?.ToString(),
-            ErrorCode = failure.ErrorCode,
-            PlaceHolder = holder
-        };
-
-
-
-            /*  = JsonConvert.SerializeObject(
-              new
-              {
-                  propertyName =
-                      ,
-                  propertyValue =
-
-
-              }, Formatting.None)*/
+                new ApiValidationError
+                {
+                    PropertyName = failure.PropertyName,
+                    AttemptedValue = failure.AttemptedValue?.ToString(),
+                    ErrorMessage = failure.ErrorMessage,
+                    CustomState = failure.CustomState?.ToString(),
+                    ErrorCode = failure.ErrorCode,
+                    PlaceHolder = new Dictionary<string, string>()
+                    {
+                        ["PropertyName"] = failure.FormattedMessagePlaceholderValues["PropertyName"].ToString(),
+                        ["PropertyValue"] = failure.FormattedMessagePlaceholderValues["PropertyValue"].ToString()
+                    }
+                };
 
             return retResult;
         }
@@ -79,21 +66,5 @@
                 ValidationError = response.ValidationErrors.Select(ValidationErrorSelector)
             });
         }
-
-        protected class ApiValidationError
-        {
-            public ApiValidationError()
-            {
-                PlaceHolder = new Dictionary<string, string>();
-            }
-            public string PropertyName { get; set; }
-            public string AttemptedValue { get; set; }
-            public string ErrorMessage { get; set; }
-            public string CustomState { get; set; }
-            public string ErrorCode { get; set; }
-            public Dictionary<string, string> PlaceHolder { get; set; }
-        }
-
-
     }
 }

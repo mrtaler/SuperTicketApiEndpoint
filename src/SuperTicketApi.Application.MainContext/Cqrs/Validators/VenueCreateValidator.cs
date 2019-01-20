@@ -26,17 +26,20 @@
 
             // <para><c>SQL:</c>[Description] nvarchar(120) NOT NULL.</para>
             this.RuleFor(x => x.Description)
-                  .Length(3, 120).WithMessage("Description must be between 3-120 characters in length")
+                  .Length(3, 120)
+                  .WithMessage("Description must be between 3-120 characters in length")
                 .NotEmpty();
 
             // <para><c>SQL:</c>[Address] nvarchar(200) NOT NULL.</para>
             this.RuleFor(x => x.Address)
-                  .Length(3, 200).WithMessage("Address must be between 3-200 characters in length")
+                  .Length(3, 200)
+                  .WithMessage("Address must be between 3-200 characters in length")
                 .NotEmpty();
             
             // <para><c>SQL:</c>[Phone] nvarchar(30).</para>
             this.RuleFor(x => x.Phone)
-                  .Length(3, 30).WithMessage("Phone must be between 3-200 characters in length")
+                  .Length(3, 30)
+                  .WithMessage("Phone must be between 3-200 characters in length")
                 .NotEmpty();
         }
     }
