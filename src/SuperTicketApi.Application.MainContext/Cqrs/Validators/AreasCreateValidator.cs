@@ -51,10 +51,11 @@
         /// </returns>
         private async Task<bool> IsExist(int idToCheck)
         {
-            var accountDetails = await this.mediator.Send(ByIdSingleQueryPattern.GetSingleLayoutQuery(idToCheck));
+              var accountDetails = await this.mediator.Send(ByIdSingleQueryPattern.GetSingleLayoutQuery(idToCheck));
 
-            var result = accountDetails.Id != 0;
-            return result;
+              var result = accountDetails.Id != 0;
+              return result;
+            return true;
         }
 
 

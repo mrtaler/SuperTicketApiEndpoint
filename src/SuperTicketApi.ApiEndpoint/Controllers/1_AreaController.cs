@@ -73,7 +73,7 @@
         /// The <see cref="ActionResult"/>.
         /// </returns>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateAreaViewModel createViewModel)
+        public async Task<JsonResult> Post([FromBody] CreateAreaViewModel createViewModel)
         {
             var result = await this.Mediator.Send(createViewModel.ProjectedAs<PresenterCreateAreaCommand>());
 

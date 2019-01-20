@@ -3,8 +3,8 @@
     using FluentValidation.Results;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
-    using Newtonsoft.Json.Linq;
     using SuperTicketApi.Application.MainContext.Cqrs;
+    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
@@ -12,6 +12,7 @@
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [ApiController]
+    [Produces("application/json")]
     public class BaseController : ControllerBase
     {
         /// <summary>
@@ -27,45 +28,72 @@
         protected IMediator Mediator { get; set; }
 
 
-        private string ValidationErrorSelector(ValidationFailure failure)
+        private ApiValidationError ValidationErrorSelector(ValidationFailure failure)
         {
-            var retResult = JObject.FromObject(
-            new
+            var holder = new Dictionary<string, string>()
             {
-                failure.PropertyName,
-                failure.AttemptedValue,
-                failure.ErrorMessage,
-                failure.CustomState,
-                failure.ErrorCode,
-                PlaceHolder = new
-                {
-                    propertyName =
-                        failure.FormattedMessagePlaceholderValues["PropertyName"],
-                    propertyValue =
-                        failure.FormattedMessagePlaceholderValues["PropertyValue"]
-                }
-            });
+                ["PropertyName"] = failure.FormattedMessagePlaceholderValues["PropertyName"].ToString(),
+                ["PropertyValue"] = failure.FormattedMessagePlaceholderValues["PropertyValue"].ToString()
+            };
+            var retResult =
+        new ApiValidationError
+        {
+            PropertyName = failure.PropertyName,
+            AttemptedValue = failure.AttemptedValue?.ToString(),
+            ErrorMessage = failure.ErrorMessage,
+            CustomState = failure.CustomState?.ToString(),
+            ErrorCode = failure.ErrorCode,
+            PlaceHolder = holder
+        };
 
-            return retResult.ToString();
+
+
+            /*  = JsonConvert.SerializeObject(
+              new
+              {
+                  propertyName =
+                      ,
+                  propertyValue =
+
+
+              }, Formatting.None)*/
+
+            return retResult;
         }
 
-        protected ObjectResult GetResult(ApplicationCommandResponse response)
+        protected JsonResult GetResult(ApplicationCommandResponse response)
         {
             if (response.IsSuccess)
             {
-                return new ObjectResult(new
+                return new JsonResult(new
                 {
                     Success = response.IsSuccess,
                     NewEntity = response.Object,
                 });
             }
 
-            return new ObjectResult(new
+            return new JsonResult(new
             {
                 Success = response.IsSuccess,
                 Error = response.Message,
                 ValidationError = response.ValidationErrors.Select(ValidationErrorSelector)
             });
         }
+
+        protected class ApiValidationError
+        {
+            public ApiValidationError()
+            {
+                PlaceHolder = new Dictionary<string, string>();
+            }
+            public string PropertyName { get; set; }
+            public string AttemptedValue { get; set; }
+            public string ErrorMessage { get; set; }
+            public string CustomState { get; set; }
+            public string ErrorCode { get; set; }
+            public Dictionary<string, string> PlaceHolder { get; set; }
+        }
+
+
     }
 }

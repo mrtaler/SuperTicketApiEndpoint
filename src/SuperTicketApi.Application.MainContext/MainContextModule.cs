@@ -26,21 +26,21 @@
             ContainerBuilderExtensions.AddMediatR(builder, typeof(PresenterDeleteAreaCommand).GetTypeInfo().Assembly);
 
             builder.RegisterType<AreasCreateValidator>()
-                .As(typeof(AbstractValidator<PresenterCreateAreaCommand>));
+                .As<IValidator<PresenterCreateAreaCommand>>();
             builder.RegisterType<EventAreaCreateValidator>()
-                .As(typeof(AbstractValidator<PresenterCreateEventAreaCommand>));
+                .As<IValidator<PresenterCreateEventAreaCommand>>();
             builder.RegisterType<EventCreateValidator>()
-                .As(typeof(AbstractValidator<PresenterCreateEventCommand>));
+                .As<IValidator<PresenterCreateEventCommand>>();
             builder.RegisterType<EventSeatCreateValidator>()
-                .As(typeof(AbstractValidator<PresenterCreateEventSeatCommand>));
+                .As<IValidator<PresenterCreateEventSeatCommand>>();
             builder.RegisterType<LayoutCreateValidator>()
-                .As(typeof(AbstractValidator<PresenterCreateLayoutCommand>));
+                .As<IValidator<PresenterCreateLayoutCommand>>();
             builder.RegisterType<SeatCreateValidator>()
-                .As(typeof(AbstractValidator<PresenterCreateSeatCommand>));
+                .As<IValidator<PresenterCreateSeatCommand>>();
             builder.RegisterType<VenueCreateValidator>()
-                .As(typeof(AbstractValidator<PresenterCreateVenueCommand>));
+                .As<IValidator<PresenterCreateVenueCommand>>();
 
-              builder.RegisterGeneric(typeof(ValidationBehavior<,>)).As(typeof(IPipelineBehavior<,>));
+              builder.RegisterGeneric(typeof(ApplicationValidatorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
 
             // builder.RegisterType<EventAddressService>().As<IEventAddressService>();
             // builder.RegisterType<EventPlaceService>().As<IEventPlaceService>();
