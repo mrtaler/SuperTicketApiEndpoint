@@ -24,6 +24,9 @@
                        builder.RegisterGeneric(typeof(PerformanceBehavior<,>))
                            .As(typeof(IPipelineBehavior<,>))
                            .InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(ExceptionHandler<,>))
+                          .As(typeof(IPipelineBehavior<,>))
+                          .InstancePerLifetimeScope();
 
             /*           builder.RegisterGeneric(typeof(RequestPreProcessorBehavior<,>))
                            .As(typeof(IPipelineBehavior<,>))
