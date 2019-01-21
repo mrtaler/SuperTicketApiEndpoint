@@ -5,8 +5,8 @@
     /// <summary>
     /// The presenter create area command.
     /// </summary>
-    public class PresenterCreateAreaCommand : IBusinessCommand, 
-        IRequest<ApplicationCommandResponse>
+    public class PresenterCreateAreaCommand : IBusinessCommand,
+        IRequest<ApplicationCommandResponse>, IValidated
     {
         /// <summary>
         /// Gets or sets the layout id.
@@ -27,6 +27,8 @@
         /// Gets or sets the CoordY.
         /// </summary>
         public int CoordY { get; set; }
+
+        public bool AlreadyValidated { get; set; }
 
         #region Command Authorization Options
 

@@ -1,6 +1,6 @@
 ﻿namespace SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings
 {
-    public class AppConnectionStrings
+    public class ConnectionStrings
     {
         /* private IConfiguration config;
  
@@ -18,7 +18,7 @@
         /// </summary>
 
         // public string ConnectionString { get; set; }
-        public string MssqlConnectionString { get; set; }
+        public string ConnectionString { get; set; }
 
         // =>this.config.GetSection("AppConnectionStrings:MssqlConnectionString").Value;
         public string ProviderName { get; set; }

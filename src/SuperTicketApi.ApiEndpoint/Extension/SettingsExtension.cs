@@ -89,7 +89,7 @@
             services.Configure<GoogleAuthOptions>(configuration.GetSection(nameof(GoogleAuthOptions)));
             services.Configure<TokenAuthOptions>(configuration.GetSection(nameof(TokenAuthOptions)));
             services.Configure<CorrelationIdOptions>(configuration.GetSection(nameof(CorrelationIdOptions)));
-            services.Configure<AppConnectionStrings>(configuration.GetSection(nameof(AppConnectionStrings)));
+            services.Configure<ConnectionStrings>(configuration.GetSection(nameof(ConnectionStrings)));
 
             /*----------------------------------------
             // * AutoMapper is also configured using the Static API within our Core library.

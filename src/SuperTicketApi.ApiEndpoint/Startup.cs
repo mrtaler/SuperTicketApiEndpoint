@@ -60,7 +60,7 @@
                 .WriteTo.Trace(/*LogEventLevel.Verbose*/)
                 .WriteTo.ApplicationInsightsEvents("4f6ea94a-c353-4351-9f71-574900d5b176")
                 .WriteTo.RollingFile(
-                    "log-{Date}.txt"/*$"{Path.GetDirectoryName(pathSettingsAssembly)}\\Log.txt"*/,
+                    "c:\\Logs\\log-{Date}.txt"/*$"{Path.GetDirectoryName(pathSettingsAssembly)}\\Log.txt"*/,
                     LogEventLevel.Verbose,
                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level}:{EventId} [{SourceContext}] {Message}{NewLine}{Exception}")
                 .WriteTo.Console(theme: Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme.Code/*LogEventLevel.Debug*/) // <-- This will give us output to our Kestrel console

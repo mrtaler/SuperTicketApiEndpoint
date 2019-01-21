@@ -6,6 +6,7 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.Database
     using SuperTicketApi.Domain.Seedwork;
     using System.Data;
     using System.Data.Common;
+    using System.Data.SqlClient;
 
     /// <summary>
     /// The sql helper.
@@ -17,26 +18,26 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.Database
         public IDataReader ExecuteReader(
             IDbConnection connection,
             string commandText,
-            params Parameter[] parameters)
+            params SqlParameter[] parameters)
         {
             return SqlHelper<T>.CreateDbCommand(
                     connection,
                     commandText,
                     new CommandType?(),
-                    (IEnumerable<Parameter>)parameters).ExecuteReader();
+                    (IEnumerable<SqlParameter>)parameters).ExecuteReader();
         }
 
         public IDataReader ExecuteReader(
             IDbConnection connection,
             string commandText,
             CommandType commandType,
-            params Parameter[] parameters)
+            params SqlParameter[] parameters)
         {
             return SqlHelper<T>.CreateDbCommand(
                 connection,
                 commandText,
                 new CommandType?(commandType),
-                (IEnumerable<Parameter>)parameters).ExecuteReader();
+                (IEnumerable<SqlParameter>)parameters).ExecuteReader();
         }
 
         public IDbConnection CreateConnection(string connectionString)
@@ -49,60 +50,67 @@ namespace SuperTicketApi.Domain.MainContext.Mssql.Database
         public int ExecuteNonQuery(
             IDbConnection connection, 
             string commandText,
-            params Parameter[] parameters)
+            params SqlParameter[] parameters)
         {
             return SqlHelper<T>.CreateDbCommand(
                 connection, 
                 commandText, 
                 new CommandType?(),
-                (IEnumerable<Parameter>)parameters).ExecuteNonQuery();
+                (IEnumerable<SqlParameter>)parameters).ExecuteNonQuery();
         }
 
         public Td ExecuteScalar<Td>(
             IDbConnection connection,
             string commandText, 
-            params Parameter[] parameters)
+            params SqlParameter[] parameters)
         {
             return (Td)SqlHelper<T>.CreateDbCommand(
                 connection, 
                 commandText,
                 new CommandType?(), 
-                (IEnumerable<Parameter>)parameters).ExecuteScalar();
+                (IEnumerable<SqlParameter>)parameters).ExecuteScalar();
         }
 
         public int ExecuteNonQuery(
             IDbConnection connection,
             string commandText,
             CommandType commandType,
-            params Parameter[] parameters)
+            params SqlParameter[] parameters)
         {
             return SqlHelper<T>.CreateDbCommand(
                 connection,
                 commandText, 
                 new CommandType?(commandType),
-                (IEnumerable<Parameter>)parameters).ExecuteNonQuery();
+                (IEnumerable<SqlParameter>)parameters).ExecuteNonQuery();
         }
 
         private static IDbCommand CreateDbCommand(
             IDbConnection connection, 
             string commandText,
             CommandType? commandType, 
-            IEnumerable<Parameter> parameters)
+            IEnumerable<SqlParameter> parameters)
         {
             IDbCommand command = connection.CreateCommand();
             command.CommandText = commandText;
             IDbCommand dataBaseCommand = command;
             CommandType? nullable = commandType;
+
             int num = nullable.HasValue ? (int)nullable.GetValueOrDefault() : 1;
             dataBaseCommand.CommandType = (CommandType)num;
-            foreach (Parameter parameter1 in parameters)
+
+            foreach (var parameter in parameters)
             {
-                IDbDataParameter parameter2 = command.CreateParameter();
-                parameter2.ParameterName = parameter1.Key;
-                parameter2.Value = parameter1.Value ?? (object)DBNull.Value;
-                command.Parameters.Add((object)parameter2);
+                command.Parameters.Add(parameter);
             }
 
+            /*   foreach (Parameter parameter1 in parameters)
+               {
+                   IDbDataParameter parameter2 = command.CreateParameter();
+                   parameter2.ParameterName = parameter1.Key;
+                   parameter2.Value = parameter1.Value ?? (object)DBNull.Value;
+                   command.Parameters.Add((object)parameter2);
+               }
+               */
             return command;
         }
     }

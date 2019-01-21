@@ -76,20 +76,8 @@
         {
             var result = await this.Mediator.Send(
                              createViewModel.ProjectedAs<PresenterCreateVenueCommand>());
-            if (result.IsSuccess)
-            {
-                return new ObjectResult(new
-                {
-                    Success = result.IsSuccess,
-                    NewEntity = result.Object,
-                });
-            }
 
-            return new ObjectResult(new
-            {
-                Success = result.IsSuccess,
-                Error = result.Message,
-            });
+            return this.GetResult(result);
         }
 
         /// <summary>
@@ -106,20 +94,8 @@
         {
             var result = await this.Mediator.Send(
                 updateModel.ProjectedAs<PresenterUpdateVenueCommand>());
-            if (result.IsSuccess)
-            {
-                return new ObjectResult(new
-                {
-                    Success = result.IsSuccess,
-                    NewId = result.Object,
-                });
-            }
 
-            return new ObjectResult(new
-            {
-                Success = result.IsSuccess,
-                Error = result.Message,
-            });
+            return this.GetResult(result);
         }
 
         /// <summary>
@@ -135,20 +111,8 @@
         public async Task<IActionResult> Delete(int id)
         {
             var result = await this.Mediator.Send(new PresenterDeleteVenueCommand(id));
-            if (result.IsSuccess)
-            {
-                return new ObjectResult(new
-                {
-                    Success = result.IsSuccess,
-                    NewId = result.Object,
-                });
-            }
 
-            return new ObjectResult(new
-            {
-                Success = result.IsSuccess,
-                Error = result.Message,
-            });
+            return this.GetResult(result);
         }
     }
 }
