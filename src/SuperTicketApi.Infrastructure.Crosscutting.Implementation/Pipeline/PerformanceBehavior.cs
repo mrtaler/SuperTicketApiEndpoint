@@ -39,8 +39,8 @@ namespace SuperTicketApi.Infrastructure.Crosscutting.Implementation.Pipeline
             // Dependency Injection is not required. We are using a global, statically accessible logger 
 
             // STRUCTURED LOGGING
-            // Use structured logging to capture the full object.
-            // Serilog provides the @ destructuring operator to help preserve object structure for our logs.
+            //? Use structured logging to capture the full object.
+            //! Serilog provides the @ destructuring operator to help preserve object structure for our logs.
             Log.Warning($"Running Request: {typeof(TRequest).Name} ({this.timer.ElapsedMilliseconds} milliseconds) {request}");
 
             //}
@@ -56,3 +56,8 @@ namespace SuperTicketApi.Infrastructure.Crosscutting.Implementation.Pipeline
 //! https://stackify.com/serilog-tutorial-net-logging/
 // https://github.com/mayuanyang/Mediator.Net
 // https://scottbanwart.com/blog/2017/11/mediatr-custom-behavior-logging/
+// https://github.com/asc-lab/dotnetcore-microservices-poc
+// https://github.com/phongnguyend/Practical.CleanArchitecture
+// https://github.com/BalazsArva/ES-CQRS-TicketManager/tree/master/TicketManager
+// https://github.com/BalazsArva/ES-CQRS-TicketManager/tree/master/TicketManager/TicketManager.WebAPI/Validation
+//! https://github.com/ddomurad/dungeon.cqrs/blob/master/src/dungeon.cqrs.azure/AzureTablesSnapshotStore.cs
