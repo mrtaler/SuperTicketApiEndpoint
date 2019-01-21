@@ -1,12 +1,14 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql.UnitOfWorks
 {
+    using System;
+
     using Microsoft.Extensions.Options;
+
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using SuperTicketApi.Domain.MainContext.DTO;
     using SuperTicketApi.Domain.MainContext.DTO.IndividualRepositories;
     using SuperTicketApi.Domain.MainContext.Mssql.Repositories;
     using SuperTicketApi.Domain.Seedwork;
-    using System;
 
     /// <summary>
     /// The ado net unit of work.
@@ -61,10 +63,10 @@
         /// <param name="connectionString">
         /// The connection string.
         /// </param>
-        public UnitOfWork(IOptions<AppConnectionStrings> connectionString, ISqlHelper sqlHelper)
+        public UnitOfWork(IOptions<ConnectionStrings> connectionString, ISqlHelper sqlHelper)
         {
             this.sqlHelper = sqlHelper;
-            this.connectionString = connectionString.Value.MssqlConnectionString;
+            this.connectionString = connectionString.Value.ConnectionString;
         }
 
 

@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="CustomQuery\Models\" />
     <Folder Include="CustomQuery\Queries\" />
+    <Folder Include="Response\" />
   </ItemGroup>
 
   <ItemGroup>

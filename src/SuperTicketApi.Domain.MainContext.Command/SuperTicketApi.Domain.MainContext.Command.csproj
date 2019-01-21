@@ -15,4 +15,8 @@
     <ProjectReference Include="..\SuperTicketApi.Domain.MainContext.DTO\SuperTicketApi.Domain.MainContext.DTO.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SpecialCommand\" />
+  </ItemGroup>
+
 </Project>

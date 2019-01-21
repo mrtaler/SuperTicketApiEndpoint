@@ -1,4 +1,4 @@
-﻿namespace SuperTicketApi.Domain.MainContext.Mssql.CQRS.Pipeline
+﻿namespace SuperTicketApi.Infrastructure.Crosscutting.Implementation.Pipeline
 {
     using System.Diagnostics;
     using System.Threading;
@@ -7,8 +7,6 @@
     using MediatR;
 
     using Serilog;
-
-    using SuperTicketApi.Domain.MainContext.Command;
 
     /// <summary>
     /// The notifications and tracing behavior.
@@ -81,27 +79,27 @@
             // You can inject pipeline functionality on specific result status...
             if (typeof(TResponse).Name == "CommandResponse")
             {
-                if (response is DomainCommandResponse cr && !cr.IsSuccess)
-                {
-                    Log.Warning("{name} attempted execution with issues: {message}", typeof(TRequest).Name, cr.Message);
-                }
+              //  if (response is DomainCommandResponse cr && !cr.IsSuccess)
+               // {
+                    Log.Warning("{name} attempted execution with issues: {message}", typeof(TRequest).Name/*, cr.Message*/);
+               // }
             }
 
             // ...As well as on specific command types with a specific result scenario:
             if (typeof(TRequest).Name == "CreateAccountCommand")
             {
-                if ((response is DomainCommandResponse cr) && !cr.IsSuccess && cr.ValidationErrors != null)
-                {
+               // if ((response is DomainCommandResponse cr) && !cr.IsSuccess && cr.ValidationErrors != null)
+               // {
 
 
                     // BASIC LOGGING
-                    Log.Warning("{name} executed with the following validation issues: {errors}", typeof(TRequest).Name, cr.ValidationErrors);
+                    Log.Warning("{name} executed with the following validation issues: {errors}", typeof(TRequest).Name /*,cr.ValidationErrors*/);
 
                     // STRUCTURED LOGGING:
                     // Use structured logging to capture the full object, it's properties and associated data:
                     // Serilog provides the @ destructuring operator to help preserve object structure for our logs.
-                    Log.Warning("{name} executed with the following validation issues: {@errors}", typeof(TRequest).Name, cr.ValidationErrors);
-                }
+                    Log.Warning("{name} executed with the following validation issues: {@errors}", typeof(TRequest).Name/*, cr.ValidationErrors*/);
+                //}
             }
 
             return response;

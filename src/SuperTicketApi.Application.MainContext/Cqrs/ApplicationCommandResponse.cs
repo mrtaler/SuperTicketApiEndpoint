@@ -9,6 +9,7 @@
         public ApplicationCommandResponse()
         {
             this.IsSuccess = false;
+            ValidationErrors = new List<ValidationFailure>();
         }
 
         public bool IsSuccess { get; set; }

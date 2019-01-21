@@ -1,17 +1,16 @@
 ﻿namespace SuperTicketApi.Domain.MainContext.Mssql
 {
-    using Serilog;
-    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
-    using SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers.General;
-    using SuperTicketApi.Domain.MainContext.Mssql.UnitOfWorks;
-    using SuperTicketApi.Domain.Seedwork;
-    using SuperTicketApi.Domain.Seedwork.Repository;
     using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
     using System.Linq;
     using System.Reflection;
+
+    using SuperTicketApi.Domain.MainContext.DTO.Attributes;
+    using SuperTicketApi.Domain.MainContext.Mssql.CQRS.CommandHandlers.General;
+    using SuperTicketApi.Domain.Seedwork;
+    using SuperTicketApi.Domain.Seedwork.Repository;
 
     /// <summary>
     /// Generic Repository
@@ -105,7 +104,7 @@
                                         $"where {this.GetIdTableColumnName()} = {id}";
                 using (var rdr = sqlHelper.ExecuteReader(con, COMMAND))
                 {
-                   while (rdr.Read())
+                    while (rdr.Read())
                     {
                         returnEntity = this.Mapping(rdr);
                     }
@@ -117,46 +116,48 @@
         /// <inheritdoc />
         public int Add(TEntity item)
         {
-            using (var connection = DataFactory.CreateConnection(this.connectionString))
+            using (var con = sqlHelper.CreateConnection(this.connectionString))
             {
-                connection.Open();
-                var command = connection.CreateCommand();
-
                 var newItemId = this.GetSqlParameter(
                     parameterName: "AddedId", // this returned value
                     parameterDirection: ParameterDirection.Output,
                     sqlDbType: SqlDbType.Int,
                     size: 1);
                 var paramList = this.GetSqlParameters(item, newItemId).ToList();
-
-                this.ExecuteSpWithReader(item.Command, command, paramList);
-                var retId = (int)newItemId.Value;
-                return retId;
+                using (var rdr = sqlHelper.ExecuteReader(con, item.Command, CommandType.StoredProcedure, paramList.ToArray()))
+                {
+                    var retId = (int)newItemId.Value;
+                    return retId;
+                }
             }
         }
 
         /// <inheritdoc />
         public void Update(TEntity item)
         {
-            using (var connection = DataFactory.CreateConnection(this.connectionString))
+            using (var con = sqlHelper.CreateConnection(this.connectionString))
             {
-                connection.Open();
-                var command = connection.CreateCommand();
-
                 var paramList = this.GetSqlParameters(item, null, true).ToList();
 
-                this.ExecuteSpWithReader(item.Command, command, paramList);
+
+
+
+                using (var rdr = sqlHelper.ExecuteReader(
+                    con,
+                    item.Command,
+                    CommandType.StoredProcedure,
+                    paramList.ToArray()))
+                {
+                    return;
+                }
             }
         }
 
         /// <inheritdoc />
         public void Delete(TEntity item)
         {
-            using (var connection = DataFactory.CreateConnection(this.connectionString))
+            using (var con = sqlHelper.CreateConnection(this.connectionString))
             {
-                connection.Open();
-                var command = connection.CreateCommand();
-
                 var dataBaseParam = new List<SqlParameter>();
 
 
@@ -167,7 +168,15 @@
                 var sqlParam = this.GetSqlParameter(idColumnName, value);
                 dataBaseParam.Add(sqlParam);
 
-                this.ExecuteSpWithReader(item.Command, command, dataBaseParam);
+
+                using (var rdr = sqlHelper.ExecuteReader(
+                    con,
+                    item.Command,
+                    CommandType.StoredProcedure,
+                    dataBaseParam.ToArray()))
+                {
+                    return;
+                }
             }
         }
 

@@ -71,20 +71,8 @@
         {
           var result = await this.Mediator.Send(
                            createViewModel.ProjectedAs<PresenterCreateEventAreaCommand>());
-            if (result.IsSuccess)
-            {
-                return new ObjectResult(new
-                {
-                    Success = result.IsSuccess,
-                    NewEntity = result.Object,
-                });
-            }
 
-            return new ObjectResult(new
-            {
-                Success = result.IsSuccess,
-                Error = result.Message,
-            });
+            return this.GetResult(result);
         }
 
         /// <summary>
@@ -101,20 +89,8 @@
         {
             var result = await this.Mediator.Send(
                 updateModel.ProjectedAs<PresenterUpdateEventAreaCommand>());
-            if (result.IsSuccess)
-            {
-                return new ObjectResult(new
-                {
-                    Success = result.IsSuccess,
-                    NewId = result.Object,
-                });
-            }
 
-            return new ObjectResult(new
-            {
-                Success = result.IsSuccess,
-                Error = result.Message,
-            });
+            return this.GetResult(result);
         }
 
         /// <summary>
@@ -130,20 +106,8 @@
         public async Task<IActionResult> Delete(int id)
         {
             var result = await this.Mediator.Send(new PresenterDeleteEventAreaCommand(id));
-            if (result.IsSuccess)
-            {
-                return new ObjectResult(new
-                {
-                    Success = result.IsSuccess,
-                    NewId = result.Object,
-                });
-            }
 
-            return new ObjectResult(new
-            {
-                Success = result.IsSuccess,
-                Error = result.Message,
-            });
+            return this.GetResult(result);
         }
     }
 }
