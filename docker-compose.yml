@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: src\Basket.API\Basket.Api\Dockerfile
+
+  catalog.api:
+    image: ${DOCKER_REGISTRY-}catalogapi
+    build:
+      context: .
+      dockerfile: src\Catalog.API\Catalog.Api\Dockerfile
+
+
+  identity.api:
+    image: ${DOCKER_REGISTRY-}identityapi
+    build:
+      context: .
+      dockerfile: src\Identity.API\Identity.Api\Dockerfile
+
+
+  superticketapi.apiendpoint:
+    image: ${DOCKER_REGISTRY-}superticketapiapiendpoint
+    build:
+      context: .
+      dockerfile: src\SuperTicketApi.ApiEndpoint\Dockerfile
+
