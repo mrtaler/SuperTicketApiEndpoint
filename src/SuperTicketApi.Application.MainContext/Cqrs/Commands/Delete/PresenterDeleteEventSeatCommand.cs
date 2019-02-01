@@ -2,8 +2,6 @@
 {
     using MediatR;
 
-    using SuperTicketApi.Domain.MainContext.Command;
-
     /// <summary>
     /// The delete event seat command.
     /// </summary>

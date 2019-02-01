@@ -35,7 +35,7 @@
                 .As<ISqlHelper>().InstancePerLifetimeScope();
 
             builder.AddMediatR(
-                typeof(GetQueryAsIEnumerableQueryHandler).GetTypeInfo().Assembly,
+                typeof(EnumerableAreaDomainQueryHandler).GetTypeInfo().Assembly,
                 typeof(GetAreaAsIEnumerableQuery).GetTypeInfo().Assembly,
                 typeof(Area).GetTypeInfo().Assembly);
 
