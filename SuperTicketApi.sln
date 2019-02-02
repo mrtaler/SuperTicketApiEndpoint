@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.106
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28527.54
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.ApiEndpoint", "src\SuperTicketApi.ApiEndpoint\SuperTicketApi.ApiEndpoint.csproj", "{FF7B59ED-9ECA-41A0-B1BC-F3BD17A49931}"
 EndProject
@@ -47,7 +47,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Domain.NUnit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.NUnitTests", "src\SuperTicketApi.NUnitTests\SuperTicketApi.NUnitTests.csproj", "{034F15BD-09DF-4D21-9253-78057302FAB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicketApi.Infrastructure.NUnitTest", "src\SuperTicketApi.Infrastructure.NUnitTest\SuperTicketApi.Infrastructure.NUnitTest.csproj", "{47D76B89-C160-458A-9D7E-65536705E5BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperTicketApi.Infrastructure.NUnitTest", "src\SuperTicketApi.Infrastructure.NUnitTest\SuperTicketApi.Infrastructure.NUnitTest.csproj", "{47D76B89-C160-458A-9D7E-65536705E5BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OAuthService", "OAuthService", "{D70B0B84-DA8E-4501-A6C0-ECD89C540AF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperTicket.OAuth.Api", "src\OAuthService\SuperTicket.OAuth.Api\SuperTicket.OAuth.Api.csproj", "{524DB287-ED81-4453-A57F-A6BBF497CA6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -197,6 +201,14 @@ Global
 		{47D76B89-C160-458A-9D7E-65536705E5BE}.Nout|Any CPU.Build.0 = Debug|Any CPU
 		{47D76B89-C160-458A-9D7E-65536705E5BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47D76B89-C160-458A-9D7E-65536705E5BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{524DB287-ED81-4453-A57F-A6BBF497CA6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{524DB287-ED81-4453-A57F-A6BBF497CA6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{524DB287-ED81-4453-A57F-A6BBF497CA6A}.Home|Any CPU.ActiveCfg = Debug|Any CPU
+		{524DB287-ED81-4453-A57F-A6BBF497CA6A}.Home|Any CPU.Build.0 = Debug|Any CPU
+		{524DB287-ED81-4453-A57F-A6BBF497CA6A}.Nout|Any CPU.ActiveCfg = Debug|Any CPU
+		{524DB287-ED81-4453-A57F-A6BBF497CA6A}.Nout|Any CPU.Build.0 = Debug|Any CPU
+		{524DB287-ED81-4453-A57F-A6BBF497CA6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{524DB287-ED81-4453-A57F-A6BBF497CA6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -220,6 +232,7 @@ Global
 		{F3FC5EA8-2E42-4700-8AF1-1A3FD82C95E1} = {A5C6613A-2822-421B-B380-F9143C0338D2}
 		{034F15BD-09DF-4D21-9253-78057302FAB5} = {2D14C410-AB59-4A82-A341-AA01363DF166}
 		{47D76B89-C160-458A-9D7E-65536705E5BE} = {360891CA-527C-412A-B091-C849CF0F3499}
+		{524DB287-ED81-4453-A57F-A6BBF497CA6A} = {D70B0B84-DA8E-4501-A6C0-ECD89C540AF2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2FD923DE-66A3-489D-8396-09D51EE16788}
