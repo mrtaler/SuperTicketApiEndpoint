@@ -52,21 +52,6 @@
       "metadata": {
         "description": "Location of Application Insight."
       }
-    },
-    "databaseServerName": {
-      "type": "string"
-    },
-    "databaseUsername": {
-      "type": "string"
-    },
-    "databasePassword": {
-      "type": "securestring"
-    },
-    "databaseLocation": {
-      "type": "string"
-    },
-    "databaseName": {
-      "type": "string"
     }
   },
   "variables": {
@@ -269,47 +254,6 @@
               "commandToExecute": "[concat('powershell.exe setx /m APPINSIGHTS_INSTRUMENTATIONKEY ', reference(resourceId('microsoft.insights/components/', parameters('vmName')), '2015-05-01').InstrumentationKey, '; Import-Module servermanager; Add-WindowsFeature Web-Server; Invoke-WebRequest https://download.microsoft.com/download/0/1/D/01DC28EA-638C-4A22-A57B-4CEF97755C6C/WebDeploy_amd64_en-US.msi -outfile $env:temp\\WebDeploy_amd64_en-US.msi; Start-Process $env:temp\\WebDeploy_amd64_en-US.msi -ArgumentList \"/quiet\" -Wait; Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=848827 -outfile $env:temp\\dotnet-dev-win-x64.1.0.4.exe; Start-Process $env:temp\\dotnet-dev-win-x64.1.0.4.exe -ArgumentList \"/quiet\" -Wait; Invoke-WebRequest https://go.microsoft.com/fwlink/?LinkId=817246 -outfile $env:temp\\DotNetCore.WindowsHosting.exe; Start-Process $env:temp\\DotNetCore.WindowsHosting.exe -ArgumentList \"/quiet\" -Wait; net stop was /y; net start w3svc')]"
             }
           }
-        }
-      ]
-    },
-    {
-      "type": "Microsoft.Sql/servers",
-      "name": "[parameters('databaseServerName')]",
-      "apiVersion": "2014-04-01-preview",
-      "location": "[parameters('databaseLocation')]",
-      "properties": {
-        "administratorLogin": "[parameters('databaseUsername')]",
-        "administratorLoginPassword": "[parameters('databasePassword')]",
-        "version": "12.0"
-      },
-      "resources": [
-        {
-          "type": "databases",
-          "name": "[parameters('databaseName')]",
-          "apiVersion": "2014-04-01-preview",
-          "location": "[parameters('databaseLocation')]",
-          "properties": {
-            "edition": "Basic",
-            "collation": "SQL_Latin1_General_CP1_CI_AS",
-            "maxSizeBytes": "2147483648",
-            "requestedServiceObjectiveId": "dd6d99bb-f193-4ec1-86f2-43d3bccbc49c"
-          },
-          "dependsOn": [
-            "[concat('Microsoft.Sql/servers/', parameters('databaseServerName'))]"
-          ]
-        },
-        {
-          "type": "firewallrules",
-          "name": "AllowAllWindowsAzureIps",
-          "apiVersion": "2014-04-01-preview",
-          "location": "[parameters('databaseLocation')]",
-          "properties": {
-            "endIpAddress": "0.0.0.0",
-            "startIpAddress": "0.0.0.0"
-          },
-          "dependsOn": [
-            "[concat('Microsoft.Sql/servers/', parameters('databaseServerName'))]"
-          ]
         }
       ]
     }
