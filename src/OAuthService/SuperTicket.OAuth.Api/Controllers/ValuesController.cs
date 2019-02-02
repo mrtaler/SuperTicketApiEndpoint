@@ -12,34 +12,17 @@ namespace SuperTicket.OAuth.Api.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public JsonResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return new JsonResult(new string[] { "value1", "value2", "value3", "value5" });
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public JsonResult Get(int id)
         {
-            return "value";
-        }
+            return new JsonResult($"value {id}");
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

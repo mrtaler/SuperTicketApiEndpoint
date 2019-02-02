@@ -47,11 +47,24 @@
         /// <returns>
         /// The <see cref="ActionResult"/>.
         /// </returns>
-        [HttpGet("GetAllAreas")]
-        public async Task<IActionResult> GetAreas()
+        [HttpGet("GetAllValues")]
+        public async Task<IActionResult> GetValues()
         {
             var tt = new OAuthClient();
-            return new ObjectResult(new { res = tt.GetAllAsync<IEnumerable<string>>() });
+            return new ObjectResult(new { res = tt.GetAllAsync() });
+        }
+
+        /// <summary>
+        /// The GET api/values 
+        /// </summary>
+        /// <returns>
+        /// The <see cref="ActionResult"/>.
+        /// </returns>
+        [HttpGet("GetValue/{id}")]
+        public async Task<IActionResult> GetValue(int id)
+        {
+            var tt = new OAuthClient();
+            return new JsonResult(new { res = tt.GetAsync(id) });
         }
     }
 
@@ -66,7 +79,7 @@
         }
 
         /// <inheritdoc />
-        public T GetAllAsync<T>()
+        public IEnumerable<string> GetAllAsync()
         {
             using (HttpClient httpClient = new HttpClient())
             {
@@ -74,7 +87,24 @@
                 using (HttpContent content = response.Content)
                 {
                     var data = content.ReadAsStringAsync().Result;
-                    var result = deserializer.Deserialize<T>(data);
+                    var result = deserializer.Deserialize<IEnumerable<string>>(data);
+                    return result;
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        public string GetAsync(int id)
+        {
+            using (HttpClient httpClient = new HttpClient())
+            {
+                var query = $"{urlAPI}/{id}";
+
+                HttpResponseMessage response = httpClient.GetAsync(query).Result;
+                using (HttpContent content = response.Content)
+                {
+                    var data = content.ReadAsStringAsync().Result;
+                    var result = deserializer.Deserialize<String>(data);
                     return result;
                 }
             }
@@ -86,7 +116,9 @@
     public interface IOAuthClient
     {
         [HttpGet("/api/values")]
-        T GetAllAsync<T>();
+        IEnumerable<string> GetAllAsync();
+        [HttpGet("/api/values/")]
+        string GetAsync(int id);
     }
     public interface ITask<TResult>
     {
