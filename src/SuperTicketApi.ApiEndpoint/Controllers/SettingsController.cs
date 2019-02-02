@@ -7,35 +7,43 @@
     using SuperTicketApi.ApiSettings.JsonSettings.ConnectionStrings;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// The settings controller.
+    /// </summary>
     [ApiVersion("1.0")]
     [Route("api/v{api-version:apiVersion}/[controller]")]
     public class SettingsController : BaseController
     {
-        IOptionsSnapshot<ConnectionStrings> connectionString;
+        /// <summary>
+        /// The connection string.
+        /// </summary>
+        private readonly IOptionsSnapshot<ConnectionStrings> connectionString;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AreaController"/> class.
+        /// Initializes a new instance of the <see cref="SettingsController"/> class. 
         /// </summary>
         /// <param name="mediator">
         /// The mediator.
         /// </param>
-        public SettingsController(IMediator mediator,
-            IOptionsSnapshot<ConnectionStrings> connectionString)
+        /// <param name="connectionString">
+        /// The connection String.
+        /// </param>
+        public SettingsController(IMediator mediator, IOptionsSnapshot<ConnectionStrings> connectionString)
             : base(mediator)
         {
             this.connectionString = connectionString;
         }
 
         /// <summary>
-        /// The GET api/values 
+        /// The get settings.
         /// </summary>
         /// <returns>
-        /// The <see cref="ActionResult"/>.
+        /// The <see cref="Task"/>.
         /// </returns>
         [HttpGet("GetAllAreas")]
         public async Task<IActionResult> GetSettings()
         {
-            var currentConnectionString = connectionString.Value.ConnectionString.Split(';')[0];
+            var currentConnectionString = this.connectionString.Value.ConnectionString.Split(';')[0];
 
 
             return new ObjectResult(new { ConnectionString = currentConnectionString });

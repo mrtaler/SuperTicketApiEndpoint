@@ -1,633 +1,261 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "components_SupTicketApiVm_name": {
-            "defaultValue": "SupTicketApiVm",
-            "type": "String"
-        },
-        "virtualMachines_SupTicketApiVm_name": {
-            "defaultValue": "SupTicketApiVm",
-            "type": "String"
-        },
-        "storageAccounts_zfavdgcxeotzesavm_name": {
-            "defaultValue": "zfavdgcxeotzesavm",
-            "type": "String"
-        },
-        "publicIPAddresses_SupTicketApiVm_ip_name": {
-            "defaultValue": "SupTicketApiVm-ip",
-            "type": "String"
-        },
-        "virtualNetworks_SupTicketApiVm_vnet_name": {
-            "defaultValue": "SupTicketApiVm-vnet",
-            "type": "String"
-        },
-        "networkInterfaces_SupTicketApiVm_NIC_name": {
-            "defaultValue": "SupTicketApiVm-NIC",
-            "type": "String"
-        },
-        "networkSecurityGroups_SupTicketApiVm_nsg_name": {
-            "defaultValue": "SupTicketApiVm-nsg",
-            "type": "String"
-        },
-        "schedules_shutdown_computevm_supticketapivm_name": {
-            "defaultValue": "shutdown-computevm-supticketapivm",
-            "type": "String"
-        },
-        "alertrules_Failure_Anomalies___SupTicketApiVm_name": {
-            "defaultValue": "Failure Anomalies - SupTicketApiVm",
-            "type": "String"
-        },
-        "subnets_mySubnet_name": {
-            "defaultValue": "mySubnet",
-            "type": "String"
-        },
-        "extensions_customScriptExtension_name": {
-            "defaultValue": "customScriptExtension",
-            "type": "String"
-        },
-        "securityRules_web_rule_name": {
-            "defaultValue": "web_rule",
-            "type": "String"
-        },
-        "securityRules_Port_8080_name": {
-            "defaultValue": "Port_8080",
-            "type": "String"
-        },
-        "securityRules_default_allow_rdp_name": {
-            "defaultValue": "default-allow-rdp",
-            "type": "String"
-        },
-        "virtualMachines_SupTicketApiVm_id": {
-            "defaultValue": "/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/SupTicketApiVm-rg/providers/Microsoft.Compute/disks/SupTicketApiVm_OsDisk_1_9c8515a485c449ce85ff356bbe06195a",
-            "type": "String"
-        }
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name for the Virtual Machine."
+      }
     },
-    "variables": {},
-    "resources": [
-        {
-            "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/supticketapivm-rg/providers/Microsoft.Compute/virtualMachines/SupTicketApiVm'.",
-            "type": "Microsoft.Compute/virtualMachines",
-            "name": "[parameters('virtualMachines_SupTicketApiVm_name')]",
-            "apiVersion": "2018-06-01",
-            "location": "westeurope",
-            "scale": null,
-            "properties": {
-                "hardwareProfile": {
-                    "vmSize": "Standard_B2s"
-                },
-                "storageProfile": {
-                    "imageReference": {
-                        "publisher": "MicrosoftWindowsServer",
-                        "offer": "WindowsServer",
-                        "sku": "2016-Datacenter-smalldisk",
-                        "version": "latest"
-                    },
-                    "osDisk": {
-                        "osType": "Windows",
-                        "name": "[concat(parameters('virtualMachines_SupTicketApiVm_name'),'_OsDisk_1_9c8515a485c449ce85ff356bbe06195a')]",
-                        "createOption": "FromImage",
-                        "caching": "ReadWrite",
-                        "managedDisk": {
-                            "id": "[parameters('virtualMachines_SupTicketApiVm_id')]"
-                        }
-                    },
-                    "dataDisks": []
-                },
-                "osProfile": {
-                    "computerName": "[parameters('virtualMachines_SupTicketApiVm_name')]",
-                    "adminUsername": "mrTaler",
-                    "windowsConfiguration": {
-                        "provisionVMAgent": true,
-                        "enableAutomaticUpdates": true
-                    },
-                    "secrets": []
-                },
-                "networkProfile": {
-                    "networkInterfaces": [
-                        {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_SupTicketApiVm_NIC_name'))]"
-                        }
-                    ]
-                },
-                "diagnosticsProfile": {
-                    "bootDiagnostics": {
-                        "enabled": true,
-                        "storageUri": "[concat('https', '://', parameters('storageAccounts_zfavdgcxeotzesavm_name'), '.blob.core.windows.net', '/')]"
-                    }
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_SupTicketApiVm_NIC_name'))]",
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_zfavdgcxeotzesavm_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourcegroups/supticketapivm-rg/providers/microsoft.devtestlab/schedules/shutdown-computevm-supticketapivm'.",
-            "type": "microsoft.devtestlab/schedules",
-            "name": "[parameters('schedules_shutdown_computevm_supticketapivm_name')]",
-            "apiVersion": "2016-05-15",
-            "location": "westeurope",
-            "scale": null,
-            "properties": {
-                "status": "Enabled",
-                "taskType": "ComputeVmShutdownTask",
-                "dailyRecurrence": {
-                    "time": "2200"
-                },
-                "timeZoneId": "Belarus Standard Time",
-                "notificationSettings": {
-                    "status": "Disabled",
-                    "timeInMinutes": 30
-                },
-                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_SupTicketApiVm_name'))]",
-                "provisioningState": "Succeeded",
-                "uniqueIdentifier": "51da7d48-5668-4bda-a06f-f8747235598e"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_SupTicketApiVm_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/SupTicketApiVm-rg/providers/microsoft.insights/alertrules/Failure Anomalies - SupTicketApiVm'.",
-            "type": "microsoft.insights/alertrules",
-            "name": "[parameters('alertrules_Failure_Anomalies___SupTicketApiVm_name')]",
-            "apiVersion": "2014-04-01",
-            "location": "West Europe",
-            "tags": {
-                "hidden-link:/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/SupTicketApiVm-rg/providers/microsoft.insights/components/SupTicketApiVm": "Resource"
-            },
-            "scale": null,
-            "properties": {
-                "name": "[parameters('alertrules_Failure_Anomalies___SupTicketApiVm_name')]",
-                "description": "",
-                "isEnabled": true,
-                "condition": {
-                    "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
-                    "dataSource": {
-                        "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
-                        "resourceUri": "[resourceId('microsoft.insights/components', parameters('components_SupTicketApiVm_name'))]",
-                        "metricNamespace": null,
-                        "metricName": "advanced::A3108E3D-5E26-44CF-B232-783F5E20EF10::ewAiAEgAeQBwAGUAcgBpAG8AbgBBAHAAcABsAGkAYwBhAHQAaQBvAG4AUwBpAGQAIgA6AG4AdQBsAGwALAAiAEgAeQBwAGUAcgBpAG8AbgBTAHUAYgBqAGUAYwB0AFMAaQBkACIAOgBuAHUAbABsACwAIgBIAHkAcABlAHIAaQBvAG4ATwBiAHMAZQByAHYAZQByAFMAaQBkACIAOgBuAHUAbABsACwAIgBDAHUAcwB0AG8AbQBlAHIAQQBjAGMAbwB1AG4AdABJAGQAIgA6ACIAMAAwADAAMAAwADAAMAAwAC0AMAAwADAAMAAtADAAMAAwADAALQAwADAAMAAwAC0AMAAwADAAMAAwADAAMAAwADAAMAAwADAAIgAsACIAQQBwAHAAbABpAGMAYQB0AGkAbwBuAE4AYQBtAGUAIgA6AG4AdQBsAGwALAAiAEEAcABwAGwAaQBjAGEAdABpAG8AbgBJAGQAIgA6AG4AdQBsAGwALAAiAFAAcgBvAGYAaQBsAGUASQBkACIAOgAwACwAIgBXAGkAbgBkAG8AdwBTAGkAegBlAEkAbgBNAGkAbgB1AHQAZQBzACIAOgA2ADAALAAiAE0AZQB0AHIAaQBjAE4AYQBtAGUAIgA6ACIAIgAsACIAVABoAHIAZQBzAGgAbwBsAGQAIgA6ADIALgAwACwAIgBBAGwAZQByAHQAVABlAG0AcABsAGEAdABlAEkAZAAiADoAIgAiACwAIgBSAHUAbABlAEkAZAAiADoAIgAiACwAIgBSAHUAbABlAE4AYQBtAGUAIgA6ACIAIgAsACIAUgB1AGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AIgA6ACIAIgAsACIAUgBlAHMAbwB1AHIAYwBlAEkAZAAiADoAbgB1AGwAbAAsACIAUwB1AGIAcwBjAHIAaQBwAHQAaQBvAG4ASQBkACIAOgBuAHUAbABsACwAIgBBAGcAZwByAGUAZwBhAHQAZQBGAHUAbgBjAHQAaQBvAG4AIgA6ACIAIgAsACIAQwBvAG0AcABhAHIAaQBzAG8AbgBPAHAAZQByAGEAdABvAHIAIgA6ACIAewBcACIAQgBhAHMAZQBsAGkAbgBlAFQAaQBtAGUAcwBwAGEAbgBcACIAOgBcACIAMAAwADoANAAwADoAMAAwAFwAIgAsAFwAIgBJAG4AcwBpAGcAaAB0AHMAUwBlAHIAdgBpAGMAZQBMAGEAZwBcACIAOgBcACIAMAAwADoAMAAwADoAMAAwAFwAIgAsAFwAIgBCAHUAZgBmAGUAcgBUAGkAbQBlAFwAIgA6AFwAIgAwADAAOgAwADEAOgAwADAAXAAiACwAXAAiAEIAbABvAGIAUwB0AG8AcgBhAGcAZQBMAG8AZwBnAGkAbgBnAEUAbgBhAGIAbABlAGQAXAAiADoAZgBhAGwAcwBlACwAXAAiAFUAcwBlAHIAUwB1AHAAcAByAGUAcwBzAGkAbwBuAHMAXAAiADoAbgB1AGwAbAAsAFwAIgBQAHIAbwBmAGkAbABlAEkAZABcACIAOgAwACwAXAAiAEUAbQBhAGkAbABUAHkAcABlAFwAIgA6ADAALABcACIAUgBkAGQARgBhAGkAbAB1AHIAZQBzAFMAcABpAGsAZQBUAGgAcgBlAHMAaABvAGwAZABcACIAOgAzAC4AMAAsAFwAIgBSAGEAdwBQAHIAbwBhAGMAdABpAHYAZQBSAHUAbABlAEMAbwBuAGYAaQBnAFwAIgA6AG4AdQBsAGwAfQAiACwAIgBFAG4AYQBiAGwAZQBTAGUAbgBkAEUAbQBhAGkAbABUAG8AQwB1AHMAdABvAG0AIgA6AGYAYQBsAHMAZQAsACIAQwB1AHMAdABvAG0ARQBtAGEAaQBsAHMARQBuAGMAbwBkAGUAZAAiADoAIgAiACwAIgBFAG4AYQBiAGwAZQBTAGUAbgBkAEUAbQBhAGkAbABUAG8ATwB3AG4AZQByAHMAIgA6AGYAYQBsAHMAZQB9AA=="
-                    },
-                    "operator": "GreaterThan",
-                    "threshold": 2,
-                    "windowSize": "PT1H"
-                },
-                "action": {
-                    "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
-                    "sendToServiceOwners": true,
-                    "customEmails": []
-                }
-            },
-            "dependsOn": [
-                "[resourceId('microsoft.insights/components', parameters('components_SupTicketApiVm_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/SupTicketApiVm-rg/providers/microsoft.insights/components/SupTicketApiVm'.",
-            "type": "microsoft.insights/components",
-            "kind": "web",
-            "name": "[parameters('components_SupTicketApiVm_name')]",
-            "apiVersion": "2015-05-01",
-            "location": "westeurope",
-            "tags": {},
-            "scale": null,
-            "properties": {
-                "Application_Type": "web",
-                "Flow_Type": null,
-                "Request_Source": "AzureTfsExtensionAzureProject",
-                "HockeyAppId": null,
-                "SamplingPercentage": null
-            },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/SupTicketApiVm-rg/providers/Microsoft.Network/networkInterfaces/SupTicketApiVm-NIC'.",
-            "type": "Microsoft.Network/networkInterfaces",
-            "name": "[parameters('networkInterfaces_SupTicketApiVm_NIC_name')]",
-            "apiVersion": "2018-10-01",
-            "location": "westeurope",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "resourceGuid": "e0839368-39d4-4d6f-935e-79a2c54c4ae2",
-                "ipConfigurations": [
-                    {
-                        "name": "ipconfig1",
-                        "etag": "W/\"51fe20e0-960a-4ced-9770-187bbcf790a6\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "privateIPAddress": "10.0.0.4",
-                            "privateIPAllocationMethod": "Dynamic",
-                            "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_SupTicketApiVm_ip_name'))]"
-                            },
-                            "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_SupTicketApiVm_vnet_name'), parameters('subnets_mySubnet_name'))]"
-                            },
-                            "primary": true,
-                            "privateIPAddressVersion": "IPv4"
-                        }
-                    }
-                ],
-                "dnsSettings": {
-                    "dnsServers": [],
-                    "appliedDnsServers": []
-                },
-                "enableAcceleratedNetworking": false,
-                "enableIPForwarding": false,
-                "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_SupTicketApiVm_nsg_name'))]"
-                },
-                "primary": true,
-                "tapConfigurations": []
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_SupTicketApiVm_ip_name'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_SupTicketApiVm_vnet_name'), parameters('subnets_mySubnet_name'))]",
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_SupTicketApiVm_nsg_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/SupTicketApiVm-rg/providers/Microsoft.Network/networkSecurityGroups/SupTicketApiVm-nsg'.",
-            "type": "Microsoft.Network/networkSecurityGroups",
-            "name": "[parameters('networkSecurityGroups_SupTicketApiVm_nsg_name')]",
-            "apiVersion": "2018-10-01",
-            "location": "westeurope",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "resourceGuid": "f39700cb-77fc-463b-acd3-336f8a6b41a1",
-                "securityRules": [
-                    {
-                        "name": "default-allow-rdp",
-                        "etag": "W/\"9242a50d-14b5-4e67-bbb9-87d220982a28\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "description": "Allow RDP",
-                            "protocol": "TCP",
-                            "sourcePortRange": "*",
-                            "destinationPortRange": "3389",
-                            "sourceAddressPrefix": "*",
-                            "destinationAddressPrefix": "*",
-                            "access": "Allow",
-                            "priority": 100,
-                            "direction": "Inbound",
-                            "sourcePortRanges": [],
-                            "destinationPortRanges": [],
-                            "sourceAddressPrefixes": [],
-                            "destinationAddressPrefixes": []
-                        }
-                    },
-                    {
-                        "name": "web_rule",
-                        "etag": "W/\"9242a50d-14b5-4e67-bbb9-87d220982a28\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "description": "Allow WEB",
-                            "protocol": "*",
-                            "sourcePortRange": "*",
-                            "destinationPortRange": "80",
-                            "sourceAddressPrefix": "*",
-                            "destinationAddressPrefix": "*",
-                            "access": "Allow",
-                            "priority": 101,
-                            "direction": "Inbound",
-                            "sourcePortRanges": [],
-                            "destinationPortRanges": [],
-                            "sourceAddressPrefixes": [],
-                            "destinationAddressPrefixes": []
-                        }
-                    },
-                    {
-                        "name": "Port_8080",
-                        "etag": "W/\"9242a50d-14b5-4e67-bbb9-87d220982a28\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "protocol": "TCP",
-                            "sourcePortRange": "*",
-                            "destinationPortRange": "1433",
-                            "sourceAddressPrefix": "*",
-                            "destinationAddressPrefix": "*",
-                            "access": "Allow",
-                            "priority": 111,
-                            "direction": "Inbound",
-                            "sourcePortRanges": [],
-                            "destinationPortRanges": [],
-                            "sourceAddressPrefixes": [],
-                            "destinationAddressPrefixes": []
-                        }
-                    }
-                ],
-                "defaultSecurityRules": [
-                    {
-                        "name": "AllowVnetInBound",
-                        "etag": "W/\"9242a50d-14b5-4e67-bbb9-87d220982a28\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "description": "Allow inbound traffic from all VMs in VNET",
-                            "protocol": "*",
-                            "sourcePortRange": "*",
-                            "destinationPortRange": "*",
-                            "sourceAddressPrefix": "VirtualNetwork",
-                            "destinationAddressPrefix": "VirtualNetwork",
-                            "access": "Allow",
-                            "priority": 65000,
-                            "direction": "Inbound",
-                            "sourcePortRanges": [],
-                            "destinationPortRanges": [],
-                            "sourceAddressPrefixes": [],
-                            "destinationAddressPrefixes": []
-                        }
-                    },
-                    {
-                        "name": "AllowAzureLoadBalancerInBound",
-                        "etag": "W/\"9242a50d-14b5-4e67-bbb9-87d220982a28\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "description": "Allow inbound traffic from azure load balancer",
-                            "protocol": "*",
-                            "sourcePortRange": "*",
-                            "destinationPortRange": "*",
-                            "sourceAddressPrefix": "AzureLoadBalancer",
-                            "destinationAddressPrefix": "*",
-                            "access": "Allow",
-                            "priority": 65001,
-                            "direction": "Inbound",
-                            "sourcePortRanges": [],
-                            "destinationPortRanges": [],
-                            "sourceAddressPrefixes": [],
-                            "destinationAddressPrefixes": []
-                        }
-                    },
-                    {
-                        "name": "DenyAllInBound",
-                        "etag": "W/\"9242a50d-14b5-4e67-bbb9-87d220982a28\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "description": "Deny all inbound traffic",
-                            "protocol": "*",
-                            "sourcePortRange": "*",
-                            "destinationPortRange": "*",
-                            "sourceAddressPrefix": "*",
-                            "destinationAddressPrefix": "*",
-                            "access": "Deny",
-                            "priority": 65500,
-                            "direction": "Inbound",
-                            "sourcePortRanges": [],
-                            "destinationPortRanges": [],
-                            "sourceAddressPrefixes": [],
-                            "destinationAddressPrefixes": []
-                        }
-                    },
-                    {
-                        "name": "AllowVnetOutBound",
-                        "etag": "W/\"9242a50d-14b5-4e67-bbb9-87d220982a28\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "description": "Allow outbound traffic from all VMs to all VMs in VNET",
-                            "protocol": "*",
-                            "sourcePortRange": "*",
-                            "destinationPortRange": "*",
-                            "sourceAddressPrefix": "VirtualNetwork",
-                            "destinationAddressPrefix": "VirtualNetwork",
-                            "access": "Allow",
-                            "priority": 65000,
-                            "direction": "Outbound",
-                            "sourcePortRanges": [],
-                            "destinationPortRanges": [],
-                            "sourceAddressPrefixes": [],
-                            "destinationAddressPrefixes": []
-                        }
-                    },
-                    {
-                        "name": "AllowInternetOutBound",
-                        "etag": "W/\"9242a50d-14b5-4e67-bbb9-87d220982a28\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "description": "Allow outbound traffic from all VMs to Internet",
-                            "protocol": "*",
-                            "sourcePortRange": "*",
-                            "destinationPortRange": "*",
-                            "sourceAddressPrefix": "*",
-                            "destinationAddressPrefix": "Internet",
-                            "access": "Allow",
-                            "priority": 65001,
-                            "direction": "Outbound",
-                            "sourcePortRanges": [],
-                            "destinationPortRanges": [],
-                            "sourceAddressPrefixes": [],
-                            "destinationAddressPrefixes": []
-                        }
-                    },
-                    {
-                        "name": "DenyAllOutBound",
-                        "etag": "W/\"9242a50d-14b5-4e67-bbb9-87d220982a28\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "description": "Deny all outbound traffic",
-                            "protocol": "*",
-                            "sourcePortRange": "*",
-                            "destinationPortRange": "*",
-                            "sourceAddressPrefix": "*",
-                            "destinationAddressPrefix": "*",
-                            "access": "Deny",
-                            "priority": 65500,
-                            "direction": "Outbound",
-                            "sourcePortRanges": [],
-                            "destinationPortRanges": [],
-                            "sourceAddressPrefixes": [],
-                            "destinationAddressPrefixes": []
-                        }
-                    }
-                ]
-            },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/SupTicketApiVm-rg/providers/Microsoft.Network/publicIPAddresses/SupTicketApiVm-ip'.",
-            "type": "Microsoft.Network/publicIPAddresses",
-            "sku": {
-                "name": "Basic",
-                "tier": "Regional"
-            },
-            "name": "[parameters('publicIPAddresses_SupTicketApiVm_ip_name')]",
-            "apiVersion": "2018-10-01",
-            "location": "westeurope",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "resourceGuid": "9ad26816-b43c-497a-81ca-06adb6572539",
-                "publicIPAddressVersion": "IPv4",
-                "publicIPAllocationMethod": "Dynamic",
-                "idleTimeoutInMinutes": 4,
-                "dnsSettings": {
-                    "domainNameLabel": "supticketapivmzfavdgcxeotze",
-                    "fqdn": "supticketapivmzfavdgcxeotze.westeurope.cloudapp.azure.com"
-                },
-                "ipTags": []
-            },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/SupTicketApiVm-rg/providers/Microsoft.Network/virtualNetworks/SupTicketApiVm-vnet'.",
-            "type": "Microsoft.Network/virtualNetworks",
-            "name": "[parameters('virtualNetworks_SupTicketApiVm_vnet_name')]",
-            "apiVersion": "2018-10-01",
-            "location": "westeurope",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "resourceGuid": "1f0f1e25-1018-4668-8123-d687af00dbd3",
-                "addressSpace": {
-                    "addressPrefixes": [
-                        "10.0.0.0/16"
-                    ]
-                },
-                "subnets": [
-                    {
-                        "name": "mySubnet",
-                        "etag": "W/\"16d49456-9d78-4b0f-99bf-321ab357afe0\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "addressPrefix": "10.0.0.0/24",
-                            "delegations": []
-                        }
-                    }
-                ],
-                "virtualNetworkPeerings": [],
-                "enableDdosProtection": false,
-                "enableVmProtection": false
-            },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/SupTicketApiVm-rg/providers/Microsoft.Storage/storageAccounts/zfavdgcxeotzesavm'.",
-            "type": "Microsoft.Storage/storageAccounts",
-            "sku": {
-                "name": "Standard_LRS",
-                "tier": "Standard"
-            },
-            "kind": "Storage",
-            "name": "[parameters('storageAccounts_zfavdgcxeotzesavm_name')]",
-            "apiVersion": "2018-07-01",
-            "location": "westeurope",
-            "tags": {},
-            "scale": null,
-            "properties": {
-                "networkAcls": {
-                    "bypass": "AzureServices",
-                    "virtualNetworkRules": [],
-                    "ipRules": [],
-                    "defaultAction": "Allow"
-                },
-                "supportsHttpsTrafficOnly": false,
-                "encryption": {
-                    "services": {
-                        "file": {
-                            "enabled": true
-                        },
-                        "blob": {
-                            "enabled": true
-                        }
-                    },
-                    "keySource": "Microsoft.Storage"
-                }
-            },
-            "dependsOn": []
-        },      
-        {
-            "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/SupTicketApiVm-rg/providers/Microsoft.Network/networkSecurityGroups/SupTicketApiVm-nsg/securityRules/default-allow-rdp'.",
-            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "[concat(parameters('networkSecurityGroups_SupTicketApiVm_nsg_name'), '/', parameters('securityRules_default_allow_rdp_name'))]",
-            "apiVersion": "2018-10-01",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "description": "Allow RDP",
-                "protocol": "TCP",
-                "sourcePortRange": "*",
-                "destinationPortRange": "3389",
-                "sourceAddressPrefix": "*",
-                "destinationAddressPrefix": "*",
-                "access": "Allow",
-                "priority": 100,
-                "direction": "Inbound",
-                "sourcePortRanges": [],
-                "destinationPortRanges": [],
-                "sourceAddressPrefixes": [],
-                "destinationAddressPrefixes": []
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_SupTicketApiVm_nsg_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/SupTicketApiVm-rg/providers/Microsoft.Network/networkSecurityGroups/SupTicketApiVm-nsg/securityRules/web_rule'.",
-            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "[concat(parameters('networkSecurityGroups_SupTicketApiVm_nsg_name'), '/', parameters('securityRules_web_rule_name'))]",
-            "apiVersion": "2018-10-01",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "description": "Allow WEB",
-                "protocol": "*",
-                "sourcePortRange": "*",
-                "destinationPortRange": "80",
-                "sourceAddressPrefix": "*",
-                "destinationAddressPrefix": "*",
-                "access": "Allow",
-                "priority": 101,
-                "direction": "Inbound",
-                "sourcePortRanges": [],
-                "destinationPortRanges": [],
-                "sourceAddressPrefixes": [],
-                "destinationAddressPrefixes": []
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_SupTicketApiVm_nsg_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/SupTicketApiVm-rg/providers/Microsoft.Network/networkSecurityGroups/SupTicketApiVm-nsg/securityRules/Port_8080'.",
-            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "[concat(parameters('networkSecurityGroups_SupTicketApiVm_nsg_name'), '/', parameters('securityRules_Port_8080_name'))]",
-            "apiVersion": "2018-10-01",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "protocol": "TCP",
-                "sourcePortRange": "*",
-                "destinationPortRange": "1433",
-                "sourceAddressPrefix": "*",
-                "destinationAddressPrefix": "*",
-                "access": "Allow",
-                "priority": 111,
-                "direction": "Inbound",
-                "sourcePortRanges": [],
-                "destinationPortRanges": [],
-                "sourceAddressPrefixes": [],
-                "destinationAddressPrefixes": []
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_SupTicketApiVm_nsg_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ad30eaa1-eaef-42c4-b81e-6202f4f21a4c/resourceGroups/SupTicketApiVm-rg/providers/Microsoft.Network/virtualNetworks/SupTicketApiVm-vnet/subnets/mySubnet'.",
-            "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('virtualNetworks_SupTicketApiVm_vnet_name'), '/', parameters('subnets_mySubnet_name'))]",
-            "apiVersion": "2018-10-01",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "addressPrefix": "10.0.0.0/24",
-                "delegations": []
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_SupTicketApiVm_vnet_name'))]"
-            ]
+    "vmSize": {
+      "type": "string",
+      "defaultValue": "Standard_B2s",
+      "metadata": {
+        "description": "Size for the Virtual Machine."
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for the Virtual Machine."
+      }
+    },
+    "adminUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "Username for the Virtual Machine."
+      }
+    },
+    "adminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Password for the Virtual Machine."
+      }
+    },
+    "windowsOSVersion": {
+      "type": "string",
+      "defaultValue": "2016-Datacenter-smalldisk",
+      "allowedValues": [
+        "2012-R2-Datacenter",
+        "2016-Datacenter",
+        "2012-R2-Datacenter-smalldisk",
+        "2016-Datacenter-smalldisk"
+      ],
+      "metadata": {
+        "description": "The Windows version for the VM."
+      }
+    },
+    "appInsightsLocation": {
+      "type": "string",
+      "metadata": {
+        "description": "Location of Application Insight."
+      }
+    }
+  },
+  "variables": {
+    "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'savm')]",
+    "nicName": "[concat(parameters('vmName'), '-NIC')]",
+    "addressPrefix": "10.0.0.0/16",
+    "subnetName": "mySubnet",
+    "subnetPrefix": "10.0.0.0/24",
+    "publicIPAddressName": "[concat(parameters('vmName'), '-ip')]",
+    "networkSecurityGroupName": "[concat(parameters('vmName'), '-nsg')]",
+    "virtualNetworkName": "[concat(parameters('vmName'), '-vnet')]",
+    "vnetId": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
+    "subnetRef": "[concat(variables('vnetId'), '/subnets/', variables('subnetName'))]",
+    "customScriptExtension": "customScriptExtension"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[variables('storageAccountName')]",
+      "apiVersion": "2016-01-01",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "Storage",
+      "properties": {}
+    },
+    {
+      "apiVersion": "2017-08-01",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[variables('publicIPAddressName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic",
+        "dnsSettings": {
+          "domainNameLabel": "[concat(toLower(parameters('vmName')), uniquestring(resourceGroup().id))]"
         }
-    ]
+      }
+    },
+    {
+      "apiVersion": "2017-08-01",
+      "type": "Microsoft.Network/virtualNetworks",
+      "name": "[variables('virtualNetworkName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('addressPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('subnetName')]",
+            "properties": {
+              "addressPrefix": "[variables('subnetPrefix')]"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "2016-09-01",
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "[variables('nicName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]",
+        "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
+      ],
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "publicIPAddress": {
+                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
+              },
+              "subnet": {
+                "id": "[variables('subnetRef')]"
+              }
+            }
+          }
+        ],
+        "networkSecurityGroup": {
+          "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
+        }
+      }
+    },
+    {
+      "name": "[variables('networkSecurityGroupName')]",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "apiVersion": "2017-06-01",
+      "location": "[parameters('location')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "default-allow-rdp",
+            "properties": {
+              "description": "Allow RDP",
+              "priority": 100,
+              "protocol": "TCP",
+              "access": "Allow",
+              "direction": "Inbound",
+              "sourceAddressPrefix": "*",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "3389"
+            }
+          },
+          {
+            "name": "web_rule",
+            "properties": {
+              "description": "Allow WEB",
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "80",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 101,
+              "direction": "Inbound"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "[parameters('vmName')]",
+      "type": "microsoft.insights/components",
+      "location": "[parameters('appInsightsLocation')]",
+      "apiVersion": "2014-08-01",
+      "properties": {
+        "ApplicationId": "[parameters('vmName')]",
+        "Request_Source": "AzureTfsExtensionAzureProject"
+      }
+    },
+    {
+      "apiVersion": "2016-04-30-preview",
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "[parameters('vmName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]",
+        "[resourceId('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
+      ],
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('vmSize')]"
+        },
+        "osProfile": {
+          "computerName": "[parameters('vmName')]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "adminPassword": "[parameters('adminPassword')]",
+          "windowsConfiguration": {
+            "provisionVmAgent": "true"
+          }
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "MicrosoftWindowsServer",
+            "offer": "WindowsServer",
+            "sku": "[parameters('windowsOSVersion')]",
+            "version": "latest"
+          },
+          "osDisk": {
+            "createOption": "fromImage"
+          },
+          "dataDisks": []
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]"
+            }
+          ]
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": "true",
+            "storageUri": "[reference(resourceId(resourceGroup().name, 'Microsoft.Storage/storageAccounts/', variables('storageAccountName'))).primaryEndpoints['blob']]"
+          }
+        }
+      },
+      "resources": [
+        {
+          "name": "[concat(parameters('vmName'), '/', variables('customScriptExtension'))]",
+          "type": "Microsoft.Compute/virtualMachines/extensions",
+          "location": "[parameters('location')]",
+          "apiVersion": "2015-06-15",
+          "dependsOn": [
+            "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
+          ],
+          "properties": {
+            "publisher": "Microsoft.Compute",
+            "type": "CustomScriptExtension",
+            "typeHandlerVersion": "1.9",
+            "autoUpgradeMinorVersion": true,
+            "protectedSettings": {
+              "commandToExecute": "[concat('powershell.exe setx /m APPINSIGHTS_INSTRUMENTATIONKEY ', reference(resourceId('microsoft.insights/components/', parameters('vmName')), '2015-05-01').InstrumentationKey, '; Import-Module servermanager; Add-WindowsFeature Web-Server; Invoke-WebRequest https://download.microsoft.com/download/0/1/D/01DC28EA-638C-4A22-A57B-4CEF97755C6C/WebDeploy_amd64_en-US.msi -outfile $env:temp\\WebDeploy_amd64_en-US.msi; Start-Process $env:temp\\WebDeploy_amd64_en-US.msi -ArgumentList \"/quiet\" -Wait; Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=848827 -outfile $env:temp\\dotnet-dev-win-x64.1.0.4.exe; Start-Process $env:temp\\dotnet-dev-win-x64.1.0.4.exe -ArgumentList \"/quiet\" -Wait; Invoke-WebRequest https://go.microsoft.com/fwlink/?LinkId=817246 -outfile $env:temp\\DotNetCore.WindowsHosting.exe; Start-Process $env:temp\\DotNetCore.WindowsHosting.exe -ArgumentList \"/quiet\" -Wait; net stop was /y; net start w3svc')]"
+            }
+          }
+        }
+      ]
+    }
+  ]
 }

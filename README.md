@@ -13,4 +13,6 @@
 [![Build Status](https://dev.azure.com/SiarheiLinkevich/SuperTicketApiEndpoint/_apis/build/status/SuperTicketApi%20develop?branchName=feature/DAL)](https://dev.azure.com/SiarheiLinkevich/SuperTicketApiEndpoint/_build/latest?definitionId=34?branchName=feature/DAL)
 
 # Deploy status
-![Deploy Status](https://vsrm.dev.azure.com/SiarheiLinkevich/_apis/public/Release/badge/17256b0f-fc7b-48da-bbde-7813a0aeddd9/1/1)
+[![Build status](https://ci.appveyor.com/api/projects/status/f5d9hxogj3yjnh14?svg=true)](https://ci.appveyor.com/project/mrtaler/superticketapiendpoint)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/f5d9hxogj3yjnh14/branch/master?svg=true)](https://ci.appveyor.com/project/mrtaler/superticketapiendpoint/branch/master)

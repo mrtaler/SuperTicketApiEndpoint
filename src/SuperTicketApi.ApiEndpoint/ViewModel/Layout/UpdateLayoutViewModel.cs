@@ -1,5 +1,8 @@
 ﻿namespace SuperTicketApi.ApiEndpoint.ViewModel.Layout
 {
+    /// <summary>
+    /// The update layout view model.
+    /// </summary>
     public class UpdateLayoutViewModel : ApiViewModel
     {
         /// <summary>
