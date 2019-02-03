@@ -31,6 +31,7 @@
 
             return WebHost.CreateDefaultBuilder(args).UseContentRoot(Directory.GetCurrentDirectory())
                 .ConfigureServices(services => services.AddAutofac())
+                .UseUrls("http://localhost:5000")
 
                 // .UseKestrel(o=> { o.AddServerHeader = true; }                )
                 .ConfigureAppConfiguration(
