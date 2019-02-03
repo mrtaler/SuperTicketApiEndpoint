@@ -19,7 +19,9 @@ namespace SuperTicket.OAuth.Api
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+            .UseKestrel()
                 .UseUrls("http://localhost:9002")
+               .UseIISIntegration()
                 .UseStartup<Startup>();
     }
 }

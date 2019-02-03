@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace ApiGateway
 {
@@ -14,18 +9,25 @@ namespace ApiGateway
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-            .UseKestrel()
-            .UseContentRoot(Directory.GetCurrentDirectory())
-            .UseUrls("http://localhost:9000")
-            .ConfigureAppConfiguration((host, config) =>
+            IWebHostBuilder builder = new WebHostBuilder();
+            builder.ConfigureServices(s =>
             {
-                config.AddJsonFile("ocelot.json");
-            })
-            .UseStartup<Startup>();
+                s.AddSingleton(builder);
+            });
+
+            builder.UseKestrel()
+                   .UseContentRoot(Directory.GetCurrentDirectory())
+                   .UseStartup<Startup>()
+                    .ConfigureAppConfiguration((config) =>
+                    {
+                        config.AddJsonFile("ocelot.json");
+                        config.AddEnvironmentVariables();
+                    })
+                   .UseUrls("http://localhost:9000");
+
+            var host = builder.Build();
+            host.Run();
+
+        }
     }
 }
