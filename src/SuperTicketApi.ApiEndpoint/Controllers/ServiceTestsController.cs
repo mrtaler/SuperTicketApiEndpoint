@@ -72,7 +72,7 @@
     {
         private string urlAPI;
         private readonly ISerializer deserializer;
-        public OAuthClient(string urlApi = "http://localhost:9002/api/values")
+        public OAuthClient(string urlApi = "http://localhost:9021/api/values")
         {
             this.urlAPI = urlApi;
             deserializer = new JsonSerializer();

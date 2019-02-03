@@ -32,7 +32,7 @@
             return WebHost.CreateDefaultBuilder(args).UseContentRoot(Directory.GetCurrentDirectory())
                 .ConfigureServices(services => services.AddAutofac())
                // .UseKestrel(/*o => { o.AddServerHeader = true; }*/)
-                .UseUrls("http://localhost:9005")
+                .UseUrls("http://localhost:9051")
                 .ConfigureAppConfiguration(
                 (hostingContext, config) =>
                     {

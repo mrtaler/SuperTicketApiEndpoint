@@ -2,12 +2,8 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
-    "iis": {
-      "applicationUrl": "http://localhost/SuperTicketApi.ApiEndpoint",
-      "sslPort": 0
-    },
     "iisExpress": {
-      "applicationUrl": "http://localhost:9005",
+      "applicationUrl": "http://localhost:9051",
       "sslPort": 0
     }
   },
@@ -24,9 +20,9 @@
       "commandName": "Project",
       "launchUrl": "api/values",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Home"
       },
-      "applicationUrl": "http://localhost:9005"
+      "applicationUrl": "http://localhost:9051"
     }
   }
 }

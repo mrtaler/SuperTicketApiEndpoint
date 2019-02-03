@@ -1,9 +1,9 @@
 ﻿{
   "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
+    "windowsAuthentication": false, 
+    "anonymousAuthentication": true, 
     "iisExpress": {
-      "applicationUrl": "http://localhost:9000",
+      "applicationUrl": "http://localhost:9011",
       "sslPort": 0
     }
   },
@@ -12,15 +12,15 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Home"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ApiGateway": {
+    "BaseApiGateway": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:9000",
+      "applicationUrl": "http://localhost:9011",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Home"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
   }
