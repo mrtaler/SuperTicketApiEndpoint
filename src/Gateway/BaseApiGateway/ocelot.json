@@ -23,9 +23,44 @@
       ],
       "UpstreamPathTemplate": "/superticket-api/{url}" //,
       // "SwaggerKey": "superticketApi"
+    },
+
+    {
+      // "UpstreamPathTemplate": "/superticket-api/getareas/{areaId}",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9051
+        }
+      ],
+      "DownstreamScheme": "http",
+      "DownstreamPathTemplate": "/api/v1/Area/{id}",
+      "UpstreamPathTemplate": "/api/v1/Area/{id}",
+      "Key": "AreaById"
+    },
+    {
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9051
+        }
+      ],
+      "DownstreamScheme": "http",
+      "DownstreamPathTemplate": "/api/v1/Seat/GetByAreaId/{id}",
+      "UpstreamPathTemplate": "/api/v1/Seat/GetByAreaId/{id}",
+      "Key": "SeatByAreaId"
     }
   ],
 
+  "Aggregates": [
+    {
+      "ReRouteKeys": [
+        "AreaById",
+        "SeatByAreaId"
+      ],
+      "UpstreamPathTemplate": "/api/{id}"
+    }
+  ],
   /*"ReRoutes": [
     {
       "DownstreamPathTemplate": "/swagger",

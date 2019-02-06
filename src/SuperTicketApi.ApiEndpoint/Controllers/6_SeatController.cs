@@ -62,7 +62,23 @@
         }
 
         /// <summary>
-        /// The api/values
+        /// The GET api/values/5
+        /// </summary>
+        /// <param name="areaId">
+        /// The area Id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="ActionResult"/>.
+        /// </returns>
+        [HttpGet("GetByAreaId/{areaId}")]
+        public async Task<IActionResult> GetByAreaId(int areaId)
+        {
+            var result = await this.Mediator.Send(EnumerableQueryPattern.GetSeatAsIEnumerableByAreaIdQuery(areaId));
+            return new ObjectResult(new { Seat = result });
+        }
+
+        /// <summary>
+        /// The values
         /// </summary>
         /// <param name="createViewModel">
         /// The create View Model.
@@ -80,7 +96,7 @@
         }
 
         /// <summary>
-        /// The PUT api/values/5
+        /// The PUT values/5
         /// </summary>
         /// <param name="updateModel">
         /// The updated Model.
@@ -88,7 +104,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-         [HttpPut]
+        [HttpPut]
         public async Task<IActionResult> Put([FromBody] UpdateSeatViewModel updateModel)
         {
             var result = await this.Mediator.Send(
@@ -98,7 +114,7 @@
         }
 
         /// <summary>
-        /// The DELETE api/values/5
+        /// The DELETE values/5
         /// </summary>
         /// <param name="id">
         /// The <paramref name="id"/>.
